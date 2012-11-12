@@ -1,0 +1,8 @@
+<project name="yealink" default="default">
+
+  <property name="project.dir" value="plugins/yealink" />
+  <property name="plugin.models.dir" value="etc/yealinkPhone" />
+  <property name="plugin.name" value="yealink-phones" />
+
+  <import file="../plugins.build.xml" />
+</project>
