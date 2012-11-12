@@ -1,0 +1,43 @@
+<project name="yealink" default="default">
+
+	<target name="default" depends="clean,generate-jar" />
+	<target name="clean" />
+	<target name="compile">
+		<mkdir dir="${tmp.dir}/src/org/sipfoundry/sipxconfig/phone/yealink" />
+		<javac
+			srcdir="src" includes="**" destdir="${tmp.dir}/src"
+			classpath="../sipx-4.4-jars/sipxconfig.jar;../sipx-4.4-jars/commons-httpclient.jar;../sipx-4.4-jars/commons-lang.jar;../sipx-4.4-jars/commons-logging-1.1.jar;../sipx-4.4-jars/org.springframework.beans-3.0.5.RELEASE.jar;../sipx-4.4-jars/dom4j-1.6.1.jar;../sipx-4.4-jars/commons-codec-1.3.jar"
+		/>
+	</target>
+
+	<target name="generate-jar" depends="compile">
+		<copy todir="${tmp.dir}/src/org/sipfoundry/sipxconfig/phone/yealink">
+			<fileset dir="${project.dir}/src">
+				<include name="sipxplugin.beans.xml"/>
+			</fileset>
+			<mapper type="regexp" from="sipxplugin.beans.xml" to="yealink-models.beans.xml"/>
+		</copy>
+		<jar
+			basedir="${tmp.dir}/src"
+			destfile="${plugin.name}.jar"
+			includes="**"
+			update="true"
+		>
+			<manifest>
+				<attribute name="Specification-Title" value="sipXconfig" />
+				<attribute name="Specification-Version" value="4.4.0" />
+				<attribute name="Specification-Vendor" value="SIPfoundry" />
+				<attribute name="Implementation-Title" value="plugins/yealink" />
+				<attribute name="Implementation-Version" value="4.4.0- 2011-08-14EDT19:08:55 domU-12-31-39-04-D4-A1" />
+				<attribute name="Implementation-Vendor" value="SIPfoundry" />
+			</manifest>
+		</jar>
+		<delete dir="${tmp.dir}/src" />
+	</target>
+
+	<property name="project.dir" value="." />
+	<property name="tmp.dir" value="/tmp" />
+	<property name="plugin.models.dir" value="etc/yealinkPhone" />
+	<property name="plugin.name" value="sipXyealink" />
+
+</project>

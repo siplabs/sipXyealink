@@ -1,0 +1,65 @@
+#set($serial = "$phone.SerialNumber")
+#set($maxLineCount = $phone.MaxLineCount)
+#set($signatureL1 = '####################################################')
+#set($signatureL2 = '##         MAC-Oriented CFG File                  ##')
+#set($signatureL3 = '####################################################')
+#set($signatureL4 = '#!version:1.0.0.1')
+#set($signatureL5 = '#File header "#!version:1.0.0.1" cannot be edited or deleted.##')
+$signatureL4
+$signatureL5
+
+# Enable configured lines
+#foreach ($line in $phone.lines)
+#set ($lastLineID = $velocityCount)
+#set ($SLP = $lastLineID - 1)
+#set ($SLP = $SLP * 10)
+#set ($SLP = $SLP + 5060)
+# Line ${lastLineID} settings
+#foreach ($group in $line.Settings.Values)
+#${group.name}
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName} == "voice_mail.number")
+${setting.ProfileName}.${lastLineID} = $!{setting.Value}
+#elseif (${setting.ProfileName} == "label")
+#elseif (${setting.ProfileName} == "user_name")
+account.${lastLineID}.label = $!{setting.Value}
+account.${lastLineID}.user_name = $!{setting.Value}
+#else
+account.${lastLineID}.${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#end
+account.${lastLineID}.sip_listen_port = ${SLP}
+#end
+
+#set ($lastLineID = $lastLineID + 1)
+#if (${lastLineID}<${maxLineCount})
+# Disable other lines
+#foreach($L in [${lastLineID}..${maxLineCount}])
+#set ($SLP = $L - 1)
+#set ($SLP = $SLP * 10)
+#set ($SLP = $SLP + 5060)
+account.${L}.enable = 0
+account.${L}.label =
+account.${L}.display_name =
+account.${L}.user_name =
+account.${L}.auth_name =
+account.${L}.password =
+account.${L}.sip_listen_port = ${SLP}
+account.${L}.sip_server_host =
+account.${L}.sip_server_port = 5060
+account.${L}.outbound_proxy_enable = 0
+account.${L}.outbound_host =
+account.${L}.outbound_port = 5060
+account.${L}.transport = 3
+account.${L}.backup_outbound_host =
+account.${L}.backup_outbound_port = 5060
+#end
+#end
+
+#foreach ($group in $phone.Settings.Values)
+#${group.name}
+#foreach ($setting in $group.Values)
+${setting.profileName} = $!{setting.Value}
+#end
+#end

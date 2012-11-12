@@ -1,14 +1,15 @@
 /*
- *
- *
- * Author: Konstantin S. Vishnivetsky
- * E-mail: info@siplabs.ru
- * Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
- * Contributors retain copyright to elements licensed under a Contributor Agreement.
- * Licensed to the User under the LGPL license.
- *
- *
- */
+*
+*
+* Author: Konstantin S. Vishnivetsky
+* E-mail: info@siplabs.ru
+* Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
+* Contributors retain copyright to elements licensed under a Contributor Agreement.
+* Licensed to the User under the LGPL license.
+*
+*
+*/
+
 package org.sipfoundry.sipxconfig.phone.yealink;
 
 import java.io.File;
@@ -168,12 +169,19 @@ public class yealinkPhone extends Phone {
      */
     @Override
     protected void setLineInfo(Line line, LineInfo info) {
-        line.setSettingValue(yealinkConstants.USER_ID_SETTING, info.getUserId());
-        line.setSettingValue(yealinkConstants.DISPLAY_NAME_SETTING, info.getDisplayName());
-        line.setSettingValue(yealinkConstants.PASSWORD_SETTING, info.getPassword());
-        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_HOST_SETTING, info.getRegistrationServer());
-        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_PORT_SETTING, info.getRegistrationServerPort());
-        line.setSettingValue(yealinkConstants.VOICE_MAIL_NUMBER_SETTING, info.getVoiceMail());
+        line.setSettingValue(yealinkConstants.USER_ID_V6X_SETTING, info.getUserId());
+        line.setSettingValue(yealinkConstants.DISPLAY_NAME_V6X_SETTING, info.getDisplayName());
+        line.setSettingValue(yealinkConstants.PASSWORD_V6X_SETTING, info.getPassword());
+        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_HOST_V6X_SETTING, info.getRegistrationServer());
+        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_PORT_V6X_SETTING, info.getRegistrationServerPort());
+        line.setSettingValue(yealinkConstants.VOICE_MAIL_NUMBER_V6X_SETTING, info.getVoiceMail());
+
+        line.setSettingValue(yealinkConstants.USER_ID_V7X_SETTING, info.getUserId());
+        line.setSettingValue(yealinkConstants.DISPLAY_NAME_V7X_SETTING, info.getDisplayName());
+        line.setSettingValue(yealinkConstants.PASSWORD_V7X_SETTING, info.getPassword());
+        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_HOST_V7X_SETTING, info.getRegistrationServer());
+        line.setSettingValue(yealinkConstants.REGISTRATION_SERVER_PORT_V7X_SETTING, info.getRegistrationServerPort());
+        line.setSettingValue(yealinkConstants.VOICE_MAIL_NUMBER_V7X_SETTING, info.getVoiceMail());
     }
 
     /**
@@ -183,12 +191,12 @@ public class yealinkPhone extends Phone {
     @Override
     protected LineInfo getLineInfo(Line line) {
         LineInfo info = new LineInfo();
-        info.setDisplayName(line.getSettingValue(yealinkConstants.DISPLAY_NAME_SETTING));
-        info.setUserId(line.getSettingValue(yealinkConstants.USER_ID_SETTING));
-        info.setPassword(line.getSettingValue(yealinkConstants.PASSWORD_SETTING));
-        info.setRegistrationServer(line.getSettingValue(yealinkConstants.REGISTRATION_SERVER_HOST_SETTING));
-        info.setRegistrationServerPort(line.getSettingValue(yealinkConstants.REGISTRATION_SERVER_PORT_SETTING));
-        info.setVoiceMail(line.getSettingValue(yealinkConstants.VOICE_MAIL_NUMBER_SETTING));
+        info.setDisplayName(line.getSettingValue(yealinkConstants.DISPLAY_NAME_V6X_SETTING));
+        info.setUserId(line.getSettingValue(yealinkConstants.USER_ID_V6X_SETTING));
+        info.setPassword(line.getSettingValue(yealinkConstants.PASSWORD_V6X_SETTING));
+        info.setRegistrationServer(line.getSettingValue(yealinkConstants.REGISTRATION_SERVER_HOST_V6X_SETTING));
+        info.setRegistrationServerPort(line.getSettingValue(yealinkConstants.REGISTRATION_SERVER_PORT_V6X_SETTING));
+        info.setVoiceMail(line.getSettingValue(yealinkConstants.VOICE_MAIL_NUMBER_V6X_SETTING));
         return info;
     }
 

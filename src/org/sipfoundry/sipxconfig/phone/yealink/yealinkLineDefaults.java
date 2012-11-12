@@ -1,14 +1,15 @@
 /*
- *
- *
- * Author: Konstantin S. Vishnivetsky
- * E-mail: info@siplabs.ru
- * Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
- * Contributors retain copyright to elements licensed under a Contributor Agreement.
- * Licensed to the User under the LGPL license.
- *
- *
- */
+*
+*
+* Author: Konstantin S. Vishnivetsky
+* E-mail: info@siplabs.ru
+* Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
+* Contributors retain copyright to elements licensed under a Contributor Agreement.
+* Licensed to the User under the LGPL license.
+*
+*
+*/
+
 package org.sipfoundry.sipxconfig.phone.yealink;
 
 import java.io.File;
@@ -49,7 +50,12 @@ public class yealinkLineDefaults {
 	m_line = line;
     }
 
-    @SettingEntry(paths = {yealinkConstants.AUTH_ID_SETTING, yealinkConstants.USER_ID_SETTING})
+    @SettingEntry(paths = {
+	yealinkConstants.AUTH_ID_V6X_SETTING,
+	yealinkConstants.USER_ID_V6X_SETTING,
+	yealinkConstants.AUTH_ID_V7X_SETTING,
+	yealinkConstants.USER_ID_V7X_SETTING
+	})
     public String getUserName() {
 	String userName = null;
 	User user = m_line.getUser();
@@ -59,7 +65,10 @@ public class yealinkLineDefaults {
 	return userName;
     }
 
-    @SettingEntry(path = yealinkConstants.DISPLAY_NAME_SETTING)
+    @SettingEntry(paths = {
+	yealinkConstants.DISPLAY_NAME_V6X_SETTING,
+	yealinkConstants.DISPLAY_NAME_V7X_SETTING
+	})
     public String getDisplayName() {
 	String displayName = null;
 	User user = m_line.getUser();
@@ -69,7 +78,10 @@ public class yealinkLineDefaults {
 	return displayName;
     }
 
-    @SettingEntry(path = yealinkConstants.PASSWORD_SETTING)
+    @SettingEntry(paths = {
+	yealinkConstants.PASSWORD_V6X_SETTING,
+	yealinkConstants.PASSWORD_V7X_SETTING
+	})
     public String getPassword() {
 	String password = null;
 	User user = m_line.getUser();
@@ -79,32 +91,40 @@ public class yealinkLineDefaults {
 	return password;
     }
 
-    @SettingEntry(path = yealinkConstants.REGISTRATION_SERVER_HOST_SETTING)
+    @SettingEntry(paths = {
+	yealinkConstants.REGISTRATION_SERVER_HOST_V6X_SETTING,
+	yealinkConstants.REGISTRATION_SERVER_HOST_V7X_SETTING
+	})
     public String getRegistrationServer() {
 	return m_defaults.getDomainName();
     }
 
-    @SettingEntry(path = yealinkConstants.REGISTRATION_SERVER_PORT_SETTING)
-    public String getRegistrationServerPort() {
-	return m_defaults.getProxyServerSipPort();
-    }
-
-    @SettingEntry(path = yealinkConstants.OUTBOUND_HOST_SETTING)
+    @SettingEntry(paths = {
+	yealinkConstants.OUTBOUND_HOST_V6X_SETTING,
+	yealinkConstants.BACKUP_OUTBOUND_HOST_V6X_SETTING,
+	yealinkConstants.OUTBOUND_HOST_V7X_SETTING,
+	yealinkConstants.BACKUP_OUTBOUND_HOST_V7X_SETTING
+	})
     public String getOutboundHost() {
 	return m_defaults.getProxyServerAddr();
     }
 
-    @SettingEntry(path = yealinkConstants.OUTBOUND_PORT_SETTING)
-    public String getOutboundPort() {
+    @SettingEntry(paths = {
+	yealinkConstants.REGISTRATION_SERVER_PORT_V6X_SETTING,
+	yealinkConstants.OUTBOUND_PORT_V6X_SETTING,
+	yealinkConstants.BACKUP_OUTBOUND_PORT_V6X_SETTING,
+	yealinkConstants.REGISTRATION_SERVER_PORT_V7X_SETTING,
+	yealinkConstants.OUTBOUND_PORT_V7X_SETTING,
+	yealinkConstants.BACKUP_OUTBOUND_PORT_V7X_SETTING
+	})
+    public String getRegistrationServerPort() {
 	return m_defaults.getProxyServerSipPort();
     }
 
-    @SettingEntry(path = yealinkConstants.IDLE_SCREEN_SETTING)
-    public String getIdleScreenURL() {
-	return "tftp://" + m_defaults.getTftpServer() + "/yealink_SIP-T38G_idle_screen.xml";
-    }
-
-    @SettingEntry(path = yealinkConstants.VOICE_MAIL_NUMBER_SETTING)
+    @SettingEntry(paths = {
+	yealinkConstants.VOICE_MAIL_NUMBER_V6X_SETTING,
+	yealinkConstants.VOICE_MAIL_NUMBER_V7X_SETTING
+	})
     public String getVoiceMail() {
 	String voicemail = null;
 	User u = m_line.getUser();
@@ -113,8 +133,8 @@ public class yealinkLineDefaults {
 	}
 	return voicemail;
     }
-
-    @SettingEntry(path = yealinkConstants.MOH_URI)
+/*
+    @SettingEntry(path = yealinkConstants.MOH_URI_SETTING)
     public String getMusicOnHoldUri() {
 	String mohUri;
 	User u = m_line.getUser();
@@ -126,7 +146,7 @@ public class yealinkLineDefaults {
 	return mohUri;
     }
 
-    @SettingEntry(path = yealinkConstants.BLA_NUMBER)
+    @SettingEntry(path = yealinkConstants.BLA_NUMBER_SETTING)
     public String getBLANumber() {
 	User u = m_line.getUser();
 	String BLANumber = "";
@@ -136,4 +156,11 @@ public class yealinkLineDefaults {
 	}
 	return BLANumber;
     }
+
+    @SettingEntry(path = yealinkConstants.IDLE_SCREEN_SETTING)
+    public String getIdleScreenURL() {
+	return "tftp://" + m_defaults.getTftpServer() + "/yealink_SIP-T38G_idle_screen.xml";
+    }
+
+*/
 }

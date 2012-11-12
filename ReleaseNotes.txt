@@ -1,0 +1,6 @@
+1. programblekeyX => programblekey with N parameters in notation parameterX
+2. Added "Disabled" value to codecs
+3. RemotePhoneBookX => RemotePhoneBook with N parameters in notation parameterX
+4. URL and name of RemotePhoneBook0 automatic value set
+5. BUGFIX: voicemail in SIP-T[12]X models
+--------------------------- Commit 20120511 ---------------------

@@ -1,0 +1,106 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/xhtml;charset=UTF-8"/>
+    <meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="Content-Language" content="en" />
+    <link rel="stylesheet" href="doxygen.css"/>
+    <title>TreeView</title>
+    <script type="text/javascript">
+    <!-- // Hide script from old browsers
+    
+    function toggleFolder(id, imageNode) 
+    {
+      var folder = document.getElementById(id);
+      var l = imageNode.src.length;
+      if (imageNode.src.substring(l-20,l)=="ftv2folderclosed.png" || 
+          imageNode.src.substring(l-18,l)=="ftv2folderopen.png")
+      {
+        imageNode = imageNode.previousSibling;
+        l = imageNode.src.length;
+      }
+      if (folder == null) 
+      {
+      } 
+      else if (folder.style.display == "block") 
+      {
+        if (imageNode != null) 
+        {
+          imageNode.nextSibling.src = "ftv2folderclosed.png";
+          if (imageNode.src.substring(l-13,l) == "ftv2mnode.png")
+          {
+            imageNode.src = "ftv2pnode.png";
+          }
+          else if (imageNode.src.substring(l-17,l) == "ftv2mlastnode.png")
+          {
+            imageNode.src = "ftv2plastnode.png";
+          }
+        }
+        folder.style.display = "none";
+      } 
+      else 
+      {
+        if (imageNode != null) 
+        {
+          imageNode.nextSibling.src = "ftv2folderopen.png";
+          if (imageNode.src.substring(l-13,l) == "ftv2pnode.png")
+          {
+            imageNode.src = "ftv2mnode.png";
+          }
+          else if (imageNode.src.substring(l-17,l) == "ftv2plastnode.png")
+          {
+            imageNode.src = "ftv2mlastnode.png";
+          }
+        }
+        folder.style.display = "block";
+      }
+    }
+
+    // End script hiding -->        
+    </script>
+  </head>
+
+  <body class="ftvtree">
+    <div class="directory">
+      <h3 class="swap"><span>sipXyealink</span></h3>
+      <div style="display: block;">
+        <p><img src="ftv2pnode.png" alt="o" width="16" height="22" onclick="toggleFolder('folder1', this)"/><img src="ftv2folderclosed.png" alt="+" width="24" height="22" onclick="toggleFolder('folder1', this)"/><a class="el" href="annotated.html" target="basefrm">Классы</a></p>
+        <div id="folder1">
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_constants.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkConstants</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_device_configuration.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkDeviceConfiguration</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_dial_now_configuration.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkDialNowConfiguration</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_directory_configuration.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkDirectoryConfiguration</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_line_defaults.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkLineDefaults</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_model.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkModel</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_phone.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkPhone</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink_1_1yealink_phone_defaults.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink.yealinkPhoneDefaults</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="classorg_1_1sipfoundry_1_1sipxconfig_1_1upload_1_1yealink_1_1yealink_upload.html" target="basefrm">org.sipfoundry.sipxconfig.upload.yealink.yealinkUpload</a></p>
+        </div>
+        <p><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="functions.html" target="basefrm">Члены классов</a></p>
+        <p><img src="ftv2pnode.png" alt="o" width="16" height="22" onclick="toggleFolder('folder2', this)"/><img src="ftv2folderclosed.png" alt="+" width="24" height="22" onclick="toggleFolder('folder2', this)"/><a class="el" href="namespaces.html" target="basefrm">Полный список пакетов </a></p>
+        <div id="folder2">
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg.html" target="basefrm">org</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry.html" target="basefrm">org.sipfoundry</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry_1_1sipxconfig.html" target="basefrm">org.sipfoundry.sipxconfig</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry_1_1sipxconfig_1_1phone.html" target="basefrm">org.sipfoundry.sipxconfig.phone</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry_1_1sipxconfig_1_1phone_1_1yealink.html" target="basefrm">org.sipfoundry.sipxconfig.phone.yealink</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry_1_1sipxconfig_1_1upload.html" target="basefrm">org.sipfoundry.sipxconfig.upload</a></p>
+          <p><img src="ftv2vertline.png" alt="|" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="namespaceorg_1_1sipfoundry_1_1sipxconfig_1_1upload_1_1yealink.html" target="basefrm">org.sipfoundry.sipxconfig.upload.yealink</a></p>
+        </div>
+        <p><img src="ftv2plastnode.png" alt="\" width="16" height="22" onclick="toggleFolder('folder3', this)"/><img src="ftv2folderclosed.png" alt="+" width="24" height="22" onclick="toggleFolder('folder3', this)"/><a class="el" href="files.html" target="basefrm">Файлы</a></p>
+        <div id="folder3">
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_constants_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkConstants.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_device_configuration_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkDeviceConfiguration.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_dial_now_configuration_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkDialNowConfiguration.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_directory_configuration_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkDirectoryConfiguration.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_line_defaults_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkLineDefaults.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_model_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkModel.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_phone_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkPhone.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2node.png" alt="o" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_phone_defaults_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/phone/yealink/yealinkPhoneDefaults.java</a></p>
+          <p><img src="ftv2blank.png" alt="&#160;" width="16" height="22" /><img src="ftv2lastnode.png" alt="\" width="16" height="22" /><img src="ftv2doc.png" alt="*" width="24" height="22" /><a class="el" href="yealink_upload_8java.html" target="basefrm">src/org/sipfoundry/sipxconfig/upload/yealink/yealinkUpload.java</a></p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
+

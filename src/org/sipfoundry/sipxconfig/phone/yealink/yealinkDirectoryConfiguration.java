@@ -1,14 +1,15 @@
 /*
- *
- *
- * Author: Konstantin S. Vishnivetsky
- * E-mail: info@siplabs.ru
- * Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
- * Contributors retain copyright to elements licensed under a Contributor Agreement.
- * Licensed to the User under the LGPL license.
- *
- *
- */
+*
+*
+* Author: Konstantin S. Vishnivetsky
+* E-mail: info@siplabs.ru
+* Copyright (C) 2011 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
+* Contributors retain copyright to elements licensed under a Contributor Agreement.
+* Licensed to the User under the LGPL license.
+*
+*
+*/
+
 package org.sipfoundry.sipxconfig.phone.yealink;
 
 import java.io.File;
@@ -91,8 +92,6 @@ public class yealinkDirectoryConfiguration extends ProfileContext {
 	}
 
 	public String getFirstName() {
-	    // username if first and last name are null. Otherwise it creates a
-	    // contact entry with no display label which is useless on polycom.
 	    String firstName = m_firstName;
 	    if (firstName == null && m_lastName == null) {
 		return m_contact;
