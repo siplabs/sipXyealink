@@ -96,7 +96,7 @@ public class yealinkPhoneDefaults {
         if (addressManager.getSingleAddress(DnsManager.DNS_ADDRESS) != null) {
             return addressManager.getSingleAddress(DnsManager.DNS_ADDRESS).getAddress();
         }
-        return "";
+        return null;
     }
 //	TODO: Get Second DNS server intead of dublicate first
     @SettingEntry(paths = {
@@ -108,7 +108,7 @@ public class yealinkPhoneDefaults {
         if (addressManager.getSingleAddress(DnsManager.DNS_ADDRESS) != null) {
             return addressManager.getSingleAddress(DnsManager.DNS_ADDRESS).getAddress();
         }
-        return "";
+        return null;
     }
 
     @SettingEntry(paths = {

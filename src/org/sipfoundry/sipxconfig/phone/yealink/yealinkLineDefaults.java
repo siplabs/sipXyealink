@@ -37,6 +37,8 @@ import org.sipfoundry.sipxconfig.setting.SettingEntry;
 import org.sipfoundry.sipxconfig.speeddial.Button;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.lang.ArrayUtils;
 
 
@@ -142,9 +144,11 @@ public class yealinkLineDefaults {
     public String getIdleScreenURL() {
 	return "tftp://" + m_defaults.getTftpServer() + "/yealink_SIP-T38G_idle_screen.xml";
     }
+*/
 
-    @SettingEntry(path = yealinkConstants.MOH_URI)
-    public String getMusicOnHoldUri() {
+    @SettingEntry(paths = {yealinkConstants.ADVANCED_MUSIC_SERVER_URI_V6X_SETTING,
+				yealinkConstants.ADVANCED_MUSIC_SERVER_URI_V7X_SETTING})
+    public String getMusicServerUri() {
 	String mohUri;
 	User u = m_line.getUser();
 	if (u != null) {
@@ -155,6 +159,7 @@ public class yealinkLineDefaults {
 	return mohUri;
     }
 
+/*
     @SettingEntry(path = yealinkConstants.BLA_NUMBER)
     public String getBLANumber() {
 	User u = m_line.getUser();

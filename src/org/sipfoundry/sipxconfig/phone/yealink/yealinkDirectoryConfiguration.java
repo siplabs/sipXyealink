@@ -30,8 +30,14 @@ import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class yealinkDirectoryConfiguration extends ProfileContext {
     private final Collection<PhonebookEntry> m_entries;
+
+    // Common static members
+    private static final Log LOG = LogFactory.getLog(yealinkDirectoryConfiguration.class);
 
     public yealinkDirectoryConfiguration(yealinkPhone device, Collection<PhonebookEntry> entries, String profileTemplate) {
 	super(device, profileTemplate);

@@ -136,8 +136,8 @@
 	<setting name="subscribe_mwi_to_vm"><type><boolean/></type><value>0</value></setting>
 	<!-- Configure the SIP server type; 0-Default (default), 2-BroadSoft, 4-Cosmocom;-->
 	<setting name="sip_server_type"><type refid="SIPServer_type"/><value>0</value></setting>
-
-	<setting name="moh_uri"><type><string/></type><value></value></setting>
+	<!-- Configure the music on hold server; -->
+	<setting name="music_server_uri"><type><string/></type></setting>
 
 <!-- Enable or disable the phone to receive the messages from the server only; 0-Disabled (default), 1-Enabled;-->
 <setting name="sip_trust_ctrl" advanced="yes"><type><boolean/></type><value>0</value></setting>
@@ -204,10 +204,10 @@
 	<setting name="codec.6.priority"><type><integer/></type><value>4</value></setting>
 	<setting name="codec.6.rtpmap"><type><integer/></type><value>9</value></setting>
 
-	<setting name="codec.7.enable"><type><boolean/></type><value></value></setting>
-	<setting name="codec.7.payload_type"><type><string/></type><value></value></setting>
-	<setting name="codec.7.priority"><type><integer/></type><value></value></setting>
-	<setting name="codec.7.rtpmap"><type><integer/></type><value></value></setting>
+	<setting name="codec.7.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.7.payload_type"><type><string/></type><value>iLBC</value></setting>
+	<setting name="codec.7.priority"><type><integer/></type><value>7</value></setting>
+	<setting name="codec.7.rtpmap"><type><integer/></type><value>122</value></setting>
 
 	<setting name="codec.8.enable"><type><boolean/></type><value>0</value></setting>
 	<setting name="codec.8.payload_type"><type><string/></type><value>G726-16</value></setting>
@@ -238,5 +238,25 @@
 	<setting name="codec.13.payload_type"><type><string/></type><value>iLBC_15_2</value></setting>
 	<setting name="codec.13.priority"><type><integer/></type><value>0 </value></setting>
 	<setting name="codec.13.rtpmap"><type><integer/></type><value>97</value></setting>
+    </group>
+    <group name="video-codecs" if="yealinkPhoneVP530">
+	<!-- Video codecs for account 1 (X ranges from 1 to 3) -->
+	<setting name="video_codec.1.enable"><type><boolean/></type><value>1</value></setting>
+	<setting name="video_codec.1.priority"><type><integer/></type><value>1</value></setting>
+	<setting name="video_codec.1.payload_type"><type><string/></type><value>H264</value></setting>
+	<setting name="video_codec.1.rtpmap"><type><integer/></type><value>99</value></setting>
+	<setting name="video_codec.1.para"><type><string/></type><value>profile-level-id=42800D; packetization-mode=0; max-mbps=11880</value></setting>
+
+	<setting name="video_codec.2.enable"><type><boolean/></type><value>1</value></setting>
+	<setting name="video_codec.2.priority"><type><integer/></type><value>2</value></setting>
+	<setting name="video_codec.2.payload_type"><type><string/></type><value>H263</value></setting>
+	<setting name="video_codec.2.rtpmap"><type><integer/></type><value>34</value></setting>
+	<setting name="video_codec.2.para"><type><string/></type><value>CIF=1; QCIF=1</value></setting>
+
+	<setting name="video_codec.3.enable"><type><boolean/></type><value>1</value></setting>
+	<setting name="video_codec.3.priority"><type><integer/></type><value>3</value></setting>
+	<setting name="video_codec.3.payload_type"><type><string/></type><value>mp4v-es</value></setting>
+	<setting name="video_codec.3.rtpmap"><type><integer/></type><value>102</value></setting>
+	<setting name="video_codec.3.para"><type><string/></type><value>CIF=1; QCIF=1; MaxBR=38400</value></setting>
     </group>
 </model>

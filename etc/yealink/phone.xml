@@ -550,7 +550,7 @@ programablekey.x.label This parameter is only available to the key 1 to key 4.
 	<setting name="programablekey.15.history_type" if="yealinkPhoneSIPT38G"><type><string/></type></setting>
 	<setting name="programablekey.15.label" if="yealinkPhoneSIPT38G"><type><string/></type></setting>
     </group>
-    <group name="expansion-keys">
+    <group name="expansion-keys" hidden="yes">
 <!--// 
 ##########################################################################################
 ##         	              Expansion Key  (For T38G only)                            ##
@@ -1129,7 +1129,7 @@ Require reboot;  //-->
 <!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
 	<setting name="features.pickup.direct_pickup_enable"><type><boolean/></type><value>0</value></setting>
 <!--// Configure the directed pickup code. //-->
-	<setting name="features.pickup.direct_pickup_code"><type><boolean/></type><value>0</value></setting>
+	<setting name="features.pickup.direct_pickup_code"><type><string/></type><value>0</value></setting>
 <!--// Specify the way to notify the phone of the incoming call of the monitored user by visual or audio indicator;
 #0-Disabled (default), 1-Enabled;  //-->
 	<setting name="features.pickup.blf_visual_enable"><type><boolean/></type><value>0</value></setting>

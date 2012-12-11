@@ -15,7 +15,12 @@ package org.sipfoundry.sipxconfig.upload.yealink;
 import org.sipfoundry.sipxconfig.upload.Upload;
 import org.sipfoundry.sipxconfig.upload.UploadSpecification;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class yealinkUpload extends Upload {
+
+    private static final Log LOG = LogFactory.getLog(yealinkUpload.class);
 
     public yealinkUpload() {
     }

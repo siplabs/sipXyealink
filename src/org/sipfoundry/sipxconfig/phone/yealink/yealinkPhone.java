@@ -40,12 +40,17 @@ import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.speeddial.Button;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.apache.commons.lang.ArrayUtils;
 
 /**
  * Yealink abstract phone.
  */
 public class yealinkPhone extends Phone {
+
+    // Common static members
+    private static final Log LOG = LogFactory.getLog(yealinkPhone.class);
 
     // Common members
     private SpeedDial m_speedDial = null;
