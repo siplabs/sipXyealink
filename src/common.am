@@ -4,6 +4,7 @@ yealink_PKGS = \
 	commons-lang \
 	commons-io \
 	commons-collections \
+	commons-logging \
 	org.springframework.beans \
 	sipxcommons \
 	sipxconfig-neoconf \
