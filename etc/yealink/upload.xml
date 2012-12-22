@@ -21,7 +21,7 @@
     		<type>
     			<file>
     				<contentType>application/binary</contentType>
-    				<rename>T18.rom</rename>
+    				<rename>yealink_SIP-T18.rom</rename>
     			</file>
     		</type>
 		<description>Firmware binary in 18.x.x.x.rom</description>
@@ -86,16 +86,6 @@
     		</type>
 		<description>38.x.x.x.rom</description>
         </setting>
-	<setting name="yealink_VP530.rom">
-    		<label>VP530</label>
-    		<type>
-    			<file>
-    				<contentType>application/binary</contentType>
-    				<rename>VP530.rom</rename>
-    			</file>
-    		</type>
-		<description>23.x.x.x.rom</description>
-        </setting>
         <setting name="Logo132x64.dob">
             <label>Logo</label>
             <type>
@@ -115,26 +105,6 @@
     			</file>
     		</type>
 		<description>IdleScreen.xml</description>
-        </setting>
-	<setting name="yealinkWallpaper.jpg">
-    		<label>JPG Wallpaper for SIP-T3xG and VP530 phones</label>
-    		<type>
-    			<file>
-    				<contentType>text/xml</contentType>
-    				<rename>yealinkWallpaper.jpg</rename>
-    			</file>
-    		</type>
-		<description>yealinkWallpaper.jpg</description>
-        </setting>
-	<setting name="yealinkScreensaver.jpg">
-    		<label>JPG Screensaver for SIP-T3xG phones</label>
-    		<type>
-    			<file>
-    				<contentType>text/xml</contentType>
-    				<rename>yealinkScreensaver.jpg</rename>
-    			</file>
-    		</type>
-		<description>yealinkScreensaver.jpg</description>
         </setting>
         <setting name="lang+English.txt">
             <label>Custom LCD Language file</label>

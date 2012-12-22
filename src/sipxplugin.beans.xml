@@ -12,7 +12,7 @@
 	<property name="usePhonebook" value="true" />
 	<property name="hasSeparateDialNow" value="true" />
 	<property name="noHD" value="false" />
-	<property name="profileTemplate" value="yealinkPhone/config_v6x.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_titan.vm" />
 	<property name="directoryProfileTemplate" value="yealinkPhone/directory.xml.vm" />
 	<property name="dialNowProfileTemplate" value="yealinkPhone/dialnow.xml.vm" />
 </bean>
@@ -37,14 +37,12 @@
 <bean id="yealinkPhoneSIPT20P" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T20(P)" />
 	<property name="name" value="T20" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
 	<property name="maxLineCount" value="2" />
 </bean>
 
 <bean id="yealinkPhoneSIPT22P" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T22(P)" />
 	<property name="name" value="T22" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
 	<property name="maxLineCount" value="3" />
 </bean>
 
@@ -52,7 +50,6 @@
 	<property name="label" value="Yealink SIP-T26(P)" />
 	<property name="name" value="T26" />
 	<property name="maxLineCount" value="3" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
 	<property name="softKeyCount" value="10" />
 </bean>
 
@@ -60,7 +57,6 @@
 	<property name="label" value="Yealink SIP-T28(P)" />
 	<property name="name" value="T28" />
 	<property name="maxLineCount" value="6" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
 	<property name="softKeyCount" value="10" />
 </bean>
 
@@ -68,7 +64,7 @@
 	<property name="label" value="Yealink SIP-T32G" />
 	<property name="name" value="T32" />
 	<property name="maxLineCount" value="3" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
 	<property name="softKeyCount" value="0" />
 </bean>
 
@@ -76,16 +72,8 @@
 	<property name="label" value="Yealink SIP-T38G" />
 	<property name="name" value="T38" />
 	<property name="maxLineCount" value="6" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
 	<property name="softKeyCount" value="10" />
-</bean>
-
-<bean id="yealinkPhoneVP530" parent="yealinkModel">
-	<property name="label" value="Yealink VP530" />
-	<property name="name" value="VP530" />
-	<property name="maxLineCount" value="4" />
-	<property name="profileTemplate" value="yealinkPhone/config_v7x.vm" />
-	<property name="softKeyCount" value="0" />
 </bean>
 
 <!--// Files uploading specification //-->

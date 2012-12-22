@@ -1,149 +1,12 @@
-<type id="yealink_line_type">
-    <enum>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-    </enum>
-</type>
-<type id="yealink_busy_tone_delay_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>3</value></option>
-	<option><value>5</value></option>
-    </enum>
-</type>
-<type id="yealink_dtmf_repetition_type">
-    <enum>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-    </enum>
-</type>
-<type id="yealink_ldap_version_type">
-    <enum>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-    </enum>
-</type>
-<type id="SIPT38G_pk_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>2</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-	<option><value>7</value></option>
-	<option><value>8</value></option>
-	<option><value>9</value></option>
-	<option><value>13</value></option>
-	<option><value>14</value></option>
-	<option><value>22</value></option>
-	<option><value>23</value></option>
-	<option><value>27</value></option>
-	<option><value>28</value></option>
-	<option><value>29</value></option>
-	<option><value>30</value></option>
-	<option><value>32</value></option>
-	<option><value>33</value></option>
-	<option><value>43</value></option>
-	<option><value>44</value></option>
-	<option><value>45</value></option>
-	<option><value>46</value></option>
-	<option><value>47</value></option>
-	<option><value>48</value></option>
-	<option><value>49</value></option>
-	<option><value>50</value></option>
-    </enum>
-</type>
-<type id="SIPT38G_DSS_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-	<option><value>7</value></option>
-	<option><value>8</value></option>
-	<option><value>9</value></option>
-	<option><value>10</value></option>
-	<option><value>11</value></option>
-	<option><value>12</value></option>
-	<option><value>13</value></option>
-	<option><value>14</value></option>
-	<option><value>15</value></option>
-	<option><value>16</value></option>
-	<option><value>17</value></option>
-	<option><value>18</value></option>
-	<option><value>19</value></option>
-	<option><value>20</value></option>
-	<option><value>21</value></option>
-	<option><value>22</value></option>
-	<option><value>23</value></option>
-	<option><value>24</value></option>
-	<option><value>25</value></option>
-	<option><value>27</value></option>
-	<option><value>34</value></option>
-	<option><value>35</value></option>
-	<option><value>38</value></option>
-	<option><value>39</value></option>
-	<option><value>40</value></option>
-	<option><value>41</value></option>
-	<option><value>42</value></option>
-	<option><value>45</value></option>
-	<option><value>46</value></option>
-    </enum>
-</type>
-<type id="jb_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-    </enum>
-</type>
-<type id="DSS_xfer_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-    </enum>
-</type>
-<type id="syslog_level_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-    </enum>
-</type>
-<type id="mode_802_1x_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-    </enum>
-</type>
-<type id="SharedLine_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-    </enum>
-</type>
 <type id="CertOption_type">
     <enum>
 	<option><label>Delete</label><value>delete</value></option>
 	<option><label>Delete All</label><value>delete_all</value></option>
     </enum>
 </type>
-<type id="yealink_ring_type">
+<type id="RingType_type">
     <enum>
+	<option><label>common</label><value>common</value></option>
 	<option><label>Ring1.wav</label><value>Ring1.wav</value></option>
 	<option><label>Ring2.wav</label><value>Ring2.wav</value></option>
 	<option><label>Ring3.wav</label><value>Ring3.wav</value></option>
@@ -169,7 +32,7 @@
 	<option><label>SIP INFO</label><value>2</value></option>
     </enum>
 </type>
-<type id="Conference_type">
+<type id="conf-type_type">
     <enum>
 	<option><label>Local</label><value>0</value></option>
 	<option><label>Network</label><value>2</value></option>
@@ -246,14 +109,14 @@
 	<option><value>7</value></option>
     </enum>
 </type>
-<type id="WAN_type">
+<type id="WANType">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
 	<option><value>2</value></option>
     </enum>
 </type>
-<type id="LAN_type">
+<type id="LANType">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
@@ -268,7 +131,7 @@
 	<option><value>4</value></option>
     </enum>
 </type>
-<type id="SIPTransport_type">
+<type id="SIP-Transport-Type">
     <enum>
 	<option><label>UDP</label><value>0</value></option>
 	<option><label>TCP</label><value>1</value></option>
@@ -276,19 +139,11 @@
 	<option><label>DNS SRV</label><value>3</value></option>
     </enum>
 </type>
-<type id="SRV_type">
-    <enum>
-	<option><label>UDP,TCP,TLS</label><value>0</value></option>
-	<option><label>UDP</label><value>1</value></option>
-	<option><label>TCP</label><value>2</value></option>
-	<option><label>TLS</label><value>3</value></option>
-    </enum>
-</type>
-<type id="SIPServer_type">
+<type id="SIP-Server-Type">
      <enum>
-	<option><value>0</value></option>
-	<option><label>Broadsoft</label><value>2</value></option>
-	<option><label>Cosmocom</label><value>4</value></option>
+	 <option><value>0</value></option>
+	<option><label>Cosmocom</label><value>1</value></option>
+	 <option><label>Broadsoft</label><value>2</value></option>
     </enum>
 </type>
 <type id="DTMF-types">
@@ -522,7 +377,6 @@
 </type>
 <type id="yealink-codecs">
     <enum>
-        <option><label>Disabled</label><value>-1</value></option>
         <option><label>G.722</label><value>9</value></option>
         <option><label>PCMA</label><value>8</value></option>
         <option><label>G.729</label><value>18</value></option>
@@ -534,14 +388,14 @@
         <option><label>G.726 40Kbit</label><value>104</value></option>
     </enum>
 </type>
-<type id="DST_mode_type">
+<type id="DSTMode">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
 	<option><value>2</value></option>
     </enum>
 </type>
-<type id="DST_time_type">
+<type id="DSTTimeType">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
@@ -554,13 +408,13 @@
 	<option><value>2</value></option>
     </enum>
 </type>
-<type id="yealink_time_format_type">
+<type id="time-formats">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
     </enum>
 </type>
-<type id="yealink_date_format_type">
+<type id="date-formats">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
@@ -568,16 +422,9 @@
 	<option><value>3</value></option>
 	<option><value>4</value></option>
 	<option><value>5</value></option>
-	<option><value>6</value></option>
     </enum>
 </type>
-<type id="yealink_time_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-    </enum>
-</type>
-<type id="yealink_key_lock_type">
+<type id="KBDLock">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
@@ -592,14 +439,14 @@
 	<option><label>Disable</label><value>-32768</value></option>
     </enum>
 </type>
-<type id="yealink_backlight_time_type">
+<type id="BackLightTimes">
     <enum>
-	<option><value>1</value></option>
-	<option><value>60</value></option>
-	<option><value>120</value></option>
-	<option><value>300</value></option>
-	<option><value>600</value></option>
-	<option><value>1800</value></option>
+	<option><label>Always Off</label><value>0</value></option>
+	<option><label>Always On</label><value>1</value></option>
+	<option><label>15 seconds</label><value>15</value></option>
+	<option><label>30 seconds</label><value>30</value></option>
+	<option><label>60 seconds</label><value>60</value></option>
+	<option><label>120 seconds</label><value>120</value></option>
     </enum>
 </type>
 <type id="ScreenSaverTimes">
@@ -612,12 +459,12 @@
 	<option><label>30 minutes</label><value>1800</value></option>
     </enum>
 </type>
-<type id="yealink_theme_type">
+<type id="Themes">
     <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
+	<option><label>Default</label><value>0</value></option>
+	<option><label>Theme 2</label><value>1</value></option>
+	<option><label>Theme 3</label><value>2</value></option>
+	<option><label>Theme 4</label><value>3</value></option>
     </enum>
 </type>
 <type id="SIPCodeType">
@@ -627,11 +474,11 @@
 	<option><label>486 (Busy here)</label><value>486</value></option>
     </enum>
 </type>
-<type id="yealink_poud_key_type">
+<type id="PoudSendType">
     <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
+	<option><label>Disabled</label><value>0</value></option>
+	<option><label># key</label><value>1</value></option>
+	<option><label>* key</label><value>2</value></option>
     </enum>
 </type>
 <type id="expansion-panels">
@@ -650,7 +497,7 @@
 	<option><label>Call Return</label><value>7</value></option>
 	<option><label>SMS</label><value>8</value></option>
 	<option><label>Call Pickup</label><value>9</value></option>
-	<option><label>Speed Dial</label><value>13</value></option>
+	<option><label>Spead Dial</label><value>13</value></option>
 	<option><label>XML Group</label><value>22</value></option>
 	<option><label>History</label><value>28</value></option>
 	<option><label>Directory</label><value>29</value></option>
@@ -658,7 +505,6 @@
 	<option><label>Switch Account</label><value>31</value></option>
 	<option><label>New SMS</label><value>32</value></option>
 	<option><label>Status</label><value>33</value></option>
-	<option><label>BLF List</label><value>39</value></option>
 	<option><label>Local Phonebook</label><value>43</value></option>
 	<option><label>Broadsoft Phonebook</label><value>44</value></option>
 	<option><label>Local Group</label><value>45</value></option>
