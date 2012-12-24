@@ -845,30 +845,20 @@
     <setting name="ComConfigVersion"/>
     <setting name="MacConfigVersion"/>
 </group>
-<group name="RemotePhoneBook0">
+<group name="RemotePhoneBook">
     <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name"><value></value></setting>
-    <setting name="URL" />
-</group>
-<group name="RemotePhoneBook1">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name"><value></value></setting>
-    <setting name="URL" />
-</group>
-<group name="RemotePhoneBook2">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name"><value></value></setting>
-    <setting name="URL" />
-</group>
-<group name="RemotePhoneBook3">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name"><value></value></setting>
-    <setting name="URL" />
-</group>
-<group name="RemotePhoneBook4">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name"><value></value></setting>
-    <setting name="URL" />
+    <setting name="Name0"><value></value></setting>
+    <setting name="URL0" />
+    <setting name="Name1"><value></value></setting>
+    <setting name="URL1" />
+    <setting name="Name2"><value></value></setting>
+    <setting name="URL2" />
+    <setting name="Name3"><value></value></setting>
+    <setting name="URL3" />
+    <setting name="Name4"><value></value></setting>
+    <setting name="URL4" />
+    <setting name="Name5"><value></value></setting>
+    <setting name="URL5" />
 </group>
 <group name="expansion-panels" if="yealinkPhoneSIPT38.*|yealinkPhoneSIPT2[68].*" hidden="yes">
     <setting name="exp1"><type refid="expansion-panels"/></setting>
