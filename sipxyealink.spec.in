@@ -2,7 +2,7 @@ Name: @PACKAGE@
 Version: @VERSION@
 Release: @PACKAGE_REVISION@
 
-Summary: VoIP PBX.
+Summary: VoIP PBX plugin.
 License: LGPL
 Group: Telcommunications
 Vendor: SIPLABS
@@ -44,8 +44,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files
 %defattr(644,root,root,755)
-%{_sysconfdir}/sipxpbx/yealink/*
-#%{_sysconfdir}/sipxpbx/yealink/mac-address.d/*
+%{_sysconfdir}/sipxpbx/yealinkPhone/*
 %{_datadir}/java/sipXecs/sipXconfig/plugins/sipXyealink.jar
 
 
