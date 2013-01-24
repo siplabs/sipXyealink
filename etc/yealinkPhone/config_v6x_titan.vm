@@ -105,18 +105,22 @@ URL= %NULL%
 [ memory${MK} ]
 path = /config/vpPhone/vpPhone.ini
 Line = %NULL%
-type = %NULL%
 Value = %NULL%
 PickupValue = %NULL%
 Label = %NULL%
 DKtype = %NULL%
-XMLPhoneBook = %NULL%
 
 #end
 #foreach ($line in $phone.lines)
 #set ($i = $velocityCount - 1)
 #foreach ($group in $line.Settings.Values)
 #if (${group.Name}=="Message")
+[ Message ]
+path = /config/Features/Message.cfg
+#foreach ($setting in $group.Values)
+VoiceNumber${i} = ${setting.Value}
+#end
+
 #elseif (${group.Name}=="audio")
 #foreach ($setting in $group.Values)
 #if (${setting.Value} == -1 )
@@ -216,6 +220,19 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #end
 
+#elseif(${group.name}=="RemotePhoneBook")
+#foreach ($setting in $group.Values)
+#set ($parameter = ${setting.ProfileName.substring(0,1)})
+#if (${parameter}=="N")
+#set ($index = ${setting.ProfileName.substring(4)})
+[ RemotePhoneBook${index} ]
+path = /config/Setting/Setting.cfg
+Name = $!{setting.Value}
+#elseif (${parameter}=="U")
+URL = $!{setting.Value}
+
+#end
+#end
 #elseif(${group.name}=="expansion-panels")
 #elseif(${group.name}=="AlertInfo")
 #foreach ($setting in $group.Values)

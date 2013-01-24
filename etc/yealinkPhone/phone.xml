@@ -534,6 +534,54 @@
     <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
     <setting name="XMLPhoneBook"><type><integer /></type><value>0</value></setting>
 </group>
+<group name="memory11">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
+<group name="memory12">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
+<group name="memory13">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
+<group name="memory14" if="yealinkPhoneSIPT[23]8.*">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
+<group name="memory15" if="yealinkPhoneSIPT[23]8.*">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
+<group name="memory16" if="yealinkPhoneSIPT[23]8.*">
+    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
+    <setting name="Line"><type><integer /></type><value>0</value></setting>
+    <setting name="Value"></setting>
+    <setting name="PickupValue"></setting>
+    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+</group>
 <group name="LDAP" hidden="yes">
     <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
     <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/Contacts/LDAP.cfg</value></setting>
@@ -869,4 +917,3 @@
     <setting name="exp6"><type refid="expansion-panels"/></setting>
 </group>
 </model>
-
