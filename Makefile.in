@@ -343,7 +343,8 @@ DISTCLEANFILES = \
 
 SUBDIRS = \
 	src \
-	etc
+	etc \
+	test
 
 all: all-recursive
 
