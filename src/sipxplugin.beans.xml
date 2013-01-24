@@ -13,8 +13,8 @@
 	<property name="hasSeparateDialNow" value="true" />
 	<property name="noHD" value="false" />
 	<property name="profileTemplate" value="yealink/config_v6x_titan.vm" />
-	<property name="directoryProfileTemplate" value="yealinkPhone/directory.xml.vm" />
-	<property name="dialNowProfileTemplate" value="yealinkPhone/dialnow.xml.vm" />
+	<property name="directoryProfileTemplate" value="yealink/directory.xml.vm" />
+	<property name="dialNowProfileTemplate" value="yealink/dialnow.xml.vm" />
 </bean>
 
 <bean id="yealinkPhoneSIPT12P" parent="yealinkModel">
@@ -82,7 +82,7 @@
 
 <bean id="yealinkFiles" class="org.sipfoundry.sipxconfig.upload.UploadSpecification">
 	<property name="beanId" value="yealinkUpload"/>
-	<property name="modelFilePath" value="yealinkPhone/upload.xml" />
+	<property name="modelFilePath" value="yealink/upload.xml" />
 	<property name="label" value="Yealink Phones" />
 </bean>
 
