@@ -12,9 +12,9 @@
 	<property name="usePhonebook" value="true" />
 	<property name="hasSeparateDialNow" value="true" />
 	<property name="noHD" value="false" />
-	<property name="profileTemplate" value="yealink/config_v6x_titan.vm" />
-	<property name="directoryProfileTemplate" value="yealink/directory.xml.vm" />
-	<property name="dialNowProfileTemplate" value="yealink/dialnow.xml.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_titan.vm" />
+	<property name="directoryProfileTemplate" value="yealinkPhone/directory.xml.vm" />
+	<property name="dialNowProfileTemplate" value="yealinkPhone/dialnow.xml.vm" />
 </bean>
 
 <bean id="yealinkPhoneSIPT12P" parent="yealinkModel">
@@ -64,7 +64,7 @@
 	<property name="label" value="Yealink SIP-T32G" />
 	<property name="name" value="T32" />
 	<property name="maxLineCount" value="3" />
-	<property name="profileTemplate" value="yealink/config_v6x_aries.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
 	<property name="softKeyCount" value="0" />
 </bean>
 
@@ -72,7 +72,7 @@
 	<property name="label" value="Yealink SIP-T38G" />
 	<property name="name" value="T38" />
 	<property name="maxLineCount" value="6" />
-	<property name="profileTemplate" value="yealink/config_v6x_aries.vm" />
+	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
 	<property name="softKeyCount" value="10" />
 </bean>
 
@@ -82,7 +82,7 @@
 
 <bean id="yealinkFiles" class="org.sipfoundry.sipxconfig.upload.UploadSpecification">
 	<property name="beanId" value="yealinkUpload"/>
-	<property name="modelFilePath" value="yealink/upload.xml" />
+	<property name="modelFilePath" value="yealinkPhone/upload.xml" />
 	<property name="label" value="Yealink Phones" />
 </bean>
 
