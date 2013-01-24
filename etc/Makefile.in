@@ -288,8 +288,8 @@ CleanDirs = \
 CleanFiles = \
 	$(foreach F,$1,! test -f $(F) || rm $(F);)
 
-yealinkdir = $(SIPX_CONFDIR)/yealink
-dist_yealink_DATA = $(shell cd $(srcdir); find yealink -type f)
+yealinkdir = $(SIPX_CONFDIR)/yealinkPhone
+dist_yealink_DATA = $(shell cd $(srcdir); find yealinkPhone -type f)
 all: all-am
 
 .SUFFIXES:
