@@ -499,12 +499,14 @@
 	<option><label>Call Pickup</label><value>9</value></option>
 	<option><label>Spead Dial</label><value>13</value></option>
 	<option><label>XML Group</label><value>22</value></option>
+	<option><label>XML Browser</label><value>27</value></option>
 	<option><label>History</label><value>28</value></option>
 	<option><label>Directory</label><value>29</value></option>
 	<option><label>Menu</label><value>30</value></option>
 	<option><label>Switch Account</label><value>31</value></option>
 	<option><label>New SMS</label><value>32</value></option>
 	<option><label>Status</label><value>33</value></option>
+	<option><label>Hot Desking</label><value>34</value></option>
 	<option><label>Local Phonebook</label><value>43</value></option>
 	<option><label>Broadsoft Phonebook</label><value>44</value></option>
 	<option><label>Local Group</label><value>45</value></option>
