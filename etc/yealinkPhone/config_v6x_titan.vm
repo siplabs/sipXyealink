@@ -1,6 +1,109 @@
 #set($serial = "$phone.SerialNumber")
-; Erasing Accounts
-#foreach($L in [1..$phone.MaxLineCount])
+; Erasing Remote Phone Books
+#foreach($RPB in [0..4])
+[ RemotePhoneBook${RPB} ]
+path = /config/Setting/Setting.cfg
+Name= %NULL%
+URL= %NULL%
+
+#end
+; Erasing Built-in Memory Keys
+#foreach($MK in [0..10])
+[ memory${MK} ]
+path = /config/vpPhone/vpPhone.ini
+Line = %NULL%
+Value = %NULL%
+PickupValue = %NULL%
+Label = %NULL%
+DKtype = %NULL%
+
+#end
+
+; Lines Config start
+
+#foreach ($line in $phone.lines)
+#set ($i = $velocityCount - 1)
+#foreach ($group in $line.Settings.Values)
+#if (${group.Name}=="Message")
+[ Message ]
+path = /config/Features/Message.cfg
+#foreach ($setting in $group.Values)
+VoiceNumber${i} = ${setting.Value}
+#end
+
+#elseif (${group.Name}=="audio")
+#foreach ($setting in $group.Values)
+#if (${setting.Value} == -1 )
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 0
+priority = ${p}
+
+#elseif (${setting.Value} != 9 )
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 1
+priority = ${p}
+rtpmap = ${setting.Value}
+#if(${setting.Value}==0)
+PayloadType = PCMU
+#elseif(${setting.Value}==2)
+PayloadType = G726-32
+#elseif(${setting.Value}==4)
+PayloadType = G723_63
+#elseif(${setting.Value}==8)
+PayloadType = PCMA
+#elseif(${setting.Value}==18)
+PayloadType = G729
+#elseif(${setting.Value}==102)
+PayloadType = G726-24
+#elseif(${setting.Value}==112)
+PayloadType = G726-16
+#elseif(${setting.Value}==104)
+PayloadType = G726-40
+#end
+
+#elseif (${setting.Value} == 9 )
+#if ($phone.HasHD)
+#set ($p = $velocityCount - 1)
+[ ${group.Name}${p} ]
+path = /config/voip/sipAccount${i}.cfg
+enable = 1
+priority = ${p}
+rtpmap = ${setting.Value}
+PayloadType = G722
+
+#end
+#end
+#end
+#else
+[ ${group.name} ]
+path = /config/voip/sipAccount${i}.cfg
+#if(${group.name}=="account")
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName}=="Label")
+#elseif (${setting.ProfileName}=="UserName")
+Label = $!{setting.Value}
+UserName = $!{setting.Value}
+#else
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#else
+#foreach ($setting in $group.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#end
+#end
+
+#end
+
+; Erasing other Accounts
+#foreach($L in [$i..$phone.MaxLineCount])
 #set($lid = $L - 1)
 [ account ]
 path = /config/voip/sipAccount${lid}.cfg
@@ -92,105 +195,9 @@ priority = 0
 rtpmap = 104
 
 #end
-; Erasing Remote Phone Books
-#foreach($RPB in [0..4])
-[ RemotePhoneBook${RPB} ]
-path = /config/Setting/Setting.cfg
-Name= %NULL%
-URL= %NULL%
 
-#end
-; Erasing Built-in Memory Keys
-#foreach($MK in [0..10])
-[ memory${MK} ]
-path = /config/vpPhone/vpPhone.ini
-Line = %NULL%
-Value = %NULL%
-PickupValue = %NULL%
-Label = %NULL%
-DKtype = %NULL%
 
-#end
-#foreach ($line in $phone.lines)
-#set ($i = $velocityCount - 1)
-#foreach ($group in $line.Settings.Values)
-#if (${group.Name}=="Message")
-[ Message ]
-path = /config/Features/Message.cfg
-#foreach ($setting in $group.Values)
-VoiceNumber${i} = ${setting.Value}
-#end
 
-#elseif (${group.Name}=="audio")
-#foreach ($setting in $group.Values)
-#if (${setting.Value} == -1 )
-#set ($p = $velocityCount - 1)
-[ ${group.Name}${p} ]
-path = /config/voip/sipAccount${i}.cfg
-enable = 0
-priority = ${p}
-
-#elseif (${setting.Value} != 9 )
-#set ($p = $velocityCount - 1)
-[ ${group.Name}${p} ]
-path = /config/voip/sipAccount${i}.cfg
-enable = 1
-priority = ${p}
-rtpmap = ${setting.Value}
-#if(${setting.Value}==0)
-PayloadType = PCMU
-#elseif(${setting.Value}==2)
-PayloadType = G726-32
-#elseif(${setting.Value}==4)
-PayloadType = G723_63
-#elseif(${setting.Value}==8)
-PayloadType = PCMA
-#elseif(${setting.Value}==18)
-PayloadType = G729
-#elseif(${setting.Value}==102)
-PayloadType = G726-24
-#elseif(${setting.Value}==112)
-PayloadType = G726-16
-#elseif(${setting.Value}==104)
-PayloadType = G726-40
-#end
-
-#elseif (${setting.Value} == 9 )
-#if ($phone.HasHD)
-#set ($p = $velocityCount - 1)
-[ ${group.Name}${p} ]
-path = /config/voip/sipAccount${i}.cfg
-enable = 1
-priority = ${p}
-rtpmap = ${setting.Value}
-PayloadType = G722
-
-#end
-#end
-#end
-#else
-[ ${group.name} ]
-path = /config/voip/sipAccount${i}.cfg
-#if(${group.name}=="account")
-#foreach ($setting in $group.Values)
-#if (${setting.ProfileName}=="Label")
-#elseif (${setting.ProfileName}=="UserName")
-Label = $!{setting.Value}
-UserName = $!{setting.Value}
-#else
-${setting.ProfileName} = $!{setting.Value}
-#end
-#end
-#else
-#foreach ($setting in $group.Values)
-${setting.ProfileName} = $!{setting.Value}
-#end
-#end
-
-#end
-#end
-
-#end
 #foreach ($group in $phone.Settings.Values)
 #if(${group.name}=="LangFile")
 [ Lang ]
