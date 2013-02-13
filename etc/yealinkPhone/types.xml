@@ -377,6 +377,7 @@
 </type>
 <type id="yealink-codecs">
     <enum>
+        <option><label>Disabled</label><value>-1</value></option>
         <option><label>G.722</label><value>9</value></option>
         <option><label>PCMA</label><value>8</value></option>
         <option><label>G.729</label><value>18</value></option>

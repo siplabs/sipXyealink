@@ -99,8 +99,8 @@
 	<setting name="4"><type refid="yealink-codecs"/><value>4</value></setting>
 	<setting name="5"><type refid="yealink-codecs"/><value>112</value></setting>
 	<setting name="6"><type refid="yealink-codecs"/><value>102</value></setting>
-	<setting name="6"><type refid="yealink-codecs"/><value>2</value></setting>
-	<setting name="6"><type refid="yealink-codecs"/><value>104</value></setting>
+	<setting name="7"><type refid="yealink-codecs"/><value>2</value></setting>
+	<setting name="8"><type refid="yealink-codecs"/><value>104</value></setting>
     </group>
     <group name="Message">
 	<setting name="VoiceNumber"/>

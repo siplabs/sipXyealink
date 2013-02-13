@@ -506,6 +506,7 @@
     <!-- setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting -->
 
 <!-- Screen keys -->
+    <group name="screen">
     <setting name="Line1"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
     <setting name="Value1"><profileName>Value</profileName></setting>
     <setting name="DKtype1"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>28</value></setting>
@@ -525,8 +526,9 @@
     <setting name="Value4"><profileName>Value</profileName></setting>
     <setting name="DKtype4"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>30</value></setting>
     <setting name="XMLPhoneBook4"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
-
+    </group>
 <!-- Cursor keys -->
+    <group name="cursor">
     <setting name="Line5"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
     <setting name="Value5"><profileName>Value</profileName></setting>
     <setting name="DKtype5"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
@@ -556,7 +558,9 @@
     <setting name="Value10"><profileName>Value</profileName></setting>
     <setting name="DKtype10"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
     <setting name="XMLPhoneBook10"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+    </group>
 <!-- Functional keys -->
+    <group name="functional">
     <setting name="Line11"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
     <setting name="Value11"><profileName>Value</profileName></setting>
     <setting name="DKtype11"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
@@ -576,8 +580,10 @@
     <setting name="Value14"><profileName>Value</profileName></setting>
     <setting name="DKtype14"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
     <setting name="XMLPhoneBook14"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+    </group>
 </group>
-<group name="linekey">
+<group name="memory">
+    <group name="line">
     <!-- setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting -->
     <setting name="Line11"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
     <setting name="Value11"><profileName>Value</profileName></setting>
@@ -608,6 +614,7 @@
     <setting name="Value16" if="yealinkPhoneSIPT2[68].*"><profileName>Value</profileName></setting>
     <setting name="PickupValue16" if="yealinkPhoneSIPT2[68].*"><profileName>PickupValue</profileName></setting>
     <setting name="DKtype16" if="yealinkPhoneSIPT2[68].*"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    </group>
 </group>
 <group name="LDAP" hidden="yes">
     <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
@@ -921,19 +928,26 @@
     <setting name="MacConfigVersion"/>
 </group>
 <group name="RemotePhoneBook">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Setting/Setting.cfg</value></setting>
-    <setting name="Name0"><value></value></setting>
-    <setting name="URL0" />
-    <setting name="Name1"><value></value></setting>
-    <setting name="URL1" />
-    <setting name="Name2"><value></value></setting>
-    <setting name="URL2" />
-    <setting name="Name3"><value></value></setting>
-    <setting name="URL3" />
-    <setting name="Name4"><value></value></setting>
-    <setting name="URL4" />
-    <setting name="Name5"><value></value></setting>
-    <setting name="URL5" />
+    <group name="0">
+	<setting name="Name"><value></value></setting>
+	<setting name="URL" />
+    </group>
+    <group name="1">
+	<setting name="Name"><value></value></setting>
+	<setting name="URL" />
+    </group>
+    <group name="2">
+	<setting name="Name"><value></value></setting>
+	<setting name="URL" />
+    </group>
+    <group name="3">
+	<setting name="Name"><value></value></setting>
+	<setting name="URL" />
+    </group>
+    <group name="4">
+	<setting name="Name"><value></value></setting>
+	<setting name="URL" />
+    </group>
 </group>
 <group name="expansion-panels" if="yealinkPhoneSIPT38.*|yealinkPhoneSIPT2[68].*" hidden="yes">
     <setting name="exp1"><type refid="expansion-panels"/></setting>
