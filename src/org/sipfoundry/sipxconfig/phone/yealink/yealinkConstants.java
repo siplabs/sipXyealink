@@ -59,9 +59,9 @@ public class yealinkConstants {
     public static final String LOCAL_TIME_ZONE_V7X_SETTING = "time/local_time.time_zone";
     public static final String SYSLOG_SERVER_V6X_SETTING = "SYSLOG/SyslogdIP";
     public static final String SYSLOG_SERVER_V7X_SETTING = "network/syslog.server";
-    public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "RemotePhoneBook/URL0";
+    public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "RemotePhoneBook/0/URL";
     public static final String REMOTE_PHONEBOOK_0_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.1.url";
-    public static final String REMOTE_PHONEBOOK_0_NAME_V6X_SETTING = "RemotePhoneBook/Name0";
+    public static final String REMOTE_PHONEBOOK_0_NAME_V6X_SETTING = "RemotePhoneBook/0/Name";
     public static final String REMOTE_PHONEBOOK_0_NAME_V7X_SETTING = "remote-phonebook/remote_phonebook.data.1.name";
     public static final String FIRMWARE_SERVER_ADDRESS_SETTING = "firmware/server_ip";
     public static final String FIRMWARE_URL_V6X_SETTING = "firmware/url";
