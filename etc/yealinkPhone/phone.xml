@@ -502,85 +502,112 @@
     <setting name="ReservePound"><type><boolean /></type><value>1</value></setting>
     <setting name="UseOutBoundInDialog"><type><boolean /></type><value>1</value></setting>
 </group>
-<group name="programablekey1">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-    <setting name="XMLPhoneBook"><type><integer /></type><value>0</value></setting>
+<group name="programablekey">
+    <!-- setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting -->
+
+<!-- Screen keys -->
+    <setting name="Line1"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value1"><profileName>Value</profileName></setting>
+    <setting name="DKtype1"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>28</value></setting>
+    <setting name="XMLPhoneBook1"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line2"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value2"><profileName>Value</profileName></setting>
+    <setting name="DKtype2"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>22</value></setting>
+    <setting name="XMLPhoneBook2"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line3"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value3"><profileName>Value</profileName></setting>
+    <setting name="DKtype3"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>5</value></setting>
+    <setting name="XMLPhoneBook3"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line4"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value4"><profileName>Value</profileName></setting>
+    <setting name="DKtype4"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>30</value></setting>
+    <setting name="XMLPhoneBook4"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+<!-- Cursor keys -->
+    <setting name="Line5"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value5"><profileName>Value</profileName></setting>
+    <setting name="DKtype5"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook5"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line6"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value6"><profileName>Value</profileName></setting>
+    <setting name="DKtype6"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook6"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line7"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value7"><profileName>Value</profileName></setting>
+    <setting name="DKtype7"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook7"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line8"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value8"><profileName>Value</profileName></setting>
+    <setting name="DKtype8"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook8"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line9"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value9"><profileName>Value</profileName></setting>
+    <setting name="DKtype9"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook9"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line10"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value10"><profileName>Value</profileName></setting>
+    <setting name="DKtype10"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook10"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+<!-- Functional keys -->
+    <setting name="Line11"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value11"><profileName>Value</profileName></setting>
+    <setting name="DKtype11"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook1"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line12"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value12"><profileName>Value</profileName></setting>
+    <setting name="DKtype12"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook2"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line13"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value13"><profileName>Value</profileName></setting>
+    <setting name="DKtype13"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook13"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
+
+    <setting name="Line14"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value14"><profileName>Value</profileName></setting>
+    <setting name="DKtype14"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+    <setting name="XMLPhoneBook14"><profileName>XMLPhoneBook</profileName><type><integer /></type><value>0</value></setting>
 </group>
-<group name="programablekey2">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-    <setting name="XMLPhoneBook"><type><integer /></type><value>0</value></setting>
-</group>
-<group name="programablekey3">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-    <setting name="XMLPhoneBook"><type><integer /></type><value>0</value></setting>
-</group>
-<group name="programablekey4">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-    <setting name="XMLPhoneBook"><type><integer /></type><value>0</value></setting>
-</group>
-<group name="memory11">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-</group>
-<group name="memory12">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-</group>
-<group name="memory13">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-</group>
-<group name="memory14" if="yealinkPhoneSIPT[23]8.*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-</group>
-<group name="memory15" if="yealinkPhoneSIPT[23]8.*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
-</group>
-<group name="memory16" if="yealinkPhoneSIPT[23]8.*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting>
-    <setting name="Line"><type><integer /></type><value>0</value></setting>
-    <setting name="Value"></setting>
-    <setting name="PickupValue"></setting>
-    <setting name="DKtype"><type refid="DKtype_type" /><value>0</value></setting>
+<group name="linekey">
+    <!-- setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/vpPhone/vpPhone.ini</value></setting -->
+    <setting name="Line11"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value11"><profileName>Value</profileName></setting>
+    <setting name="PickupValue11"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype11"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+
+    <setting name="Line12"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value12"><profileName>Value</profileName></setting>
+    <setting name="PickupValue12"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype12"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+
+    <setting name="Line13"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value13"><profileName>Value</profileName></setting>
+    <setting name="PickupValue13"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype13"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+
+    <setting name="Line14" if="yealinkPhoneSIPT2[68].*"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value14" if="yealinkPhoneSIPT2[68].*"><profileName>Value</profileName></setting>
+    <setting name="PickupValue14" if="yealinkPhoneSIPT2[68].*"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype14" if="yealinkPhoneSIPT2[68].*"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+
+    <setting name="Line15" if="yealinkPhoneSIPT2[68].*"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value15" if="yealinkPhoneSIPT2[68].*"><profileName>Value</profileName></setting>
+    <setting name="PickupValue15" if="yealinkPhoneSIPT2[68].*"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype15" if="yealinkPhoneSIPT2[68].*"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
+
+    <setting name="Line16" if="yealinkPhoneSIPT2[68].*"><profileName>Line</profileName><type><integer /></type><value>0</value></setting>
+    <setting name="Value16" if="yealinkPhoneSIPT2[68].*"><profileName>Value</profileName></setting>
+    <setting name="PickupValue16" if="yealinkPhoneSIPT2[68].*"><profileName>PickupValue</profileName></setting>
+    <setting name="DKtype16" if="yealinkPhoneSIPT2[68].*"><profileName>DKtype</profileName><type refid="DKtype_type" /><value>0</value></setting>
 </group>
 <group name="LDAP" hidden="yes">
     <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
