@@ -261,6 +261,15 @@ path = /config/vpPhone/vpPhone.ini
 ${setting.ProfileName} = $!{setting.Value}
 #end
 #end
+#elseif(${group.name}=="CustomSoftKey")
+#foreach ($subgroup in $group.Values)
+
+[ ${group.name}_${subgroup.name} ]
+path = /tmp/${subgroup.name}.xml
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
 #elseif(${group.name}=="expansion-panels")
 #elseif(${group.name}=="AlertInfo")
 #foreach ($setting in $group.Values)

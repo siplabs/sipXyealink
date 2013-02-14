@@ -810,33 +810,25 @@
     <setting name="IdletoBusy" />
     <setting name="IPChange" />
 </group>
-<group name="CustomSoftKey_Dialing" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/Dialing.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_Talking" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/Talking.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_Connecting" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/Connecting.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_RingBack" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/RingBack.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_CallIn" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/CallIn.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_CallFailed" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/CallFailed.xml</value></setting>
-    <setting name="server_address" />
-</group>
-<group name="CustomSoftKey_CallFailed" if="yealinkPhoneSIPT[12].*">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/tmp/CallFailed.xml</value></setting>
-    <setting name="server_address" />
+<group name="CustomSoftKey">
+    <group name="Dialing" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
+    <group name="Connecting" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
+    <group name="RingBack" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
+    <group name="CallIn" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
+    <group name="Talking" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
+    <group name="CallFailed" if="yealinkPhoneSIPT[12].*">
+	<setting name="server_address" />
+    </group>
 </group>
 <!-- Accosiate in one group with 50 sections -->
 <group name="autoprovision1" if="yealinkPhoneSIPT[12].*">
