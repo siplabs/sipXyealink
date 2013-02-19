@@ -70,9 +70,7 @@ public class yealinkConstants {
     public static final String FIRMWARE_NAME_SETTING = "upgrade/firmware/firmware_name";
     public static final String AUTOPROVISIONING_SERVER_URL_V6X_SETTING = "upgrade/autoprovision/strServerURL";
     public static final String AUTOPROVISIONING_SERVER_URL_V7X_SETTING = "auto-provisioning/auto_provision.server.url";
-    public static final String AUTOPROVISIONING1_SERVER_URL_V7X_SETTING = "auto-provisioning/autoprovision.1.url";
-    public static final String AUTOPROVISIONING_SERVER_ADDRESS_SETTING = "autoprovision/server_address";
-    public static final String AUTOPROVISIONING1_SERVER_ADDRESS_SETTING = "autoprovision/1/Server_address";
+    public static final String AUTOPROVISIONING_SERVER_ADDRESS_V6X_SETTING = "upgrade/autoprovision/server_address";
     public static final String ADVANCED_MUSIC_SERVER_URI_V6X_SETTING = "account/MusicServerUri";
     public static final String ADVANCED_MUSIC_SERVER_URI_V7X_SETTING = "advanced/music_server_uri";
     public static final String LANG_FILE_NAME_V6X_SETTING = "upgrade/LangFile/server_address";

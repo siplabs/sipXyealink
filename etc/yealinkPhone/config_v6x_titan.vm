@@ -212,20 +212,6 @@ rtpmap = 104
 #foreach ($setting in $group.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-#elseif(${group.name}=="UserName")
-#foreach ($setting in $group.Values)
-#if (${setting.ProfileName}=="admin")
-[ AdminPassword ]
-path = /config/Setting/autop.cfg
-password = $!{setting.Value}
-
-#end
-#if (${setting.ProfileName}=="user")
-[ UserPassword ]
-path = /config/Setting/autop.cfg
-password = $!{setting.Value}
-#end
-#end
 #elseif(${group.name}=="DialNow")
 [DialNow]
 path = /tmp/dialnow.xml
@@ -253,14 +239,20 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #elseif(${group.name}=="network-advanced")
 #foreach ($subgroup in $group.Values)
-[ ${subgroup.name} ]
+#if(${subgroup.name}=="Webserver_Type")
+#set ($GroupName = "Webserver Type")
+#else
+#set ($GroupName = ${subgroup.Name})
+#end
+
+[ ${GroupName} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-
 #end
 #elseif(${group.name}=="upgrade")
 #foreach ($subgroup in $group.Values)
+
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
@@ -269,19 +261,19 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #elseif(${group.name}=="autoprovision")
 #foreach ($subgroup in $group.Values)
+
 [ ${group.name}${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-
 #end
 #elseif(${group.name}=="preference")
 #foreach ($subgroup in $group.Values)
+
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-
 #end
 #elseif(${group.name}=="HotDesking")
 #foreach ($subgroup in $group.Values)
@@ -293,35 +285,95 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #elseif(${group.name}=="FWD")
 #foreach ($subgroup in $group.Values)
+#if(${subgroup.name}=="Forward_International")
+
+[ Forward International ]
+#else
+
 [ ${subgroup.name}${group.name} ]
+#end
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-
 #end
 #elseif(${group.name}=="features")
 #foreach ($subgroup in $group.Values)
+
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-
 #end
 #elseif(${group.name}=="voice")
 #foreach ($subgroup in $group.Values)
+
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
 
 #end
-#elseif(${group.name}=="Tones")
+#elseif(${group.name}=="tones")
+#foreach ($subgroup in $group.Values)
+#if(${subgroup.name}=="Tone_Param")
+#set ($GroupName = "Tone Param")
+#else
+#set ($GroupName = ${subgroup.Name})
+#end
+[ ${GroupName} ]
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+
+#end
+#elseif(${group.name}=="broadsoft")
 #foreach ($subgroup in $group.Values)
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
 
+#end
+#elseif(${group.name}=="dialplan")
+#foreach ($subgroup in $group.Values)
+
+[ ${subgroup.name} ]
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#elseif(${group.name}=="certificates")
+#foreach ($subgroup in $group.Values)
+
+[ ${subgroup.name} ]
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#elseif(${group.name}=="security")
+#foreach ($subgroup in $group.Values)
+#if(${subgroup.name}=="UserName")
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName}=="admin")
+
+[ AdminPassword ]
+path = /config/Setting/autop.cfg
+password = $!{setting.Value}
+#end
+#if (${setting.ProfileName}=="user")
+
+[ UserPassword ]
+path = /config/Setting/autop.cfg
+password = $!{setting.Value}
+#end
+#end
+#else
+
+[ ${subgroup.name} ]
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
 #end
 #elseif(${group.name}=="mcast-paging")
 #foreach ($subgroup in $group.Values)
@@ -343,8 +395,13 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #elseif(${group.name}=="RemotePhoneBook")
 #foreach ($subgroup in $group.Values)
+#if ($subgroup.name=="SRemoteName")
+[ ${subgroup.name} ]
+path = /yealink/config/Features/Phone.cfg
+#else
 [ ${group.name}${subgroup.name} ]
 path = /config/Setting/Setting.cfg
+#end
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
@@ -376,13 +433,20 @@ path = /config/vpPhone/vpPhone.ini
 ${setting.ProfileName} = $!{setting.Value}
 #end
 #end
-#elseif(${group.name}=="CustomSoftKey")
+#elseif(${group.name}=="xml-browser")
 #foreach ($subgroup in $group.Values)
-
-[ ${group.name}_${subgroup.name} ]
-path = /tmp/${subgroup.name}.xml
+#if(${subgroup.name}=="CustomSoftKey")
+#foreach ($setting in $subgroup.Values)
+[ ${subgroup.name}_${setting.ProfileName} ]
+path = /tmp/${setting.ProfileName}.xml
+server_address = $!{setting.Value}
+#end
+#else
+[ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
+#end
+
 #end
 #end
 #elseif(${group.name}=="expansion-panels")
@@ -396,16 +460,7 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #end
 #else
-#if(${group.name}=="Webserver_Type")
-#set ($GroupName = "Webserver Type")
-#elseif(${group.name}=="Tone_Param")
-#set ($GroupName = "Tone Param")
-#elseif(${group.name}=="Forward_International")
-#set ($GroupName = "Forward International")
-#else
-#set ($GroupName = ${group.Name})
-#end
-[ ${GroupName} ]
+[ ${group.name} ]
 #foreach ($setting in $group.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end

@@ -172,17 +172,15 @@ public class yealinkPhoneDefaults {
     @SettingEntry(paths = {
 	yealinkConstants.AUTOPROVISIONING_SERVER_URL_V6X_SETTING,
 	yealinkConstants.AUTOPROVISIONING_SERVER_URL_V7X_SETTING,
-	yealinkConstants.AUTOPROVISIONING1_SERVER_URL_V7X_SETTING
 	})
     public String getstrServerURL() {
 	return "tftp://" + getTFTPServer() + "/" + m_phone.getSerialNumber() + ".cfg";
     }
 
     @SettingEntry(paths = {
-	yealinkConstants.AUTOPROVISIONING_SERVER_ADDRESS_SETTING,
-	yealinkConstants.AUTOPROVISIONING1_SERVER_ADDRESS_SETTING
+	yealinkConstants.AUTOPROVISIONING_SERVER_ADDRESS_V6X_SETTING
 	})
-    public String getserver_Address() {
+    public String getserver_address() {
 	return  "tftp://" + getTFTPServer();
     }
 
