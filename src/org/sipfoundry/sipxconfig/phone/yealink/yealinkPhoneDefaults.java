@@ -207,7 +207,6 @@ public class yealinkPhoneDefaults {
     }
 
     @SettingEntry(paths = {
-	yealinkConstants.WALLPAPER_FILE_NAME_V6X_SETTING,
 	yealinkConstants.WALLPAPER_FILE_NAME_V7X_SETTING
 	})
     public String getWallPaperURL() {
