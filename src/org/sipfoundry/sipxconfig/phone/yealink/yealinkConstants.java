@@ -79,10 +79,8 @@ public class yealinkConstants {
     public static final String LOGO_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
     public static final String LOGO_FILE_NAME_V7X_SETTING = "downloads/lcd_logo.url";
 // T3X and VP530 only
-    public static final String WALLPAPER_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
     public static final String WALLPAPER_FILE_NAME_V7X_SETTING = "downloads/wallpaper_upload.url";
 // T3X
-    public static final String SCREENSAVER_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
     public static final String SCREENSAVER_FILE_NAME_V7X_SETTING = "downloads/screen_saver.pic.url";
 
     public static final String DIAL_NOW_URL_V6X_SETTING = "DialNow/server_address";
