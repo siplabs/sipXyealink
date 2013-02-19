@@ -109,14 +109,14 @@
 	<option><value>7</value></option>
     </enum>
 </type>
-<type id="WANType">
+<type id="WANAddress_type">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
 	<option><value>2</value></option>
     </enum>
 </type>
-<type id="LANType">
+<type id="LANMode_type">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
