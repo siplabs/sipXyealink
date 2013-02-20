@@ -212,15 +212,6 @@ rtpmap = 104
 #foreach ($setting in $group.Values)
 ${setting.ProfileName} = $!{setting.Value}
 #end
-#elseif(${group.name}=="DialNow")
-[DialNow]
-path = /tmp/dialnow.xml
-#foreach ($setting in $group.Values)
-#if (${setting.ProfileName} == "server_address")
-${setting.ProfileName} = $!{setting.Value}
-#end
-#end
-
 #elseif(${group.name}=="network-wan")
 #foreach ($subgroup in $group.Values)
 [ ${subgroup.name} ]
@@ -313,6 +304,15 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 
 #end
+#elseif(${group.name}=="calling")
+#foreach ($subgroup in $group.Values)
+
+[ ${subgroup.name} ]
+#foreach ($setting in $subgroup.Values)
+${setting.ProfileName} = $!{setting.Value}
+#end
+
+#end
 #elseif(${group.name}=="tones")
 #foreach ($subgroup in $group.Values)
 #if(${subgroup.name}=="Tone_Param")
@@ -336,10 +336,21 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 #elseif(${group.name}=="dialplan")
 #foreach ($subgroup in $group.Values)
+#if(${subgroup.name}=="DialNow")
 
-[ ${subgroup.name} ]
+[${subgroup.name}]
+path = /tmp/dialnow.xml
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName} == "server_address")
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#else
+
+[${subgroup.name}]
 #foreach ($setting in $subgroup.Values)
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="certificates")

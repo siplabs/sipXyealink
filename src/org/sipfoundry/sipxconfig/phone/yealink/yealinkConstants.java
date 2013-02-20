@@ -83,7 +83,7 @@ public class yealinkConstants {
 // T3X
     public static final String SCREENSAVER_FILE_NAME_V7X_SETTING = "downloads/screen_saver.pic.url";
 
-    public static final String DIAL_NOW_URL_V6X_SETTING = "DialNow/server_address";
+    public static final String DIAL_NOW_URL_V6X_SETTING = "dialplan/DialNow/server_address";
     public static final String DIAL_NOW_URL_V7X_SETTING = "downloads/dialplan_dialnow.url";
 
 
