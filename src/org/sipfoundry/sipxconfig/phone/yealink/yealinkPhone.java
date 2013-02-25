@@ -103,7 +103,6 @@ public class yealinkPhone extends Phone {
     @Override
     protected void copyFiles(ProfileLocation location) {
 	yealinkModel model = (yealinkModel) getModel();
-//	getProfileGenerator().copy(location, model.getModelDir() + File.separator + yealinkConstants.WEB_ITEMS_LEVEL, yealinkConstants.WEB_ITEMS_LEVEL);
     }
 
     @Override
@@ -127,8 +126,9 @@ public class yealinkPhone extends Phone {
 	};
 
 	if (getPhonebookManager().getPhonebookManagementEnabled())
-	    if (model.getUsePhonebook())
+	    if (model.getUsePhonebook()) {
 		profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename()));
+	}
 
 	if (model.getHasSeparateDialNow())
 	    profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DialNowProfile(getDialNowFilename()));
@@ -145,12 +145,12 @@ public class yealinkPhone extends Phone {
 	return format("%s.cfg", getSerialNumber());
     }
 
-    public String getDirectoryFilename() {
-	return format("%s%s%s", getSerialNumber(), '-', yealinkConstants.XML_CONTACT_DATA);
+    public String getDirectoryFilename(int n = 0) {
+	return format("%s-%d-%s", getSerialNumber(), n, yealinkConstants.XML_CONTACT_DATA);
     }
 
     public String getDialNowFilename() {
-	return format("%s%s%s", getSerialNumber(), '-', yealinkConstants.XML_DIAL_NOW);
+	return format("%s-%s", getSerialNumber(), yealinkConstants.XML_DIAL_NOW);
     }
 
     @Override

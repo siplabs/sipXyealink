@@ -59,8 +59,18 @@ public class yealinkConstants {
     public static final String LOCAL_TIME_ZONE_V7X_SETTING = "time/local_time.time_zone";
     public static final String SYSLOG_SERVER_V6X_SETTING = "upgrade/SYSLOG/SyslogdIP";
     public static final String SYSLOG_SERVER_V7X_SETTING = "network/syslog.server";
+
     public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "RemotePhoneBook/0/URL";
     public static final String REMOTE_PHONEBOOK_0_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.1.url";
+    public static final String REMOTE_PHONEBOOK_1_URL_V6X_SETTING = "RemotePhoneBook/1/URL";
+    public static final String REMOTE_PHONEBOOK_1_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.2.url";
+    public static final String REMOTE_PHONEBOOK_2_URL_V6X_SETTING = "RemotePhoneBook/2/URL";
+    public static final String REMOTE_PHONEBOOK_2_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.3.url";
+    public static final String REMOTE_PHONEBOOK_3_URL_V6X_SETTING = "RemotePhoneBook/3/URL";
+    public static final String REMOTE_PHONEBOOK_3_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.4.url";
+    public static final String REMOTE_PHONEBOOK_4_URL_V6X_SETTING = "RemotePhoneBook/4/URL";
+    public static final String REMOTE_PHONEBOOK_4_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.5.url";
+
     public static final String REMOTE_PHONEBOOK_0_NAME_V6X_SETTING = "RemotePhoneBook/0/Name";
     public static final String REMOTE_PHONEBOOK_0_NAME_V7X_SETTING = "remote-phonebook/remote_phonebook.data.1.name";
     public static final String FIRMWARE_SERVER_ADDRESS_SETTING = "upgrade/firmware/server_ip";
