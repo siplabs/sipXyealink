@@ -83,7 +83,7 @@ public class yealinkConstants {
     public static final String AUTOPROVISIONING_SERVER_ADDRESS_V6X_SETTING = "upgrade/autoprovision/server_address";
     public static final String ADVANCED_MUSIC_SERVER_URI_V6X_SETTING = "account/MusicServerUri";
     public static final String ADVANCED_MUSIC_SERVER_URI_V7X_SETTING = "advanced/music_server_uri";
-    public static final String LANG_FILE_NAME_V6X_SETTING = "upgrade/LangFile/server_address";
+    public static final String LANG_FILE_NAME_V6X_SETTING = "upgrade/Lang/server_address";
     public static final String LANG_FILE_NAME_V7X_SETTING = "downloads/gui_lang.url";
 // T2X except T20
     public static final String LOGO_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
