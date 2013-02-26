@@ -152,28 +152,28 @@ public class yealinkPhoneDefaults {
 	yealinkConstants.REMOTE_PHONEBOOK_1_URL_V6X_SETTING,
 	yealinkConstants.REMOTE_PHONEBOOK_1_URL_V7X_SETTING
 	})
-    public String getPhonebook0URL() {
+    public String getPhonebook1URL() {
 	return "tftp://" + getTFTPServer() + "/" + m_phone.getSerialNumber() + "-" + "1" + yealinkConstants.XML_CONTACT_DATA;
     }
     @SettingEntry(paths = {
 	yealinkConstants.REMOTE_PHONEBOOK_2_URL_V6X_SETTING,
 	yealinkConstants.REMOTE_PHONEBOOK_2_URL_V7X_SETTING
 	})
-    public String getPhonebook0URL() {
+    public String getPhonebook2URL() {
 	return "tftp://" + getTFTPServer() + "/" + m_phone.getSerialNumber() + "-" + "2" + yealinkConstants.XML_CONTACT_DATA;
     }
     @SettingEntry(paths = {
 	yealinkConstants.REMOTE_PHONEBOOK_3_URL_V6X_SETTING,
 	yealinkConstants.REMOTE_PHONEBOOK_3_URL_V7X_SETTING
 	})
-    public String getPhonebook0URL() {
+    public String getPhonebook3URL() {
 	return "tftp://" + getTFTPServer() + "/" + m_phone.getSerialNumber() + "-" + "3" + yealinkConstants.XML_CONTACT_DATA;
     }
     @SettingEntry(paths = {
 	yealinkConstants.REMOTE_PHONEBOOK_4_URL_V6X_SETTING,
 	yealinkConstants.REMOTE_PHONEBOOK_4_URL_V7X_SETTING
 	})
-    public String getPhonebook0URL() {
+    public String getPhonebook4URL() {
 	return "tftp://" + getTFTPServer() + "/" + m_phone.getSerialNumber() + "-" + "4" + yealinkConstants.XML_CONTACT_DATA;
     }
 
