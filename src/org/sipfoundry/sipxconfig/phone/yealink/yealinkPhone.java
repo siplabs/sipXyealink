@@ -127,7 +127,7 @@ public class yealinkPhone extends Phone {
 
 	if (getPhonebookManager().getPhonebookManagementEnabled())
 	    if (model.getUsePhonebook()) {
-		profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename()));
+		profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(0)));
 	}
 
 	if (model.getHasSeparateDialNow())
@@ -145,7 +145,7 @@ public class yealinkPhone extends Phone {
 	return format("%s.cfg", getSerialNumber());
     }
 
-    public String getDirectoryFilename(int n = 0) {
+    public String getDirectoryFilename(int n) {
 	return format("%s-%d-%s", getSerialNumber(), n, yealinkConstants.XML_CONTACT_DATA);
     }
 
