@@ -1,0 +1,5 @@
+config
+configure
+aclocal.m4
+Makefile.in
+autom4*
