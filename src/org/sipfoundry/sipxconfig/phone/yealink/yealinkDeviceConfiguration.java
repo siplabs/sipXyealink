@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.sipfoundry.sipxconfig.device.ProfileContext;
-import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 import org.sipfoundry.sipxconfig.speeddial.Button;
 
 /**
@@ -26,11 +25,11 @@ public class yealinkDeviceConfiguration extends ProfileContext {
     }
 
     public Collection<Button> getSpeedDial() {
-	yealinkPhone phone = (yealinkPhone) getDevice();
-	if (null == phone.getSpeedDial()) {
-		return Collections.emptyList();
-	} else {
-		return phone.getSpeedDial().getButtons();
-	}
+        yealinkPhone phone = (yealinkPhone) getDevice();
+        if (null == phone.getSpeedDial()) {
+            return Collections.emptyList();
+        } else {
+            return phone.getSpeedDial().getButtons();
+        }
     }
 }

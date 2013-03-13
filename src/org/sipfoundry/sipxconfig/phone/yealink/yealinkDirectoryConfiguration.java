@@ -9,23 +9,15 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
-import java.io.File;
-
-import java.util.ArrayList;
-import java.util.Enumeration;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.LinkedHashSet;
 import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
-import org.sipfoundry.sipxconfig.device.Device;
 import org.sipfoundry.sipxconfig.device.ProfileContext;
-import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
-import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -36,7 +28,10 @@ public class yealinkDirectoryConfiguration extends ProfileContext {
     // Common static members
     private static final Log LOG = LogFactory.getLog(yealinkDirectoryConfiguration.class);
 
-    public yealinkDirectoryConfiguration(yealinkPhone device, Collection<PhonebookEntry> entries, String profileTemplate) {
+    public yealinkDirectoryConfiguration(
+            yealinkPhone device,
+            Collection<PhonebookEntry> entries,
+            String profileTemplate) {
 	super(device, profileTemplate);
 	m_entries = entries;
     }
@@ -112,14 +107,17 @@ public class yealinkDirectoryConfiguration extends ProfileContext {
 	@Override
 	public int compareTo(yealinkPhonebookEntry a) {
 	    int result = 0;
-	    if (a == null)
+	    if (null == a) {
 		return 0;
-	    if (m_lastName != null && a.getLastName() != null)
+	    }
+	    if (m_lastName != null && a.getLastName() != null) {
 		result = m_lastName.compareTo(a.getLastName());
-	    if (m_firstName != null && a.getFirstName() != null)
-		return result == 0 ? m_firstName.compareTo(a.getFirstName()): result;
-	    else
+	    }
+	    if (m_firstName != null && a.getFirstName() != null) {
+		return result == 0 ? m_firstName.compareTo(a.getFirstName()) : result;
+	    } else {
 		return result;
+	    }
 	}
 
 	@Override

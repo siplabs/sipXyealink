@@ -9,32 +9,22 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
-import java.io.File;
 import java.util.Collection;
-import java.util.List;
 
 import static java.lang.String.format;
 
-import org.sipfoundry.sipxconfig.common.User;
 import org.sipfoundry.sipxconfig.device.Device;
-import org.sipfoundry.sipxconfig.device.DeviceDefaults;
 import org.sipfoundry.sipxconfig.device.Profile;
 import org.sipfoundry.sipxconfig.device.ProfileLocation;
-import org.sipfoundry.sipxconfig.device.RestartException;
 import org.sipfoundry.sipxconfig.device.ProfileContext;
 import org.sipfoundry.sipxconfig.device.ProfileFilter;
-import org.sipfoundry.sipxconfig.device.DeviceTimeZone;
 import org.sipfoundry.sipxconfig.phone.Line;
 import org.sipfoundry.sipxconfig.phone.LineInfo;
 import org.sipfoundry.sipxconfig.phone.Phone;
 import org.sipfoundry.sipxconfig.phone.PhoneContext;
-import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
-import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 import org.sipfoundry.sipxconfig.setting.Setting;
-import org.sipfoundry.sipxconfig.setting.SettingEntry;
 import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
-import org.sipfoundry.sipxconfig.speeddial.Button;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
 import org.apache.commons.logging.Log;
@@ -50,48 +40,50 @@ public class yealinkPhone extends Phone {
     private static final Log LOG = LogFactory.getLog(yealinkPhone.class);
 
     // Common members
-    private SpeedDial m_speedDial = null;
+    private SpeedDial m_speedDial;
 
     public yealinkPhone() {
     }
 
     public int getMaxLineCount() {
-	yealinkModel model = (yealinkModel) getModel();
-	if (null != model) {
-	    return model.getMaxLineCount();
-	}
-	return 0;
+        yealinkModel model = (yealinkModel) getModel();
+        if (null != model) {
+            return model.getMaxLineCount();
+        }
+        return 0;
     }
 
     public int getSoftKeyCount() {
-	yealinkModel model = (yealinkModel) getModel();
-	if (null != model)
-	    return model.getSoftKeyCount();
-	else
-	    return 0;
+        yealinkModel model = (yealinkModel) getModel();
+        if (null != model) {
+            return model.getSoftKeyCount();
+        } else {
+            return 0;
+        }
     }
 
     public boolean getHasHD() {
-	yealinkModel model = (yealinkModel) getModel();
-	if (null != model)
-	    return !model.getnoHD();
-	else
-	    return false;
+        yealinkModel model = (yealinkModel) getModel();
+        if (null != model) {
+            return !model.getnoHD();
+        } else {
+            return false;
+        }
     }
 
     public String getDirectedCallPickupString() {
-	return getPhoneContext().getPhoneDefaults().getDirectedCallPickupCode();
+        return getPhoneContext().getPhoneDefaults().getDirectedCallPickupCode();
     }
 
     @Override
     public void initialize() {
-	addDefaultBeanSettingHandler(new yealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
+        addDefaultBeanSettingHandler(new yealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
     }
 
     @Override
     public void initializeLine(Line line) {
-	m_speedDial = getPhoneContext().getSpeedDial(this);
-	line.addDefaultBeanSettingHandler(new yealinkLineDefaults(getPhoneContext().getPhoneDefaults(), line));
+        m_speedDial = getPhoneContext().getSpeedDial(this);
+        line.addDefaultBeanSettingHandler(new yealinkLineDefaults(getPhoneContext().getPhoneDefaults(), line));
     }
 
     /**
@@ -122,13 +114,15 @@ public class yealinkPhone extends Phone {
 	    new DeviceProfile(getDeviceFilename())
 	};
 
-	if (getPhonebookManager().getPhonebookManagementEnabled())
+        if (getPhonebookManager().getPhonebookManagementEnabled()) {
 	    if (model.getUsePhonebook()) {
 		profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(0)));
-	}
+	    }
+        }
 
-	if (model.getHasSeparateDialNow())
+        if (model.getHasSeparateDialNow()) {
 	    profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DialNowProfile(getDialNowFilename()));
+        }
 
 	return profileTypes;
     }

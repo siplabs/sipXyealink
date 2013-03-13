@@ -13,8 +13,6 @@ import java.util.Collection;
 import java.util.Collections;
 
 import org.sipfoundry.sipxconfig.device.ProfileContext;
-import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
-import org.sipfoundry.sipxconfig.speeddial.Button;
 
 /**
  * Responsible for generating ipmid.cfg

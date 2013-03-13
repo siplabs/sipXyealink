@@ -20,69 +20,69 @@ public final class yealinkModel extends PhoneModel {
     private String m_name;
     private String m_directoryProfileTemplate;
     private String m_dialNowProfileTemplate;
-    private boolean m_noHD = false;
-    private int m_softKeyCount = 0;
+    private boolean m_noHD;
+    private int m_softKeyCount;
 
     public yealinkModel() {
     }
 
     public yealinkModel(String beanId) {
-	super(beanId);
+        super(beanId);
     }
 
     public void setName(String name) {
-	m_name = name;
+        m_name = name;
     }
 
     public String getName() {
-	return m_name;
+        return m_name;
     }
 
     public void setDirectoryProfileTemplate(String name) {
-	m_directoryProfileTemplate = name;
+        m_directoryProfileTemplate = name;
     }
 
     public String getDirectoryProfileTemplate() {
-	return m_directoryProfileTemplate;
+        return m_directoryProfileTemplate;
     }
 
     public void setdialNowProfileTemplate(String name) {
-	m_dialNowProfileTemplate = name;
+        m_dialNowProfileTemplate = name;
     }
 
     public String getdialNowProfileTemplate() {
-	return m_dialNowProfileTemplate;
+        return m_dialNowProfileTemplate;
     }
 
     public boolean getHasSeparateDialNow() {
-	return m_hasSeparateDialNow;
+        return m_hasSeparateDialNow;
     }
 
     public void setHasSeparateDialNow(boolean hasSeparateDialNow) {
-	m_hasSeparateDialNow = hasSeparateDialNow;
+        m_hasSeparateDialNow = hasSeparateDialNow;
     }
 
     public boolean getUsePhonebook() {
-	return m_usePhonebook;
+        return m_usePhonebook;
     }
 
     public void setUsePhonebook(boolean usePhonebook) {
-	m_usePhonebook = usePhonebook;
+        m_usePhonebook = usePhonebook;
     }
 
     public boolean getnoHD() {
-	return m_noHD;
+        return m_noHD;
     }
 
     public void setnoHD(boolean noHD) {
-	m_noHD = noHD;
+        m_noHD = noHD;
     }
 
     public int getSoftKeyCount() {
-	return m_softKeyCount;
+        return m_softKeyCount;
     }
 
     public void setSoftKeyCount(int softKeyCount) {
-	m_softKeyCount = softKeyCount;
+        m_softKeyCount = softKeyCount;
     }
 }
