@@ -57,6 +57,8 @@ public class yealinkConstants {
     public static final String SYSLOG_SERVER_V6X_SETTING = "upgrade/SYSLOG/SyslogdIP";
     public static final String SYSLOG_SERVER_V7X_SETTING = "network/syslog.server";
     public static final String XML_BROWSER_SERVER_V6X_SETTING = "xml-browser/ServerIP";
+    public static final String ACTION_URI_LIMIT_IP_V6X_SETTING = "Features/ActionURILimitIP";
+
 
     public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "RemotePhoneBook/0/URL";
     public static final String REMOTE_PHONEBOOK_0_URL_V7X_SETTING = "remote-phonebook/remote_phonebook.data.1.url";

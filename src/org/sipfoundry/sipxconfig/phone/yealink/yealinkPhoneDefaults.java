@@ -255,7 +255,8 @@ public class yealinkPhoneDefaults {
 //    }
 
     @SettingEntry(paths = {
-	    yealinkConstants.XML_BROWSER_SERVER_V6X_SETTING
+	    yealinkConstants.XML_BROWSER_SERVER_V6X_SETTING,
+	    yealinkConstants.ACTION_URI_LIMIT_IP_V6X_SETTING
             })
     public String getServerIP() {
         return  getTFTPServer();
