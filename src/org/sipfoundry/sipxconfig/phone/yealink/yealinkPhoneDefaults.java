@@ -254,5 +254,13 @@ public class yealinkPhoneDefaults {
 //       return getPhoneContext().getIntercomForPhone(m_phone).getCode();
 //    }
 
+    @SettingEntry(paths = {
+	    yealinkConstants.XML_BROWSER_SERVER_V6X_SETTING
+            })
+    public String getServerIP() {
+        return  getTFTPServer();
+    }
+
+
 }
 
