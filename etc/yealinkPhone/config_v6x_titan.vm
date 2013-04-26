@@ -117,12 +117,12 @@ ${setting.ProfileName} = $!{setting.Value}
 [ account ]
 path = /config/voip/sipAccount${lid}.cfg
 Enable = 0
-Label =
-UserName =
-AuthName =
-DisplayName =
-password =
-SIPServerHost =
+Label = %NULL%
+UserName = %NULL%
+AuthName = %NULL%
+DisplayName = %NULL%
+password = %NULL%
+SIPServerHost = %NULL%
 SIPServerPort = 5060
 SubscribeMWIToVM = 0
 SIPListenPort = ${SIPListenPort}
@@ -210,13 +210,21 @@ rtpmap = 104
 #if(${group.name}=="LangFile")
 [ Lang ]
 #foreach ($setting in $group.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #elseif(${group.name}=="network-wan")
 #foreach ($subgroup in $group.Values)
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -224,7 +232,11 @@ ${setting.ProfileName} = $!{setting.Value}
 #foreach ($subgroup in $group.Values)
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -238,7 +250,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${GroupName} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="upgrade")
@@ -246,7 +262,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -255,7 +275,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${group.name}${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="preference")
@@ -263,14 +287,22 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="HotDesking")
 #foreach ($subgroup in $group.Values)
 [ ${group.name}_${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -284,7 +316,11 @@ ${setting.ProfileName} = $!{setting.Value}
 [ ${subgroup.name}${group.name} ]
 #end
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="features")
@@ -292,7 +328,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="voice")
@@ -300,7 +340,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -309,7 +353,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -322,7 +370,11 @@ ${setting.ProfileName} = $!{setting.Value}
 #end
 [ ${GroupName} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -330,7 +382,11 @@ ${setting.ProfileName} = $!{setting.Value}
 #foreach ($subgroup in $group.Values)
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -342,14 +398,22 @@ ${setting.ProfileName} = $!{setting.Value}
 path = /tmp/dialnow.xml
 #foreach ($setting in $subgroup.Values)
 #if (${setting.ProfileName} == "server_address")
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #else
 
 [${subgroup.name}]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #end
@@ -358,7 +422,11 @@ ${setting.ProfileName} = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="security")
@@ -382,7 +450,11 @@ password = $!{setting.Value}
 
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #end
@@ -392,14 +464,22 @@ ${setting.ProfileName} = $!{setting.Value}
 #foreach ($subsubgroup in $subgroup.Values)
 [ ${subgroup.name}${subsubgroup.name} ]
 #foreach ($setting in $subsubgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
 #else
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 
@@ -414,7 +494,11 @@ path = /yealink/config/Features/Phone.cfg
 path = /config/Setting/Setting.cfg
 #end
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 
 #end
@@ -428,7 +512,11 @@ ${setting.ProfileName} = $!{setting.Value}
 [ ${group.name}${index} ]
 path = /config/vpPhone/vpPhone.ini
 #end
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="memory")
@@ -441,7 +529,11 @@ ${setting.ProfileName} = $!{setting.Value}
 [ ${group.name}${index} ]
 path = /config/vpPhone/vpPhone.ini
 #end
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #elseif(${group.name}=="xml-browser")
@@ -455,7 +547,15 @@ server_address = $!{setting.Value}
 #else
 [ ${subgroup.name} ]
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
+#end
 #end
 
 #end
@@ -467,13 +567,21 @@ ${setting.ProfileName} = $!{setting.Value}
 [ AlertInfo${subgroup.name} ]
 path = /config/Setting/Setting.cfg
 #foreach ($setting in $subgroup.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 #else
 [ ${group.name} ]
 #foreach ($setting in $group.Values)
+#if ("$!{setting.Value}" == "")
+${setting.ProfileName} = %NULL%
+#else
 ${setting.ProfileName} = $!{setting.Value}
+#end
 #end
 #end
 
