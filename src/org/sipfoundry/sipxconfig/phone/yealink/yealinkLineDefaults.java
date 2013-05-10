@@ -94,7 +94,7 @@ public class yealinkLineDefaults {
             yealinkConstants.BACKUP_OUTBOUND_HOST_V7X_SETTING
             })
     public String getOutboundHost() {
-        return m_defaults.getDomainName();
+        return m_defaults.getProxyAddress();
     }
 
     @SettingEntry(paths = {
