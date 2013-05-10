@@ -1042,7 +1042,7 @@
 	<setting name="URL" />
     </group>
 </group>
-<group name="LDAP" hidden="yes">
+<group name="LDAP">
     <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
     <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/Contacts/LDAP.cfg</value></setting>
     <setting name="NameFilter"/>
