@@ -132,7 +132,7 @@ url = $!{setting.Value}
 #end
 #end
 #elseif (${group.Name}=="UserName")
-[ cfg:/phone/config/user.ini,reboot=0 ] 
+[ cfg:/phone/config/user.ini,reboot=0 ]
 #foreach ($setting in $group.Values)
 #if (${setting.ProfileName}=="admin")
 ${group.Name}.${setting.ProfileName} = Admin
@@ -161,19 +161,77 @@ Var = $!{setting.Value}
 -${setting.ProfileName} =
 #end
 
-#elseif (${group.Name}=="Time")
-#foreach ($setting in $group.Values)
-#if (${setting.ProfileName}=="path_")
-[ cfg:${setting.Value},reboot=1 ]
-#else
-Local${group.Name}.${setting.ProfileName} = $!{setting.Value}
-#end
-#end
-
 #elseif (${group.Name} == "DialNow")
 [ bin:/phone/config/DialNow.xml,reboot=1]
 #foreach ($setting in $group.Values)
 #if (${setting.ProfileName} == "URL")
+${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#elseif ((${group.Name} == "RemotePhoneBook"))
+#foreach ($subgroup in $group.Values)
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName}=="path_")
+[ cfg:${setting.Value},reboot=0 ]
+#else
+${group.Name}${subgroup.Name}.${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#end
+#elseif (
+ (${group.Name} == "network-wan")||
+ (${group.Name} == "network-lan")||
+ (${group.Name} == "network-advanced")||
+ (${group.Name} == "upgrade")||
+ (${group.Name} == "preference")||
+ (${group.Name} == "features")||
+ (${group.Name} == "FWD")||
+ (${group.Name} == "calling")||
+ (${group.Name} == "voice")||
+ (${group.Name} == "tones")||
+ (${group.Name} == "dialplan")||
+ (${group.Name} == "security")||
+ (${group.Name} == "programablekey")||
+ (${group.Name} == "memory")||
+ (${group.Name} == "broadsoft")
+ )
+#foreach ($subgroup in $group.Values)
+#if (${subgroup.Name}=="Time")
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName}=="path_")
+[ cfg:${setting.Value},reboot=1 ]
+#else
+Local${subgroup.Name}.${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+
+#elseif(${subgroup.name}=="DialNow")
+
+[bin:/phone/config/DialNow.xml,reboot=0]
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName} == "server_address")
+URL = $!{setting.Value}
+#end
+#end
+
+#else
+#foreach ($setting in $subgroup.Values)
+#if (${setting.ProfileName}=="path_")
+[ cfg:${setting.Value},reboot=1 ]
+#else
+${subgroup.Name}.${setting.ProfileName} = $!{setting.Value}
+#end
+#end
+#end
+
+#end
+#elseif (${group.Name}=="LDAP")
+#foreach ($setting in $group.Values)
+#if (${setting.ProfileName}=="path_")
+[ cfg:${setting.Value} ]
+#else
 ${setting.ProfileName} = $!{setting.Value}
 #end
 #end
