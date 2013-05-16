@@ -161,14 +161,6 @@ Var = $!{setting.Value}
 -${setting.ProfileName} =
 #end
 
-#elseif (${group.Name} == "DialNow")
-[ bin:/phone/config/DialNow.xml,reboot=1]
-#foreach ($setting in $group.Values)
-#if (${setting.ProfileName} == "URL")
-${setting.ProfileName} = $!{setting.Value}
-#end
-#end
-
 #elseif ((${group.Name} == "RemotePhoneBook"))
 #foreach ($subgroup in $group.Values)
 #foreach ($setting in $subgroup.Values)
@@ -207,12 +199,11 @@ Local${subgroup.Name}.${setting.ProfileName} = $!{setting.Value}
 #end
 #end
 
-#elseif(${subgroup.name}=="DialNow")
-
-[bin:/phone/config/DialNow.xml,reboot=0]
+#elseif (${subgroup.Name} == "DialNow")
+[ bin:/phone/config/DialNow.xml,reboot=0]
 #foreach ($setting in $subgroup.Values)
-#if (${setting.ProfileName} == "server_address")
-URL = $!{setting.Value}
+#if (${setting.ProfileName} == "URL")
+${setting.ProfileName} = $!{setting.Value}
 #end
 #end
 

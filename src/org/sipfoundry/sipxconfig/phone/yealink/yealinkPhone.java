@@ -13,7 +13,9 @@ import java.util.Collection;
 
 import static java.lang.String.format;
 
+import org.sipfoundry.sipxconfig.bulk.ldap.LdapManager;
 import org.sipfoundry.sipxconfig.device.Device;
+import org.sipfoundry.sipxconfig.device.DeviceVersion;
 import org.sipfoundry.sipxconfig.device.Profile;
 import org.sipfoundry.sipxconfig.device.ProfileLocation;
 import org.sipfoundry.sipxconfig.device.ProfileContext;
@@ -35,6 +37,7 @@ import org.apache.commons.lang.ArrayUtils;
  * Yealink abstract phone.
  */
 public class yealinkPhone extends Phone {
+    public static final String BEAN_ID = "yealink";
 
     // Common static members
     private static final Log LOG = LogFactory.getLog(yealinkPhone.class);
@@ -42,9 +45,37 @@ public class yealinkPhone extends Phone {
     // Common members
     private SpeedDial m_speedDial;
 
+    private LdapManager m_ldapManager;
+
     public yealinkPhone() {
     }
 
+    public String getDefaultVersionId() {
+        DeviceVersion version = getDeviceVersion();
+        return version != null ? version.getVersionId() : null;
+    }
+
+    @Override
+    public void setDeviceVersion(DeviceVersion version) {
+        super.setDeviceVersion(version);
+        DeviceVersion myVersion = getDeviceVersion();
+        if (myVersion == yealinkModel.VER_7X) {
+            getModel().setProfileTemplate("yealinkPhone/config_v7x.vm");
+        } else {
+            // we need to explicitly define these here otherwise changing versions will not work
+            getModel().setSettingsFile("phone.xml");
+            getModel().setLineSettingsFile("line.xml");
+        }
+    }
+
+    public void setLdapManager(LdapManager ldapManager) {
+        m_ldapManager = ldapManager;
+    }
+
+    public LdapManager getLdapManager() {
+        return m_ldapManager;
+    }
+    
     public int getMaxLineCount() {
         yealinkModel model = (yealinkModel) getModel();
         if (null != model) {
@@ -65,7 +96,7 @@ public class yealinkPhone extends Phone {
     public boolean getHasHD() {
         yealinkModel model = (yealinkModel) getModel();
         if (null != model) {
-            return !model.getnoHD();
+            return !model.getNoHD();
         } else {
             return false;
         }
@@ -109,22 +140,22 @@ public class yealinkPhone extends Phone {
 
     @Override
     public Profile[] getProfileTypes() {
-	yealinkModel model = (yealinkModel) getModel();
-	Profile[] profileTypes = new Profile[] {
-	    new DeviceProfile(getDeviceFilename())
-	};
-
-        if (getPhonebookManager().getPhonebookManagementEnabled()) {
-	    if (model.getUsePhonebook()) {
-		profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(0)));
-	    }
-        }
-
-        if (model.getHasSeparateDialNow()) {
-	    profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DialNowProfile(getDialNowFilename()));
-        }
-
-	return profileTypes;
+    	yealinkModel model = (yealinkModel) getModel();
+    	Profile[] profileTypes = new Profile[] {
+    	    new DeviceProfile(getDeviceFilename())
+    	};
+    
+            if (getPhonebookManager().getPhonebookManagementEnabled()) {
+        	    if (model.getUsePhonebook()) {
+                    profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(0)));
+        	    }
+            }
+    
+            if (model.getHasSeparateDialNow()) {
+    	        profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DialNowProfile(getDialNowFilename()));
+            }
+    
+    	return profileTypes;
     }
 
     @Override
@@ -184,71 +215,70 @@ public class yealinkPhone extends Phone {
     }
 
     static class DeviceProfile extends Profile {
-	public DeviceProfile(String name) {
-	    super(name, yealinkConstants.MIME_TYPE_PLAIN);
-	}
-
-	@Override
-	protected ProfileFilter createFilter(Device device) {
-	    return null;
-	}
-
-	@Override
-	protected ProfileContext createContext(Device device) {
-	    yealinkPhone phone = (yealinkPhone) device;
-	    yealinkModel model = (yealinkModel) phone.getModel();
-	    return new yealinkDeviceConfiguration(phone, model.getProfileTemplate());
-	}
+    	public DeviceProfile(String name) {
+    	    super(name, yealinkConstants.MIME_TYPE_PLAIN);
+    	}
+    
+    	@Override
+    	protected ProfileFilter createFilter(Device device) {
+    	    return null;
+    	}
+    
+    	@Override
+    	protected ProfileContext createContext(Device device) {
+    	    yealinkPhone phone = (yealinkPhone) device;
+    	    yealinkModel model = (yealinkModel) phone.getModel();
+    	    return new yealinkDeviceConfiguration(phone, model.getProfileTemplate());
+    	}
     }
 
     static class DialNowProfile extends Profile {
-	public DialNowProfile(String name) {
-	    super(name, yealinkConstants.MIME_TYPE_XML);
-	}
-
-	@Override
-	protected ProfileFilter createFilter(Device device) {
-	    return null;
-	}
-
-	@Override
-	protected ProfileContext createContext(Device device) {
-	    yealinkPhone phone = (yealinkPhone) device;
-	    yealinkModel model = (yealinkModel) phone.getModel();
-	    return new yealinkDialNowConfiguration(phone, model.getdialNowProfileTemplate());
-	}
+    	public DialNowProfile(String name) {
+    	    super(name, yealinkConstants.MIME_TYPE_XML);
+    	}
+    
+    	@Override
+    	protected ProfileFilter createFilter(Device device) {
+    	    return null;
+    	}
+    
+    	@Override
+    	protected ProfileContext createContext(Device device) {
+    	    yealinkPhone phone = (yealinkPhone) device;
+    	    yealinkModel model = (yealinkModel) phone.getModel();
+    	    return new yealinkDialNowConfiguration(phone, model.getDialNowProfileTemplate());
+    	}
     }
 
     static class DirectoryProfile extends Profile {
-
-	public DirectoryProfile(String name) {
-	    super(name, yealinkConstants.MIME_TYPE_PLAIN);
-	}
-
-	@Override
-	protected ProfileFilter createFilter(Device device) {
-	    return null;
-	}
-
-	@Override
-	protected ProfileContext createContext(Device device) {
-	    yealinkPhone phone = (yealinkPhone) device;
-	    yealinkModel model = (yealinkModel) phone.getModel();
-	    PhoneContext phoneContext = phone.getPhoneContext();
-	    Collection<PhonebookEntry> entries = phoneContext.getPhonebookEntries(phone);
-	    return new yealinkDirectoryConfiguration(phone, entries, model.getDirectoryProfileTemplate());
-	}
+    	public DirectoryProfile(String name) {
+    	    super(name, yealinkConstants.MIME_TYPE_PLAIN);
+    	}
+    
+    	@Override
+    	protected ProfileFilter createFilter(Device device) {
+    	    return null;
+    	}
+    
+    	@Override
+    	protected ProfileContext createContext(Device device) {
+    	    yealinkPhone phone = (yealinkPhone) device;
+    	    yealinkModel model = (yealinkModel) phone.getModel();
+    	    PhoneContext phoneContext = phone.getPhoneContext();
+    	    Collection<PhonebookEntry> entries = phoneContext.getPhonebookEntries(phone);
+    	    return new yealinkDirectoryConfiguration(phone, entries, model.getDirectoryProfileTemplate());
+    	}
     }
 
     static class yealinkSettingExpressionEvaluator implements SettingExpressionEvaluator {
-	private final String m_model;
-
-	public yealinkSettingExpressionEvaluator(String model) {
-	    m_model = model;
-	}
-
-	public boolean isExpressionTrue(String expression, Setting setting_) {
-	    return m_model.matches(expression);
-	}
+    	private final String m_model;
+    
+    	public yealinkSettingExpressionEvaluator(String model) {
+    	    m_model = model;
+    	}
+    
+    	public boolean isExpressionTrue(String expression, Setting setting_) {
+    	    return m_model.matches(expression);
+    	}
     }
 }

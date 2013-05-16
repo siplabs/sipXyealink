@@ -32,104 +32,104 @@ public class yealinkDirectoryConfiguration extends ProfileContext {
             yealinkPhone device,
             Collection<PhonebookEntry> entries,
             String profileTemplate) {
-	super(device, profileTemplate);
-	m_entries = entries;
+    	super(device, profileTemplate);
+    	m_entries = entries;
     }
 
     public Collection<yealinkPhonebookEntry> getRows() {
-	int size = getSize();
-	if (size == 0) {
-	    return Collections.emptyList();
-	}
-	Collection<yealinkPhonebookEntry> yealinkEntries = new LinkedHashSet<yealinkPhonebookEntry>(size);
-	if (m_entries != null) {
-	    transformPhoneBook(m_entries, yealinkEntries);
-	}
-	return yealinkEntries;
+    	int size = getSize();
+    	if (size == 0) {
+    	    return Collections.emptyList();
+    	}
+    	Collection<yealinkPhonebookEntry> yealinkEntries = new LinkedHashSet<yealinkPhonebookEntry>(size);
+    	if (m_entries != null) {
+    	    transformPhoneBook(m_entries, yealinkEntries);
+    	}
+    	return yealinkEntries;
     }
 
     private int getSize() {
-	int size = 0;
-	if (m_entries != null) {
-	    size += m_entries.size();
-	}
-	return size;
+    	int size = 0;
+    	if (m_entries != null) {
+    	    size += m_entries.size();
+    	}
+    	return size;
     }
 
     void transformPhoneBook(Collection<PhonebookEntry> phonebookEntries,
 		Collection<yealinkPhonebookEntry> yealinkEntries) {
-	for (PhonebookEntry entry : phonebookEntries) {
-	    yealinkEntries.add(new yealinkPhonebookEntry(entry));
-	}
-	List<yealinkPhonebookEntry> tmp = Collections.list(Collections.enumeration(yealinkEntries));
-	Collections.sort(tmp);
-	yealinkEntries.clear();
-	for (yealinkPhonebookEntry entry : tmp) {
-	    yealinkEntries.add(entry);
-	}
+    	for (PhonebookEntry entry : phonebookEntries) {
+    	    yealinkEntries.add(new yealinkPhonebookEntry(entry));
+    	}
+    	List<yealinkPhonebookEntry> tmp = Collections.list(Collections.enumeration(yealinkEntries));
+    	Collections.sort(tmp);
+    	yealinkEntries.clear();
+    	for (yealinkPhonebookEntry entry : tmp) {
+    	    yealinkEntries.add(entry);
+    	}
     }
 
     /**
      * Due to Yealink limitation all entries with the same contact are equal.
      */
     public static class yealinkPhonebookEntry implements Comparable<yealinkPhonebookEntry> {
-	private final String m_firstName;
-	private String m_lastName;
-	private final String m_contact;
-
-	public yealinkPhonebookEntry(PhonebookEntry entry) {
-	    m_contact = entry.getNumber();
-	    m_lastName = entry.getLastName();
-	    m_firstName = entry.getFirstName();
-	}
-
-	public String getFirstName() {
-	    String firstName = m_firstName;
-	    if (firstName == null && m_lastName == null) {
-		return m_contact;
-	    }
-	    return firstName;
-	}
-
-	public String getLastName() {
-	    return m_lastName;
-	}
-
-	public String getContact() {
-	    return m_contact;
-	}
-
-	@Override
-	public int hashCode() {
-	    return new HashCodeBuilder().append(m_contact).toHashCode();
-	}
-
-	@Override
-	public int compareTo(yealinkPhonebookEntry a) {
-	    int result = 0;
-	    if (null == a) {
-		return 0;
-	    }
-	    if (m_lastName != null && a.getLastName() != null) {
-		result = m_lastName.compareTo(a.getLastName());
-	    }
-	    if (m_firstName != null && a.getFirstName() != null) {
-		return result == 0 ? m_firstName.compareTo(a.getFirstName()) : result;
-	    } else {
-		return result;
-	    }
-	}
-
-	@Override
-	public boolean equals(Object obj) {
-	    if (!(obj instanceof yealinkPhonebookEntry)) {
-		return false;
-	    }
-	    if (this == obj) {
-		return true;
-	    }
-	    yealinkPhonebookEntry rhs = (yealinkPhonebookEntry) obj;
-	    return new EqualsBuilder().append(m_contact, rhs.m_contact).isEquals();
-	}
+    	private final String m_firstName;
+    	private String m_lastName;
+    	private final String m_contact;
+    
+    	public yealinkPhonebookEntry(PhonebookEntry entry) {
+    	    m_contact = entry.getNumber();
+    	    m_lastName = entry.getLastName();
+    	    m_firstName = entry.getFirstName();
+    	}
+    
+    	public String getFirstName() {
+    	    String firstName = m_firstName;
+    	    if (firstName == null && m_lastName == null) {
+        		return m_contact;
+    	    }
+    	    return firstName;
+    	}
+    
+    	public String getLastName() {
+    	    return m_lastName;
+    	}
+    
+    	public String getContact() {
+    	    return m_contact;
+    	}
+    
+    	@Override
+    	public int hashCode() {
+    	    return new HashCodeBuilder().append(m_contact).toHashCode();
+    	}
+    
+    	@Override
+    	public int compareTo(yealinkPhonebookEntry a) {
+    	    int result = 0;
+    	    if (null == a) {
+        		return 0;
+    	    }
+    	    if (m_lastName != null && a.getLastName() != null) {
+        		result = m_lastName.compareTo(a.getLastName());
+    	    }
+    	    if (m_firstName != null && a.getFirstName() != null) {
+        		return result == 0 ? m_firstName.compareTo(a.getFirstName()) : result;
+    	    } else {
+        		return result;
+    	    }
+    	}
+    
+    	@Override
+    	public boolean equals(Object obj) {
+    	    if (!(obj instanceof yealinkPhonebookEntry)) {
+        		return false;
+    	    }
+    	    if (this == obj) {
+        		return true;
+    	    }
+    	    yealinkPhonebookEntry rhs = (yealinkPhonebookEntry) obj;
+    	    return new EqualsBuilder().append(m_contact, rhs.m_contact).isEquals();
+    	}
     }
 }

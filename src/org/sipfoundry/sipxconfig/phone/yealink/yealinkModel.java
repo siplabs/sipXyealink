@@ -9,12 +9,22 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
+import org.sipfoundry.sipxconfig.device.DeviceVersion;
 import org.sipfoundry.sipxconfig.phone.PhoneModel;
 
 /**
  * Static differences in yealink models
  */
 public final class yealinkModel extends PhoneModel {
+    /** Firmware 6x or beyond */
+    public static final DeviceVersion VER_6X = new DeviceVersion(yealinkPhone.BEAN_ID, "6X");
+    public static final DeviceVersion VER_7X = new DeviceVersion(yealinkPhone.BEAN_ID, "7X");
+    public static final DeviceVersion[] SUPPORTED_VERSIONS = new DeviceVersion[] {
+        VER_6X, VER_7X
+    };
+
+    private DeviceVersion m_deviceVersion;
+
     private boolean m_hasSeparateDialNow;
     private boolean m_usePhonebook;
     private String m_name;
@@ -28,6 +38,23 @@ public final class yealinkModel extends PhoneModel {
 
     public yealinkModel(String beanId) {
         super(beanId);
+    }
+
+    public static DeviceVersion getPhoneDeviceVersion(String version) {
+	for (DeviceVersion deviceVersion : SUPPORTED_VERSIONS) {
+	    if (deviceVersion.getName().contains(version)) {
+                return deviceVersion;
+            }
+        }
+        return VER_6X;
+    }
+
+    public void setDefaultVersion(DeviceVersion ver) {
+	m_deviceVersion = ver;
+    }
+
+    public DeviceVersion getDefaultVersion() {
+	return m_deviceVersion;
     }
 
     public void setName(String name) {
@@ -46,11 +73,11 @@ public final class yealinkModel extends PhoneModel {
         return m_directoryProfileTemplate;
     }
 
-    public void setdialNowProfileTemplate(String name) {
+    public void setDialNowProfileTemplate(String name) {
         m_dialNowProfileTemplate = name;
     }
 
-    public String getdialNowProfileTemplate() {
+    public String getDialNowProfileTemplate() {
         return m_dialNowProfileTemplate;
     }
 
@@ -70,11 +97,11 @@ public final class yealinkModel extends PhoneModel {
         m_usePhonebook = usePhonebook;
     }
 
-    public boolean getnoHD() {
+    public boolean getNoHD() {
         return m_noHD;
     }
 
-    public void setnoHD(boolean noHD) {
+    public void setNoHD(boolean noHD) {
         m_noHD = noHD;
     }
 

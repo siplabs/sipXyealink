@@ -58,8 +58,10 @@ account.${L}.backup_outbound_port = 5060
 #end
 
 #foreach ($group in $phone.Settings.Values)
-#${group.name}
-#foreach ($setting in $group.Values)
+#foreach ($subgroup in $group.Values)
+#${group.name}/${subgroup.name}
+#foreach ($setting in $subgroup.Values)
 ${setting.profileName} = $!{setting.Value}
+#end
 #end
 #end

@@ -242,7 +242,8 @@ public class yealinkPhoneDefaults {
     }
 
     @SettingEntry(paths = {
-            yealinkConstants.DIAL_NOW_URL_V6X_SETTING,
+            yealinkConstants.DIAL_NOW_URL_V6X_T2X_SETTING,
+            yealinkConstants.DIAL_NOW_URL_V6X_T3X_SETTING,
             yealinkConstants.DIAL_NOW_URL_V7X_SETTING
             })
     public String getDialnowUrl() {

@@ -3,12 +3,28 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-<bean id="yealinkPhone" class="org.sipfoundry.sipxconfig.phone.yealink.yealinkPhone" scope="prototype" parent="abstractPhone" />
+<bean id="yealinkPhone" class="org.sipfoundry.sipxconfig.phone.yealink.yealinkPhone" scope="prototype" parent="abstractPhone">
+    <property name="ldapManager" ref="ldapManager"/>
+</bean>
+
+<bean id="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"
+      class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" />
+<bean id="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_7X"
+      class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" />
 
 <bean id="yealinkModel" class="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel" parent="abstractPhoneModel" abstract="true">
 	<property name="beanId" value="yealinkPhone" />
 	<property name="vendor" value="Yealink"/>
 	<property name="restartSupported" value="true" />
+	<property name="versions">
+	    <list>
+		<ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"/>
+		<ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_7X"/>
+	    </list>
+	</property>
+	<property name="defaultVersion">
+	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"/>
+	</property>
 	<property name="usePhonebook" value="true" />
 	<property name="hasSeparateDialNow" value="true" />
 	<property name="noHD" value="false" />
@@ -51,6 +67,11 @@
 	<property name="name" value="T26" />
 	<property name="maxLineCount" value="3" />
 	<property name="softKeyCount" value="10" />
+	<property name="supportedFeatures">
+		<set>
+			<value>ExpansionPanels</value>
+		</set>
+    </property>
 </bean>
 
 <bean id="yealinkPhoneSIPT28P" parent="yealinkModel">
@@ -58,6 +79,11 @@
 	<property name="name" value="T28" />
 	<property name="maxLineCount" value="6" />
 	<property name="softKeyCount" value="10" />
+	<property name="supportedFeatures">
+		<set>
+			<value>ExpansionPanels</value>
+		</set>
+    </property>
 </bean>
 
 <bean id="yealinkPhoneSIPT32G" parent="yealinkModel">
@@ -74,6 +100,11 @@
 	<property name="maxLineCount" value="6" />
 	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
 	<property name="softKeyCount" value="10" />
+	<property name="supportedFeatures">
+		<set>
+			<value>ExpansionPanels</value>
+		</set>
+    </property>
 </bean>
 
 <!--// Files uploading specification //-->

@@ -12,13 +12,13 @@
 	<setting name="AuthName"/>
 	<setting name="UserName"/>
 	<setting name="password"/>
-	<setting name="SIPServerHost"/>
+	<setting name="SIPServerHost"><type><hostname /></type></setting>
 	<setting name="SIPServerPort"><type><integer /></type></setting>
 	<setting name="UseOutboundProxy" advanced="yes"><type><boolean /></type><value>0</value></setting>
-	<setting name="OutboundHost" advanced="yes"/>
+	<setting name="OutboundHost" advanced="yes"><type><ipaddr/></type></setting>
 	<setting name="OutboundPort" advanced="yes"><type><integer /></type></setting>
 	<setting name="Transport" advanced="yes"><type refid="SIP-Transport-Type"/><value>3</value></setting>
-	<setting name="BackOutboundHost" advanced="yes"/>
+	<setting name="BackOutboundHost" advanced="yes"><type><ipaddr/></type></setting>
 	<setting name="BackOutboundPort" advanced="yes"><type><integer /></type></setting>
 	<setting name="proxy-require" advanced="yes"/>
 	<setting name="AnonymousCall" advanced="yes"><type><boolean /></type><value>0</value></setting>

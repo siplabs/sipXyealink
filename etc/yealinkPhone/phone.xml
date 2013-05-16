@@ -278,8 +278,8 @@
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Setting/Setting.cfg</value></setting>
         <setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/system.ini</value></setting>
         <setting name="TimeZone"><type refid="yealink-timezones"/><value>0</value></setting>
-        <setting name="TimeServer1"/>
-        <setting name="TimeServer2"/>
+        <setting name="TimeServer1"><type><hostname /></type></setting>
+        <setting name="TimeServer2"><type><hostname /></type></setting>
         <setting name="Interval"><type><integer /></type><value>1000</value></setting>
         <setting name="SummerTime"><type refid="DSTMode"/><value>2</value></setting>
         <setting name="DSTTimeType" if="yealinkPhoneSIPT[12].*"><type refid="DSTTimeType"/><value>0</value></setting>
@@ -562,7 +562,8 @@
 </group>
 <group name="dialplan">
     <group name="DialNow">
-        <setting name="server_address" hidden="yes"><profileName if="yealinkPhoneSIPT[12].*">server_address</profileName><profileName if="yealinkPhoneSIPT3.*">URL</profileName></setting>
+        <setting name="server_address" hidden="yes" if="yealinkPhoneSIPT[12].*"/>
+        <setting name="URL" hidden="yes" if="yealinkPhoneSIPT3.*"/>
         <setting name="1"/>
         <setting name="2"/>
         <setting name="3"/>
@@ -806,7 +807,7 @@
         <setting name="BeHaveCallLog"><type><boolean /></type><value>0</value></setting>
         <setting name="BeHaveBWDir"><type><boolean /></type><value>0</value></setting>
         <setting name="DisplayName"/>
-        <setting name="Server"/>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="port"><type><integer /></type></setting>
         <setting name="UserName"/>
         <setting name="PassWord"/>
@@ -815,7 +816,7 @@
     <group name="Account0">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -823,7 +824,7 @@
     <group name="Account1">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -831,7 +832,7 @@
     <group name="Account2">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -839,21 +840,21 @@
     <group name="Account3">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
     </group>
     <group name="Account4" if="yealinkPhoneSIPT3.*">
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
     </group>
     <group name="Account5" if="yealinkPhoneSIPT3.*">
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -861,7 +862,7 @@
     <group name="CallLog0">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -869,7 +870,7 @@
     <group name="CallLog1">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -877,7 +878,7 @@
     <group name="CallLog2">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/BroadSoft.cfg</value></setting>
         <setting name="DisplayName"></setting>
-        <setting name="Server"></setting>
+        <setting name="Server"><type><hostname /></type></setting>
         <setting name="Port"><type><integer /></type></setting>
         <setting name="UserName"></setting>
         <setting name="PassWord"></setting>
@@ -1056,11 +1057,11 @@
     <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/Contacts/LDAP.cfg</value></setting>
     <setting name="NameFilter"/>
     <setting name="NumberFilter"/>
-    <setting name="host"/>
+    <setting name="host"><type><hostname /></type></setting>
     <setting name="port"><type><integer /></type><value>389</value></setting>
     <setting name="base"/>
     <setting name="user"/>
-    <setting name="pswd"/>
+    <setting name="pswd"><type><password/></type></setting>
     <setting name="MaxHits"><type><integer /></type></setting>
     <setting name="NameAttr"/>
     <setting name="NumbAttr"/>
@@ -1071,7 +1072,7 @@
     <setting name="LDAPSort"><type><boolean /></type><value>1</value></setting>
     <setting name="DialLookup"><type><boolean /></type><value>0</value></setting>
 </group>
-<group name="expansion-panels" if="yealinkPhoneSIPT38.*|yealinkPhoneSIPT2[68].*" hidden="yes">
+<group name="expansion-panels" if="ExpansionPanels" hidden="yes">
     <setting name="exp1"><type refid="expansion-panels"/></setting>
     <setting name="exp2"><type refid="expansion-panels"/></setting>
     <setting name="exp3"><type refid="expansion-panels"/></setting>

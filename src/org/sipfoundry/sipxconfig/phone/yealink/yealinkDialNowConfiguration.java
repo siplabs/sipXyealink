@@ -9,9 +9,6 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
-import java.util.Collection;
-import java.util.Collections;
-
 import org.sipfoundry.sipxconfig.device.ProfileContext;
 
 /**
