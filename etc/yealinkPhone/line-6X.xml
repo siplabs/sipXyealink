@@ -17,7 +17,7 @@
 	<setting name="UseOutboundProxy" advanced="yes"><type><boolean /></type><value>0</value></setting>
 	<setting name="OutboundHost" advanced="yes"><type><ipaddr/></type></setting>
 	<setting name="OutboundPort" advanced="yes"><type><integer /></type></setting>
-	<setting name="Transport" advanced="yes"><type refid="SIP-Transport-Type"/><value>3</value></setting>
+	<setting name="Transport" advanced="yes"><type refid="SIPTransport_type"/><value>3</value></setting>
 	<setting name="BackOutboundHost" advanced="yes"><type><ipaddr/></type></setting>
 	<setting name="BackOutboundPort" advanced="yes"><type><integer /></type></setting>
 	<setting name="proxy-require" advanced="yes"/>
@@ -50,7 +50,7 @@
 	<setting name="RegisterMAC" advanced="yes"><type><boolean /></type><value>0</value></setting>
 	<setting name="RegisterLine" advanced="yes"><type><boolean /></type><value>0</value></setting>
 	<setting name="RegFailRetryInterval" advanced="yes"><type><integer /></type><value>30</value></setting>
-	<setting name="conf-type" advanced="yes"><type refid="conf-type_type"/><value>0</value></setting>
+	<setting name="conf-type" advanced="yes"><type refid="Conference_type"/><value>0</value></setting>
 	<setting name="conf-uri" advanced="yes" />
 	<setting name="BlfListCode" advanced="yes" hidden="yes"/>
 	<!-- Used only with BroadSoft -->
@@ -60,7 +60,7 @@
 
 	<setting name="IdleScreenEnable" if="yealinkPhoneSIPT3.*"><type><boolean /></type><value>0</value></setting>
 	<setting name="IdleScreenURL" if="yealinkPhoneSIPT3.*"></setting>
-	<setting name="SIPServerType" advanced="yes"><type refid="SIP-Server-Type"/></setting>
+	<setting name="SIPServerType" advanced="yes"><type refid="SIPServer_type"/></setting>
 	<!-- Used only with BroadSoft -->
 	<setting name="BlfListBargeInCode" advanced="yes" hidden="yes"/>
 	<setting name="MusicServerUri" advanced="yes"/>
@@ -84,7 +84,7 @@
 	<setting name="default_t3"><value>5</value></setting>
     </group>
     <group name="RingTone">
-	<setting name="RingType"><type refid="RingType_type"/><value>common</value></setting>
+	<setting name="RingType"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
     </group>
     <!-- Used only with BroadSoft -->
     <group name="blf" hidden="yes">
@@ -92,15 +92,15 @@
 	<setting name="BLFList_URI" />
     </group>
     <group name="audio">
-	<setting name="0"><type refid="yealink-codecs"/><value>9</value></setting>
-	<setting name="1"><type refid="yealink-codecs"/><value>8</value></setting>
-	<setting name="2"><type refid="yealink-codecs"/><value>18</value></setting>
-	<setting name="3"><type refid="yealink-codecs"/><value>0</value></setting>
-	<setting name="4"><type refid="yealink-codecs"/><value>4</value></setting>
-	<setting name="5"><type refid="yealink-codecs"/><value>112</value></setting>
-	<setting name="6"><type refid="yealink-codecs"/><value>102</value></setting>
-	<setting name="7"><type refid="yealink-codecs"/><value>2</value></setting>
-	<setting name="8"><type refid="yealink-codecs"/><value>104</value></setting>
+	<setting name="0"><type refid="yealink-codec_type"/><value>9</value></setting>
+	<setting name="1"><type refid="yealink-codec_type"/><value>8</value></setting>
+	<setting name="2"><type refid="yealink-codec_type"/><value>18</value></setting>
+	<setting name="3"><type refid="yealink-codec_type"/><value>0</value></setting>
+	<setting name="4"><type refid="yealink-codec_type"/><value>4</value></setting>
+	<setting name="5"><type refid="yealink-codec_type"/><value>112</value></setting>
+	<setting name="6"><type refid="yealink-codec_type"/><value>102</value></setting>
+	<setting name="7"><type refid="yealink-codec_type"/><value>2</value></setting>
+	<setting name="8"><type refid="yealink-codec_type"/><value>104</value></setting>
     </group>
     <group name="Message">
 	<setting name="VoiceNumber"/>

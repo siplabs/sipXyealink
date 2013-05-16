@@ -124,7 +124,7 @@
     </group>
     <group name="http" if="yealinkPhoneSIPT[12].*">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/yealink/config/Setting/Setting.cfg</value></setting>
-        <setting name="http_version"><type refid="http_version"/><value>1.1</value></setting>
+        <setting name="http_version"><type refid="http_version_type"/><value>1.1</value></setting>
     </group>
     <group name="telnet">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
@@ -271,27 +271,27 @@
     <group name="Lang">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Setting/Setting.cfg</value></setting>
         <setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/user.ini</value></setting>
-        <setting name="WebLanguage"><type refid="yealink-languages"/><value>English</value></setting>
-        <setting name="ActiveWebLanguage"><type refid="yealink-languages"/><value>English</value></setting>
+        <setting name="WebLanguage"><type refid="yealink-languages_type"/><value>English</value></setting>
+        <setting name="ActiveWebLanguage"><type refid="yealink-languages_type"/><value>English</value></setting>
     </group>
     <group name="Time">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Setting/Setting.cfg</value></setting>
         <setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/system.ini</value></setting>
-        <setting name="TimeZone"><type refid="yealink-timezones"/><value>0</value></setting>
+        <setting name="TimeZone"><type refid="yealink-timezones_type"/><value>0</value></setting>
         <setting name="TimeServer1"><type><hostname /></type></setting>
         <setting name="TimeServer2"><type><hostname /></type></setting>
         <setting name="Interval"><type><integer /></type><value>1000</value></setting>
-        <setting name="SummerTime"><type refid="DSTMode"/><value>2</value></setting>
-        <setting name="DSTTimeType" if="yealinkPhoneSIPT[12].*"><type refid="DSTTimeType"/><value>0</value></setting>
+        <setting name="SummerTime"><type refid="DST_mode_type"/><value>2</value></setting>
+        <setting name="DSTTimeType" if="yealinkPhoneSIPT[12].*"><type refid="DST_time_type"/><value>0</value></setting>
         <setting name="StartTime"/>
         <setting name="EndTime"/>
         <setting name="OffSetTime"/>
-        <setting name="TimeFormat"><type refid="time-formats"/><value>1</value></setting>
-        <setting name="DateFormat"><type refid="date-formats"/><value>3</value></setting>
+        <setting name="TimeFormat"><type refid="time-format_type"/><value>1</value></setting>
+        <setting name="DateFormat"><type refid="date-format_type"/><value>3</value></setting>
         <setting name="DHCPTime" if="yealinkPhoneSIPT3.*"><type><boolean /></type><value>1</value></setting>
         <setting name="bNTPEnable" if="yealinkPhoneSIPT3.*"><type><boolean /></type><value>1</value></setting>
-        <setting name="iDSTType" if="yealinkPhoneSIPT3.*"><type refid="DSTTimeType1"/><value>2</value></setting>
-        <setting name="iDSTTimeType" if="yealinkPhoneSIPT3.*"><type refid="DSTTimeType"/><value>0</value></setting>
+        <setting name="iDSTType" if="yealinkPhoneSIPT3.*"><type refid="DST_mode_type"/><value>2</value></setting>
+        <setting name="iDSTTimeType" if="yealinkPhoneSIPT3.*"><type refid="DST_time_type"/><value>0</value></setting>
     </group>
     <group name="Manual" if="yealinkPhoneSIPT3.*">
         <setting name="path_" hidden="yes"><value>/phone/config/system.ini</value></setting>
@@ -307,15 +307,15 @@
         <setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/user.ini</value></setting>
         <setting name="InterDigitTime"><type><integer /></type><value>4</value></setting>
         <setting name="FlashHookTimer"><type><integer /></type><value>1</value></setting>
-        <setting name="Lock"><type refid="KBDLock"/><value>0</value></setting>
+        <setting name="Lock"><type refid="KBDLock_type"/><value>0</value></setting>
         <setting name="Ringtype"><value>Ring1.wav</value></setting>
         <setting name="Contrast" if="yealinkPhoneSIPT3.*|yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[268].*"><type><integer /></type><value>6</value></setting>
         <setting name="BackLight" if="yealinkPhoneSIPT3.*|yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[268].*"><type><integer /></type><value>2</value></setting>
-        <setting name="BacklightTime" if="yealinkPhoneSIPT3.*|yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[268].*"><type refid="BackLightTimes" /><value>30</value></setting>
+        <setting name="BacklightTime" if="yealinkPhoneSIPT3.*|yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[268].*"><type refid="BackLightTime_type" /><value>30</value></setting>
         <setting name="UnusedBackLight" if="yealinkPhoneSIPT3.*"><type><integer /></type><value>1</value></setting>
-        <setting name="ScreensaverTime" if="yealinkPhoneSIPT3.*"><type refid="ScreenSaverTimes" /><value>60</value></setting>
+        <setting name="ScreensaverTime" if="yealinkPhoneSIPT3.*"><type refid="ScreenSaverTime_type" /><value>60</value></setting>
         <setting name="BackGrounds" if="yealinkPhoneSIPT3.*"/>
-        <setting name="Theme" if="yealinkPhoneSIPT3.*"><type refid="Themes"/></setting>
+        <setting name="Theme" if="yealinkPhoneSIPT3.*"><type refid="Theme_type"/></setting>
         <setting name="SBarHandleRGB" if="yealinkPhoneSIPT3.*"><value>120,120,120</value></setting>
         <setting name="ProductName" if="yealinkPhoneSIPT3.*"><value>Yealink</value></setting>
         <setting name="RingForTranFailed"/>
@@ -346,10 +346,10 @@
         <setting name="Hotlinenumber" if="yealinkPhoneSIPT3.*"/>
         <setting name="Hotlinedelay" if="yealinkPhoneSIPT3.*"><type><integer /></type><value>4</value></setting>
         <setting name="BusyToneDelay" if="yealinkPhoneSIPT3.*"><type><integer /></type><value>0</value></setting>
-        <setting name="DND_Code"><type refid="SIPCodeType"/><value>480</value></setting>
+        <setting name="DND_Code"><type refid="SIPCode_type"/><value>480</value></setting>
         <setting name="DND_On_Code" if="yealinkPhoneSIPT[12].*"/>
         <setting name="DND_Off_Code" if="yealinkPhoneSIPT[12].*"/>
-        <setting name="Refuse_Code" if="yealinkPhoneSIPT[12].*"><type refid="SIPCodeType"/><value>486</value></setting>
+        <setting name="Refuse_Code" if="yealinkPhoneSIPT[12].*"><type refid="SIPCode_type"/><value>486</value></setting>
         <setting name="ButtonSoundOn" if="yealinkPhoneSIPT[12].*"><type><boolean /></type><value>1</value></setting>
         <setting name="AllowIntercom" if="yealinkPhoneSIPT[12].*"><type><boolean /></type><value>1</value></setting>
         <setting name="IntercomMute" if="yealinkPhoneSIPT[12].*"><type><boolean /></type><value>1</value></setting>
@@ -378,7 +378,7 @@
     <group name="Profile">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/vpm.cfg</value></setting>
         <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/system.ini</value></setting>
-        <setting name="SIDE_TONE"><type refif="SIDE-TONE" /><value>-3</value></setting>
+        <setting name="SIDE_TONE"><type refif="SideTone_type" /><value>-3</value></setting>
         <setting name="headset_send" if="yealinkPhoneSIPT[12].*"><type><integer min="1" max="53"/></type><value>29</value></setting>
         <setting name="handset_send" if="yealinkPhoneSIPT[12].*"><type><integer min="1" max="53"/></type><value>29</value></setting>
         <setting name="handfree_send" if="yealinkPhoneSIPT[12].*"><type><integer min="1" max="53"/></type><value>29</value></setting>
@@ -455,7 +455,7 @@
     <group name="PoundSend">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Features/Phone.cfg</value></setting>
         <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Enable"><type refid="PoudSendType"/><value>1</value></setting>
+        <setting name="Enable"><type refid="yealink_poud_key_type"/><value>1</value></setting>
     </group>
     <group name="Emergency">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Features/Phone.cfg</value></setting>
@@ -971,7 +971,7 @@
 <group name="mcast-paging">
     <group name="audio" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/yealink/config/vpPhone/MulticastPage.cfg</value></setting>
-        <setting name="PayloadType"><type refid="yealink-codecs"/></setting>
+        <setting name="PayloadType"><type refid="yealink-codec_type"/></setting>
     </group>
     <group name="ReveivePriority" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/yealink/config/vpPhone/MulticastPage.cfg</value></setting>

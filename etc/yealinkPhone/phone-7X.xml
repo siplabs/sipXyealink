@@ -8,7 +8,7 @@
     <group name="network">
 <!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address;
     Require reboot;  //-->
-	<setting name="network.internet_port.type"><type refid="WAN_type"/><value>0</value></setting>
+	<setting name="network.internet_port.type"><type refid="WANAddress_type"/><value>0</value></setting>
 <!--// Configure the static IP address, subnet mask, gateway and DNS server.
     Require Reboot;  //-->
 	<setting name="network.internet_port.ip"><type><string/></type></setting>
@@ -22,7 +22,7 @@
 	<setting name="network.pppoe.password"><type><string/></type></setting>
 <!--// Configure the PC port type; 0-Router, 1-Bridge (default);
     Require reboot;  //-->
-	<setting name="network.bridge_mode"><type refid="LAN_type"/><value>1</value></setting>
+	<setting name="network.bridge_mode"><type refid="LANMode_type"/><value>1</value></setting>
 <!--// Configure the IP address and mask when the PC port is configured as Router.
     Require reboot;  //-->
 	<setting name="network.pc_port.ip"><type><string/></type></setting>
@@ -656,7 +656,7 @@ lang.gui = English //-->
 The default time zone name is China(Beijing).   
 local_time.time_zone = +8
 local_time.time_zone_name = China(Beijing) //-->
-	<setting name="local_time.time_zone"><type refid="yealink-timezones"/></setting>
+	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
 	<setting name="local_time.time_zone_name"><type><string/></type></setting>
 <!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
 	<setting name="local_time.ntp_server1"><type><string/></type></setting>
