@@ -61,10 +61,12 @@ public class yealinkPhone extends Phone {
         DeviceVersion myVersion = getDeviceVersion();
         if (myVersion == yealinkModel.VER_7X) {
             getModel().setProfileTemplate("yealinkPhone/config_v7x.vm");
+            getModel().setSettingsFile("phone-7X.xml");
+            getModel().setLineSettingsFile("line-7X.xml");
         } else {
             // we need to explicitly define these here otherwise changing versions will not work
-            getModel().setSettingsFile("phone.xml");
-            getModel().setLineSettingsFile("line.xml");
+            getModel().setSettingsFile("phone-6X.xml");
+            getModel().setLineSettingsFile("line-6X.xml");
         }
     }
 
