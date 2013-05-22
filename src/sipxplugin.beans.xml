@@ -3,27 +3,27 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:util="http://www.springframework.org/schema/util"
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
-<bean id="yealinkPhone" class="org.sipfoundry.sipxconfig.phone.yealink.yealinkPhone" scope="prototype" parent="abstractPhone">
+<bean id="yealinkPhone" class="org.sipfoundry.sipxconfig.phone.yealink.YealinkPhone" scope="prototype" parent="abstractPhone">
     <property name="ldapManager" ref="ldapManager"/>
 </bean>
 
-<bean id="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"
+<bean id="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_6X"
       class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" />
-<bean id="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_7X"
+<bean id="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_7X"
       class="org.springframework.beans.factory.config.FieldRetrievingFactoryBean" />
 
-<bean id="yealinkModel" class="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel" parent="abstractPhoneModel" abstract="true">
+<bean id="yealinkModel" class="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel" parent="abstractPhoneModel" abstract="true">
 	<property name="beanId" value="yealinkPhone" />
 	<property name="vendor" value="Yealink"/>
 	<property name="restartSupported" value="true" />
 	<property name="versions">
 	    <list>
-		<ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"/>
-		<ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_7X"/>
+		<ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_6X"/>
+		<ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_7X"/>
 	    </list>
 	</property>
 	<property name="defaultVersion">
-	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.yealinkModel.VER_6X"/>
+	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_6X"/>
 	</property>
 	<property name="usePhonebook" value="true" />
 	<property name="hasSeparateDialNow" value="true" />
@@ -109,7 +109,7 @@
 
 <!--// Files uploading specification //-->
 
-<bean id="yealinkUpload" class="org.sipfoundry.sipxconfig.upload.yealink.yealinkUpload" scope="prototype" parent="upload" />
+<bean id="yealinkUpload" class="org.sipfoundry.sipxconfig.upload.yealink.YealinkUpload" scope="prototype" parent="upload" />
 
 <bean id="yealinkFiles" class="org.sipfoundry.sipxconfig.upload.UploadSpecification">
 	<property name="beanId" value="yealinkUpload"/>

@@ -5,304 +5,1006 @@
     [<!ENTITY types SYSTEM "types.xml">]>
 <model>
 &types;
-    <group name="network">
-<!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address;
-    Require reboot;  //-->
-	<setting name="network.internet_port.type"><type refid="WANAddress_type"/><value>0</value></setting>
-<!--// Configure the static IP address, subnet mask, gateway and DNS server.
-    Require Reboot;  //-->
-	<setting name="network.internet_port.ip"><type><string/></type></setting>
-	<setting name="network.internet_port.mask"><type><string/></type></setting>
-	<setting name="network.internet_port.gateway"><type><string/></type></setting>
-	<setting name="network.primary_dns"><type><string/></type></setting>
-	<setting name="network.secondary_dns"><type><string/></type></setting>
-<!--// Configure the username and password for PPPOE connection.
-    Require reboot;  //-->
-	<setting name="network.pppoe.user"><type><string/></type></setting>
-	<setting name="network.pppoe.password"><type><string/></type></setting>
-<!--// Configure the PC port type; 0-Router, 1-Bridge (default);
-    Require reboot;  //-->
-	<setting name="network.bridge_mode"><type refid="LANMode_type"/><value>1</value></setting>
-<!--// Configure the IP address and mask when the PC port is configured as Router.
-    Require reboot;  //-->
-	<setting name="network.pc_port.ip"><type><string/></type></setting>
-	<setting name="network.pc_port.mask"><type><string/></type></setting>
-<!--// Enable or disable the DHCP server when the PC port is configured as Router; 0-Disabled, 1-Enabled (default);
-    Require reboot;  //-->
-	<setting name="network.pc_port.dhcp_server"><type><boolean/></type><value>0</value></setting>
-<!--// Define the DHCP IP address range. The default is from 10.0.0.10 to 10.0.0.100.  //-->
-	<setting name="network.dhcp.start_ip"><type><string/></type></setting>
-	<setting name="network.dhcp.end_ip"><type><string/></type></setting>
-<!--// Enable or disable the VLAN of WAN port; 0-Disabled (default), 1-Enabled;
-    Require reboot;  //-->
-	<setting name="network.vlan.internet_port_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1.
-    Require reboot;  //-->
-	<setting name="network.vlan.internet_port_vid"><type><integer/></type><value>0</value></setting>
-<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. 
-    Require reboot;  //-->            
-	<setting name="network.vlan.internet_port_priority"><type><integer/></type><value>0</value></setting>
-<!--// Enable or disable the VLAN of PC port; 0-Disabled (default), 1-Enabled; 
-    Require reboot;  //-->
-	<setting name="network.vlan.pc_port_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1. 
-    Require reboot;  //-->
-	<setting name="network.vlan.pc_port_vid"><type><integer/></type><value>0</value></setting>
-<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. 
-    Require reboot;  //-->
-	<setting name="network.vlan.pc_port_priority"><type><integer/></type><value>0</value></setting>
-<!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only;
-    Require reboot;  //-->
-	<setting name="network.web_server_type"><type refid="web_server_type"/><value>1</value></setting>
-<!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535.
-     Require reboot;  //-->
-	<setting name="network.port.http"><type><integer/></type><value>80</value></setting>
-	<setting name="network.port.https"><type><integer/></type><value>443</value></setting>
-<!--// Configure the minimum local RTP port. It ranges from 0 to 65535, the default value is 11780.
-     Require reboot;  //-->
-	<setting name="network.port.min_rtpport"><type><integer/></type><value>11780</value></setting>
-<!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800.
-     Require reboot;  //-->
-	<setting name="network.port.max_rtpport"><type><integer/></type><value>11800</value></setting>
-<!--// Configure the voice QOS. It ranges from 0 to 63, the default value is 46.
-     Require reboot;  //-->
-	<setting name="network.qos.rtptos"><type><integer/></type><value>46</value></setting>
-<!--// Configure the SIP QOS. It ranges from 0 to 63, the default value is 46.
-     Require reboot;  //-->
-	<setting name="network.qos.signaltos"><type><integer/></type><value>46</value></setting>
-<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2;
-     Require reboot;  //-->
-	<setting name="network.802_1x.mode"><type refid="mode_802_1x_type"/><value>0</value></setting>
-<!--// Configure the username and password for 802.1x authentication.
-     Require reboot;  //-->
-	<setting name="network.802_1x.identity"><type><string/></type></setting>
-	<setting name="network.802_1x.md5_password"><type><string/></type></setting>
-<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled;
-     Require reboot;  //-->
-	<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the LLDP feature; 0-Disabled, 1-Enabled (default);
-     Require reboot;  //-->
-	<setting name="network.lldp.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the interval (in seconds) the phone broadcasts the LLDP request. It ranges from 1 to 3600, the default value is 120.
-     Require reboot;  //-->
-	<setting name="network.lldp.packet_interval"><type><integer/></type><value>120</value></setting>
-<!--// Enable or disable the phone to obtain DNS from DHCP; 0-Disabled, 1-Enabled (default);
-     Require reboot;  //-->
-	<setting name="network.static_dns_enable"><type><boolean/></type><value>0</value></setting>
-<!--// 
-#######################################################################################
-##                Syslog Server                                                      ##          
-#######################################################################################
- //-->
-<!--// Configure the IP address of the syslog server.
-Require reboot; //-->
-	<setting name="syslog.server"><type><string/></type></setting>
-<!--// Configure the syslog level. It ranges from 0 to 6, the default value is 3.
-Require reboot; //-->
-	<setting name="syslog.log_level"><type refid="syslog_level_type"/><value>3</value></setting>
-<!--// 
-#######################################################################################
-##                 TR069                                                             ##
-#######################################################################################
- //-->
-<!--// The TR069 feature is only applicable to some designated firmware versions.
-All settings of TR069 require reboot.
-Enable or disable the TR069 feature; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="managementserver.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the username and password for the phone to authenticate with the ACS. //-->
-	<setting name="managementserver.username"><type><string/></type></setting>
-	<setting name="managementserver.password"><type><string/></type></setting>
-<!--// Configure the access URL of the ACS. //-->
-	<setting name="managementserver.url"><type><string/></type></setting>
-<!--// Configure the username and password for the phone to authenticate the connection requests. //-->
-	<setting name="managementserver.connection_request_username"><type><string/></type></setting>
-	<setting name="managementserver.connection_request_password"><type><string/></type></setting>
-<!--// Enable or disable the phone to inform the ACS of its configuration; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="managementserver.periodic_inform_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the interval (in seconds) the phone to inform the ACS of its configuration. The default value is 60. //-->
-	<setting name="managementserver.periodic_inform_interval"><type><integer/></type><value>60</value></setting>
+	<group name="sip">
+		<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
+		<setting name="sip.use_23_as_pound"><type><bool/></type><value>1</value></setting>
+		<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
+		<setting name="sip.rfc2543_hold"><type><bool/></type><value>0</value></setting>
+		<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
+		<setting name="sip.use_out_bound_in_dialog"><type><bool/></type><value>1</value></setting>
+		<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
+		<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
+		<setting name="sip.check_autop_result_before_register"><type><bool/></type><value>0</value></setting>
+		<setting name="sip.send_response_by_request"><type><bool/></type><value>0</value></setting>
+		<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
+		<setting name="sip.notify_reboot_enable"><type><bool/></type><value>1</value></setting>
+	</group>
+    <group name="network-wan">
+	    <group name="network">
+			<!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address; Require reboot;  //-->
+			<setting name="network.internet_port.type"><type refid="WANAddress_type"/><value>0</value></setting>
+			<!--// Configure the static IP address, subnet mask, gateway and DNS server. Require Reboot;  //-->
+			<setting name="network.internet_port.ip"><type><ipaddr/></type></setting>
+			<setting name="network.internet_port.mask"><type><ipaddr/></type></setting>
+			<setting name="network.internet_port.gateway"><type><ipaddr/></type></setting>
+	    </group>
+	    <group name="DNS">
+			<!--// Enable or disable the phone to obtain DNS from DHCP; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
+			<setting name="network.static_dns_enable"><type><boolean/></type><value>0</value></setting>
+			<setting name="network.primary_dns"><type><ipaddr/></type></setting>
+			<setting name="network.secondary_dns"><type><ipaddr/></type></setting>
+	    </group>
+	    <group name="PPPoE">
+			<!--// Configure the username and password for PPPOE connection. Require reboot;  //-->
+			<setting name="network.pppoe.user"><type><string/></type></setting>
+			<setting name="network.pppoe.password"><type><string/></type></setting>
+	    </group>
+	    <group name="LLDP" advanced="yes">
+			<!--// Enable or disable the LLDP feature; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
+			<setting name="network.lldp.enable"><type><boolean/></type><value>1</value></setting>
+			<!--// Configure the interval (in seconds) the phone broadcasts the LLDP request. It ranges from 1 to 3600, the default value is 120. Require reboot;  //-->
+			<setting name="network.lldp.packet_interval"><type><integer/></type><value>120</value></setting>
+	    </group>
     </group>
-    <group name="auto-provisioning">
-<!--// 
-#######################################################################################
-##                 Auto Provisioning                                                 ##      
-#######################################################################################
- //-->
-<!--// Enable or disable the Plug and Play feature; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="auto_provision.pnp_enable"><type><boolean/></type><value>1</value></setting>
-<!--// Enable or disable the phone to check new configuration when powered on; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="auto_provision.mode"><type><boolean/></type><value>1</value></setting>
-<!--// Enable or disable the phone to check the new configuration repeatedly; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="auto_provision.repeat.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the interval (in minutes) the phone repeatedly checks the new configuration. The default is 1440. //-->
-	<setting name="auto_provision.repeat.minutes"><type><integer/></type><value>1440</value></setting>
-<!--// Enable or disable the phone to check the new configuration weekly; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="auto_provision.weekly.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the week time the phone checks the new configuration. Applicable when the auto provisioning mode is configured as weekly or power on + weekly; //-->
-	<setting name="auto_provision.weekly.mask"><type><string/></type><value>0123456</value></setting>
-	<setting name="auto_provision.weekly.begin_time"><type><string/></type><value>00:00</value></setting>
-	<setting name="auto_provision.weekly.end_time"><type><string/></type><value>00:00</value></setting>
-<!--// Configure the URL of the auto provisioning server. //-->
-	<setting name="auto_provision.server.url"><type><string/></type><value></value></setting>
-<!--// Configure the domain name of the PNP server. //-->
-	<setting name="auto_provision.pnp_domain_name"><type><string/></type><value></value></setting>
-<!--// Configure the PNP vendor information. //-->
-	<setting name="auto_provision.pnp_event_vendor"><type><string/></type><value></value></setting>
-<!--// Configure the name of the Common configuration file. //-->
-	<setting name="auto_provision.common_file_name"><type><string/></type><value></value></setting>
-<!--// Configure the username and password for downloading. //-->
-	<setting name="auto_provision.server.username"><type><string/></type><value></value></setting>
-	<setting name="auto_provision.server.password"><type><string/></type><value></value></setting>
-<!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="auto_provision.dhcp_option.enable"><type><boolean/></type><value>1</value></setting>
-<!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
-	<setting name="auto_provision.dhcp_option.option60_value"><type><string/></type><value></value></setting>
-<!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
-	<setting name="auto_provision.dhcp_option.list_user_options"><type><string/></type><value></value></setting>
-<!--// Configure AES key (16 characters) for decrypting the common CFG file. //-->
-	<setting name="auto_provision.aes_key_16.com"><type><string/></type><value></value></setting>
-<!--// Configure AES key (16 characters) for decrypting the MAC-Oriented CFG file. //-->
-	<setting name="auto_provision.aes_key_16.mac"><type><string/></type><value></value></setting>
-<!--// 
-#######################################################################################
-##	               Auto Provisioning Code                                        ##
-#######################################################################################
- //-->
-<!--// This feature allows user to trigger the auto provisioning by dialing a predefined string on the phone, when there is no available accounts.
-Require reboot;
-"X" ranges from 1 to 50
-Configure the auto provisioning name.
-The valid value is a string, the maximum length is 100. //-->
-	<setting name="autoprovision.1.name"><type><string/></type><value></value></setting>
-<!--// Configure the auto provisioning code.
-The valid value is a string, the maximum length is 100. //-->
-	<setting name="autoprovision.1.code"><type><string/></type><value></value></setting>
-<!--// Configure the URL of the auto provisioning server.
-The valid value is a string, the maximum length is 256. //-->
-	<setting name="autoprovision.1.url"><type><string/></type><value></value></setting>
-<!--// Configure the username and password for downloading.
-The valid value is a string, the maximum length is 100. //-->
-	<setting name="autoprovision.1.user"><type><string/></type><value></value></setting>
-	<setting name="autoprovision.1.password"><type><string/></type><value></value></setting>
-<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
-	<setting name="autoprovision.1.com_aes"><type><string/></type><value></value></setting>
-	<setting name="autoprovision.1.mac_aes"><type><string/></type><value></value></setting>
+    <group name="network-lan">
+	    <group name="network">
+			<!--// Configure the PC port type; 0-Router, 1-Bridge (default); Require reboot;  //-->
+			<setting name="network.bridge_mode"><type refid="LANMode_type"/><value>1</value></setting>
+			<!--// Configure the IP address and mask when the PC port is configured as Router. Require reboot;  //-->
+			<setting name="network.pc_port.ip"><type><ipaddr/></type><value>10.0.0.1</value></setting>
+			<setting name="network.pc_port.mask"><type><ipaddr/></type><value>255.255.255.0</value></setting>
+			<!--// Enable or disable the DHCP server when the PC port is configured as Router; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
+			<setting name="network.pc_port.dhcp_server"><type><boolean/></type><value>0</value></setting>
+			<!--// Define the DHCP IP address range. The default is from 10.0.0.10 to 10.0.0.100.  //-->
+			<setting name="network.dhcp.start_ip"><type><ipaddr/></type><value>10.0.0.10</value></setting>
+			<setting name="network.dhcp.end_ip"><type><ipaddr/></type><value>10.0.0.100</value></setting>
+	    </group>
     </group>
-    <group name="phone-features">
-<!--// 
-#######################################################################################
-##	                Phone Features                                                   ##
-#######################################################################################
- //-->
-<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="sip.use_23_as_pound"><type><bool/></type><value>1</value></setting>
-<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="sip.rfc2543_hold"><type><bool/></type><value>0</value></setting>
-<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="sip.use_out_bound_in_dialog"><type><bool/></type><value>1</value></setting>
-<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
-	<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
-	<setting name="sip.check_autop_result_before_register"><type><bool/></type><value>0</value></setting>
-	<setting name="sip.send_response_by_request"><type><bool/></type><value>0</value></setting>
-<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="sip.notify_reboot_enable"><type><bool/></type><value>1</value></setting>
-<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="watch_dog.enable"><type><bool/></type><value>1</value></setting>
-<!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="redirect.enable"><type><bool/></type><value>0</value></setting>
-<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call;
-0-Disabled, 1-Enabled (default); //-->
-	<setting name="transfer.semi_attend_tran_enable"><type><bool/></type><value>1</value></setting>
-<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook;
-0-Disabled,1-Enabled(default); //-->
-	<setting name="transfer.blind_tran_on_hook_enable"><type><bool/></type><value>1</value></setting>
-	<setting name="transfer.on_hook_trans_enable"><type><bool/></type><value>1</value></setting>
-<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
-	<setting name="transfer.dsskey_deal_type"><type refid="DSS_xfer_type"/><value>2</value></setting>
+	<group name="network-advanced">
+	    <group name="VLAN">
+			<!--// Enable or disable the VLAN of WAN port; 0-Disabled (default), 1-Enabled;  Require reboot;  //-->
+			<setting name="network.vlan.internet_port_enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1. Require reboot;  //-->
+			<setting name="network.vlan.internet_port_vid"><type><integer/></type><value>0</value></setting>
+			<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. Require reboot;  //-->            
+			<setting name="network.vlan.internet_port_priority"><type><integer/></type><value>0</value></setting>
+			<!--// Enable or disable the VLAN of PC port; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
+			<setting name="network.vlan.pc_port_enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1. Require reboot;  //-->
+			<setting name="network.vlan.pc_port_vid"><type><integer/></type><value>0</value></setting>
+			<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. Require reboot;  //-->
+			<setting name="network.vlan.pc_port_priority"><type><integer/></type><value>0</value></setting>
+	    </group>
+		<!--// 
+		#######################################################################################
+		##            OpenVPN                                                                ##                                            
+		#######################################################################################
+		 //-->
+	    <group name="VPN">
+			<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
+			<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the access URL for downloading the open VPN tar.  //-->
+			<setting name="openvpn.url"><type><string/></type></setting>
+	    </group>
+	    <group name="QOS">
+			<!--// Configure the voice QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
+			<setting name="network.qos.rtptos"><type><integer/></type><value>46</value></setting>
+			<!--// Configure the SIP QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
+			<setting name="network.qos.signaltos"><type><integer/></type><value>46</value></setting>
+	    </group>
+	    <group name="RTP">
+			<!--// Configure the minimum local RTP port. It ranges from 0 to 65535, the default value is 11780. Require reboot;  //-->
+			<setting name="network.port.min_rtpport"><type><integer/></type><value>11780</value></setting>
+			<!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800. Require reboot;  //-->
+			<setting name="network.port.max_rtpport"><type><integer/></type><value>11800</value></setting>
+	    </group>
+		<group name="Webserver_Type">
+			<!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only; Require reboot;  //-->
+			<setting name="network.web_server_type"><type refid="web_server_type"/><value>1</value></setting>
+	    </group>
+		<group name="port">
+			<!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535. Require reboot;  //-->
+			<setting name="network.port.http"><type><integer/></type><value>80</value></setting>
+			<setting name="network.port.https"><type><integer/></type><value>443</value></setting>
+	    </group>
+	    <group name="802.1X">
+			<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2; Require reboot;  //-->
+			<setting name="network.802_1x.mode"><type refid="mode_802_1x_type"/><value>0</value></setting>
+			<!--// Configure the username and password for 802.1x authentication. Require reboot;  //-->
+			<setting name="network.802_1x.identity"><type><string/></type></setting>
+			<setting name="network.802_1x.md5_password"><type><string/></type></setting>
+		</group>
+	</group>
+	<group name="upgrade">
+		<group name="dhcp_option_value">
+			<!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="auto_provision.dhcp_option.enable"><type><boolean/></type><value>1</value></setting>
+			<!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
+			<setting name="auto_provision.dhcp_option.option60_value"><type><string/></type><value></value></setting>
+			<!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
+			<setting name="auto_provision.dhcp_option.list_user_options"><type><string/></type><value></value></setting>
+		</group>
+		<!--// 
+		#######################################################################################
+		##                 Auto Provisioning                                                 ##      
+		#######################################################################################
+		 //-->
+    	<group name="autoprovision">
+			<!--// Configure the URL of the auto provisioning server. //-->
+			<setting name="auto_provision.server.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. //-->
+			<setting name="auto_provision.server.username"><type><string/></type><value></value></setting>
+			<setting name="auto_provision.server.password"><type><string/></type><value></value></setting>
 
-<!--// Enable or disable the conference initiator to transfer the call when hanging up; 
-0-Disabled(default),1-Enabled; //-->
-	<setting name="transfer.tran_others_after_conf_enable"><type><bool/></type><value>0</value></setting>
-    </group>
-    <group name="voice">
-<!--// 
-#######################################################################################
-##                                Voice                                              ##
-#######################################################################################
- //-->
-<!--// Enable or disable the voice activity detection feature; 0-Disbaled (default), 1-Enabled; //-->
-	<setting name="voice.vad"><type><bool/></type><value>0</value></setting>
+			<!--// Enable or disable the phone to check new configuration when powered on; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="auto_provision.mode"><type><boolean/></type><value>1</value></setting>
+			<!--// Enable or disable the phone to check the new configuration repeatedly; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="auto_provision.repeat.enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the interval (in minutes) the phone repeatedly checks the new configuration. The default is 1440. //-->
+			<setting name="auto_provision.repeat.minutes"><type><integer/></type><value>1440</value></setting>
+			<!--// Enable or disable the phone to check the new configuration weekly; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="auto_provision.weekly.enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the week time the phone checks the new configuration. Applicable when the auto provisioning mode is configured as weekly or power on + weekly; //-->
+			<setting name="auto_provision.weekly.mask"><type><string/></type><value>0123456</value></setting>
+			<setting name="auto_provision.weekly.begin_time"><type><string/></type><value>00:00</value></setting>
+			<setting name="auto_provision.weekly.end_time"><type><string/></type><value>00:00</value></setting>
 
-<!--// Enable or disable the comfortable noise generator; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="voice.cng"><type><bool/></type><value>1</value></setting>
+			<!--// 
+			#######################################################################################
+			##         	               Zero Touch                                                ##
+			#######################################################################################
+			 //-->
+			<!--// Enable or disable the zero-sp-touch; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="zero_touch.enable"><type><boolean/></type><value>0</value></setting>
+			<!--// Configure the waiting time (in seconds) before canceling the zero-sp-touch. It ranges from 0 to 100, the default value is 5. //-->
+			<setting name="zero_touch.wait_time"><type><integer/></type><value>5</value></setting>
 
-<!--// Enable or disable the echo canceller; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="voice.echo_cancellation"><type><bool/></type><value>1</value></setting>
+			<!--// Enable or disable the Plug and Play feature; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="auto_provision.pnp_enable"><type><boolean/></type><value>1</value></setting>
 
-<!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
-	<setting name="voice.side_tone"><type><integer/></type><value>-3</value></setting>
-
-<!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29.
-Require reboot; //-->
-	<setting name="voice.handfree_send"><type><integer/></type><value>25</value></setting>
-	<setting name="voice.handset_send"><type><integer/></type><value>35</value></setting>
-	<setting name="voice.headset_send"><type><integer/></type><value>29</value></setting>
-<!--// Configure the type of jitter buffer; 0-Fixed, 1-Adaptive (default); //-->
-	<setting name="voice.jib.adaptive"><type refid="jb_type"/><value>1</value></setting>
-<!--// Configure the minimum delay, maximum delay and normal delay. The default values are 0, 300, 120. //-->
-	<setting name="voice.jib.min"><type><integer/></type><value>0</value></setting>
-	<setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
-	<setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
-<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on.
-voice.tone.country = Custom //-->
-	<setting name="voice.tone.country"><type><string/></type><value>Russia</value></setting>
-<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
-The value format: Frequency/Duration.
-Frequency ranges from 200 to 7000. When 0 is used to define the frequency, it means a pause between tones.
-A tone can be composited at most four different frequencies (the value format is: F1+F2+F3+F4).
-Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
-At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
-For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
-	<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.congestion"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.callwaiting"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.dialrecall"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.record"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.info"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.message"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
-<!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
-	<setting name="voice.handfree.spk_vol"><type><integer/></type><value>8</value></setting>
-	<setting name="voice.handset.spk_vol"><type><integer/></type><value>8</value></setting>
-	<setting name="voice.headset.spk_vol"><type><integer/></type><value>8</value></setting>
-<!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
-	<setting name="voice.handfree.tone_vol"><type><integer/></type><value>8</value></setting>
-	<setting name="voice.handset.tone_vol"><type><integer/></type><value>8</value></setting>
-	<setting name="voice.headset.tone_vol"><type><integer/></type><value>8</value></setting>
-<!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
-	<setting name="voice.ring_vol"><type><integer/></type><value>8</value></setting>
-<!--// Configure the Speaker volume when in the group listening mode. It ranges from 0 to 15, the default value is 8. //-->
-	<setting name="voice.group_spk_vol"><type><integer/></type><value>8</value></setting>
-    </group>
+			<!--// Configure the domain name of the PNP server. //-->
+			<setting name="auto_provision.pnp_domain_name"><type><string/></type><value></value></setting>
+			<!--// Configure the PNP vendor information. //-->
+			<setting name="auto_provision.pnp_event_vendor"><type><string/></type><value></value></setting>
+			<!--// Configure the name of the Common configuration file. //-->
+			<setting name="auto_provision.common_file_name"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file. //-->
+			<setting name="auto_provision.aes_key_16.com"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the MAC-Oriented CFG file. //-->
+			<setting name="auto_provision.aes_key_16.mac"><type><string/></type><value></value></setting>
+		</group>
+		<group name="SYSLOG">
+			<!--// 
+			#######################################################################################
+			##                Syslog Server                                                      ##          
+			#######################################################################################
+			 //-->
+			<!--// Configure the IP address of the syslog server. Require reboot; //-->
+			<setting name="syslog.server"><type><string/></type></setting>
+			<!--// Configure the syslog level. It ranges from 0 to 6, the default value is 3. Require reboot; //-->
+			<setting name="syslog.log_level"><type refid="syslog_level_type"/><value>3</value></setting>
+		</group>
+	</group>
+	<!--// 
+	#######################################################################################
+	##	               Auto Provisioning Code                                        ##
+	#######################################################################################
+	 //-->
+	<!--// This feature allows user to trigger the auto provisioning by dialing a predefined string on the phone, when there is no available accounts. Require reboot;
+	"X" ranges from 1 to 50 Configure the auto provisioning name.
+	The valid value is a string, the maximum length is 100. //-->
+	<group name="autoprovision">
+		<group name="1">
+			<setting name="autoprovision.1.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.1.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.1.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.1.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.1.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.1.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.1.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="2" advanced="yes">
+			<setting name="autoprovision.2.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.2.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.2.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.2.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.2.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.2.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.2.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="3" advanced="yes">
+			<setting name="autoprovision.3.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.3.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.3.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.3.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.3.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.3.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.3.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="4" advanced="yes">
+			<setting name="autoprovision.4.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.4.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.4.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.4.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.4.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.4.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.4.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="5" advanced="yes">
+			<setting name="autoprovision.5.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.5.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.5.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.5.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.5.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.5.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.5.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="6" advanced="yes">
+			<setting name="autoprovision.6.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.6.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.6.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.6.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.6.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.6.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.6.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="7" advanced="yes">
+			<setting name="autoprovision.7.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.7.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.7.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.7.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.7.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.7.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.7.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="8" advanced="yes">
+			<setting name="autoprovision.8.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.8.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.8.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.8.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.8.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.8.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.8.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="9" advanced="yes">
+			<setting name="autoprovision.9.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.9.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.9.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.9.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.9.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.9.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.9.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="10" advanced="yes">
+			<setting name="autoprovision.10.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.10.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.10.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.10.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.10.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.10.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.10.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="11" advanced="yes">
+			<setting name="autoprovision.11.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.11.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.11.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.11.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.11.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.11.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.11.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="12" advanced="yes">
+			<setting name="autoprovision.12.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.12.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.12.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.12.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.12.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.12.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.12.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="13" advanced="yes">
+			<setting name="autoprovision.13.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.13.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.13.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.13.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.13.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.13.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.13.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="14" advanced="yes">
+			<setting name="autoprovision.14.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.14.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.14.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.14.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.14.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.14.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.14.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="15" advanced="yes">
+			<setting name="autoprovision.15.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.15.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.15.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.15.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.15.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.15.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.15.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="16" advanced="yes">
+			<setting name="autoprovision.16.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.16.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.16.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.16.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.16.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.16.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.16.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="17" advanced="yes">
+			<setting name="autoprovision.17.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.17.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.17.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.17.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.17.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.17.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.17.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="18" advanced="yes">
+			<setting name="autoprovision.18.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.18.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.18.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.18.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.18.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.18.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.18.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="19" advanced="yes">
+			<setting name="autoprovision.19.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.19.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.19.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.19.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.19.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.19.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.19.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="20" advanced="yes">
+			<setting name="autoprovision.20.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.20.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.20.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.20.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.20.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.20.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.20.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="21" advanced="yes">
+			<setting name="autoprovision.21.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.21.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.21.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.21.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.21.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.21.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.21.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="22" advanced="yes">
+			<setting name="autoprovision.22.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.22.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.22.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.22.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.22.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.22.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.22.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="23" advanced="yes">
+			<setting name="autoprovision.23.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.23.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.23.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.23.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.23.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.23.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.23.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="24" advanced="yes">
+			<setting name="autoprovision.24.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.24.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.24.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.24.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.24.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.24.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.24.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="25" advanced="yes">
+			<setting name="autoprovision.25.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.25.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.25.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.25.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.25.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.25.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.25.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="26" advanced="yes">
+			<setting name="autoprovision.26.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.26.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.26.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.26.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.26.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.26.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.26.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="27" advanced="yes">
+			<setting name="autoprovision.27.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.27.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.27.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.27.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.27.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.27.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.27.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="28" advanced="yes">
+			<setting name="autoprovision.28.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.28.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.28.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.28.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.28.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.28.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.28.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="29" advanced="yes">
+			<setting name="autoprovision.29.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.29.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.29.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.29.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.29.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.29.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.29.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="30" advanced="yes">
+			<setting name="autoprovision.30.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.30.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.30.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.30.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.30.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.30.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.30.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="31" advanced="yes">
+			<setting name="autoprovision.31.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.31.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.31.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.31.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.31.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.31.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.31.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="32" advanced="yes">
+			<setting name="autoprovision.32.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.32.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.32.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.32.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.32.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.32.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.32.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="33" advanced="yes">
+			<setting name="autoprovision.33.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.33.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.33.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.33.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.33.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.33.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.33.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="34" advanced="yes">
+			<setting name="autoprovision.34.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.34.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.34.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.34.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.34.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.34.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.34.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="35" advanced="yes">
+			<setting name="autoprovision.35.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.35.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.35.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.35.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.35.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.35.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.35.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="36" advanced="yes">
+			<setting name="autoprovision.36.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.36.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.36.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.36.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.36.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.36.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.36.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="37" advanced="yes">
+			<setting name="autoprovision.37.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.37.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.37.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.37.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.37.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.37.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.37.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="38" advanced="yes">
+			<setting name="autoprovision.38.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.38.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.38.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.38.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.38.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.38.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.38.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="39" advanced="yes">
+			<setting name="autoprovision.39.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.39.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.39.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.39.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.39.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.39.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.39.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="40" advanced="yes">
+			<setting name="autoprovision.40.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.40.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.40.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.40.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.40.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.40.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.40.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="41" advanced="yes">
+			<setting name="autoprovision.41.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.41.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.41.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.41.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.41.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.41.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.41.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="42" advanced="yes">
+			<setting name="autoprovision.42.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.42.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.42.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.42.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.42.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.42.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.42.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="43" advanced="yes">
+			<setting name="autoprovision.43.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.43.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.43.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.43.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.43.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.43.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.43.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="44" advanced="yes">
+			<setting name="autoprovision.44.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.44.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.44.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.44.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.44.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.44.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.44.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="45" advanced="yes">
+			<setting name="autoprovision.45.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.45.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.45.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.45.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.45.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.45.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.45.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="46" advanced="yes">
+			<setting name="autoprovision.46.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.46.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.46.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.46.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.46.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.46.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.46.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="47" advanced="yes">
+			<setting name="autoprovision.47.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.47.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.47.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.47.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.47.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.47.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.47.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="48" advanced="yes">
+			<setting name="autoprovision.48.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.48.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.48.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.48.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.48.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.48.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.48.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="49" advanced="yes">
+			<setting name="autoprovision.49.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.49.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.49.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.49.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.49.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.49.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.49.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+		<group name="50" advanced="yes">
+			<setting name="autoprovision.50.name"><type><string/></type><value></value></setting>
+			<!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.50.code"><type><string/></type><value></value></setting>
+			<!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
+			<setting name="autoprovision.50.url"><type><string/></type><value></value></setting>
+			<!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
+			<setting name="autoprovision.50.user"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.50.password"><type><string/></type><value></value></setting>
+			<!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
+			<setting name="autoprovision.50.com_aes"><type><string/></type><value></value></setting>
+			<setting name="autoprovision.50.mac_aes"><type><string/></type><value></value></setting>
+		</group>
+	</group>
+	<group name="preference">
+	    <group name="Lang">
+			<!--// 
+			#######################################################################################
+			##         	                   Language Settings                                     ##       
+			#######################################################################################
+			 //-->
+			<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
+			<setting name="lang.wui"><type><string/></type><value>English</value></setting>
+			<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese. lang.gui = English //-->
+			<setting name="lang.gui"><type><string/></type><value>English</value></setting>
+		</group>
+	    <group name="Time">
+			<!--// 
+			#######################################################################################
+			##         	                   Time Settings                                         ##
+			#######################################################################################
+			 //-->
+			<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
+			The default time zone name is China(Beijing).   
+			local_time.time_zone = +8
+			local_time.time_zone_name = China(Beijing) //-->
+			<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
+			<setting name="local_time.time_zone_name"><type><string/></type></setting>
+			<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
+			<setting name="local_time.ntp_server1"><type><hostname/></type></setting>
+			<setting name="local_time.ntp_server2"><type><hostname/></type></setting>
+			<!--// Configure the update interval (in seconds) when using the NTP server. The default value is 1000. //-->
+			<setting name="local_time.interval"><type><integer/></type><value>1000</value></setting>
+			<!--// Configure the daylight saving time feature; 0-Disabled, 1-Enabled, 2-Automatic (default); //-->
+			<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
+			<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
+			<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
+			<!--// Configure the start time of DST. The default value is 1/1/0.
+			If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
+			If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
+			For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
+			<setting name="local_time.start_time"><type><string/></type></setting>
+			<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
+			<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
+			<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
+			<setting name="local_time.offset_time"><type><integer/></type></setting>">
+			<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
+			<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
+			<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
+			<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
+			<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
+			<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
+			<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
+	    </group>
+    	<group name="PhoneSetting">
+    	
+    	</group>
+	</group>
+	<group name="Features">
+		<group name="features">
+			<!--// 
+			#######################################################################################
+			##	                Phone Features                                                   ##
+			#######################################################################################
+			 //-->
+			<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="watch_dog.enable"><type><bool/></type><value>1</value></setting>
+			<!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="redirect.enable"><type><bool/></type><value>0</value></setting>
+			<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="transfer.semi_attend_tran_enable"><type><bool/></type><value>1</value></setting>
+			<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook; 0-Disabled,1-Enabled(default); //-->
+			<setting name="transfer.blind_tran_on_hook_enable"><type><bool/></type><value>1</value></setting>
+			<setting name="transfer.on_hook_trans_enable"><type><bool/></type><value>1</value></setting>
+			<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
+			<setting name="transfer.dsskey_deal_type"><type refid="DSS_xfer_type"/><value>2</value></setting>
+			<!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
+			<setting name="transfer.tran_others_after_conf_enable"><type><bool/></type><value>0</value></setting>
+			</group>
+	    <group name="voice">
+			<!--// 
+			#######################################################################################
+			##                                Voice                                              ##
+			#######################################################################################
+			 //-->
+			<!--// Enable or disable the voice activity detection feature; 0-Disbaled (default), 1-Enabled; //-->
+			<setting name="voice.vad"><type><bool/></type><value>0</value></setting>
+			<!--// Enable or disable the comfortable noise generator; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="voice.cng"><type><bool/></type><value>1</value></setting>
+			<!--// Enable or disable the echo canceller; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="voice.echo_cancellation"><type><bool/></type><value>1</value></setting>
+			<!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
+			<setting name="voice.side_tone"><type><integer/></type><value>-3</value></setting>
+		
+			<!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29. Require reboot; //-->
+			<setting name="voice.handfree_send"><type><integer/></type><value>25</value></setting>
+			<setting name="voice.handset_send"><type><integer/></type><value>35</value></setting>
+			<setting name="voice.headset_send"><type><integer/></type><value>29</value></setting>
+			<!--// Configure the type of jitter buffer; 0-Fixed, 1-Adaptive (default); //-->
+			<setting name="voice.jib.adaptive"><type refid="jb_type"/><value>1</value></setting>
+			<!--// Configure the minimum delay, maximum delay and normal delay. The default values are 0, 300, 120. //-->
+			<setting name="voice.jib.min"><type><integer/></type><value>0</value></setting>
+			<setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
+			<setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
+			<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
+			<setting name="voice.tone.country"><type><string/></type><value>Russia</value></setting>
+			<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
+			The value format: Frequency/Duration.
+			Frequency ranges from 200 to 7000. When 0 is used to define the frequency, it means a pause between tones.
+			A tone can be composited at most four different frequencies (the value format is: F1+F2+F3+F4).
+			Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
+			At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
+			For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
+			<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.congestion"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.callwaiting"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.dialrecall"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.record"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.info"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.message"><type><string/></type><value></value></setting>
+			<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
+			<!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+			<setting name="voice.handfree.spk_vol"><type><integer/></type><value>8</value></setting>
+			<setting name="voice.handset.spk_vol"><type><integer/></type><value>8</value></setting>
+			<setting name="voice.headset.spk_vol"><type><integer/></type><value>8</value></setting>
+			<!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+			<setting name="voice.handfree.tone_vol"><type><integer/></type><value>8</value></setting>
+			<setting name="voice.handset.tone_vol"><type><integer/></type><value>8</value></setting>
+			<setting name="voice.headset.tone_vol"><type><integer/></type><value>8</value></setting>
+			<!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
+			<setting name="voice.ring_vol"><type><integer/></type><value>8</value></setting>
+			<!--// Configure the Speaker volume when in the group listening mode. It ranges from 0 to 15, the default value is 8. //-->
+			<setting name="voice.group_spk_vol"><type><integer/></type><value>8</value></setting>
+	    </group>
+	</group>
     <group name="call-forwarding">
-	<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.always.target"><type><string/></type></setting>
-	<setting name="forward.always.on_code"><type><string/></type></setting>
-	<setting name="forward.always.off_code"><type><string/></type></setting>
-	<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.busy.target"><type><string/></type></setting>
-	<setting name="forward.busy.on_code"><type><string/></type></setting>
-	<setting name="forward.busy.off_code"><type><string/></type></setting>
-	<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.no_answer.target"><type><string/></type></setting>
-	<setting name="forward.no_answer.timeout"><type><string/></type></setting>
-	<setting name="forward.no_answer.on_code"><type><string/></type></setting>
-	<setting name="forward.no_answer.off_code"><type><string/></type></setting>
-	<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
+    	<group name="Always">
+			<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
+			<setting name="forward.always.target"><type><string/></type></setting>
+			<setting name="forward.always.on_code"><type><string/></type></setting>
+			<setting name="forward.always.off_code"><type><string/></type></setting>
+		</group>
+    	<group name="Busy">
+			<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
+			<setting name="forward.busy.target"><type><string/></type></setting>
+			<setting name="forward.busy.on_code"><type><string/></type></setting>
+			<setting name="forward.busy.off_code"><type><string/></type></setting>
+		</group>
+    	<group name="Timeout">
+			<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
+			<setting name="forward.no_answer.target"><type><string/></type></setting>
+			<setting name="forward.no_answer.timeout"><type><string/></type></setting>
+			<setting name="forward.no_answer.on_code"><type><string/></type></setting>
+			<setting name="forward.no_answer.off_code"><type><string/></type></setting>
+		</group>
+    	<group name="Forward_International">
+			<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
+		</group>
     </group>
+<group name="other">
     <group name="security">
 <!--// 
 #######################################################################################
@@ -634,86 +1336,35 @@ For example, action_url.log_on = http://192.168.1.20/help.xml?mac=$mac
 	<setting name="action_url.transfer_finished"><type><string/></type></setting>
 	<setting name="action_url.transfer_failed"><type><string/></type></setting>
     </group>
-    <group name="language">
-<!--// 
-#######################################################################################
-##         	                   Language Settings                                     ##       
-#######################################################################################
- //-->
-<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
-	<setting name="lang.wui"><type><string/></type><value>English</value></setting>
-<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese.
-lang.gui = English //-->
-	<setting name="lang.gui"><type><string/></type><value>English</value></setting>
-    </group>
-    <group name="time">
-<!--// 
-#######################################################################################
-##         	                   Time Settings                                         ##
-#######################################################################################
- //-->
-<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
-The default time zone name is China(Beijing).   
-local_time.time_zone = +8
-local_time.time_zone_name = China(Beijing) //-->
-	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
-	<setting name="local_time.time_zone_name"><type><string/></type></setting>
-<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
-	<setting name="local_time.ntp_server1"><type><string/></type></setting>
-	<setting name="local_time.ntp_server2"><type><string/></type></setting>
-<!--// Configure the update interval (in seconds) when using the NTP server. The default value is 1000. //-->
-	<setting name="local_time.interval"><type><integer/></type><value>1000</value></setting>
-<!--// Configure the daylight saving time feature; 0-Disabled, 1-Enabled, 2-Automatic (default); //-->
-	<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
-<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
-	<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
-<!--// Configure the start time of DST. The default value is 1/1/0.
-If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
-If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
-For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
-	<setting name="local_time.start_time"><type><string/></type></setting>
-<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
-	<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
-<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
-	<setting name="local_time.offset_time"><type><integer/></type></setting>">
-<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
-	<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
-<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
-	<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
-<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
-	<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
-    </group>
     <group name="hot-desking">
-<!--// 
-#######################################################################################
-##         	        Hot Desking                                                  ##
-#######################################################################################
-Enable or disable the phone to show the following items on the login wizard during startup; 0-Disabled, 1-Enabled;  
-hotdesking.startup_register_name_enable = 0 (default)
-hotdesking.startup_username_enable = 1 (default)
-hotdesking.startup_password_enable = 1 (default)
-hotdesking.startup_sip_server_enable = 1 (default)
-hotdesking.startup_outbound_enable = 0 (default)
- //-->
-	<setting name="hotdesking.startup_register_name_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.startup_username_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.startup_password_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.startup_sip_server_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.startup_outbound_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to show the following items on the login wizard when pressing the Hot Desking DSS key;
-0-Disabled, 1-Enabled;
-hotdesking.dsskey_register_name_enable = 0 (default)
-hotdesking.dsskey_username_enable = 1 (default)
-hotdesking.dsskey_password_enable = 1 (default)
-hotdesking.dsskey_sip_server_enable = 1 (default)
-hotdesking.dsskey_outbound_enable = 0 (default) //-->
-	<setting name="hotdesking.dsskey_register_name_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.dsskey_username_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
+	<!--// 
+	#######################################################################################
+	##         	        Hot Desking                                                  ##
+	#######################################################################################
+	Enable or disable the phone to show the following items on the login wizard during startup; 0-Disabled, 1-Enabled;  
+	hotdesking.startup_register_name_enable = 0 (default)
+	hotdesking.startup_username_enable = 1 (default)
+	hotdesking.startup_password_enable = 1 (default)
+	hotdesking.startup_sip_server_enable = 1 (default)
+	hotdesking.startup_outbound_enable = 0 (default)
+	 //-->
+		<setting name="hotdesking.startup_register_name_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.startup_username_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.startup_password_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.startup_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.startup_outbound_enable"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the phone to show the following items on the login wizard when pressing the Hot Desking DSS key;
+	0-Disabled, 1-Enabled;
+	hotdesking.dsskey_register_name_enable = 0 (default)
+	hotdesking.dsskey_username_enable = 1 (default)
+	hotdesking.dsskey_password_enable = 1 (default)
+	hotdesking.dsskey_sip_server_enable = 1 (default)
+	hotdesking.dsskey_outbound_enable = 0 (default) //-->
+		<setting name="hotdesking.dsskey_register_name_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.dsskey_username_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+		<setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
     </group>
     <group name="alert-info">
 <!--// 
@@ -757,17 +1408,6 @@ distinctive_ring_tones.alert_info.X.ringer = 1 //-->
 <!--// Configure the times of auto redialing . It ranges from 1 to 300. The default value is 10. //-->
 	<setting name="auto_redial.times"><type><integer/></type><value>10</value></setting>
     </group>
-    <group name="zero-touch">
-<!--// 
-#######################################################################################
-##         	               Zero Touch                                                ##
-#######################################################################################
- //-->
-<!--// Enable or disable the zero-sp-touch; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="zero_touch.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the waiting time (in seconds) before canceling the zero-sp-touch. It ranges from 0 to 100, the default value is 5. //-->
-	<setting name="zero_touch.wait_time"><type><integer/></type><value>5</value></setting>
-    </group>
     <group name="push-xml">
 <!--// 
 #######################################################################################
@@ -779,286 +1419,6 @@ distinctive_ring_tones.alert_info.X.ringer = 1 //-->
 	<setting name="push_xml.block_in_calling"><type><boolean/></type><value>0</value></setting>
 <!--// Enable or disable the phone to use the push XML via SIP Notify message; 0-Disabled (default), 1-Enabled; //-->
 	<setting name="push_xml.sip_notify"><type><boolean/></type><value>0</value></setting>
-    </group>
-    <group name="dial-plan">
-<!--// 
-#######################################################################################
-##         	              Dial Plan                                                  ##
-#######################################################################################
- //-->
-<!--// Configure the area code. //-->
-	<setting name="dialplan.area_code.code"><type><integer/></type><value>5</value></setting>
-	<setting name="dialplan.area_code.min_len"><type><integer/></type><value>5</value></setting>
-	<setting name="dialplan.area_code.max_len"><type><integer/></type><value>5</value></setting>
-<!--// When applying the rule to multiple lines, each line ID separated by comma. 
-e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
-	<setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
-<!--// Configure the block out number. X ranges from 1 to 10.
-dialplan.block_out.number.x =
-When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
-dialplan.block_out.line_id.x =  //-->
-	<setting name="dialplan.block_out.number.1"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.1"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.2"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.2"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.3"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.3"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.4"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.4"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.5"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.5"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.6"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.6"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.7"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.7"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.8"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.8"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.9"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
-	<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
-	<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
-<!--// Configure the dialnow rule. X ranges from 1 to 20.
-dialplan.dialnow.rule.x = 
-dialplan.dialnow.line_id.x =  //-->
-	<setting name="dialplan.dialnow.rule.1"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.1"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.2"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.2"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.3"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.3"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.4"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.4"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.5"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.5"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.6"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.6"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.7"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.7"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.8"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.8"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.9"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.9"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.10"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.10"><type><string/></type></setting>
-
-	<setting name="dialplan.dialnow.rule.11"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.11"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.12"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.12"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.13"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.13"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.14"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.14"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.15"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.15"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.16"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.16"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.17"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.17"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.18"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.18"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.19"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.19"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
-	<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
-
-<!--// Configure the replace rule. X ranges from 1 to 20.
-dialplan.replace.prefix.x = 
-dialplan.replace.replace.x = 
-dialplan.replace.line_id.x =  //-->
-	<setting name="dialplan.replace.prefix.1"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.1"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.1"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.2"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.2"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.2"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.3"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.3"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.3"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.4"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.4"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.4"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.5"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.5"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.5"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.6"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.6"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.6"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.7"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.7"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.7"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.8"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.8"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.8"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.9"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.9"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.9"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.10"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.10"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.10"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.11"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.11"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.11"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.12"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.12"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.12"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.13"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.13"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.13"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.14"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.14"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.14"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.15"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.15"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.15"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.16"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.16"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.16"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.17"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.17"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.17"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.18"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.18"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.18"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.19"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.19"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.19"><type><string/></type></setting>
-	<setting name="dialplan.replace.prefix.20"><type><string/></type></setting>
-	<setting name="dialplan.replace.replace.20"><type><string/></type></setting>
-	<setting name="dialplan.replace.line_id.20"><type><string/></type></setting>
-    </group>
-    <group name="bw-phonebook" hidden="yes">
-<!--// 
-#######################################################################################
-##         	    BSFT Phonebook                                                       ##
-#######################################################################################
- //-->
-<!--// Configuration of BW phonebook. X ranges from 1 to 6.
-bw_phonebook.data.x.server = 
-bw_phonebook.data.x.port = 
-bw_phonebook.data.x.username = 
-bw_phonebook.data.x.password = 
-bw_phonebook.data.x.name =  //-->
-	<setting name="bw_phonebook.data.1.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.1.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.1.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.1.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.1.name"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.2.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.2.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.2.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.2.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.2.name"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.3.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.3.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.3.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.3.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.3.name"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.4.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.4.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.4.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.4.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.4.name"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.5.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.5.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.5.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.5.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.5.name"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.6.server"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.6.port"><type><integer/></type></setting>
-	<setting name="bw_phonebook.data.6.username"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.6.password"><type><string/></type></setting>
-	<setting name="bw_phonebook.data.6.name"><type><string/></type></setting>
-    </group>
-    <group name="bw-call-log" hidden="yes">
-<!--// 
-#######################################################################################
-##                    BSFT Call Log                                                  ##
-#######################################################################################
- //-->
-<!--// Configuration of the BW call log. X ranges from 1 to 3.  
-bw_call_log.data.x.server =   
-bw_call_log.data.x.port =     
-bw_call_log.data.x.username = 
-bw_call_log.data.x.password = 
-bw_call_log.data.x.name =  //-->
-	<setting name="bw_call_log.data.1.server"><type><string/></type></setting>
-	<setting name="bw_call_log.data.1.port"><type><integer/></type></setting>
-	<setting name="bw_call_log.data.1.username"><type><string/></type></setting>
-	<setting name="bw_call_log.data.1.password"><type><string/></type></setting>
-	<setting name="bw_call_log.data.1.name"><type><string/></type></setting>
-	<setting name="bw_call_log.data.2.server"><type><string/></type></setting>
-	<setting name="bw_call_log.data.2.port"><type><integer/></type></setting>
-	<setting name="bw_call_log.data.2.username"><type><string/></type></setting>
-	<setting name="bw_call_log.data.2.password"><type><string/></type></setting>
-	<setting name="bw_call_log.data.2.name"><type><string/></type></setting>
-	<setting name="bw_call_log.data.3.server"><type><string/></type></setting>
-	<setting name="bw_call_log.data.3.port"><type><integer/></type></setting>
-	<setting name="bw_call_log.data.3.username"><type><string/></type></setting>
-	<setting name="bw_call_log.data.3.password"><type><string/></type></setting>
-	<setting name="bw_call_log.data.3.name"><type><string/></type></setting>
-<!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys;
-0-Disabled (default), 1-Enabled;
-Require reboot;  //-->
-	<setting name="bw.calllog_and_dir"><type><boolean/></type><value>0</value></setting>
-<!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default);
-Require reboot; //-->
-	<setting name="bw.behave_calllog"><type><boolean/></type><value>0</value></setting>
-<!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);
-Require reboot; //-->
-	<setting name="bw.behave_bw_dir"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
-    </group>
-    <group name="remote-phonebook">
-<!--// 
-#######################################################################################
-##         	    Remote phonebook                                                     ##
-#######################################################################################
- //-->
-<!--// Configure the access URL and dispaly name of the remote phonebook. X ranges from 1 to 5.
-remote_phonebook.data.x.url =   
-remote_phonebook.data.x.name =  //-->
-	<setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
-	<setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
-    </group>
-    <group name="ldap">
-<!--// 
-#######################################################################################
-##         	              LDAP Settings                                              ##
-#######################################################################################
- //-->
-<!--// Configure the search criteria for name and number lookups. //-->
-	<setting name="ldap.name_filter"><type><string/></type></setting>
-	<setting name="ldap.number_filter"><type><string/></type></setting>
-	<setting name="ldap.host"><type><string/></type></setting>
-	<setting name="ldap.port"><type><integer/></type><value>389</value></setting>
-	<setting name="ldap.base"><type><string/></type></setting>
-	<setting name="ldap.user"><type><string/></type></setting>
-	<setting name="ldap.password"><type><string/></type></setting>
-<!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
-	<setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
-	<setting name="ldap.name_attr"><type><string/></type></setting>
-	<setting name="ldap.numb_attr"><type><string/></type></setting>
-	<setting name="ldap.display_name"><type><string/></type></setting>
-<!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
-	<setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
-<!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
-	<setting name="ldap.search_delay"><type><integer/></type><value>2000</value></setting>
-<!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
-	<setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
     </group>
     <group name="features">
 <!--// 
@@ -1192,90 +1552,392 @@ Require reboot;  //-->
 	<setting name="phone_setting.hold_power_led_flash_enable"><type><boolean/></type><value>0</value></setting>
     </group>
     <group name="downloads">
-<!--// 
-#######################################################################################
-##                     Configure the access URL of firmware                          ##                                 
-#######################################################################################
- //-->
-	<setting name="firmware.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##                     Configure the access URL of the customized  ringtones         ##                                  
-#######################################################################################
- //-->
-	<setting name="ringtone.url"><type><string/></type></setting>
-<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
-	<setting name="ringtone.delete"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##            Configure the access  URL of language file                             ##                                       
-#######################################################################################
- //-->
-	<setting name="gui_lang.url"><type><string/></type></setting>
-<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
-	<setting name="gui_lang.delete"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##                     Certificates                                                  ##  
-#######################################################################################
- //-->
-	<setting name="trusted_certificates.url"><type><string/></type></setting>
-<!--// trusted_certificates.delete = http://localhost/all,delete all the trusted certificates.  //-->
-	<setting name="trusted_certificates.delete"><type><string/></type></setting>
-	<setting name="server_certificates.url"><type><string/></type></setting>
-<!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
-	<setting name="server_certificates.delete"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##  Local Contact/DST Time/Dialnow Rule/Replace Rule                                 ##                                                     
-#######################################################################################
- //-->
-	<setting name="local_contact.data.url"><type><string/></type></setting>
-	<setting name="auto_dst.url"><type><string/></type></setting>
-	<setting name="dialplan_dialnow.url"><type><string/></type></setting>
-	<setting name="dialplan_replace_rule.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##      Customized Factory Configurations                                            ##
-#######################################################################################
- //-->
-<!--// Configure the access URL for downloading the customized factory configurations.  //-->
-	<setting name="custom_factory_configuration.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##          Call List                                                                ##                                            
-#######################################################################################
- //-->
-<!--// Configure the access URL for downloading the call list.
-Require reboot  //-->
-	<setting name="call_list.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##            OpenVPN                                                                ##                                            
-#######################################################################################
- //-->
-<!--// Configure the access URL for downloading the open VPN tar.  //-->
-	<setting name="openvpn.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##            Configure the access URL of the  Wallpaper                             ##                                            
-####################################################################################### 
- //-->
-	<setting name="wallpaper_upload.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##     Configure the access URL of the Screensaver                                   ##                                            
-####################################################################################### 
- //-->
-<!--// Configure the access URL for downloading the customized wallpaper.  //-->
-	<setting name="screen_saver.pic.url"><type><string/></type></setting>
-<!--// 
-#######################################################################################
-##     Configuration files for Var                                                   ##                                            
-#######################################################################################
- //-->
-<!--// Configure the access URL for downloading the files for var.
-Require reboot  //-->
-	<setting name="web_item_level.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##                     Configure the access URL of firmware                          ##                                 
+	#######################################################################################
+	 //-->
+		<setting name="firmware.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##                     Configure the access URL of the customized  ringtones         ##                                  
+	#######################################################################################
+	 //-->
+		<setting name="ringtone.url"><type><string/></type></setting>
+	<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
+		<setting name="ringtone.delete"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##            Configure the access  URL of language file                             ##                                       
+	#######################################################################################
+	 //-->
+		<setting name="gui_lang.url"><type><string/></type></setting>
+	<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
+		<setting name="gui_lang.delete"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##                     Certificates                                                  ##  
+	#######################################################################################
+	 //-->
+		<setting name="trusted_certificates.url"><type><string/></type></setting>
+	<!--// trusted_certificates.delete = http://localhost/all,delete all the trusted certificates.  //-->
+		<setting name="trusted_certificates.delete"><type><string/></type></setting>
+		<setting name="server_certificates.url"><type><string/></type></setting>
+	<!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
+		<setting name="server_certificates.delete"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##  Local Contact/DST Time/Dialnow Rule/Replace Rule                                 ##                                                     
+	#######################################################################################
+	 //-->
+		<setting name="local_contact.data.url"><type><string/></type></setting>
+		<setting name="auto_dst.url"><type><string/></type></setting>
+		<setting name="dialplan_replace_rule.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##      Customized Factory Configurations                                            ##
+	#######################################################################################
+	 //-->
+	<!--// Configure the access URL for downloading the customized factory configurations.  //-->
+		<setting name="custom_factory_configuration.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##          Call List                                                                ##                                            
+	#######################################################################################
+	 //-->
+	<!--// Configure the access URL for downloading the call list.
+	Require reboot  //-->
+		<setting name="call_list.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##            Configure the access URL of the  Wallpaper                             ##                                            
+	####################################################################################### 
+	 //-->
+		<setting name="wallpaper_upload.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##     Configure the access URL of the Screensaver                                   ##                                            
+	####################################################################################### 
+	 //-->
+	<!--// Configure the access URL for downloading the customized wallpaper.  //-->
+		<setting name="screen_saver.pic.url"><type><string/></type></setting>
+	<!--// 
+	#######################################################################################
+	##     Configuration files for Var                                                   ##                                            
+	#######################################################################################
+	 //-->
+	<!--// Configure the access URL for downloading the files for var.
+	Require reboot  //-->
+		<setting name="web_item_level.url"><type><string/></type></setting>
     </group>
+</group>
+	<!--// 
+	#######################################################################################
+	##         	              Dial Plan                                                  ##
+	#######################################################################################
+	 //-->
+	<group name="dialplan">
+	    <group name="area-code">
+			<!--// Configure the area code. //-->
+			<setting name="dialplan.area_code.code"><type><integer/></type><value>5</value></setting>
+			<setting name="dialplan.area_code.min_len"><type><integer/></type><value>5</value></setting>
+			<setting name="dialplan.area_code.max_len"><type><integer/></type><value>5</value></setting>
+			<!--// When applying the rule to multiple lines, each line ID separated by comma. e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
+			<setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
+		</group>
+		<group name="block-out">
+			<!--// Configure the block out number. X ranges from 1 to 10.
+				dialplan.block_out.number.x =
+				When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
+				dialplan.block_out.line_id.x =  //-->
+			<setting name="dialplan.block_out.number.1"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.1"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.2"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.2"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.3"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.3"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.4"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.4"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.5"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.5"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.6"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.6"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.7"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.7"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.8"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.8"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.9"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
+			<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
+			<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
+		</group>
+		<group name="dialnow">
+			<setting name="dialplan_dialnow.url"><type><string/></type></setting>
+			<!--// Configure the dialnow rule. X ranges from 1 to 20.
+				dialplan.dialnow.rule.x = 
+				dialplan.dialnow.line_id.x =  //-->
+			<setting name="dialplan.dialnow.rule.1"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.1"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.2"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.2"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.3"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.3"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.4"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.4"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.5"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.5"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.6"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.6"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.7"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.7"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.8"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.8"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.9"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.9"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.10"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.10"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.11"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.11"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.12"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.12"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.13"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.13"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.14"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.14"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.15"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.15"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.16"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.16"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.17"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.17"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.18"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.18"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.19"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.19"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
+			<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
+		</group>
+		<group name="replace">
+			<!--// Configure the replace rule. X ranges from 1 to 20.
+				dialplan.replace.prefix.x = 
+				dialplan.replace.replace.x = 
+				dialplan.replace.line_id.x =  //-->
+			<setting name="dialplan.replace.prefix.1"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.1"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.1"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.2"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.2"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.2"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.3"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.3"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.3"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.4"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.4"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.4"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.5"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.5"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.5"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.6"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.6"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.6"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.7"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.7"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.7"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.8"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.8"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.8"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.9"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.9"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.9"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.10"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.10"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.10"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.11"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.11"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.11"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.12"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.12"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.12"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.13"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.13"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.13"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.14"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.14"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.14"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.15"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.15"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.15"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.16"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.16"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.16"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.17"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.17"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.17"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.18"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.18"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.18"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.19"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.19"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.19"><type><string/></type></setting>
+			<setting name="dialplan.replace.prefix.20"><type><string/></type></setting>
+			<setting name="dialplan.replace.replace.20"><type><string/></type></setting>
+			<setting name="dialplan.replace.line_id.20"><type><string/></type></setting>
+	    </group>
+	</group>
+	<group name="contacts">
+		<!--// 
+		#######################################################################################
+		##         	    Remote phonebook                                                     ##
+		#######################################################################################
+		 //-->
+	    <group name="RemotePhoneBook">
+			<!--// Configure the access URL and dispaly name of the remote phonebook. X ranges from 1 to 5.
+			remote_phonebook.data.x.url =   
+			remote_phonebook.data.x.name =  //-->
+			<setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
+			<setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
+	    </group>
+		<!--// 
+		#######################################################################################
+		##         	              LDAP Settings                                              ##
+		#######################################################################################
+		 //-->
+	    <group name="LDAP">
+			<!--// Configure the search criteria for name and number lookups. //-->
+			<setting name="ldap.name_filter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
+			<setting name="ldap.number_filter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
+			<setting name="ldap.host"><type><hostname/></type></setting>
+			<setting name="ldap.port"><type><integer/></type><value>389</value></setting>
+			<setting name="ldap.base"/>
+			<setting name="ldap.user"/>
+			<setting name="ldap.password"><type><password/></type></setting>
+			<!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
+			<setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
+			<setting name="ldap.name_attr"><value>sn givenName</value></setting>
+			<setting name="ldap.numb_attr"><value>ipPhone telephoneNumber mobile</value></setting>
+			<setting name="ldap.display_name"><value>%sn %givenName</value></setting>
+			<!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
+			<setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
+			<!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
+			<setting name="ldap.search_delay"><type><integer/></type><value>2000</value></setting>
+			<!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
+			<!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
+			<setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
+			<!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
+	    </group>
+    </group>
+	<group name="ManagementServer" hidden="yes">
+		<!--// 
+		#######################################################################################
+		##                 TR069                                                             ##
+		#######################################################################################
+		 //-->
+		<!--// The TR069 feature is only applicable to some designated firmware versions.
+		All settings of TR069 require reboot.
+		Enable or disable the TR069 feature; 0-Disabled (default), 1-Enabled; //-->
+		<setting name="managementserver.enable"><type><boolean/></type><value>0</value></setting>
+		<!--// Configure the username and password for the phone to authenticate with the ACS. //-->
+		<setting name="managementserver.username"><type><string/></type></setting>
+		<setting name="managementserver.password"><type><string/></type></setting>
+		<!--// Configure the access URL of the ACS. //-->
+		<setting name="managementserver.url"><type><string/></type></setting>
+		<!--// Configure the username and password for the phone to authenticate the connection requests. //-->
+		<setting name="managementserver.connection_request_username"><type><string/></type></setting>
+		<setting name="managementserver.connection_request_password"><type><password/></type></setting>
+		<!--// Enable or disable the phone to inform the ACS of its configuration; 0-Disabled (default), 1-Enabled; //-->
+		<setting name="managementserver.periodic_inform_enable"><type><boolean/></type><value>0</value></setting>
+		<!--// Configure the interval (in seconds) the phone to inform the ACS of its configuration. The default value is 60. //-->
+		<setting name="managementserver.periodic_inform_interval"><type><integer/></type><value>60</value></setting>
+	</group>
+	<group name="broadsoft" hidden="yes">    
+		<!--// 
+		#######################################################################################
+		##         	    BSFT Phonebook                                                       ##
+		#######################################################################################
+		 //-->
+	    <group name="bw-phonebook">
+			<!--// Configuration of BW phonebook. X ranges from 1 to 6.
+			bw_phonebook.data.x.server = 
+			bw_phonebook.data.x.port = 
+			bw_phonebook.data.x.username = 
+			bw_phonebook.data.x.password = 
+			bw_phonebook.data.x.name =  //-->
+			<setting name="bw_phonebook.data.1.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.1.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.1.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.1.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.1.name"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.2.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.2.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.2.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.2.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.2.name"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.3.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.3.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.3.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.3.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.3.name"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.4.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.4.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.4.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.4.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.4.name"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.5.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.5.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.5.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.5.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.5.name"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.6.server"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.6.port"><type><integer/></type></setting>
+			<setting name="bw_phonebook.data.6.username"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.6.password"><type><string/></type></setting>
+			<setting name="bw_phonebook.data.6.name"><type><string/></type></setting>
+	    </group>
+		<!--// 
+		#######################################################################################
+		##                    BSFT Call Log                                                  ##
+		#######################################################################################
+		 //-->
+	    <group name="bw-call-log">
+			<!--// Configuration of the BW call log. X ranges from 1 to 3.  
+				bw_call_log.data.x.server =   
+				bw_call_log.data.x.port =     
+				bw_call_log.data.x.username = 
+				bw_call_log.data.x.password = 
+				bw_call_log.data.x.name =  //-->
+			<setting name="bw_call_log.data.1.server"><type><string/></type></setting>
+			<setting name="bw_call_log.data.1.port"><type><integer/></type></setting>
+			<setting name="bw_call_log.data.1.username"><type><string/></type></setting>
+			<setting name="bw_call_log.data.1.password"><type><string/></type></setting>
+			<setting name="bw_call_log.data.1.name"><type><string/></type></setting>
+			<setting name="bw_call_log.data.2.server"><type><string/></type></setting>
+			<setting name="bw_call_log.data.2.port"><type><integer/></type></setting>
+			<setting name="bw_call_log.data.2.username"><type><string/></type></setting>
+			<setting name="bw_call_log.data.2.password"><type><string/></type></setting>
+			<setting name="bw_call_log.data.2.name"><type><string/></type></setting>
+			<setting name="bw_call_log.data.3.server"><type><string/></type></setting>
+			<setting name="bw_call_log.data.3.port"><type><integer/></type></setting>
+			<setting name="bw_call_log.data.3.username"><type><string/></type></setting>
+			<setting name="bw_call_log.data.3.password"><type><string/></type></setting>
+			<setting name="bw_call_log.data.3.name"><type><string/></type></setting>
+			<!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
+			<setting name="bw.calllog_and_dir"><type><boolean/></type><value>0</value></setting>
+			<!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default); Require reboot; //-->
+			<setting name="bw.behave_calllog"><type><boolean/></type><value>0</value></setting>
+			<!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);	Require reboot; //-->
+			<setting name="bw.behave_bw_dir"><type><boolean/></type><value>0</value></setting>
+			<!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
+	    </group>
+	</group>
 </model>

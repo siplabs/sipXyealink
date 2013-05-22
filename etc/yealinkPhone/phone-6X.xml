@@ -15,25 +15,25 @@
     <group name="Network" if="yealinkPhoneSIPT3.*">
         <setting name="path_" hidden="yes"><value>/phone/config/system.ini</value></setting>
         <setting name="eWANType"><type refid="WANAddress_type"/><value>0</value></setting>
-        <setting name="strWANIP"></setting>
-        <setting name="strWANMask"></setting>
-        <setting name="strWanGateway"></setting>
-        <setting name="strWanPrimaryDNS"></setting>
-        <setting name="strWanSecondaryDNS"></setting>
+        <setting name="strWANIP"><type><ipaddr/></type></setting>
+        <setting name="strWANMask"><type><ipaddr/></type></setting>
+        <setting name="strWanGateway"><type><ipaddr/></type></setting>
+        <setting name="strWanPrimaryDNS"><type><ipaddr/></type></setting>
+        <setting name="strWanSecondaryDNS"><type><ipaddr/></type></setting>
         <setting name="strPPPoEUser"></setting>
         <setting name="strPPPoEPin"><type><string password="yes" /></type></setting>
     </group>
     <group name="WAN" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
         <setting name="WANType"><type refid="WANAddress_type"/><value>0</value></setting>
-        <setting name="WANStaticIP"></setting>
-        <setting name="WANSubnetMask"></setting>
-        <setting name="WANDefaultGateway"></setting>
+        <setting name="WANStaticIP"><type><ipaddr/></type></setting>
+        <setting name="WANSubnetMask"><type><ipaddr/></type></setting>
+        <setting name="WANDefaultGateway"><type><ipaddr/></type></setting>
     </group>
     <group name="DNS" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
-        <setting name="PrimaryDNS"></setting>
-        <setting name="SecondaryDNS"></setting>
+        <setting name="PrimaryDNS"><type><ipaddr/></type></setting>
+        <setting name="SecondaryDNS"><type><ipaddr/></type></setting>
     </group>
     <group name="PPPoE" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
@@ -56,20 +56,20 @@
         <setting name="path_" hidden="yes"><value>/phone/config/system.ini</value></setting>
         <setting name="bBridgeMode"><type refid="LANMode_type"/><value>1</value></setting>
         <setting name="bLanDHCPServer"><type><boolean /></type><value>0</value></setting>
-        <setting name="strLanIP"><value>10.0.0.1</value></setting>
-        <setting name="strLanMask"><value>255.255.255.0</value></setting>
-        <setting name="strDHCPClientBegin"><value>10.0.0.10</value></setting>
-        <setting name="strDHCPClientEnd"><value>10.0.0.100</value></setting>
+        <setting name="strLanIP"><type><ipaddr/></type><value>10.0.0.1</value></setting>
+        <setting name="strLanMask"><type><ipaddr/></type><value>255.255.255.0</value></setting>
+        <setting name="strDHCPClientBegin"><type><ipaddr/></type><value>10.0.0.10</value></setting>
+        <setting name="strDHCPClientEnd"><type><ipaddr/></type><value>10.0.0.100</value></setting>
         <setting name="strDHCPLease"><type><integer /></type><value>3600</value></setting>
     </group>
     <group name="LAN" if="yealinkPhoneSIPT[12].*">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
         <setting name="LANTYPE"><type refid="LANMode_type"/><value>1</value></setting>
-        <setting name="RouterIP"><value>10.0.0.1</value></setting>
-        <setting name="LANSubnetMask"><value>255.255.255.0</value></setting>
+        <setting name="RouterIP"><type><ipaddr/></type><value>10.0.0.1</value></setting>
+        <setting name="LANSubnetMask"><type><ipaddr/></type><value>255.255.255.0</value></setting>
         <setting name="EnableDHCP"><type><boolean /></type><value>0</value></setting>
-        <setting name="DHCPStartIP"><value>10.0.0.10</value></setting>
-        <setting name="DHCPEndIP"><value>10.0.0.100</value></setting>
+        <setting name="DHCPStartIP"><type><ipaddr/></type><value>10.0.0.10</value></setting>
+        <setting name="DHCPEndIP"><type><ipaddr/></type><value>10.0.0.100</value></setting>
         <setting name="SpanToPCPort" advanced="yes"><type><boolean /></type><value>0</value></setting>
     </group>
     <group name="Ethernet" if="yealinkPhoneSIPT[12].*" advanced="yes">
@@ -202,7 +202,7 @@
     <group name="firmware">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/tmp/download.cfg</value></setting>
         <setting name="server_type" if="yealinkPhoneSIPT[12].*"><type refid="firmware_server_type" /><value>tftp</value></setting>
-        <setting name="server_ip" if="yealinkPhoneSIPT[12].*"></setting>
+        <setting name="server_ip" if="yealinkPhoneSIPT[12].*"><type><ipaddr/></type></setting>
         <setting name="server_port" if="yealinkPhoneSIPT[12].*"><type><integer /></type><value>69</value></setting>
         <setting name="login_name" if="yealinkPhoneSIPT[12].*"></setting>
         <setting name="login_pswd" if="yealinkPhoneSIPT[12].*"></setting>
@@ -213,7 +213,7 @@
     <group name="SYSLOG">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
         <setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/system.ini</value></setting>
-        <setting name="SyslogdIP"></setting>
+        <setting name="SyslogdIP"><type><ipaddr/></type></setting>
     </group>
     <group name="Lang">
         <setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/tmp/download.cfg</value></setting>
@@ -1021,56 +1021,58 @@
         <group name="50" advanced="yes"><setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/yealink/config/vpPhone/MulticastPage.cfg</value></setting><setting name="Label"/><setting name="IPAddress"/></group>
     </group>
 </group>
-<group name="RemotePhoneBook">
-    <group name="SRemoteName" if="yealinkPhoneSIPT[12].*">
-        <setting name="Enable"><type><boolean /></type><value>0</value></setting>
-        <setting name="FlashTime"><type><integer /></type><value>3600</value></setting>
-    </group>
-    <group name="0">
-        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Name"><value></value></setting>
-        <setting name="URL" />
-    </group>
-    <group name="1" advanced="yes">
-        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Name"><value></value></setting>
-        <setting name="URL" />
-    </group>
-    <group name="2" advanced="yes">
-        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Name"><value></value></setting>
-        <setting name="URL" />
-    </group>
-    <group name="3" advanced="yes">
-        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Name"><value></value></setting>
-        <setting name="URL" />
-    </group>
-    <group name="4" advanced="yes">
-        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="Name"><value></value></setting>
-        <setting name="URL" />
-    </group>
-</group>
-<group name="LDAP">
-    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
-    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/Contacts/LDAP.cfg</value></setting>
-    <setting name="NameFilter"/>
-    <setting name="NumberFilter"/>
-    <setting name="host"><type><hostname /></type></setting>
-    <setting name="port"><type><integer /></type><value>389</value></setting>
-    <setting name="base"/>
-    <setting name="user"/>
-    <setting name="pswd"><type><password/></type></setting>
-    <setting name="MaxHits"><type><integer /></type></setting>
-    <setting name="NameAttr"/>
-    <setting name="NumbAttr"/>
-    <setting name="DisplayName"/>
-    <setting name="version"/>
-    <setting name="SearchDelay"><type><integer /></type></setting>
-    <setting name="CallInLookup"><type><boolean /></type><value>0</value></setting>
-    <setting name="LDAPSort"><type><boolean /></type><value>1</value></setting>
-    <setting name="DialLookup"><type><boolean /></type><value>0</value></setting>
+<group name="contacts">
+	<group name="RemotePhoneBook">
+	    <group name="SRemoteName" if="yealinkPhoneSIPT[12].*">
+	        <setting name="Enable"><type><boolean /></type><value>0</value></setting>
+	        <setting name="FlashTime"><type><integer /></type><value>3600</value></setting>
+	    </group>
+	    <group name="0">
+	        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
+	        <setting name="Name"><value></value></setting>
+	        <setting name="URL" />
+	    </group>
+	    <group name="1" advanced="yes">
+	        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
+	        <setting name="Name"><value></value></setting>
+	        <setting name="URL" />
+	    </group>
+	    <group name="2" advanced="yes">
+	        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
+	        <setting name="Name"><value></value></setting>
+	        <setting name="URL" />
+	    </group>
+	    <group name="3" advanced="yes">
+	        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
+	        <setting name="Name"><value></value></setting>
+	        <setting name="URL" />
+	    </group>
+	    <group name="4" advanced="yes">
+	        <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
+	        <setting name="Name"><value></value></setting>
+	        <setting name="URL" />
+	    </group>
+	</group>
+	<group name="LDAP">
+	    <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Contacts/LDAP.cfg</value></setting>
+	    <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/Contacts/LDAP.cfg</value></setting>
+	    <setting name="NameFilter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
+	    <setting name="NumberFilter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
+	    <setting name="host"><type><hostname /></type></setting>
+	    <setting name="port"><type><integer /></type><value>389</value></setting>
+	    <setting name="base"/>
+	    <setting name="user"/>
+	    <setting name="pswd"><type><password/></type></setting>
+	    <setting name="MaxHits"><type><integer /></type></setting>
+	    <setting name="NameAttr"><value>sn givenName</value></setting>
+	    <setting name="NumbAttr"><value>ipPhone telephoneNumber mobile</value></setting>
+	    <setting name="DisplayName"><value>%sn %givenName</value></setting>
+	    <setting name="version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
+	    <setting name="SearchDelay"><type><integer /></type><value>0</value></setting>
+	    <setting name="CallInLookup"><type><boolean /></type><value>0</value></setting>
+	    <setting name="LDAPSort"><type><boolean /></type><value>1</value></setting>
+	    <setting name="DialLookup"><type><boolean /></type><value>0</value></setting>
+	</group>
 </group>
 <group name="expansion-panels" if="ExpansionPanels" hidden="yes">
     <setting name="exp1"><type refid="expansion-panels"/></setting>

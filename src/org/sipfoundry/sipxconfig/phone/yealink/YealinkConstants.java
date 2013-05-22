@@ -9,7 +9,7 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
-public class yealinkConstants {
+public class YealinkConstants {
 
     public static final String MIME_TYPE_PLAIN = "text/plain";
     public static final String MIME_TYPE_XML = "text/xml";
