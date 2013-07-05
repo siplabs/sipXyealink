@@ -338,7 +338,7 @@
     <group name="Features">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Features/Phone.cfg</value></setting>
         <setting name="path_" hidden="yes" if="yealinkPhoneSIPT3.*"><value>/phone/config/user.ini</value></setting>
-        <setting name="LCD_Logo" if="yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[0268].*"><type refid="LCD_Logo_type"/><value>0</value></setting>
+        <setting name="LCD_Logo" if="yealinkPhoneSIPT12.*|yealinkPhoneSIPT2[0268].*"><type refid="LCDLogo_type"/><value>0</value></setting>
         <setting name="BroadsoftFeatureKeySync" hidden="yes"><type><boolean /></type><value>0</value></setting>
         <setting name="Call_Waiting"><type><boolean /></type><value>0</value></setting>
         <setting name="Call_WaitingTone"><type><boolean /></type><value>0</value></setting>

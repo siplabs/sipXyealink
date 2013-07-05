@@ -121,7 +121,7 @@
 	<option><value>6</value></option>
     </enum>
 </type>
-<type id="mode_802_1x_type">
+<type id="Mode802_1x_type">
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
@@ -223,7 +223,7 @@
 	<option><label>HTTPS</label><value>3</value></option>
     </enum>
 </type>
-<type id="LCD_Logo_type">
+<type id="LCDLogo_type">
     <enum>
 	<option><label>Disabled</label><value>0</value></option>
 	<option><label>System</label><value>1</value></option>

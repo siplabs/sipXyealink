@@ -5,20 +5,6 @@
     [<!ENTITY types SYSTEM "types.xml">]>
 <model>
 &types;
-	<group name="sip">
-		<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
-		<setting name="sip.use_23_as_pound"><type><bool/></type><value>1</value></setting>
-		<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
-		<setting name="sip.rfc2543_hold"><type><bool/></type><value>0</value></setting>
-		<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
-		<setting name="sip.use_out_bound_in_dialog"><type><bool/></type><value>1</value></setting>
-		<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
-		<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
-		<setting name="sip.check_autop_result_before_register"><type><bool/></type><value>0</value></setting>
-		<setting name="sip.send_response_by_request"><type><bool/></type><value>0</value></setting>
-		<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
-		<setting name="sip.notify_reboot_enable"><type><bool/></type><value>1</value></setting>
-	</group>
     <group name="network-wan">
 	    <group name="network">
 			<!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address; Require reboot;  //-->
@@ -59,7 +45,7 @@
 			<setting name="network.dhcp.start_ip"><type><ipaddr/></type><value>10.0.0.10</value></setting>
 			<setting name="network.dhcp.end_ip"><type><ipaddr/></type><value>10.0.0.100</value></setting>
 	    </group>
-    </group>
+	</group>
 	<group name="network-advanced">
 	    <group name="VLAN">
 			<!--// Enable or disable the VLAN of WAN port; 0-Disabled (default), 1-Enabled;  Require reboot;  //-->
@@ -75,11 +61,11 @@
 			<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. Require reboot;  //-->
 			<setting name="network.vlan.pc_port_priority"><type><integer/></type><value>0</value></setting>
 	    </group>
-		<!--// 
-		#######################################################################################
-		##            OpenVPN                                                                ##                                            
-		#######################################################################################
-		 //-->
+<!--// 
+#######################################################################################
+##            OpenVPN                                                                ##                                            
+#######################################################################################
+ //-->
 	    <group name="VPN">
 			<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
 			<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
@@ -109,7 +95,7 @@
 	    </group>
 	    <group name="802.1X">
 			<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2; Require reboot;  //-->
-			<setting name="network.802_1x.mode"><type refid="mode_802_1x_type"/><value>0</value></setting>
+			<setting name="network.802_1x.mode"><type refid="Mode802_1x_type"/><value>0</value></setting>
 			<!--// Configure the username and password for 802.1x authentication. Require reboot;  //-->
 			<setting name="network.802_1x.identity"><type><string/></type></setting>
 			<setting name="network.802_1x.md5_password"><type><string/></type></setting>
@@ -900,11 +886,28 @@
     	
     	</group>
 	</group>
-	<group name="Features">
+	<group name="features">
 		<group name="features">
 			<!--// 
 			#######################################################################################
-			##	                Phone Features                                                   ##
+			##	                SIP Features                                                 ##
+			#######################################################################################
+			 //-->
+			<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="sip.use_23_as_pound"><type><bool/></type><value>1</value></setting>
+			<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
+			<setting name="sip.rfc2543_hold"><type><bool/></type><value>0</value></setting>
+			<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="sip.use_out_bound_in_dialog"><type><bool/></type><value>1</value></setting>
+			<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
+			<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
+			<setting name="sip.check_autop_result_before_register"><type><bool/></type><value>0</value></setting>
+			<setting name="sip.send_response_by_request"><type><bool/></type><value>0</value></setting>
+			<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
+			<setting name="sip.notify_reboot_enable"><type><bool/></type><value>1</value></setting>
+			<!--// 
+			#######################################################################################
+			##	                Phone Features                                               ##
 			#######################################################################################
 			 //-->
 			<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
@@ -1631,21 +1634,68 @@ Require reboot;  //-->
 		<setting name="web_item_level.url"><type><string/></type></setting>
     </group>
 </group>
-	<!--// 
-	#######################################################################################
-	##         	              Dial Plan                                                  ##
-	#######################################################################################
-	 //-->
-	<group name="dialplan">
-	    <group name="area-code">
-			<!--// Configure the area code. //-->
-			<setting name="dialplan.area_code.code"><type><integer/></type><value>5</value></setting>
-			<setting name="dialplan.area_code.min_len"><type><integer/></type><value>5</value></setting>
-			<setting name="dialplan.area_code.max_len"><type><integer/></type><value>5</value></setting>
-			<!--// When applying the rule to multiple lines, each line ID separated by comma. e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
-			<setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
-		</group>
-		<group name="block-out">
+<!--// 
+#######################################################################################
+##         	              Dial Plan                                                  ##
+#######################################################################################
+ //-->
+<group name="dialplan">
+    <group name="area-code">
+	<!--// Configure the area code. //-->
+	<setting name="dialplan.area_code.code"><type><integer/></type><value>5</value></setting>
+	<setting name="dialplan.area_code.min_len"><type><integer/></type><value>5</value></setting>
+	<setting name="dialplan.area_code.max_len"><type><integer/></type><value>5</value></setting>
+	<!--// When applying the rule to multiple lines, each line ID separated by comma. e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
+	<setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
+    </group>
+    <group name="dial-now">
+	<!--// This setting is genarted automaticaly //-->
+	<setting name="dialplan_dialnow.url" hidden="yes"><type><string/></type></setting>
+	<!--// Configure the dialnow rule. X ranges from 1 to 20.
+		dialplan.dialnow.rule.x = 
+		dialplan.dialnow.line_id.x =  //-->
+	<setting name="dialplan.dialnow.rule.1"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.2"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.3"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.4"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.5"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.6"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.7"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.8"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.9"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.10"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.10"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.11"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.11"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.12"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.12"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.13"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.13"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.14"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.14"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.15"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.15"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.16"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.16"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.17"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.17"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.18"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.18"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.19"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.19"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
+	<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
+    </group>
+	<group name="block-out">
 			<!--// Configure the block out number. X ranges from 1 to 10.
 				dialplan.block_out.number.x =
 				When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
@@ -1670,52 +1720,6 @@ Require reboot;  //-->
 			<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
 			<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
 			<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
-		</group>
-		<group name="dialnow">
-			<setting name="dialplan_dialnow.url"><type><string/></type></setting>
-			<!--// Configure the dialnow rule. X ranges from 1 to 20.
-				dialplan.dialnow.rule.x = 
-				dialplan.dialnow.line_id.x =  //-->
-			<setting name="dialplan.dialnow.rule.1"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.1"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.2"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.2"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.3"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.3"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.4"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.4"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.5"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.5"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.6"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.6"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.7"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.7"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.8"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.8"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.9"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.9"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.10"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.10"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.11"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.11"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.12"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.12"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.13"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.13"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.14"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.14"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.15"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.15"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.16"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.16"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.17"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.17"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.18"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.18"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.19"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.19"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
-			<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
 		</group>
 		<group name="replace">
 			<!--// Configure the replace rule. X ranges from 1 to 20.
