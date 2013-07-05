@@ -983,30 +983,30 @@
 			<setting name="voice.group_spk_vol"><type><integer/></type><value>8</value></setting>
 	    </group>
 	</group>
-    <group name="call-forwarding">
-    	<group name="Always">
-			<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
-			<setting name="forward.always.target"><type><string/></type></setting>
-			<setting name="forward.always.on_code"><type><string/></type></setting>
-			<setting name="forward.always.off_code"><type><string/></type></setting>
-		</group>
-    	<group name="Busy">
-			<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
-			<setting name="forward.busy.target"><type><string/></type></setting>
-			<setting name="forward.busy.on_code"><type><string/></type></setting>
-			<setting name="forward.busy.off_code"><type><string/></type></setting>
-		</group>
-    	<group name="Timeout">
-			<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
-			<setting name="forward.no_answer.target"><type><string/></type></setting>
-			<setting name="forward.no_answer.timeout"><type><string/></type></setting>
-			<setting name="forward.no_answer.on_code"><type><string/></type></setting>
-			<setting name="forward.no_answer.off_code"><type><string/></type></setting>
-		</group>
-    	<group name="Forward_International">
-			<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
-		</group>
+<group name="call-forwarding">
+    <group name="Always">
+	<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.always.target"><type><string/></type></setting>
+	<setting name="forward.always.on_code"><type><string/></type></setting>
+	<setting name="forward.always.off_code"><type><string/></type></setting>
     </group>
+    <group name="Busy">
+	<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.busy.target"><type><string/></type></setting>
+	<setting name="forward.busy.on_code"><type><string/></type></setting>
+	<setting name="forward.busy.off_code"><type><string/></type></setting>
+    </group>
+    <group name="Timeout">
+	<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="forward.no_answer.target"><type><string/></type></setting>
+	<setting name="forward.no_answer.timeout"><type><string/></type></setting>
+	<setting name="forward.no_answer.on_code"><type><string/></type></setting>
+	<setting name="forward.no_answer.off_code"><type><string/></type></setting>
+    </group>
+    <group name="Forward_International">
+	<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+</group>
 <group name="other">
     <group name="security">
 <!--// 
@@ -1695,253 +1695,253 @@ Require reboot;  //-->
 	<setting name="dialplan.dialnow.rule.20"><type><string/></type></setting>
 	<setting name="dialplan.dialnow.line_id.20"><type><string/></type></setting>
     </group>
-	<group name="block-out">
-			<!--// Configure the block out number. X ranges from 1 to 10.
-				dialplan.block_out.number.x =
-				When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
-				dialplan.block_out.line_id.x =  //-->
-			<setting name="dialplan.block_out.number.1"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.1"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.2"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.2"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.3"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.3"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.4"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.4"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.5"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.5"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.6"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.6"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.7"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.7"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.8"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.8"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.9"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
-			<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
-			<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
-		</group>
-		<group name="replace">
-			<!--// Configure the replace rule. X ranges from 1 to 20.
-				dialplan.replace.prefix.x = 
-				dialplan.replace.replace.x = 
-				dialplan.replace.line_id.x =  //-->
-			<setting name="dialplan.replace.prefix.1"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.1"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.1"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.2"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.2"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.2"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.3"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.3"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.3"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.4"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.4"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.4"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.5"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.5"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.5"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.6"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.6"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.6"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.7"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.7"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.7"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.8"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.8"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.8"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.9"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.9"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.9"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.10"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.10"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.10"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.11"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.11"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.11"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.12"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.12"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.12"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.13"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.13"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.13"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.14"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.14"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.14"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.15"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.15"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.15"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.16"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.16"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.16"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.17"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.17"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.17"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.18"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.18"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.18"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.19"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.19"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.19"><type><string/></type></setting>
-			<setting name="dialplan.replace.prefix.20"><type><string/></type></setting>
-			<setting name="dialplan.replace.replace.20"><type><string/></type></setting>
-			<setting name="dialplan.replace.line_id.20"><type><string/></type></setting>
-	    </group>
-	</group>
-	<group name="contacts">
-		<!--// 
-		#######################################################################################
-		##         	    Remote phonebook                                                     ##
-		#######################################################################################
-		 //-->
-	    <group name="RemotePhoneBook">
-			<!--// Configure the access URL and dispaly name of the remote phonebook. X ranges from 1 to 5.
-			remote_phonebook.data.x.url =   
-			remote_phonebook.data.x.name =  //-->
-			<setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
-			<setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
-	    </group>
-		<!--// 
-		#######################################################################################
-		##         	              LDAP Settings                                              ##
-		#######################################################################################
-		 //-->
-	    <group name="LDAP">
-			<!--// Configure the search criteria for name and number lookups. //-->
-			<setting name="ldap.name_filter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
-			<setting name="ldap.number_filter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
-			<setting name="ldap.host"><type><hostname/></type></setting>
-			<setting name="ldap.port"><type><integer/></type><value>389</value></setting>
-			<setting name="ldap.base"/>
-			<setting name="ldap.user"/>
-			<setting name="ldap.password"><type><password/></type></setting>
-			<!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
-			<setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
-			<setting name="ldap.name_attr"><value>sn givenName</value></setting>
-			<setting name="ldap.numb_attr"><value>ipPhone telephoneNumber mobile</value></setting>
-			<setting name="ldap.display_name"><value>%sn %givenName</value></setting>
-			<!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
-			<setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
-			<!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
-			<setting name="ldap.search_delay"><type><integer/></type><value>2000</value></setting>
-			<!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
-			<!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
-			<setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
-			<!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
-	    </group>
+    <group name="block-out">
+	<!--// Configure the block out number. X ranges from 1 to 10.
+		dialplan.block_out.number.x =
+		When applying the rule to multiple lines, each line ID separated by comma. E.g. 1,2,3.
+		dialplan.block_out.line_id.x =  //-->
+	<setting name="dialplan.block_out.number.1"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.2"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.3"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.4"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.5"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.6"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.7"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.8"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.9"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.block_out.number.10"><type><string/></type></setting>
+	<setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
     </group>
-	<group name="ManagementServer" hidden="yes">
-		<!--// 
-		#######################################################################################
-		##                 TR069                                                             ##
-		#######################################################################################
-		 //-->
-		<!--// The TR069 feature is only applicable to some designated firmware versions.
-		All settings of TR069 require reboot.
-		Enable or disable the TR069 feature; 0-Disabled (default), 1-Enabled; //-->
-		<setting name="managementserver.enable"><type><boolean/></type><value>0</value></setting>
-		<!--// Configure the username and password for the phone to authenticate with the ACS. //-->
-		<setting name="managementserver.username"><type><string/></type></setting>
-		<setting name="managementserver.password"><type><string/></type></setting>
-		<!--// Configure the access URL of the ACS. //-->
-		<setting name="managementserver.url"><type><string/></type></setting>
-		<!--// Configure the username and password for the phone to authenticate the connection requests. //-->
-		<setting name="managementserver.connection_request_username"><type><string/></type></setting>
-		<setting name="managementserver.connection_request_password"><type><password/></type></setting>
-		<!--// Enable or disable the phone to inform the ACS of its configuration; 0-Disabled (default), 1-Enabled; //-->
-		<setting name="managementserver.periodic_inform_enable"><type><boolean/></type><value>0</value></setting>
-		<!--// Configure the interval (in seconds) the phone to inform the ACS of its configuration. The default value is 60. //-->
-		<setting name="managementserver.periodic_inform_interval"><type><integer/></type><value>60</value></setting>
-	</group>
-	<group name="broadsoft" hidden="yes">    
-		<!--// 
-		#######################################################################################
-		##         	    BSFT Phonebook                                                       ##
-		#######################################################################################
-		 //-->
-	    <group name="bw-phonebook">
-			<!--// Configuration of BW phonebook. X ranges from 1 to 6.
-			bw_phonebook.data.x.server = 
-			bw_phonebook.data.x.port = 
-			bw_phonebook.data.x.username = 
-			bw_phonebook.data.x.password = 
-			bw_phonebook.data.x.name =  //-->
-			<setting name="bw_phonebook.data.1.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.1.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.1.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.1.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.1.name"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.2.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.2.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.2.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.2.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.2.name"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.3.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.3.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.3.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.3.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.3.name"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.4.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.4.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.4.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.4.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.4.name"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.5.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.5.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.5.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.5.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.5.name"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.6.server"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.6.port"><type><integer/></type></setting>
-			<setting name="bw_phonebook.data.6.username"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.6.password"><type><string/></type></setting>
-			<setting name="bw_phonebook.data.6.name"><type><string/></type></setting>
-	    </group>
-		<!--// 
-		#######################################################################################
-		##                    BSFT Call Log                                                  ##
-		#######################################################################################
-		 //-->
-	    <group name="bw-call-log">
-			<!--// Configuration of the BW call log. X ranges from 1 to 3.  
-				bw_call_log.data.x.server =   
-				bw_call_log.data.x.port =     
-				bw_call_log.data.x.username = 
-				bw_call_log.data.x.password = 
-				bw_call_log.data.x.name =  //-->
-			<setting name="bw_call_log.data.1.server"><type><string/></type></setting>
-			<setting name="bw_call_log.data.1.port"><type><integer/></type></setting>
-			<setting name="bw_call_log.data.1.username"><type><string/></type></setting>
-			<setting name="bw_call_log.data.1.password"><type><string/></type></setting>
-			<setting name="bw_call_log.data.1.name"><type><string/></type></setting>
-			<setting name="bw_call_log.data.2.server"><type><string/></type></setting>
-			<setting name="bw_call_log.data.2.port"><type><integer/></type></setting>
-			<setting name="bw_call_log.data.2.username"><type><string/></type></setting>
-			<setting name="bw_call_log.data.2.password"><type><string/></type></setting>
-			<setting name="bw_call_log.data.2.name"><type><string/></type></setting>
-			<setting name="bw_call_log.data.3.server"><type><string/></type></setting>
-			<setting name="bw_call_log.data.3.port"><type><integer/></type></setting>
-			<setting name="bw_call_log.data.3.username"><type><string/></type></setting>
-			<setting name="bw_call_log.data.3.password"><type><string/></type></setting>
-			<setting name="bw_call_log.data.3.name"><type><string/></type></setting>
-			<!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
-			<setting name="bw.calllog_and_dir"><type><boolean/></type><value>0</value></setting>
-			<!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default); Require reboot; //-->
-			<setting name="bw.behave_calllog"><type><boolean/></type><value>0</value></setting>
-			<!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);	Require reboot; //-->
-			<setting name="bw.behave_bw_dir"><type><boolean/></type><value>0</value></setting>
-			<!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
-	    </group>
-	</group>
+    <group name="replace">
+	<!--// Configure the replace rule. X ranges from 1 to 20.
+		dialplan.replace.prefix.x = 
+		dialplan.replace.replace.x = 
+		dialplan.replace.line_id.x =  //-->
+	<setting name="dialplan.replace.prefix.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.1"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.2"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.3"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.4"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.5"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.6"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.7"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.8"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.9"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.10"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.11"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.12"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.13"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.14"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.15"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.16"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.17"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.18"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.19"><type><string/></type></setting>
+	<setting name="dialplan.replace.prefix.20"><type><string/></type></setting>
+	<setting name="dialplan.replace.replace.20"><type><string/></type></setting>
+	<setting name="dialplan.replace.line_id.20"><type><string/></type></setting>
+    </group>
+</group>
+<group name="contacts">
+    <!--// 
+    #######################################################################################
+    ##         	    Remote phonebook                                                     ##
+    #######################################################################################
+     //-->
+    <group name="RemotePhoneBook">
+	<!--// Configure the access URL and dispaly name of the remote phonebook. X ranges from 1 to 5.
+	remote_phonebook.data.x.url =   
+	remote_phonebook.data.x.name =  //-->
+	<setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
+	<setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
+    </group>
+    <!--// 
+    #######################################################################################
+    ##         	              LDAP Settings                                              ##
+    #######################################################################################
+     //-->
+    <group name="LDAP">
+	<!--// Configure the search criteria for name and number lookups. //-->
+	<setting name="ldap.name_filter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
+	<setting name="ldap.number_filter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
+	<setting name="ldap.host"><type><hostname/></type></setting>
+	<setting name="ldap.port"><type><integer/></type><value>389</value></setting>
+	<setting name="ldap.base"/>
+	<setting name="ldap.user"/>
+	<setting name="ldap.password"><type><password/></type></setting>
+	<!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
+	<setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
+	<setting name="ldap.name_attr"><value>sn givenName</value></setting>
+	<setting name="ldap.numb_attr"><value>ipPhone telephoneNumber mobile</value></setting>
+	<setting name="ldap.display_name"><value>%sn %givenName</value></setting>
+	<!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
+	<setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
+	<!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
+	<setting name="ldap.search_delay"><type><integer/></type><value>2000</value></setting>
+	<!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
+    </group>
+</group>
+<group name="ManagementServer" hidden="yes">
+	<!--// 
+	#######################################################################################
+	##                 TR069                                                             ##
+	#######################################################################################
+	 //-->
+	<!--// The TR069 feature is only applicable to some designated firmware versions.
+	All settings of TR069 require reboot.
+	Enable or disable the TR069 feature; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="managementserver.enable"><type><boolean/></type><value>0</value></setting>
+	<!--// Configure the username and password for the phone to authenticate with the ACS. //-->
+	<setting name="managementserver.username"><type><string/></type></setting>
+	<setting name="managementserver.password"><type><string/></type></setting>
+	<!--// Configure the access URL of the ACS. //-->
+	<setting name="managementserver.url"><type><string/></type></setting>
+	<!--// Configure the username and password for the phone to authenticate the connection requests. //-->
+	<setting name="managementserver.connection_request_username"><type><string/></type></setting>
+	<setting name="managementserver.connection_request_password"><type><password/></type></setting>
+	<!--// Enable or disable the phone to inform the ACS of its configuration; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="managementserver.periodic_inform_enable"><type><boolean/></type><value>0</value></setting>
+	<!--// Configure the interval (in seconds) the phone to inform the ACS of its configuration. The default value is 60. //-->
+	<setting name="managementserver.periodic_inform_interval"><type><integer/></type><value>60</value></setting>
+</group>
+<group name="broadsoft" hidden="yes">    
+	<!--// 
+	#######################################################################################
+	##         	    BSFT Phonebook                                                       ##
+	#######################################################################################
+	 //-->
+    <group name="bw-phonebook">
+	<!--// Configuration of BW phonebook. X ranges from 1 to 6.
+	bw_phonebook.data.x.server = 
+	bw_phonebook.data.x.port = 
+	bw_phonebook.data.x.username = 
+	bw_phonebook.data.x.password = 
+	bw_phonebook.data.x.name =  //-->
+	<setting name="bw_phonebook.data.1.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.1.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.1.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.2.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.2.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.3.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.3.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.4.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.4.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.5.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.5.name"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.server"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.port"><type><integer/></type></setting>
+	<setting name="bw_phonebook.data.6.username"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.password"><type><string/></type></setting>
+	<setting name="bw_phonebook.data.6.name"><type><string/></type></setting>
+    </group>
+    <!--// 
+    #######################################################################################
+    ##                    BSFT Call Log                                                  ##
+    #######################################################################################
+     //-->
+    <group name="bw-call-log">
+	<!--// Configuration of the BW call log. X ranges from 1 to 3.  
+		bw_call_log.data.x.server =   
+		bw_call_log.data.x.port =     
+		bw_call_log.data.x.username = 
+		bw_call_log.data.x.password = 
+		bw_call_log.data.x.name =  //-->
+	<setting name="bw_call_log.data.1.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.1.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.1.name"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.2.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.2.name"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.server"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.port"><type><integer/></type></setting>
+	<setting name="bw_call_log.data.3.username"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.password"><type><string/></type></setting>
+	<setting name="bw_call_log.data.3.name"><type><string/></type></setting>
+	<!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
+	<setting name="bw.calllog_and_dir"><type><boolean/></type><value>0</value></setting>
+	<!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default); Require reboot; //-->
+	<setting name="bw.behave_calllog"><type><boolean/></type><value>0</value></setting>
+	<!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);	Require reboot; //-->
+	<setting name="bw.behave_bw_dir"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
+    </group>
+</group>
 </model>
