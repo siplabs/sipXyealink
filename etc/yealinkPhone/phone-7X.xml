@@ -5,6 +5,17 @@
     [<!ENTITY types SYSTEM "types.xml">]>
 <model>
 &types;
+    <group name="sip">
+	<!--// 
+	#######################################################################################
+	##	                SIP Features                                                 ##
+	#######################################################################################
+	 //-->
+	<setting name="sip.check_autop_result_before_register"><type><boolean/></type><value>0</value></setting>
+	<setting name="sip.send_response_by_request"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="sip.notify_reboot_enable"><type><boolean/></type><value>1</value></setting>
+    </group>
     <group name="network-wan">
 	    <group name="network">
 			<!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address; Require reboot;  //-->
@@ -25,12 +36,6 @@
 			<setting name="network.pppoe.user"><type><string/></type></setting>
 			<setting name="network.pppoe.password"><type><string/></type></setting>
 	    </group>
-	    <group name="LLDP" advanced="yes">
-			<!--// Enable or disable the LLDP feature; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
-			<setting name="network.lldp.enable"><type><boolean/></type><value>1</value></setting>
-			<!--// Configure the interval (in seconds) the phone broadcasts the LLDP request. It ranges from 1 to 3600, the default value is 120. Require reboot;  //-->
-			<setting name="network.lldp.packet_interval"><type><integer/></type><value>120</value></setting>
-	    </group>
     </group>
     <group name="network-lan">
 	    <group name="network">
@@ -47,6 +52,12 @@
 	    </group>
 	</group>
 	<group name="network-advanced">
+	    <group name="LLDP">
+			<!--// Enable or disable the LLDP feature; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
+			<setting name="network.lldp.enable"><type><boolean/></type><value>1</value></setting>
+			<!--// Configure the interval (in seconds) the phone broadcasts the LLDP request. It ranges from 1 to 3600, the default value is 120. Require reboot;  //-->
+			<setting name="network.lldp.packet_interval"><type><integer/></type><value>120</value></setting>
+	    </group>
 	    <group name="VLAN">
 			<!--// Enable or disable the VLAN of WAN port; 0-Disabled (default), 1-Enabled;  Require reboot;  //-->
 			<setting name="network.vlan.internet_port_enable"><type><boolean/></type><value>0</value></setting>
@@ -61,45 +72,71 @@
 			<!--// Configure the VLAN priority, it ranges from 0 (default) to 7. Require reboot;  //-->
 			<setting name="network.vlan.pc_port_priority"><type><integer/></type><value>0</value></setting>
 	    </group>
+	    <group name="port-link">
+		<!--// #0-Auto negotiate (default), 1-Full duplex 10Mbps, 2-Full duplex 100Mbps, 3-Half duplex 10Mbps, 4-Half duplex 100Mbps; //-->
+		<setting name="network.internet_port.speed_duplex"><type refid="PortLink_type"/><value>0</value></setting>
+		<setting name="network.pc_port.speed_duplex"><type refid="PortLink_type"/><value>0</value></setting>
+	    </group>
 <!--// 
 #######################################################################################
 ##            OpenVPN                                                                ##                                            
 #######################################################################################
  //-->
 	    <group name="VPN">
-			<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
-			<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
-			<!--// Configure the access URL for downloading the open VPN tar.  //-->
-			<setting name="openvpn.url"><type><string/></type></setting>
+		<!--// Enable or disable the VPN feature; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
+		<setting name="network.vpn_enable"><type><boolean/></type><value>0</value></setting>
+		<!--// Configure the access URL for downloading the open VPN tar.  //-->
+		<setting name="openvpn.url"><type><string/></type></setting>
 	    </group>
 	    <group name="QOS">
-			<!--// Configure the voice QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
-			<setting name="network.qos.rtptos"><type><integer/></type><value>46</value></setting>
-			<!--// Configure the SIP QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
-			<setting name="network.qos.signaltos"><type><integer/></type><value>46</value></setting>
+		<!--// Configure the voice QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
+		<setting name="network.qos.rtptos"><type><integer min="0" max="63"/></type><value>46</value></setting>
+		<!--// Configure the SIP QOS. It ranges from 0 to 63, the default value is 46. Require reboot;  //-->
+		<setting name="network.qos.signaltos"><type><integer min="0" max="63"/></type><value>46</value></setting>
 	    </group>
 	    <group name="RTP">
-			<!--// Configure the minimum local RTP port. It ranges from 0 to 65535, the default value is 11780. Require reboot;  //-->
-			<setting name="network.port.min_rtpport"><type><integer/></type><value>11780</value></setting>
-			<!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800. Require reboot;  //-->
-			<setting name="network.port.max_rtpport"><type><integer/></type><value>11800</value></setting>
+		<!--// Configure the minimum local RTP port. It ranges from 0 to 65535, the default value is 11780. Require reboot;  //-->
+		<setting name="network.port.min_rtpport"><type><integer min="0" max="65535"/></type><value>11780</value></setting>
+		<!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800. Require reboot;  //-->
+		<setting name="network.port.max_rtpport"><type><integer min="0" max="65535"/></type><value>11800</value></setting>
 	    </group>
-		<group name="Webserver_Type">
-			<!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only; Require reboot;  //-->
-			<setting name="network.web_server_type"><type refid="web_server_type"/><value>1</value></setting>
+	    <group name="SNMP">
+		<!--// #Enable or disable the SNMP feature; 0-Disabled (default), 1-Enabled;
+	        #Require reboot; //-->
+		<setting name="network.snmp.enable"><type><boolean/></type><value>0</value></setting>
+		<!--// #Configure the SNMP port.
+		#Require reboot; //-->
+		<setting name="network.snmp.port"><type><integer min="0" max="65535"/></type><value>514</value></setting>
+		<!--// #Configure the IP address(es) of the trusted SNMP server,multiple IP addresses must be separated by a space.
+		#Require reboot; //-->
+		<setting name="network.snmp.trust_ip"></setting>
 	    </group>
-		<group name="port">
-			<!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535. Require reboot;  //-->
-			<setting name="network.port.http"><type><integer/></type><value>80</value></setting>
-			<setting name="network.port.https"><type><integer/></type><value>443</value></setting>
+	    <group name="Webserver">
+		<!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only; Require reboot;  //-->
+		<setting name="network.web_server_type"><type refid="web_server_type"/><value>1</value></setting>
+		<!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535. Require reboot;  //-->
+		<setting name="network.port.http"><type><integer min="0" max="65535"/></type><value>80</value></setting>
+		<setting name="network.port.https"><type><integer min="0" max="65535"/></type><value>443</value></setting>
 	    </group>
 	    <group name="802.1X">
-			<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2; Require reboot;  //-->
-			<setting name="network.802_1x.mode"><type refid="Mode802_1x_type"/><value>0</value></setting>
-			<!--// Configure the username and password for 802.1x authentication. Require reboot;  //-->
-			<setting name="network.802_1x.identity"><type><string/></type></setting>
-			<setting name="network.802_1x.md5_password"><type><string/></type></setting>
-		</group>
+		<!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2; Require reboot;  //-->
+		<setting name="network.802_1x.mode"><type refid="Mode802_1x_type"/><value>0</value></setting>
+		<!--// Configure the username and password for 802.1x authentication. Require reboot;  //-->
+		<setting name="network.802_1x.identity"><type><string/></type></setting>
+		<setting name="network.802_1x.md5_password"><type><string/></type></setting>
+		<!--// #Configure the access URL of the root and client certificates. //-->
+		<setting name="network.802_1x.root_cert_url"><type><string/></type></setting>
+		<setting name="network.802_1x.client_cert_url"><type><string/></type></setting>
+	    </group>
+	    <group name="SPAN2PCPORT">
+		<!--// #Enable or disable the span from WAN port to PC port feature; 0-Disabled (default), 1-Enabled;
+		#Require reboot; //-->
+		<setting name="network.span_to_pc_port"><type><boolean/></type><value>0</value></setting>
+	    </group>
+	    <group name="REGRANDOM">
+		<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
+		<setting name="sip.reg_surge_prevention"><type><integer min="0" max="60"/></type><value>60</value></setting>
+	    </group>
 	</group>
 	<group name="upgrade">
 		<group name="dhcp_option_value">
@@ -112,10 +149,10 @@
 		</group>
 		<!--// 
 		#######################################################################################
-		##                 Auto Provisioning                                                 ##      
+		##                 Auto Provisioning                                                 ##
 		#######################################################################################
 		 //-->
-    	<group name="autoprovision">
+	<group name="autoprovision">
 			<!--// Configure the URL of the auto provisioning server. //-->
 			<setting name="auto_provision.server.url"><type><string/></type><value></value></setting>
 			<!--// Configure the username and password for downloading. //-->
@@ -831,182 +868,278 @@
 			<setting name="autoprovision.50.mac_aes"><type><string/></type><value></value></setting>
 		</group>
 	</group>
-	<group name="preference">
-	    <group name="Lang">
-			<!--// 
-			#######################################################################################
-			##         	                   Language Settings                                     ##       
-			#######################################################################################
-			 //-->
-			<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
-			<setting name="lang.wui"><type><string/></type><value>English</value></setting>
-			<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese. lang.gui = English //-->
-			<setting name="lang.gui"><type><string/></type><value>English</value></setting>
-		</group>
-	    <group name="Time">
-			<!--// 
-			#######################################################################################
-			##         	                   Time Settings                                         ##
-			#######################################################################################
-			 //-->
-			<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
-			The default time zone name is China(Beijing).   
-			local_time.time_zone = +8
-			local_time.time_zone_name = China(Beijing) //-->
-			<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
-			<setting name="local_time.time_zone_name"><type><string/></type></setting>
-			<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
-			<setting name="local_time.ntp_server1"><type><hostname/></type></setting>
-			<setting name="local_time.ntp_server2"><type><hostname/></type></setting>
-			<!--// Configure the update interval (in seconds) when using the NTP server. The default value is 1000. //-->
-			<setting name="local_time.interval"><type><integer/></type><value>1000</value></setting>
-			<!--// Configure the daylight saving time feature; 0-Disabled, 1-Enabled, 2-Automatic (default); //-->
-			<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
-			<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
-			<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
-			<!--// Configure the start time of DST. The default value is 1/1/0.
-			If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
-			If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
-			For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
-			<setting name="local_time.start_time"><type><string/></type></setting>
-			<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
-			<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
-			<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
-			<setting name="local_time.offset_time"><type><integer/></type></setting>">
-			<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
-			<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
-			<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
-			<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
-			<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
-			<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
-			<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
-	    </group>
-    	<group name="PhoneSetting">
-    	
-    	</group>
+    <group name="preference">
+	<!--// 
+	#######################################################################################
+	##                             Language Settings                                     ##
+	#######################################################################################
+	//-->
+	<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
+	<setting name="lang.wui"><type><string/></type><value>English</value></setting>
+	<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese. lang.gui = English //-->
+	<setting name="lang.gui"><type><string/></type><value>English</value></setting>
+	<!--// 
+	#######################################################################################
+	##                             Time Settings                                         ##
+	#######################################################################################
+	//-->
+	<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
+	    The default time zone name is China(Beijing).   
+	    local_time.time_zone = +8
+	    local_time.time_zone_name = China(Beijing) //-->
+	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
+	<setting name="local_time.time_zone_name"><type><string/></type></setting>
+	<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
+	<setting name="local_time.ntp_server1"><type><hostname/></type></setting>
+	<setting name="local_time.ntp_server2"><type><hostname/></type></setting>
+	<!--// Configure the update interval (in seconds) when using the NTP server. The default value is 1000. //-->
+	<setting name="local_time.interval"><type><integer/></type><value>1000</value></setting>
+	<!--// Configure the daylight saving time feature; 0-Disabled, 1-Enabled, 2-Automatic (default); //-->
+	<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
+	<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
+	<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
+	<!--// Configure the start time of DST. The default value is 1/1/0.
+	    If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
+	    If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
+	    For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
+	<setting name="local_time.start_time"><type><string/></type></setting>
+	<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
+	<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
+	<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
+	<setting name="local_time.offset_time"><type><integer/></type></setting>">
+	<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
+	<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
+	<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
+	<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
+	<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
+	<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
+	<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="watch_dog.enable"><type><boolean/></type><value>1</value></setting>
+    </group>
+    <group name="features">
+	<group name="other">
+	    <!--//
+	    #######################################################################################
+	    ##                      Phone Features                                               ##
+	    #######################################################################################
+	     //-->
+	    <!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="redirect.enable"><type><boolean/></type><value>0</value></setting>
 	</group>
-	<group name="features">
-		<group name="features">
-			<!--// 
-			#######################################################################################
-			##	                SIP Features                                                 ##
-			#######################################################################################
-			 //-->
-			<!--// Enable or disable the phone to escape the pound key as percent sign followed by 23 when dialing out; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="sip.use_23_as_pound"><type><bool/></type><value>1</value></setting>
-			<!--// Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="sip.rfc2543_hold"><type><bool/></type><value>0</value></setting>
-			<!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="sip.use_out_bound_in_dialog"><type><bool/></type><value>1</value></setting>
-			<!--// Configure the registration random time (in seconds). It ranges from 0 (default) to 60. //-->
-			<setting name="sip.reg_surge_prevention"><type><integer/></type><value>60</value></setting>
-			<setting name="sip.check_autop_result_before_register"><type><bool/></type><value>0</value></setting>
-			<setting name="sip.send_response_by_request"><type><bool/></type><value>0</value></setting>
-			<!--// Enable or disable the phone to reboot when receiving SIP notify messages; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="sip.notify_reboot_enable"><type><bool/></type><value>1</value></setting>
-			<!--// 
-			#######################################################################################
-			##	                Phone Features                                               ##
-			#######################################################################################
-			 //-->
-			<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="watch_dog.enable"><type><bool/></type><value>1</value></setting>
-			<!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
-			<setting name="redirect.enable"><type><bool/></type><value>0</value></setting>
-			<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="transfer.semi_attend_tran_enable"><type><bool/></type><value>1</value></setting>
-			<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook; 0-Disabled,1-Enabled(default); //-->
-			<setting name="transfer.blind_tran_on_hook_enable"><type><bool/></type><value>1</value></setting>
-			<setting name="transfer.on_hook_trans_enable"><type><bool/></type><value>1</value></setting>
-			<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
-			<setting name="transfer.dsskey_deal_type"><type refid="DSS_xfer_type"/><value>2</value></setting>
-			<!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
-			<setting name="transfer.tran_others_after_conf_enable"><type><bool/></type><value>0</value></setting>
-			</group>
-	    <group name="voice">
-			<!--// 
-			#######################################################################################
-			##                                Voice                                              ##
-			#######################################################################################
-			 //-->
-			<!--// Enable or disable the voice activity detection feature; 0-Disbaled (default), 1-Enabled; //-->
-			<setting name="voice.vad"><type><bool/></type><value>0</value></setting>
-			<!--// Enable or disable the comfortable noise generator; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="voice.cng"><type><bool/></type><value>1</value></setting>
-			<!--// Enable or disable the echo canceller; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="voice.echo_cancellation"><type><bool/></type><value>1</value></setting>
-			<!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
-			<setting name="voice.side_tone"><type><integer/></type><value>-3</value></setting>
-		
-			<!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29. Require reboot; //-->
-			<setting name="voice.handfree_send"><type><integer/></type><value>25</value></setting>
-			<setting name="voice.handset_send"><type><integer/></type><value>35</value></setting>
-			<setting name="voice.headset_send"><type><integer/></type><value>29</value></setting>
-			<!--// Configure the type of jitter buffer; 0-Fixed, 1-Adaptive (default); //-->
-			<setting name="voice.jib.adaptive"><type refid="jb_type"/><value>1</value></setting>
-			<!--// Configure the minimum delay, maximum delay and normal delay. The default values are 0, 300, 120. //-->
-			<setting name="voice.jib.min"><type><integer/></type><value>0</value></setting>
-			<setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
-			<setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
-			<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
-			<setting name="voice.tone.country"><type><string/></type><value>Russia</value></setting>
-			<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
-			The value format: Frequency/Duration.
-			Frequency ranges from 200 to 7000. When 0 is used to define the frequency, it means a pause between tones.
-			A tone can be composited at most four different frequencies (the value format is: F1+F2+F3+F4).
-			Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
-			At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
-			For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
-			<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.congestion"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.callwaiting"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.dialrecall"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.record"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.info"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.message"><type><string/></type><value></value></setting>
-			<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
-			<!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
-			<setting name="voice.handfree.spk_vol"><type><integer/></type><value>8</value></setting>
-			<setting name="voice.handset.spk_vol"><type><integer/></type><value>8</value></setting>
-			<setting name="voice.headset.spk_vol"><type><integer/></type><value>8</value></setting>
-			<!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
-			<setting name="voice.handfree.tone_vol"><type><integer/></type><value>8</value></setting>
-			<setting name="voice.handset.tone_vol"><type><integer/></type><value>8</value></setting>
-			<setting name="voice.headset.tone_vol"><type><integer/></type><value>8</value></setting>
-			<!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
-			<setting name="voice.ring_vol"><type><integer/></type><value>8</value></setting>
-			<!--// Configure the Speaker volume when in the group listening mode. It ranges from 0 to 15, the default value is 8. //-->
-			<setting name="voice.group_spk_vol"><type><integer/></type><value>8</value></setting>
-	    </group>
+	<group name="ALWAYS">
+	    <setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
+	    <setting name="forward.always.target"><type><string/></type></setting>
+	    <setting name="forward.always.on_code"><type><string/></type></setting>
+	    <setting name="forward.always.off_code"><type><string/></type></setting>
 	</group>
-<group name="call-forwarding">
-    <group name="Always">
-	<setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.always.target"><type><string/></type></setting>
-	<setting name="forward.always.on_code"><type><string/></type></setting>
-	<setting name="forward.always.off_code"><type><string/></type></setting>
+	<group name="BUSY">
+	    <setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
+	    <setting name="forward.busy.target"><type><string/></type></setting>
+	    <setting name="forward.busy.on_code"><type><string/></type></setting>
+	    <setting name="forward.busy.off_code"><type><string/></type></setting>
+	</group>
+	<group name="TIMEOUT">
+	    <setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
+	    <setting name="forward.no_answer.target"><type><string/></type></setting>
+	    <setting name="forward.no_answer.timeout"><type><string/></type></setting>
+	    <setting name="forward.no_answer.on_code"><type><string/></type></setting>
+	    <setting name="forward.no_answer.off_code"><type><string/></type></setting>
+	</group>
+	<group name="FORWARD_INTERNATIONAL">
+	    <setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
+	</group>
+	<group name="DND">
+	    <!--//#######################################################################################
+	    ##                                   DND                                                   ##
+	    #######################################################################################
+	    //-->
+	    <!--// #Configure the DND key mode; 0-Phone mode (default), 1-Custom mode. //-->
+	    <setting name="features.dnd_mode"><type><boolean/></type><value>0</value></setting>
+	    <!--// #Configure the DND on code and off code. //-->
+	    <setting name="features.dnd.on_code"><type><string/></type></setting>
+	    <setting name="features.dnd.off_code"><type><string/></type></setting>
+	</group>
+	<group name="GENERAL">
+	    <!--// Enable or disable the call waiting feature; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="call_waiting.enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Enable or disable the auto redial feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="auto_redial.enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Define the "#" or "*" key as the send key; 0-Disabled, 1-# key(default), 2-* key; //-->
+	    <setting name="features.pound_key.mode"><type refid="yealink_poud_key_type"/><value>1</value></setting>
+
+	    <!--// #Configure the hotline number and delay time (in seconds). It ranges from 0 to 180, the default value is 4. //-->
+	    <setting name="features.hotline_number"><type><string/></type></setting>
+	    <setting name="features.hotline_delay"><type><integer min="0" max="180"/></type><value>4</value></setting>
+	    <!--// Configure the delay time (in seconds) of playing busy tone when rejecting a call. The valid values are 0 (default), 3 and 5.  //-->
+	    <setting name="features.busy_tone_delay"><type refid="yealink_busy_tone_delay_type"/><value>0</value></setting>
+	    <!--// Configure the return code when activating DND; 404-No Found, 480-Temporarily not available (default), 486-Busy here;
+	    #features.dnd_refuse_code = 480  //-->
+	    <setting name="features.dnd_refuse_code"><type refid="SIPCodes_type"/><value>480</value></setting>
+	    <!--// Configure the return code when refusing a call. The valid values are 404, 480, 486 (default). //-->
+	    <setting name="features.normal_refuse_code"><type refid="SIPCodes_type"/><value>486</value></setting>
+	    <!--// Enable or disable the call completion feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.call_completion_enable"><type><boolean/></type><value>0</value></setting>
+
+	    <!--// #Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="sip.rfc2543_hold"><type><boolean/></type><value>0</value></setting>
+	    <!--// Enable or disable the phone to keep sending the SIP messages to the outbound server; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="sip.use_out_bound_in_dialog"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the phone to deal the 180 SIP message after the 183 SIP message; 0-Disabled, 1-Enabled (default);  //-->
+	    <setting name="phone_setting.is_deal180"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the phone to show the logon wizard during startup; 0-Disabled (default), 1-Enabled;  //-->
+	    <setting name="phone_setting.logon_wizard"><type><boolean/></type><value>0</value></setting>
+
+	    <!--// #Enable or disable the phone to encrypt the digits of the dialed number. The encrypted digits are displayed as asterisks on the LCD screen; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.password_dial.enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// #Configure the prefix numbers displayed before the encrypted digits. //-->
+	    <setting name="features.password_dial.prefix"><type><string/></type></setting>
+	    <!--// #Configure the length of encrypted digits. //-->
+	    <setting name="features.password_dial.length"><type><string/></type></setting>
+	</group>
+	<group name="AUDIO">
+	    <!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="call_waiting.tone"><type><boolean/></type><value>1</value></setting>
+	    <!--// #Enable or disable the phone to play a warning tone when there is a held call; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="features.play_hold_tone.enable"><type><boolean/></type><value>1</value></setting>
+	    <!--// #Configure the interval of playing a warning tone. The default value is 30s. //-->
+	    <setting name="features.play_hold_tone.delay"><type><Integer/></type><value>30</value></setting>
+	    <setting name="features.key_tone"><type><boolean/></type><value>1</value></setting>
+	    <!--// #Enable or disable the phone to play tone when pressing the digit key; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
+	    <setting name="features.redial_tone"><type><boolean/></type><value>1</value></setting>
+	    <!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29. Require reboot; //-->
+	    <setting name="voice.headset_send"><type><integer min="1" max="53"/></type><value>29</value></setting>
+	    <setting name="voice.handfree_send"><type><integer min="1" max="53"/></type><value>25</value></setting>
+	    <setting name="voice.handset_send"><type><integer min="1" max="53"/></type><value>35</value></setting>
+	    <!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+	    <setting name="voice.handfree.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.handset.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.headset.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
+	    <setting name="voice.handfree.tone_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.handset.tone_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.headset.tone_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
+	    <setting name="voice.ring_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <!--// Configure the Speaker volume when in the group listening mode. It ranges from 0 to 15, the default value is 8. //-->
+	    <setting name="voice.group_spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <!--// Specify the ring device when the phone is in the Headset mode; 0-use Speaker (default), 1-use Headset; //-->
+	    <setting name="features.ringer_device.is_use_headset"><type refid="RingerDevice_type"/><value>0</value></setting>
+	    <!--// #Enable or disable the dual headset feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.headset_training"><type><boolean/></type><value>0</value></setting>
+	    <!--// #Enable or disable the headset prior feature; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.headset_prior"><type><boolean/></type><value>0</value></setting>
+	    <!--// #Configure the phone whether to send a pound key when pressing double pound keys; 0-Send one pound key (default), 1-Do not send any pound key; //-->
+	    <setting name="features.send_pound_key"><type><boolean/></type><value>0</value></setting>
+	    <!--// #Enable or disable the phone with active accounts to play tones in the dialing interface differently from the phone with no active accounts; 0-Disabled (default), 1-Enbaled; //-->
+	    <setting name="features.partition_tone"><type><boolean/></type><value>0</value></setting>
+	</group>
+	<group name="INTERCOM">
+	    <!--// Enable or disable the intercom feature; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="features.intercom.allow"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the phone to mute the Speaker when answering an intercom call; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.intercom.mute"><type><boolean/></type><value>0</value></setting>
+	    <!--// Enable or disable the phone to play the intercom warning tone; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="features.intercom.tone"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the phone to barge in an intercom call; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="features.intercom.barge"><type><boolean/></type><value>1</value></setting>
+	</group>
+	<group name="TRANSFER">
+		<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call; 0-Disabled, 1-Enabled (default); //-->
+		<setting name="transfer.semi_attend_tran_enable"><type><boolean/></type><value>1</value></setting>
+		<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook; 0-Disabled,1-Enabled(default); //-->
+		<setting name="transfer.blind_tran_on_hook_enable"><type><boolean/></type><value>1</value></setting>
+		<setting name="transfer.on_hook_trans_enable"><type><boolean/></type><value>1</value></setting>
+		<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
+		<setting name="transfer.dsskey_deal_type"><type refid="DSSKeyDealType_type"/><value>2</value></setting>
+		<!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
+		<setting name="transfer.tran_others_after_conf_enable"><type><boolean/></type><value>0</value></setting>
+	</group>
+	<group name="CALLPICKUP">
+	    <!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.pickup.direct_pickup_enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the directed pickup code. //-->
+	    <setting name="features.pickup.direct_pickup_code"><type><string/></type><value>0</value></setting>
+	    <!--// Enable or disable the phone to pick up the call using the group pickup soft key; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.pickup.group_pickup_enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the group pickup code. //-->
+	    <setting name="features.pickup.group_pickup_code"><type><string/></type></setting>
+	    <!--// Specify the way to notify the phone of the incoming call of the monitored user by visual or audio indicator;
+	    #0-Disabled (default), 1-Enabled;  //-->
+	    <setting name="features.pickup.blf_visual_enable"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.pickup.blf_audio_enable"><type><boolean/></type><value>0</value></setting>
+	</group>
+	<group name="APISECURITY">
+	    <setting name="push_xml.server"><type><string/></type></setting>
+	    <!--// Enable or disable the phone to use the push XML via SIP Notify message; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="push_xml.sip_notify"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the phone to receive the action URI request from the specified IP address(es) or any IP address;
+	    #Enter multiple IP addresses (separated by comma) or "any"(stands for any IP address);  //-->
+	    <setting name="features.action_uri_limit_ip"><type><string/></type></setting>
+	</group>
+	<group name="ACD">
+	    <!--// 
+	    #######################################################################################
+	    ##           Automatic Call Distribute                                               ##
+	    #######################################################################################
+	    //-->
+	    <!--// Enable or disable the phone to automatically change the phone status to available; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="acd.auto_available"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the interval (in seconds) to automatically turn the state of the ACD agent to available. It ranges from 0 to 120, the default value is 60. //-->
+	    <setting name="acd.auto_available_timer"><type><integer min="0" max="120"/></type><value>60</value></setting>
+	</group>
     </group>
-    <group name="Busy">
-	<setting name="forward.busy.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.busy.target"><type><string/></type></setting>
-	<setting name="forward.busy.on_code"><type><string/></type></setting>
-	<setting name="forward.busy.off_code"><type><string/></type></setting>
+    <group name="voice">
+	<!--// 
+	#######################################################################################
+	##                                Voice                                              ##
+	#######################################################################################
+	//-->
+	<group name="ECHOCANCELATION">
+	    <!--// Enable or disable the voice activity detection feature; 0-Disbaled (default), 1-Enabled; //-->
+	    <setting name="voice.vad"><type><boolean/></type><value>0</value></setting>
+	    <!--// Enable or disable the comfortable noise generator; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="voice.cng"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the echo canceller; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="voice.echo_cancellation"><type><boolean/></type><value>1</value></setting>
+	</group>
+	<group name="JITTERBUFFER">
+	    <!--// Configure the type of jitter buffer; 0-Fixed, 1-Adaptive (default); //-->
+	    <setting name="voice.jib.adaptive"><type><boolean/></type><value>1</value></setting>
+	    <!--// Configure the minimum delay, maximum delay and normal delay. The default values are 0, 300, 120. //-->
+	    <setting name="voice.jib.min"><type><integer/></type><value>0</value></setting>
+	    <setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
+	    <setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
+	</group>
+	<group name="ADVANCED">
+	    <!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
+	    <setting name="voice.side_tone" advanced="yes"><type><integer min="-48" max="0"/></type><value>-3</value></setting>
+	</group>
     </group>
-    <group name="Timeout">
-	<setting name="forward.no_answer.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="forward.no_answer.target"><type><string/></type></setting>
-	<setting name="forward.no_answer.timeout"><type><string/></type></setting>
-	<setting name="forward.no_answer.on_code"><type><string/></type></setting>
-	<setting name="forward.no_answer.off_code"><type><string/></type></setting>
+    <group name="tones">
+	<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
+	<setting name="voice.tone.country"><type refid="ToneCountry_type"/><value>Custom</value></setting>
+	<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
+	The value format: Frequency/Duration.
+	Frequency ranges from 200 to 7000. When 0 is used to define the frequency, it means a pause between tones.
+	A tone can be composited at most four different frequencies (the value format is: F1+F2+F3+F4).
+	Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
+	At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
+	For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
+	<setting name="voice.tone.callwaiting"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.congestion"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.dialrecall"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.record"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.info"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.message"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
     </group>
-    <group name="Forward_International">
-	<setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
-    </group>
-</group>
 <group name="other">
     <group name="security">
 <!--// 
@@ -1274,17 +1407,6 @@ expansion_module.x.key.y.label =
 	<setting name="expansion_module.1.key.1.pickup_value" if="yealinkPhoneSIPT38G"><type><string/></type></setting>
 	<setting name="expansion_module.1.key.1.label" if="yealinkPhoneSIPT38G"><type><string/></type></setting>
     </group>
-    <group name="acd">
-<!--// 
-#######################################################################################
-##           Automatic Call Distribute                                               ##
-#######################################################################################
- //-->
-<!--// Enable or disable the phone to automatically change the phone status to available; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="acd.auto_available"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the interval (in seconds) to automatically turn the state of the ACD agent to available. It ranges from 0 to 120, the default value is 60. //-->
-	<setting name="acd.auto_available_timer"><type><integer/></type><value>60</value></setting>
-    </group>
     <group name="action-urls">
 <!--// 
 #######################################################################################
@@ -1403,79 +1525,34 @@ distinctive_ring_tones.alert_info.X.ringer = 1 //-->
 ##         	               Auto Redial                                               ##
 #######################################################################################
  //-->
-<!--// Enable or disable the auto redial feature; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="auto_redial.enable"><type><boolean/></type><value>0</value></setting>
 <!--// Configure the interval (in seconds) to wait before redial. It ranges from 1 to 300. The default value is 10. //-->
 	<setting name="auto_redial.interval"><type><integer/></type><value>10</value></setting>
 
 <!--// Configure the times of auto redialing . It ranges from 1 to 300. The default value is 10. //-->
 	<setting name="auto_redial.times"><type><integer/></type><value>10</value></setting>
     </group>
-    <group name="push-xml">
-<!--// 
-#######################################################################################
-##         	               Push XML                                                  ##
-#######################################################################################
- //-->
-	<setting name="push_xml.server"><type><string/></type></setting>
-<!--// Enable or disable the phone to display the push XML interface when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="push_xml.block_in_calling"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to use the push XML via SIP Notify message; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="push_xml.sip_notify"><type><boolean/></type><value>0</value></setting>
-    </group>
-    <group name="features">
+    <group name="_features">
 <!--// 
 #######################################################################################
 ##         	              Phone Features                                         ##
 #######################################################################################
  //-->
-<!--// Configure the return code when activating DND; 404-No Found, 480-Temporarily not available (default), 486-Busy here;
-#features.dnd_refuse_code = 480  //-->
-	<setting name="features.dnd_refuse_code"><type><integer/></type><value>480</value></setting>
-<!--// Configure the return code when refusing a call. The valid values are 404, 480, 486 (default). //-->
-	<setting name="features.normal_refuse_code"><type><integer/></type><value>486</value></setting>
-<!--// Enable or disable the call completion feature; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="features.call_completion_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="features.dnd.on_code"><type><string/></type></setting>
-	<setting name="features.dnd.off_code"><type><string/></type></setting>
 <!--// Enable or disable the phone to receive the emergency call when in the DND mode; 0-Disabled, 1-Enabled (default); //-->
 	<setting name="features.dnd.emergency_enable"><type><boolean/></type><value>1</value></setting>
 <!--// Specify the emergency number, multiple numbers (at most three) are separated by comma. //-->
 	<setting name="features.dnd.emergency_authorized_number"><type><string/></type></setting>
-<!--// Enable or disable the call waiting feature; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="call_waiting.enable"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="call_waiting.tone"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the intercom feature; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="features.intercom.allow"><type><boolean/></type><value>1</value></setting>
-<!--// Enable or disable the phone to mute the Speaker when answering an intercom call; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="features.intercom.mute"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to play the intercom warning tone; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="features.intercom.tone"><type><boolean/></type><value>1</value></setting>
-<!--// Enable or disable the phone to barge in an intercom call; 0-Disabled, 1-Enabled (default); //-->
-	<setting name="features.intercom.barge"><type><boolean/></type><value>1</value></setting>
 <!--// Specify whether to display the contact name in the remote phonebook; 0-Disabled (default), 1-Enabled; //-->
 	<setting name="features.remote_phonebook.enable"><type><boolean/></type><value>1</value></setting>
 <!--// Set the interval (in seconds) the phone updates the remote phonebook. The default value is 3600. //-->
 	<setting name="features.remote_phonebook.flash_time"><type><integer/></type><value>3600</value></setting>
-<!--// Configure the hotline number and delay time (in seconds). It ranges from 0 to 180, the default value of delay time is 2. //-->
-	<setting name="features.hotline_number"><type><string/></type></setting>
-	<setting name="features.hotline_delay"><type><integer/></type><value>2</value></setting>
 <!--// Configure the repetition times of DTMF end packet. The valid values are 1, 2, 3 (default). //-->
 	<setting name="features.dtmf.repetition"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
-<!--// Configure the delay time (in seconds) of playing busy tone when rejecting a call. The valid values are 0 (default), 3 and 5.  //-->
-	<setting name="features.busy_tone_delay"><type refid="yealink_busy_tone_delay_type"/><value>0</value></setting>
-<!--// Define the "#" or "*" key as the send key; 0-Disabled, 1-# key(default), 2-* key; //-->
-	<setting name="features.pound_key.mode"><type refid="yealink_poud_key_type"/><value>1</value></setting>
 <!--// Enable or disable the phone to play tone when pressing the digit key; 0-Disabled, 1-Enabled (default); //-->
 	<setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
 	<setting name="features.key_tone"><type><boolean/></type><value>1</value></setting>
 	<setting name="features.redial_tone"><type><boolean/></type><value>1</value></setting>
 <!--// Enable or disable the phone to save the call history; 0-Disabled, 1-Enabled (default);  //-->
 	<setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
-<!--// Configure the phone to receive the action URI request from the specified IP address(es) or any IP address;
-#Enter multiple IP addresses (separated by comma) or "any"(stands for any IP address);  //-->
-	<setting name="features.action_uri_limit_ip"><type><string/></type></setting>
 <!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
 	<setting name="features.dsskey_blind_tran"><type><boolean/></type><value>1</value></setting>
 <!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
@@ -1483,20 +1560,6 @@ distinctive_ring_tones.alert_info.X.ringer = 1 //-->
 <!--// Enable or disable the phone to dial the IP address directly; 0-Disabled, 1-Enabled (default);
 Require reboot;  //-->
 	<setting name="features.direct_ip_call_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Specify the ring device when the phone is in the Headset mode; 0-use Speaker (default), 1-use Headset; //-->
-	<setting name="features.ringer_device.is_use_headset"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to pick up the call using the group pickup soft key; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="features.pickup.group_pickup_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the group pickup code. //-->
-	<setting name="features.pickup.group_pickup_code"><type><string/></type></setting>
-<!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="features.pickup.direct_pickup_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the directed pickup code. //-->
-	<setting name="features.pickup.direct_pickup_code"><type><string/></type><value>0</value></setting>
-<!--// Specify the way to notify the phone of the incoming call of the monitored user by visual or audio indicator;
-#0-Disabled (default), 1-Enabled;  //-->
-	<setting name="features.pickup.blf_visual_enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="features.pickup.blf_audio_enable"><type><boolean/></type><value>0</value></setting>
 <!--// Enable or disable the phone to turn off the indicator LEDs of BLF and Call Park keys when the monitored states is idle.
 #0-Disabled (default), 1-Enabled;  //-->
 	<setting name="features.blf_and_callpark_idle_led_enable"><type><boolean/></type><value>0</value></setting>
@@ -1529,12 +1592,8 @@ Require reboot;  //-->
 <!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
 #phone_setting.ring_for_tranfailed = Ring1.wav  //-->
 	<setting name="phone_setting.ring_for_tranfailed"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
-<!--// Enable or disable the phone to show the logon wizard during startup; 0-Disabled (default), 1-Enabled;  //-->
-	<setting name="phone_setting.logon_wizard"><type><boolean/></type><value>0</value></setting>
 <!--// Enable or disable the phone to automatically dial out the dialed digits in the pre-dial interface; 0-Disabled (default), 1-Enabled;  //-->
 	<setting name="phone_setting.predial_autodial"><type><boolean/></type><value>0</value></setting>
-<!--// Enable or disable the phone to deal the 180 SIP message after the 183 SIP message; 0-Disabled, 1-Enabled (default);  //-->
-	<setting name="phone_setting.is_deal180"><type><boolean/></type><value>1</value></setting>
 <!--// Configure the delay time (in seconds) for the dialnow rule. It ranges from 1 to 14, the default value is 1.  //-->
 	<setting name="phone_setting.dialnow_delay"><type><integer/></type><value>1</value></setting>
 <!--// Enable or disable the user to customize the softkey layout; 0-Disabled (default), 1-Enabled;  //-->

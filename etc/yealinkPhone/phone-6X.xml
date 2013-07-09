@@ -42,7 +42,7 @@
     </group>
     <group name="Ethernet" if="yealinkPhoneSIPT[12].*" advanced="yes">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
-        <setting name="WANPortLink"><type refid="PortLinkType" /><value>0</value></setting>
+        <setting name="WANPortLink"><type refid="PortLink_type" /><value>0</value></setting>
     </group>
     <group name="LLDP" advanced="yes">
         <setting name="path" hidden="yes" if="yealinkPhoneSIPT[12].*"><value>/config/Network/Network.cfg</value></setting>
@@ -74,7 +74,7 @@
     </group>
     <group name="Ethernet" if="yealinkPhoneSIPT[12].*" advanced="yes">
         <setting name="path" hidden="yes"><value>/config/Network/Network.cfg</value></setting>
-        <setting name="PCPortLink"><type refid="PortLinkType" /> <value>0</value></setting>
+        <setting name="PCPortLink"><type refid="PortLink_type" /> <value>0</value></setting>
     </group>
 </group>
 <group name="network-advanced">
