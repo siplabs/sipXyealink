@@ -273,9 +273,9 @@
 </type>
 <type id="LCDLogo_type">
     <enum>
-	<option><label>Disabled</label><value>0</value></option>
-	<option><label>System</label><value>1</value></option>
-	<option><label>Custom</label><value>2</value></option>
+	<option><value>0</value></option>
+	<option><value>1</value></option>
+	<option><value>2</value></option>
     </enum>
 </type>
 <type id="custom_option_type">

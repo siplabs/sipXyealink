@@ -139,14 +139,6 @@
 	    </group>
 	</group>
 	<group name="upgrade">
-		<group name="dhcp_option_value">
-			<!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
-			<setting name="auto_provision.dhcp_option.enable"><type><boolean/></type><value>1</value></setting>
-			<!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
-			<setting name="auto_provision.dhcp_option.option60_value"><type><string/></type><value></value></setting>
-			<!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
-			<setting name="auto_provision.dhcp_option.list_user_options"><type><string/></type><value></value></setting>
-		</group>
 		<!--// 
 		#######################################################################################
 		##                 Auto Provisioning                                                 ##
@@ -877,18 +869,20 @@
 	<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
 	<setting name="lang.wui"><type><string/></type><value>English</value></setting>
 	<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese. lang.gui = English //-->
-	<setting name="lang.gui"><type><string/></type><value>English</value></setting>
+	<setting name="lang.gui" advanced="yes"><type><string/></type><value>English</value></setting>
 	<!--// 
 	#######################################################################################
 	##                             Time Settings                                         ##
 	#######################################################################################
 	//-->
+	<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
+	<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
 	<!--// Configure the time zone and time zone name. The time zone ranges from -11 to +12, the default value is +8. 
 	    The default time zone name is China(Beijing).   
 	    local_time.time_zone = +8
 	    local_time.time_zone_name = China(Beijing) //-->
 	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
-	<setting name="local_time.time_zone_name"><type><string/></type></setting>
+	<setting name="local_time.time_zone_name" advanced="yes"><type><string/></type></setting>
 	<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
 	<setting name="local_time.ntp_server1"><type><hostname/></type></setting>
 	<setting name="local_time.ntp_server2"><type><hostname/></type></setting>
@@ -902,21 +896,40 @@
 	    If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
 	    If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
 	    For example, the value 1/4/2/5 means the start time is at 5 o'clock on Tuesday of the 4th week in January. //-->
-	<setting name="local_time.start_time"><type><string/></type></setting>
+	<setting name="local_time.start_time"><type><string/></type><value>5/20/10</value></setting>
 	<!--// Configure the end time of DST. The default value is 12/31/23. The value format is the same to the start time. //-->
 	<setting name="local_time.end_time"><type><string/></type><value>12/31/23</value></setting>
 	<!--// Configure the offset time (in seconds). It ranges from -300 to 300, the default value is blank. //-->
 	<setting name="local_time.offset_time"><type><integer/></type></setting>">
+	<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
+	<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
 	<!--// Configure the time format; 0-12 Hour, 1-24 Hour (default); //-->
 	<setting name="local_time.time_format"><type refid="yealink_time_format_type"/><value>1</value></setting>
 	<!--// Configure the date format; 0-WWW MMM DD (default), 1-DD-MMM-YY, 2-YYYY-MM-DD, 3-DD/MM/YYYY, 4-MM/DD/YY, 5-DD MMM YYYY, 6-WWW DD MMM; //-->
 	<setting name="local_time.date_format"><type refid="yealink_date_format_type"/><value>0</value></setting>
-	<!--// Enable or disable the DHCP Time; 0-Disabled (default), 1-Enabled; //-->
-	<setting name="local_time.dhcp_time"><type><boolean/></type><value>0</value></setting>
-	<!--// Enable or disable the manual time; 0-NTP time, 1-manual time. The default value is 0. //-->
-	<setting name="local_time.manual_time_enable"><type refid="yealink_time_type"/><value>0</value></setting>
+	<!--// Enable or disable the phone to automatically dial out the dialed digits in the pre-dial interface; 0-Disabled (default), 1-Enabled;  //-->
+	<setting name="phone_setting.predial_autodial"><type><boolean/></type><value>0</value></setting>
+	<!--// Configure the time (in seconds) the phone automatically dial out the dialed digits. It ranges from 1 to 14, the default value is 4.  //-->
+	<setting name="phone_setting.inter_digit_time"><type><integer min="1" max="14"/></type><value>4</value></setting>
+	<!--// Configure the backlight time (in seconds). The valid values are: 1-Always on, 60 (default), 120, 300, 600, 1800.  //-->
+	<setting name="phone_setting.backlight_time"><type refid="yealink_backlight_time_type"/><value>60</value></setting>
+	<!--// Configure the keypad lock type; 0-Disabled (default), 1-Menu Key, 2-Function Key, 3-All Keys, 4-Lock&amp;Answer;  //-->
+	<setting name="phone_setting.lock"><type refid="yealink_key_lock_type"/><value>0</value></setting>
+	<!--// Set the unlock password and expiry time (in seconds) of phone lock. It ranges from 0 to 3600, the default value of expiry time is 10. //-->
+	<setting name="phone_setting.phone_lock.unlock_pin"><type><string/></type></setting>
+	<setting name="phone_setting.phone_lock.lock_time_out"><type><integer min="0" max="3600"/></type><value>10</value></setting>
+	<!--// Configure the emergency number, each separated by comma. The default value is 112,911,110.  //-->
+	<setting name="phone_setting.emergency.number"><type><string/></type></setting>
 	<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
 	<setting name="watch_dog.enable"><type><boolean/></type><value>1</value></setting>
+	<!--// 
+	#######################################################################################
+	##                     Configure the access URL of the customized  ringtones         ##                                  
+	#######################################################################################
+	 //-->
+		<setting name="ringtone.url"><type><string/></type></setting>
+	<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
+		<setting name="ringtone.delete"><type><string/></type></setting>
     </group>
     <group name="features">
 	<group name="other">
@@ -925,8 +938,6 @@
 	    ##                      Phone Features                                               ##
 	    #######################################################################################
 	     //-->
-	    <!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="redirect.enable"><type><boolean/></type><value>0</value></setting>
 	</group>
 	<group name="ALWAYS">
 	    <setting name="forward.always.enable"><type><boolean/></type><value>0</value></setting>
@@ -951,8 +962,8 @@
 	    <setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
 	</group>
 	<group name="DND">
-	    <!--//#######################################################################################
-	    ##                                   DND                                                   ##
+	    <!--//#################################################################################
+	    ##                                   DND                                             ##
 	    #######################################################################################
 	    //-->
 	    <!--// #Configure the DND key mode; 0-Phone mode (default), 1-Custom mode. //-->
@@ -997,6 +1008,9 @@
 	    <setting name="features.password_dial.prefix"><type><string/></type></setting>
 	    <!--// #Configure the length of encrypted digits. //-->
 	    <setting name="features.password_dial.length"><type><string/></type></setting>
+
+	    <!--// #Configure the logo mode of the LCD screen; 0-Disabled (default), 1-System logo, 2-Custom logo; //-->
+	    <setting name="phone_setting.lcd_logo.mode"><type refid="LCDLogo_type"/><value>0</value></setting>
 	</group>
 	<group name="AUDIO">
 	    <!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
@@ -1113,9 +1127,9 @@
 	    <setting name="voice.jib.max"><type><integer/></type><value>300</value></setting>
 	    <setting name="voice.jib.normal"><type><integer/></type><value>120</value></setting>
 	</group>
-	<group name="ADVANCED">
+	<group name="ADVANCED" advanced="yes">
 	    <!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
-	    <setting name="voice.side_tone" advanced="yes"><type><integer min="-48" max="0"/></type><value>-3</value></setting>
+	    <setting name="voice.side_tone"><type><integer min="-48" max="0"/></type><value>-3</value></setting>
 	</group>
     </group>
     <group name="tones">
@@ -1141,34 +1155,6 @@
 	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
     </group>
 <group name="other">
-    <group name="security">
-<!--// 
-#######################################################################################
-##         	                   Security Settings                                 ##                   
-#######################################################################################
- //-->
-<!--// Enable or disable the phone to only accept the certificates in the Trusted Certificates list;
-0-Disabled, 1-Enabled (default); //-->
-	<setting name="security.trust_certificates"><type><boolean/></type><value>1</value></setting>
-<!--// Define the login username and password of the user, var and administrator.
-If your username is defined as: security.user_name.admin = adminuser.
-and your password must like this: security.user_password = adminuser:adminpassword.
-adminuser is the value of "security.user_name.admin"; adminpassword is the password you want to set.
-security.user_name.admin = adminuser
-security.user_password = adminuser:adminpwd
-security.user_name.user = user1
-security.user_password = user1:user1pwd
-security.user_name.var = varuser
-security.user_password = varuser:adminpwd //-->
-<!--// TODO: make custom parsing  //-->
-	<setting name="security.user_name.user"><type><string/></type><value>user</value></setting>
-	<setting name="security.user_name.admin"><type><string/></type><value>admin</value></setting>
-	<setting name="security.user_name.var"><type><string/></type><value>custom</value></setting>
-	<setting name="security.user_password"><type><string/></type><value>admin:admin</value></setting>
-<!--// Enable or disable the 3-level permissions (open var); 0-Disabled (default), 1-Enabled;
-Require reboot; //-->
-	<setting name="security.var_enable"><type><boolean/></type><value>1</value></setting>
-    </group>
     <group name="soft-key-layout">
 <!--// 
 #######################################################################################
@@ -1563,15 +1549,8 @@ Require reboot;  //-->
 <!--// Enable or disable the phone to turn off the indicator LEDs of BLF and Call Park keys when the monitored states is idle.
 #0-Disabled (default), 1-Enabled;  //-->
 	<setting name="features.blf_and_callpark_idle_led_enable"><type><boolean/></type><value>0</value></setting>
-<!--// Configure the time (in seconds) the phone automatically dial out the dialed digits. It ranges from 1 to 14, the default value is 4.  //-->
-	<setting name="phone_setting.inter_digit_time"><type><integer/></type><value>4</value></setting>
 <!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
 	<setting name="phone_setting.flash_hook_timer"><type><integer/></type><value>1</value></setting>
-<!--// Configure the keypad lock type; 0-Disabled (default), 1-Menu Key, 2-Function Key, 3-All Keys, 4-Lock&amp;Answer;  //-->
-	<setting name="phone_setting.lock"><type refid="yealink_key_lock_type"/><value>0</value></setting>
-<!--// Set the unlock password and expiry time (in seconds) of phone lock. It ranges from 0 to 3600, the default value of expiry time is 10. //-->
-	<setting name="phone_setting.phone_lock.unlock_pin"><type><string/></type></setting>
-	<setting name="phone_setting.phone_lock.lock_time_out"><type><integer/></type><value>10</value></setting>
 <!--// Configure the ring tone for the phone. System ring tones are: Ring1.wav (default), Ring2.wav...Ring8.wav.
 #You can configure the custom ring tone (Busy.wav) for the phone, the value is: phone_setting.ring_type = Busy.wav  //-->
 	<setting name="phone_setting.ring_type"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
@@ -1581,8 +1560,6 @@ Require reboot;  //-->
 	<setting name="phone_setting.active_backlight_level"><type><integer/></type><value>2</value></setting>
 <!--// Configure the inactive backlight level. It ranges from 1 to 10, the default value is 1. //-->
 	<setting name="phone_setting.inactive_backlight_level"><type><integer/></type><value>1</value></setting>
-<!--// Configure the backlight time (in seconds). The valid values are: 1-Always on, 60 (default), 120, 300, 600, 1800.  //-->
-	<setting name="phone_setting.backlight_time"><type refid="yealink_backlight_time_type"/><value>60</value></setting>
 <!--// Configure the phone background.
 #If you set the custom image (new.png) as phone backgroup, the value is: phone_setting.backgrounds = Config:new.png
 #If you set the system image (pictures(01).png) as phone backgroup, the value is: phone_setting.backgrounds = Resource:pictures(01).png  //-->
@@ -1592,16 +1569,12 @@ Require reboot;  //-->
 <!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
 #phone_setting.ring_for_tranfailed = Ring1.wav  //-->
 	<setting name="phone_setting.ring_for_tranfailed"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
-<!--// Enable or disable the phone to automatically dial out the dialed digits in the pre-dial interface; 0-Disabled (default), 1-Enabled;  //-->
-	<setting name="phone_setting.predial_autodial"><type><boolean/></type><value>0</value></setting>
 <!--// Configure the delay time (in seconds) for the dialnow rule. It ranges from 1 to 14, the default value is 1.  //-->
 	<setting name="phone_setting.dialnow_delay"><type><integer/></type><value>1</value></setting>
 <!--// Enable or disable the user to customize the softkey layout; 0-Disabled (default), 1-Enabled;  //-->
 	<setting name="phone_setting.custom_softkey_enable"><type><boolean/></type><value>0</value></setting>
 <!--// Configure the phone theme; 0-Theme1 (default), 1-Theme2, 2-Theme3, 3-Theme4;  //-->
 	<setting name="phone_setting.theme"><type refid="yealink_theme_type"/><value>0</value></setting>
-<!--// Configure the emergency number, each separated by comma. The default value is 112,911,110.  //-->
-	<setting name="phone_setting.emergency.number"><type><string/></type></setting>
 <!--// Enable or disable the  phone to display the short message automatically; 0-Disabled, 1-Enabled (default);  //-->
 	<setting name="phone_setting.sms_popup_enable"><type><boolean/></type><value>1</value></setting>
 <!--// Enable or disable the phone to turn off the power LED when it is idle; 0-Disabled (default), 1-Enabled;  //-->
@@ -1616,37 +1589,12 @@ Require reboot;  //-->
     <group name="downloads">
 	<!--// 
 	#######################################################################################
-	##                     Configure the access URL of firmware                          ##                                 
-	#######################################################################################
-	 //-->
-		<setting name="firmware.url"><type><string/></type></setting>
-	<!--// 
-	#######################################################################################
-	##                     Configure the access URL of the customized  ringtones         ##                                  
-	#######################################################################################
-	 //-->
-		<setting name="ringtone.url"><type><string/></type></setting>
-	<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
-		<setting name="ringtone.delete"><type><string/></type></setting>
-	<!--// 
-	#######################################################################################
 	##            Configure the access  URL of language file                             ##                                       
 	#######################################################################################
 	 //-->
 		<setting name="gui_lang.url"><type><string/></type></setting>
 	<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
 		<setting name="gui_lang.delete"><type><string/></type></setting>
-	<!--// 
-	#######################################################################################
-	##                     Certificates                                                  ##  
-	#######################################################################################
-	 //-->
-		<setting name="trusted_certificates.url"><type><string/></type></setting>
-	<!--// trusted_certificates.delete = http://localhost/all,delete all the trusted certificates.  //-->
-		<setting name="trusted_certificates.delete"><type><string/></type></setting>
-		<setting name="server_certificates.url"><type><string/></type></setting>
-	<!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
-		<setting name="server_certificates.delete"><type><string/></type></setting>
 	<!--// 
 	#######################################################################################
 	##  Local Contact/DST Time/Dialnow Rule/Replace Rule                                 ##                                                     
@@ -1899,6 +1847,10 @@ Require reboot;  //-->
 	<setting name="ldap.dial_lookup"><type><boolean/></type><value>0</value></setting>
     </group>
 </group>
+<group name="RPS" hidden="yes">
+    <!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
+    <setting name="redirect.enable"><type><boolean/></type><value>0</value></setting>
+</group>
 <group name="ManagementServer" hidden="yes">
 	<!--// 
 	#######################################################################################
@@ -2003,4 +1955,64 @@ Require reboot;  //-->
 	<setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
     </group>
 </group>
+    <group name="upgrade">
+	<!--// 
+	#######################################################################################
+	##                     Configure the access URL of firmware                          ##                                 
+	#######################################################################################
+	 //-->
+	<setting name="firmware.url"><type><string/></type></setting>
+	<!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
+	<setting name="auto_provision.dhcp_option.enable" advanced="yes"><type><boolean/></type><value>1</value></setting>
+	<!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
+	<setting name="auto_provision.dhcp_option.list_user_options" advanced="yes"><type><integer min="128" max="254"/></type><value></value></setting>
+
+	<!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
+	<setting name="auto_provision.dhcp_option.option60_value" advanced="yes"><type><string/></type><value></value></setting>
+    </group>
+    <group name="security">
+	<group name="PASSWORD">
+	    <!--//
+	    #######################################################################################
+	    ##                                 Security Settings                                 ##
+	    #######################################################################################
+	    //-->
+	    <!--// Define the login username and password of the user, var and administrator.
+	    If your username is defined as: security.user_name.admin = adminuser.
+	    and your password must like this: security.user_password = adminuser:adminpassword.
+	    adminuser is the value of "security.user_name.admin"; adminpassword is the password you want to set.
+	    security.user_name.admin = adminuser
+	    security.user_password = adminuser:adminpwd
+	    security.user_name.user = user1
+	    security.user_password = user1:user1pwd
+	    security.user_name.var = varuser
+	    security.user_password = varuser:adminpwd //-->
+	    <!--// TODO: make custom parsing  //-->
+	    <setting name="security.user_name.user"><type><string/></type><value>user</value></setting>
+	    <setting name="security.user_name.admin"><type><string/></type><value>admin</value></setting>
+	    <setting name="security.user_name.var"><type><string/></type><value>custom</value></setting>
+	    <setting name="security.user_password"><type><string/></type><value>admin:admin</value></setting>
+	    <!--// Enable or disable the 3-level permissions (open var); 0-Disabled (default), 1-Enabled;
+	    Require reboot; //-->
+	    <setting name="security.var_enable"><type><boolean/></type><value>1</value></setting>
+	</group>
+	<!--// 
+	#######################################################################################
+	##                     Certificates                                                  ##  
+	#######################################################################################
+	 //-->
+	<group name="TRUSTEDCERTS">
+	    <!--// Enable or disable the phone to only accept the certificates in the Trusted Certificates list;
+	    0-Disabled, 1-Enabled (default); //-->
+	    <setting name="security.trust_certificates"><type><boolean/></type><value>1</value></setting>
+	    <setting name="trusted_certificates.url"><type><string/></type></setting>
+	    <!--// trusted_certificates.delete = http://localhost/all,delete all the trusted certificates.  //-->
+	    <setting name="server_certificates.url"><type><string/></type></setting>
+	    <setting name="trusted_certificates.delete"><type><string/></type></setting>
+	</group>
+	<group name="SERVERCERTS">
+	    <!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
+	    <setting name="server_certificates.delete"><type><string/></type></setting>
+	</group>
+    </group>
 </model>
