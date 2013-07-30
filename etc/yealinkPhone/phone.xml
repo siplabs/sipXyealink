@@ -278,6 +278,7 @@
 	<setting name="path" if="yealinkPhoneSIPT[12].*" hidden="yes"><value>/config/Setting/Setting.cfg</value></setting>
 	<setting name="path_" if="yealinkPhoneSIPT3.*" hidden="yes"><value>/phone/config/system.ini</value></setting>
 	<setting name="TimeZone"><type refid="yealink-timezones"/><value>0</value></setting>
+	<setting name="TimeZoneName"><type refid="yealink-timezonenames"/><value>0</value></setting>
 	<setting name="TimeServer1"/>
 	<setting name="TimeServer2"/>
 	<setting name="Interval"><type><integer /></type><value>1000</value></setting>

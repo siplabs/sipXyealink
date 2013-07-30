@@ -375,6 +375,115 @@
 	<option><label>GMT+12:00</label><value>+12</value></option>
     </enum>
 </type>
+<type id="yealink-timezonenames">
+    <enum>
+	<option><label>-11 Samoa</label><value>Samoa</value></option>
+	<option><label>-10 United States-Hawaii-Aleutian</label><value>United States-Hawaii-Aleutian</value></option>
+	<option><label>-10 United States-Alaska-Aleutian</label><value>United States-Alaska-Aleutian</value></option>
+	<option><label>-9 United States-Alaska Time</label><value>United States-Alaska Time</value></option>
+	<option><label>-8 Canada(Vancouver,Whitehorse)</label><value>Canada(Vancouver,Whitehorse)</value></option>
+	<option><label>-8 Mexico(Tijuana,Mexicali)</label><value>Mexico(Tijuana,Mexicali)</value></option>
+	<option><label>-8 United States-Pacific Time</label><value>United States-Pacific Time</value></option>
+	<option><label>-7 Canada(Edmonton,Calgary)</label><value>Canada(Edmonton,Calgary)</value></option>
+	<option><label>-7 Mexico(Mazatlan,Chihuahua)</label><value>Mexico(Mazatlan,Chihuahua)</value></option>
+	<option><label>-7 United States-Mountain Time</label><value>United States-Mountain Time</value></option>
+	<option><label>-7 United States-MST no DST</label><value>United States-MST no DST</value></option>
+	<option><label>-6 Canada-Manitoba(Winnipeg)</label><value>Canada-Manitoba(Winnipeg)</value></option>
+	<option><label>-6 Chile(Easter Islands)</label><value>Chile(Easter Islands)</value></option>
+	<option><label>-6 Mexico(Mexico City,Acapulco)</label><value>Mexico(Mexico City,Acapulco)</value></option>
+	<option><label>-6 United States-Central Time</label><value>United States-Central Time</value></option>
+	<option><label>-5 Bahamas(Nassau)</label><value>Bahamas(Nassau)</value></option>
+	<option><label>-5 Canada(Montreal,Ottawa,Quebec)</label><value>Canada(Montreal,Ottawa,Quebec)</value></option>
+	<option><label>-5 Cuba(Havana)</label><value>Cuba(Havana)</value></option>
+	<option><label>-5 United States-Eastern Time</label><value>United States-Eastern Time</value></option>
+	<option><label>-4:30 Venezuela(Caracas)</label><value>4:30 Venezuela(Caracas)</value></option>
+	<option><label>-4 Canada(Halifax,Saint John)</label><value>Canada(Halifax,Saint John)</value></option>
+	<option><label>-4 Chile(Santiago)</label><value>Chile(Santiago)</value></option>
+	<option><label>-4 Paraguay(Asuncion)</label><value>Paraguay(Asuncion)</value></option>
+	<option><label>-4 United Kingdom-Bermuda(Bermuda)</label><value>United Kingdom-Bermuda(Bermuda)</value></option>
+	<option><label>-4 United Kingdom(Falkland Islands)</label><value>United Kingdom(Falkland Islands)</value></option>
+	<option><label>-4 Trinidad&amp;Tobago</label><value>Trinidad&amp;Tobago</value></option>
+	<option><label>-3:30 Canada-New Foundland(St.Johns)</label><value>3:30 Canada-New Foundland(St.Johns)</value></option>
+	<option><label>-3 Denmark-Greenland(Nuuk)</label><value>Denmark-Greenland(Nuuk)</value></option>
+	<option><label>-3 Argentina(Buenos Aires)</label><value>Argentina(Buenos Aires)</value></option>
+	<option><label>-3 Brazil(no DST)</label><value>Brazil(no DST)</value></option>
+	<option><label>-3 Brazil(DST)</label><value>Brazil(DST)</value></option>
+	<option><label>-2 Brazil(no DST)</label><value>Brazil(no DST)</value></option>
+	<option><label>-1 Portugal(Azores)</label><value>Portugal(Azores)</value></option>
+	<option><label>0 GMT</label><value>GMT</value></option>
+	<option><label>0 Greenland</label><value>Greenland</value></option>
+	<option><label>0 Denmark-Faroe Islands(Torshavn)</label><value>Denmark-Faroe Islands(Torshavn)</value></option>
+	<option><label>0 Ireland(Dublin)</label><value>Ireland(Dublin)</value></option>
+	<option><label>0 Portugal(Lisboa,Porto,Funchal)</label><value>Portugal(Lisboa,Porto,Funchal)</value></option>
+	<option><label>0 Spain-Canary Islands(Las Palmas)</label><value>Spain-Canary Islands(Las Palmas)</value></option>
+	<option><label>0 United Kingdom(London)</label><value>United Kingdom(London)</value></option>
+	<option><label>0 Morocco</label><value>Morocco</value></option>
+	<option><label>+1 Albania(Tirane)</label><value>Albania(Tirane)</value></option>
+	<option><label>+1 Austria(Vienna)</label><value>Austria(Vienna)</value></option>
+	<option><label>+1 Belgium(Brussels)</label><value>Belgium(Brussels)</value></option>
+	<option><label>+1 Caicos</label><value>Caicos</value></option>
+	<option><label>+1 Chad</label><value>Chad</value></option>
+	<option><label>+1 Croatia(Zagreb)</label><value>Croatia(Zagreb)</value></option>
+	<option><label>+1 Czech Republic(Prague)</label><value>Czech Republic(Prague)</value></option>
+	<option><label>+1 Denmark(Kopenhagen)</label><value>Denmark(Kopenhagen)</value></option>
+	<option><label>+1 France(Paris)</label><value>France(Paris)</value></option>
+	<option><label>+1 Germany(Berlin)</label><value>Germany(Berlin)</value></option>
+	<option><label>+1 Hungary(Budapest)</label><value>Hungary(Budapest)</value></option>
+	<option><label>+1 Italy(Rome)</label><value>Italy(Rome)</value></option>
+	<option><label>+1 Luxembourg(Luxembourg)</label><value>Luxembourg(Luxembourg)</value></option>
+	<option><label>+1 Macedonia(Skopje)</label><value>Macedonia(Skopje)</value></option>
+	<option><label>+1 Netherlands(Amsterdam)</label><value>Netherlands(Amsterdam)</value></option>
+	<option><label>+1 Namibia(Windhoek)</label><value>Namibia(Windhoek)</value></option>
+	<option><label>+2 Estonia(Tallinn)</label><value>Estonia(Tallinn)</value></option>
+	<option><label>+2 Finland(Helsinki)</label><value>Finland(Helsinki)</value></option>
+	<option><label>+2 Gaza Strip(Gaza)</label><value>Gaza Strip(Gaza)</value></option>
+	<option><label>+2 Greece(Athens)</label><value>Greece(Athens)</value></option>
+	<option><label>+2 Israel(Tel Aviv)</label><value>Israel(Tel Aviv)</value></option>
+	<option><label>+2 Jordan(Amman)</label><value>Jordan(Amman)</value></option>
+	<option><label>+2 Latvia(Riga)</label><value>Latvia(Riga)</value></option>
+	<option><label>+2 Lebanon(Beirut)</label><value>Lebanon(Beirut)</value></option>
+	<option><label>+2 Moldova(Kishinev)</label><value>Moldova(Kishinev)</value></option>
+	<option><label>+2 Russia(Kaliningrad)</label><value>Russia(Kaliningrad)</value></option>
+	<option><label>+2 Romania(Bucharest)</label><value>Romania(Bucharest)</value></option>
+	<option><label>+2 Syria(Damascus)</label><value>Syria(Damascus)</value></option>
+	<option><label>+2 Turkey(Ankara)</label><value>Turkey(Ankara)</value></option>
+	<option><label>+2 Ukraine(Kyiv,Odessa)</label><value>Ukraine(Kyiv,Odessa)</value></option>
+	<option><label>+3 East Africa Time</label><value>East Africa Time</value></option>
+	<option><label>+3 Iraq(Baghdad)</label><value>Iraq(Baghdad)</value></option>
+	<option><label>+3 Russia(Moscow)</label><value>Russia(Moscow)</value></option>
+	<option><label>+3:30 Iran(Teheran)</label><value>3:30 Iran(Teheran)</value></option>
+	<option><label>+4 Armenia(Yerevan)</label><value>Armenia(Yerevan)</value></option>
+	<option><label>+4 Azerbaijan(Baku)</label><value>Azerbaijan(Baku)</value></option>
+	<option><label>+4 Georgia(Tbilisi)</label><value>Georgia(Tbilisi)</value></option>
+	<option><label>+4 Kazakhstan(Aktau)</label><value>Kazakhstan(Aktau)</value></option>
+	<option><label>+4 Russia(Samara)</label><value>Russia(Samara)</value></option>
+	<option><label>+5 Kazakhstan(Aqtobe)</label><value>Kazakhstan(Aqtobe)</value></option>
+	<option><label>+5 Kyrgyzstan(Bishkek)</label><value>Kyrgyzstan(Bishkek)</value></option>
+	<option><label>+5 Pakistan(Islamabad)</label><value>Pakistan(Islamabad)</value></option>
+	<option><label>+5 Russia(Chelyabinsk)</label><value>Russia(Chelyabinsk)</value></option>
+	<option><label>+5:30 India(Calcutta)</label><value>5:30 India(Calcutta)</value></option>
+	<option><label>+6 Kazakhstan(Astana,Almaty)</label><value>Kazakhstan(Astana,Almaty)</value></option>
+	<option><label>+6 Russia(Novosibirsk,Omsk)</label><value>Russia(Novosibirsk,Omsk)</value></option>
+	<option><label>+7 Russia(Krasnoyarsk)</label><value>Russia(Krasnoyarsk)</value></option>
+	<option><label>+7 Thailand(Bangkok)</label><value>Thailand(Bangkok)</value></option>
+	<option><label>+8 China(Beijing)</label><value>China(Beijing)</value></option>
+	<option><label>+8 Singapore(Singapore)</label><value>Singapore(Singapore)</value></option>
+	<option><label>+8 Australia(Perth)</label><value>Australia(Perth)</value></option>
+	<option><label>+9 Korea(Seoul)</label><value>Korea(Seoul)</value></option>
+	<option><label>+9 Japan(Tokyo)</label><value>Japan(Tokyo)</value></option>
+	<option><label>+9:30 Australia(Adelaide)</label><value>9:30 Australia(Adelaide)</value></option>
+	<option><label>+9:30 Australia(Darwin)</label><value>9:30 Australia(Darwin)</value></option>
+	<option><label>+10 Australia(Sydney,Melbourne,Canberra)</label><value>Australia(Sydney,Melbourne,Canberra)</value></option>
+	<option><label>+10 Australia(Brisbane)</label><value>Australia(Brisbane)</value></option>
+	<option><label>+10 Australia(Hobart)</label><value>Australia(Hobart)</value></option>
+	<option><label>+10 Russia(Vladivostok)</label><value>Russia(Vladivostok)</value></option>
+	<option><label>+10:30 Australia(Lord Howe Islands)</label><value>10:30 Australia(Lord Howe Islands)</value></option>
+	<option><label>+11 New Caledonia(Noumea)</label><value>New Caledonia(Noumea)</value></option>
+	<option><label>+12 New Zealand(Wellington,Auckland)</label><value>New Zealand(Wellington,Auckland)</value></option>
+	<option><label>+12:45 New Zealand(Chatham Islands)</label><value>12:45 New Zealand(Chatham Islands)</value></option>
+	<option><label>+13 Tonga(Nukualofa)</label><value>Tonga(Nukualofa)</value></option>
+    </enum>
+</type>
 <type id="yealink-codecs">
     <enum>
         <option><label>Disabled</label><value>-1</value></option>
