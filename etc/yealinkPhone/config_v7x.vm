@@ -58,10 +58,22 @@ account.${L}.backup_outbound_port = 5060
 #end
 
 #foreach ($group in $phone.Settings.Values)
+#${group.name}
 #foreach ($subgroup in $group.Values)
-#${group.name}/${subgroup.name}
+#if(${subgroup.isLeaf()})
+#if(${subgroup.Value})
+${subgroup.profileName} = $!{subgroup.Value}
+#else
+${subgroup.profileName} = %NULL%
+#end
+#else
 #foreach ($setting in $subgroup.Values)
+#if(${setting.Value})
 ${setting.profileName} = $!{setting.Value}
+#else
+${setting.profileName} = %NULL%
+#end
+#end
 #end
 #end
 #end

@@ -83,7 +83,7 @@ public class YealinkConstants {
     public static final String ADVANCED_MUSIC_SERVER_URI_V6X_SETTING = "account/MusicServerUri";
     public static final String ADVANCED_MUSIC_SERVER_URI_V7X_SETTING = "advanced/music_server_uri";
     public static final String LANG_FILE_NAME_V6X_SETTING = "upgrade/Lang/server_address";
-    public static final String LANG_FILE_NAME_V7X_SETTING = "downloads/gui_lang.url";
+    public static final String LANG_FILE_NAME_V7X_SETTING = "preference/gui_lang.url";
 // T2X except T20
     public static final String LOGO_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
     public static final String LOGO_FILE_NAME_V7X_SETTING = "downloads/lcd_logo.url";
@@ -95,6 +95,4 @@ public class YealinkConstants {
     public static final String DIAL_NOW_URL_V6X_T2X_SETTING = "dialplan/DialNow/server_address";
     public static final String DIAL_NOW_URL_V6X_T3X_SETTING = "dialplan/DialNow/URL";
     public static final String DIAL_NOW_URL_V7X_SETTING = "downloads/dialplan_dialnow.url";
-
-
 }
