@@ -74,11 +74,11 @@ public class YealinkConstants {
 
     public static final String FIRMWARE_SERVER_ADDRESS_SETTING = "upgrade/firmware/server_ip";
     public static final String FIRMWARE_URL_V6X_SETTING = "upgrade/firmware/url";
-    public static final String FIRMWARE_URL_V7X_SETTING = "downloads/firmware.url";
+    public static final String FIRMWARE_URL_V7X_SETTING = "upgrade/firmware/firmware.url";
     public static final String FIRMWARE_HTTP_URL_SETTING = "upgrade/firmware/http_url";
     public static final String FIRMWARE_NAME_SETTING = "upgrade/firmware/firmware_name";
     public static final String AUTOPROVISIONING_SERVER_URL_V6X_SETTING = "upgrade/autoprovision/strServerURL";
-    public static final String AUTOPROVISIONING_SERVER_URL_V7X_SETTING = "auto-provisioning/auto_provision.server.url";
+    public static final String AUTOPROVISIONING_SERVER_URL_V7X_SETTING = "upgrade/autoprovision/auto_provision.server.url";
     public static final String AUTOPROVISIONING_SERVER_ADDRESS_V6X_SETTING = "upgrade/autoprovision/server_address";
     public static final String ADVANCED_MUSIC_SERVER_URI_V6X_SETTING = "account/MusicServerUri";
     public static final String ADVANCED_MUSIC_SERVER_URI_V7X_SETTING = "advanced/music_server_uri";

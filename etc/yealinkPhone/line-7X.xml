@@ -159,13 +159,13 @@
 <!-- Configure the ACD subscribe period (in seconds). It ranges from 120 to 3600 (default).-->
 <setting name="subscribe_acd_expires" advanced="yes"><type><integer/></type><value>3600</value></setting>
 <!-- Enable or disable the phone to use the customized theme; 0-Disabled (default), 1-Enabled;-->
-<setting name="idle_screen_enable" advanced="yes"><type><boolean/></type><value>0</value></setting>
+<setting name="idle_screen_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>0</value></setting>
 <!-- Define the access URL of the customized theme.-->
-<setting name="idle_screen_url" advanced="yes"><type><string/></type><value></value></setting>
+<setting name="idle_screen_url" advanced="yes" if="yealinkPhoneSIPT38G"><type><string/></type><value></value></setting>
 <!-- Enable or disable the phone to support the simplified SIP header; 0-Disabled (default), 1-Enabled;-->
 <setting name="compact_header_enable" advanced="yes"><type><boolean/></type><value>0</value></setting>
 <!-- Enable or disable the phone to display the picture when receiving the specified SIP message; 0-Disabled, 1-Enabled (default);-->
-<setting name="picture_info_enable" advanced="yes"><type><boolean/></type><value>1</value></setting>
+<setting name="picture_info_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>1</value></setting>
     </group>
     <group name="codecs">
 	<!-- Audio codecs for account 1 (Y ranges from 1 to 13).-->
