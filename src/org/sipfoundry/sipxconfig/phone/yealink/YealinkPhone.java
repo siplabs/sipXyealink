@@ -81,10 +81,10 @@ public class YealinkPhone extends Phone {
         return 0;
     }
 
-    public int getSoftKeyCount() {
+    public int getMemoryKeyCount() {
         YealinkModel model = (YealinkModel) getModel();
         if (null != model) {
-            return model.getSoftKeyCount();
+            return model.getMemoryKeyCount();
         } else {
             return 0;
         }

@@ -1187,8 +1187,8 @@
 	<setting name="linekey.6.type" if="yealinkPhoneSIPT38G|yealinkPhoneSIPT2[68].*"><type><string/></type></setting>
 	<setting name="linekey.6.xml_phonebook" if="yealinkPhoneSIPT38G|yealinkPhoneSIPT2[68].*"><type><string/></type></setting>
 	<setting name="linekey.6.label" if="yealinkPhoneSIPT38G|yealinkPhoneSIPT2[68].*"><type><string/></type></setting>
-    </group>
-    <group name="programmable-keys">
+	</group>
+	<group name="programmable-keys">
 	<!--//
 	##########################################################################################
 	##                             Programmable Key (For T38G only)                         ##
@@ -1236,21 +1236,24 @@
 	<setting name="programablekey.4.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.4.history_type"><type><string/></type></setting>
 	<setting name="programablekey.4.label"><type><string/></type></setting>
-	<setting name="programablekey.5.type"><type refid="V70_pk_type"/><value>0</value></setting>
 
+	<!--// Up->History //-->
+	<setting name="programablekey.5.type"><type refid="V70_pk_type"/><value>28</value></setting>
 	<setting name="programablekey.5.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.5.value"><type><string/></type></setting>
 	<setting name="programablekey.5.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.5.history_type"><type><string/></type></setting>
 	<setting name="programablekey.5.label"><type><string/></type></setting>
 
-	<setting name="programablekey.6.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<!--// Down->Directory //-->
+	<setting name="programablekey.6.type"><type refid="V70_pk_type"/><value>28</value></setting>
 	<setting name="programablekey.6.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.6.value"><type><string/></type></setting>
 	<setting name="programablekey.6.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.6.history_type"><type><string/></type></setting>
 	<setting name="programablekey.6.label"><type><string/></type></setting>
 
+	<!--// Left->N/A //-->
 	<setting name="programablekey.7.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.7.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.7.value"><type><string/></type></setting>
@@ -1258,6 +1261,7 @@
 	<setting name="programablekey.7.history_type"><type><string/></type></setting>
 	<setting name="programablekey.7.label"><type><string/></type></setting>
 
+	<!--// Right->N/A //-->
 	<setting name="programablekey.8.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.8.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.8.value"><type><string/></type></setting>
@@ -1265,13 +1269,15 @@
 	<setting name="programablekey.8.history_type"><type><string/></type></setting>
 	<setting name="programablekey.8.label"><type><string/></type></setting>
 
-	<setting name="programablekey.9.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<!--// Ok->Status //-->
+	<setting name="programablekey.9.type"><type refid="V70_pk_type"/><value>33</value></setting>
 	<setting name="programablekey.9.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.9.value"><type><string/></type></setting>
 	<setting name="programablekey.9.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.9.history_type"><type><string/></type></setting>
 	<setting name="programablekey.9.label"><type><string/></type></setting>
 
+	<!--// Cancel->N/A //-->
 	<setting name="programablekey.10.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.10.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.10.value"><type><string/></type></setting>
@@ -1279,6 +1285,7 @@
 	<setting name="programablekey.10.history_type"><type><string/></type></setting>
 	<setting name="programablekey.10.label"><type><string/></type></setting>
 
+	<!--// Conference->N/A //-->
 	<setting name="programablekey.11.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.11.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.11.value"><type><string/></type></setting>
@@ -1286,6 +1293,7 @@
 	<setting name="programablekey.11.history_type"><type><string/></type></setting>
 	<setting name="programablekey.11.label"><type><string/></type></setting>
 
+	<!--// Hold->N/A //-->
 	<setting name="programablekey.12.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.12.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.12.value"><type><string/></type></setting>
@@ -1293,6 +1301,7 @@
 	<setting name="programablekey.12.history_type"><type><string/></type></setting>
 	<setting name="programablekey.12.label"><type><string/></type></setting>
 
+	<!--// Tran->N/A //-->
 	<setting name="programablekey.13.type"><type refid="V70_pk_type"/><value>0</value></setting>
 	<setting name="programablekey.13.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.13.value"><type><string/></type></setting>
@@ -1313,9 +1322,63 @@
 	<setting name="programablekey.15.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.15.history_type"><type><string/></type></setting>
 	<setting name="programablekey.15.label"><type><string/></type></setting>
+	</group>
     </group>
-</group>
-<group name="voice">
+    <group name="action-url">
+	<!--//
+	#######################################################################################
+	#                              Action URL Settings                                   ##
+	#######################################################################################
+	action_url.setup_completed Inform the server that the phone has completed the startup.
+	action_url.dnd_on Inform the server that the DND is activated on the phone. 
+	The value format is: http://IP address of server/help.xml?variable name=variable value. 
+	The valid variable values are: $mac MAC address of phone, $ip The current IP address of phone, $model Phone model, $firmware Phone firmware version. 
+	$active_ur he SIP URI of the current account when the phone is in the incoming state, outgoing state or during conversation. 
+	$active_use he username of the current account when the phone is in the incoming state, outgoing state or during conversation.
+	$active_hos he host name of the current account when the phone is in the incoming state, the outgoing state or during conversation. 
+	$loca he SIP URI of the caller when outgoing calls or the SIP URI of the callee when receiving calls. 
+	$remot he SIP URI of the callee when outgoing calls or the SIP URI of the caller when receiving calls.
+	$display_loca he display name of the caller when outgoing calls or the display name of the callee when receiving calls.
+	$display_remot he display name of the callee when outgoing calls or the display name of the caller when receiving calls.
+	$call_i he caller ID when in the incoming state, the outgoing state or during conversation.
+	For example, action_url.log_on = http://192.168.1.20/help.xml?mac=$mac
+	//-->
+	<setting name="action_url.setup_completed"><type><string/></type></setting>
+	<setting name="action_url.log_on"><type><string/></type></setting>
+	<setting name="action_url.log_off"><type><string/></type></setting>
+	<setting name="action_url.register_failed"><type><string/></type></setting>
+	<setting name="action_url.off_hook"><type><string/></type></setting>
+	<setting name="action_url.on_hook"><type><string/></type></setting>
+	<setting name="action_url.incoming_call"><type><string/></type></setting>
+	<setting name="action_url.outgoing_call"><type><string/></type></setting>
+	<setting name="action_url.call_established"><type><string/></type></setting>
+	<setting name="action_url.call_terminated"><type><string/></type></setting>
+	<setting name="action_url.dnd_on"><type><string/></type></setting>
+	<setting name="action_url.dnd_off"><type><string/></type></setting>
+	<setting name="action_url.always_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.always_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.busy_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.busy_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.no_answer_fwd_on"><type><string/></type></setting>
+	<setting name="action_url.no_answer_fwd_off"><type><string/></type></setting>
+	<setting name="action_url.transfer_call"><type><string/></type></setting>
+	<setting name="action_url.blind_transfer_call"><type><string/></type></setting>
+	<setting name="action_url.attended_transfer_call"><type><string/></type></setting>
+	<setting name="action_url.hold"><type><string/></type></setting>
+	<setting name="action_url.unhold"><type><string/></type></setting>
+	<setting name="action_url.mute"><type><string/></type></setting>
+	<setting name="action_url.unmute"><type><string/></type></setting>
+	<setting name="action_url.missed_call"><type><string/></type></setting>
+	<setting name="action_url.ip_change"><type><string/></type></setting>
+	<setting name="action_url.busy_to_idle"><type><string/></type></setting>
+	<setting name="action_url.idle_to_busy"><type><string/></type></setting>
+	<setting name="action_url.forward_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.reject_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.answer_new_incoming_call"><type><string/></type></setting>
+	<setting name="action_url.transfer_finished"><type><string/></type></setting>
+	<setting name="action_url.transfer_failed"><type><string/></type></setting>
+    </group>
+    <group name="voice">
 	<!--// 
 	#######################################################################################
 	##                                Voice                                              ##
@@ -1341,6 +1404,34 @@
 	    <!--// Configure the volume of the side tone. It ranges from -48 to 0, the default value is -3. //-->
 	    <setting name="voice.side_tone"><type><integer min="-48" max="0"/></type><value>-3</value></setting>
 	</group>
+    </group>
+    <group name="alert-info">
+	<!--//
+	#######################################################################################
+	##                     Distinctive Ring Tones                                        ##
+	#######################################################################################
+	//-->
+	<!--// "X" ranges from 1 to 10; 
+	Configure the text to map the keywords contained in the "Alert-info" header.
+	distinctive_ring_tones.alert_info.X.text = family
+	Specify the ring tone for each text. It ranges from 1 to 8. The default value 1 stands for Ring1.wav.
+	distinctive_ring_tones.alert_info.X.ringer = 1 //-->
+	<setting name="distinctive_ring_tones.alert_info.1.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.1.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.2.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.2.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.3.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.3.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.4.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.4.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.5.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.5.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.6.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.6.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.7.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.7.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.8.text"><type><string/></type></setting>
+	<setting name="distinctive_ring_tones.alert_info.8.ringer"><type><integer/></type><value>1</value></setting>
     </group>
     <group name="tones">
 	<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
@@ -1411,60 +1502,6 @@
 	    <setting name="expansion_module.1.key.1.pickup_value"><type><string/></type></setting>
 	    <setting name="expansion_module.1.key.1.label"><type><string/></type></setting>
 	</group>
-	<group name="action-urls">
-	    <!--//
-	    #######################################################################################
-	    #                              Action URL Settings                                   ##
-	    #######################################################################################
-
-	    action_url.setup_completed Inform the server that the phone has completed the startup.
-	    action_url.dnd_on Inform the server that the DND is activated on the phone. 
-	    The value format is: http://IP address of server/help.xml?variable name=variable value. 
-	    The valid variable values are: $mac MAC address of phone, $ip The current IP address of phone, $model Phone model, $firmware Phone firmware version. 
-	    $active_ur he SIP URI of the current account when the phone is in the incoming state, outgoing state or during conversation. 
-	    $active_use he username of the current account when the phone is in the incoming state, outgoing state or during conversation.
-	    $active_hos he host name of the current account when the phone is in the incoming state, the outgoing state or during conversation. 
-	    $loca he SIP URI of the caller when outgoing calls or the SIP URI of the callee when receiving calls. 
-	    $remot he SIP URI of the callee when outgoing calls or the SIP URI of the caller when receiving calls.
-	    $display_loca he display name of the caller when outgoing calls or the display name of the callee when receiving calls.
-	    $display_remot he display name of the callee when outgoing calls or the display name of the caller when receiving calls.
-	    $call_i he caller ID when in the incoming state, the outgoing state or during conversation.
-	    For example, action_url.log_on = http://192.168.1.20/help.xml?mac=$mac
-	    //-->
-	    <setting name="action_url.setup_completed"><type><string/></type></setting>
-	    <setting name="action_url.log_on"><type><string/></type></setting>
-	    <setting name="action_url.log_off"><type><string/></type></setting>
-	    <setting name="action_url.register_failed"><type><string/></type></setting>
-	    <setting name="action_url.off_hook"><type><string/></type></setting>
-	    <setting name="action_url.on_hook"><type><string/></type></setting>
-	    <setting name="action_url.incoming_call"><type><string/></type></setting>
-	    <setting name="action_url.outgoing_call"><type><string/></type></setting>
-	    <setting name="action_url.call_established"><type><string/></type></setting>
-	    <setting name="action_url.dnd_on"><type><string/></type></setting>
-	    <setting name="action_url.dnd_off"><type><string/></type></setting>
-	    <setting name="action_url.always_fwd_on"><type><string/></type></setting>
-	    <setting name="action_url.always_fwd_off"><type><string/></type></setting>
-	    <setting name="action_url.busy_fwd_on"><type><string/></type></setting>
-	    <setting name="action_url.busy_fwd_off"><type><string/></type></setting>
-	    <setting name="action_url.no_answer_fwd_on"><type><string/></type></setting>
-	    <setting name="action_url.no_answer_fwd_off"><type><string/></type></setting>
-	    <setting name="action_url.transfer_call"><type><string/></type></setting>
-	    <setting name="action_url.blind_transfer_call"><type><string/></type></setting>
-	    <setting name="action_url.attended_transfer_call"><type><string/></type></setting>
-	    <setting name="action_url.hold"><type><string/></type></setting>
-	    <setting name="action_url.unhold"><type><string/></type></setting>
-	    <setting name="action_url.mute"><type><string/></type></setting>
-	    <setting name="action_url.unmute"><type><string/></type></setting>
-	    <setting name="action_url.missed_call"><type><string/></type></setting>
-	    <setting name="action_url.call_terminated"><type><string/></type></setting>
-	    <setting name="action_url.busy_to_idle"><type><string/></type></setting>
-	    <setting name="action_url.idle_to_busy"><type><string/></type></setting>
-	    <setting name="action_url.forward_incoming_call"><type><string/></type></setting>
-	    <setting name="action_url.reject_incoming_call"><type><string/></type></setting>
-	    <setting name="action_url.answer_new_incoming_call"><type><string/></type></setting>
-	    <setting name="action_url.transfer_finished"><type><string/></type></setting>
-	    <setting name="action_url.transfer_failed"><type><string/></type></setting>
-	</group>
 	<group name="hot-desking">
 	    <!--//
 	    #######################################################################################
@@ -1494,34 +1531,6 @@
 	    <setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
 	    <setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
 	    <setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
-	</group>
-	<group name="alert-info">
-	<!--//
-	#######################################################################################
-	##                     Distinctive Ring Tones                                        ##
-	#######################################################################################
-	//-->
-	<!--// "X" ranges from 1 to 10; 
-	Configure the text to map the keywords contained in the "Alert-info" header.
-	distinctive_ring_tones.alert_info.X.text = family
-	Specify the ring tone for each text. It ranges from 1 to 8. The default value 1 stands for Ring1.wav.
-	distinctive_ring_tones.alert_info.X.ringer = 1 //-->
-	    <setting name="distinctive_ring_tones.alert_info.1.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.1.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.2.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.2.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.3.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.3.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.4.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.4.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.5.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.5.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.6.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.6.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.7.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.7.ringer"><type><integer/></type><value>1</value></setting>
-	    <setting name="distinctive_ring_tones.alert_info.8.text"><type><string/></type></setting>
-	    <setting name="distinctive_ring_tones.alert_info.8.ringer"><type><integer/></type><value>1</value></setting>
 	</group>
 	<group name="auto-redial">
 	    <!--//
@@ -1673,10 +1682,13 @@
 	    <setting name="dialplan.block_out.line_id.10"><type><string/></type></setting>
 	</group>
 	<group name="replace">
-	<!--// Configure the replace rule. X ranges from 1 to 20.
-		dialplan.replace.prefix.x = 
-		dialplan.replace.replace.x = 
-	 //-->
+	<!--//
+	    #Configure the replace rule. X ranges from 1 to 20.
+	    #dialplan.item.X = Enabled,Prefix,Replaced,LineID
+	    #Enabled: Enable or disable the replace rule. 0-Disabled, 1-Enabled; Prefix: Specify the numbers that need replacing; 
+	    #Replaced: Specify the alternate numbers;
+	    #LineID: Specify the line ID to apply the replace rule,multiple lines ID must be separated by a comma;
+	//-->
 	    <setting name="dialplan.item.1"><type><string/></type></setting>
 	    <setting name="dialplan.item.2"><type><string/></type></setting>
 	    <setting name="dialplan.item.3"><type><string/></type></setting>

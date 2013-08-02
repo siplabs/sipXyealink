@@ -86,6 +86,56 @@
     		</type>
 		<description>38.x.x.x.rom</description>
         </setting>
+	<setting name="yealink_VP530.rom">
+    		<label>VP530</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>VP530.rom</rename>
+    			</file>
+    		</type>
+		<description>23.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_W52.rom">
+    		<label>W52</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>W52.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 25.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T41.rom">
+    		<label>SIP-T41G</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T41.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 36.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T42.rom">
+    		<label>SIP-T42G</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T42.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 29.x.x.x.rom</description>
+        </setting>
+	<setting name="yealink_SIP-T46.rom">
+    		<label>SIP-T46G</label>
+    		<type>
+    			<file>
+    				<contentType>application/binary</contentType>
+    				<rename>T36.rom</rename>
+    			</file>
+    		</type>
+		<description>Firmware binary in 28.x.x.x.rom</description>
+        </setting>
         <setting name="Logo132x64.dob">
             <label>Logo</label>
             <type>

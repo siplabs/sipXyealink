@@ -31,7 +31,7 @@ public final class YealinkModel extends PhoneModel {
     private String m_directoryProfileTemplate;
     private String m_dialNowProfileTemplate;
     private boolean m_noHD;
-    private int m_softKeyCount;
+    private int m_memoryKeyCount;
 
     public YealinkModel() {
     }
@@ -49,32 +49,32 @@ public final class YealinkModel extends PhoneModel {
         return VER_6X;
     }
 
-    public void setDefaultVersion(DeviceVersion ver) {
-        m_deviceVersion = ver;
+    public void setDefaultVersion(DeviceVersion value) {
+        m_deviceVersion = value;
     }
 
     public DeviceVersion getDefaultVersion() {
         return m_deviceVersion;
     }
 
-    public void setName(String name) {
-        m_name = name;
+    public void setName(String value) {
+        m_name = value;
     }
 
     public String getName() {
         return m_name;
     }
 
-    public void setDirectoryProfileTemplate(String name) {
-        m_directoryProfileTemplate = name;
+    public void setDirectoryProfileTemplate(String value) {
+        m_directoryProfileTemplate = value;
     }
 
     public String getDirectoryProfileTemplate() {
         return m_directoryProfileTemplate;
     }
 
-    public void setDialNowProfileTemplate(String name) {
-        m_dialNowProfileTemplate = name;
+    public void setDialNowProfileTemplate(String value) {
+        m_dialNowProfileTemplate = value;
     }
 
     public String getDialNowProfileTemplate() {
@@ -85,16 +85,16 @@ public final class YealinkModel extends PhoneModel {
         return m_hasSeparateDialNow;
     }
 
-    public void setHasSeparateDialNow(boolean hasSeparateDialNow) {
-        m_hasSeparateDialNow = hasSeparateDialNow;
+    public void setHasSeparateDialNow(boolean value) {
+        m_hasSeparateDialNow = value;
     }
 
     public boolean getUsePhonebook() {
         return m_usePhonebook;
     }
 
-    public void setUsePhonebook(boolean usePhonebook) {
-        m_usePhonebook = usePhonebook;
+    public void setUsePhonebook(boolean value) {
+        m_usePhonebook = value;
     }
 
     public boolean getNoHD() {
@@ -105,11 +105,11 @@ public final class YealinkModel extends PhoneModel {
         m_noHD = noHD;
     }
 
-    public int getSoftKeyCount() {
-        return m_softKeyCount;
+    public int getMemoryKeyCount() {
+        return m_memoryKeyCount;
     }
 
-    public void setSoftKeyCount(int softKeyCount) {
-        m_softKeyCount = softKeyCount;
+    public void setMemoryKeyCount(int value) {
+        m_memoryKeyCount = value;
     }
 }

@@ -45,7 +45,7 @@
 	<property name="label" value="Yealink SIP-T18(P)" />
 	<property name="name" value="T18" />
 	<property name="maxLineCount" value="1" />
-	<property name="softKeyCount" value="2" />
+	<property name="memoryKeyCount" value="2" />
 	<property name="usePhonebook" value="false" />
 	<property name="noHD" value="true" />
 </bean>
@@ -66,7 +66,7 @@
 	<property name="label" value="Yealink SIP-T26(P)" />
 	<property name="name" value="T26" />
 	<property name="maxLineCount" value="3" />
-	<property name="softKeyCount" value="10" />
+	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
 		<set>
 			<value>ExpansionPanels</value>
@@ -78,7 +78,7 @@
 	<property name="label" value="Yealink SIP-T28(P)" />
 	<property name="name" value="T28" />
 	<property name="maxLineCount" value="6" />
-	<property name="softKeyCount" value="10" />
+	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
 		<set>
 			<value>ExpansionPanels</value>
@@ -90,21 +90,55 @@
 	<property name="label" value="Yealink SIP-T32G" />
 	<property name="name" value="T32" />
 	<property name="maxLineCount" value="3" />
-	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
-	<property name="softKeyCount" value="0" />
+	<property name="memoryKeyCount" value="0" />
 </bean>
 
 <bean id="yealinkPhoneSIPT38G" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T38G" />
 	<property name="name" value="T38" />
 	<property name="maxLineCount" value="6" />
-	<property name="profileTemplate" value="yealinkPhone/config_v6x_aries.vm" />
-	<property name="softKeyCount" value="10" />
+	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
 		<set>
 			<value>ExpansionPanels</value>
 		</set>
-    </property>
+	</property>
+</bean>
+
+<bean id="yealinkPhoneVP530" parent="yealinkModel">
+	<property name="label" value="Yealink VP530" />
+	<property name="name" value="VP530" />
+	<property name="maxLineCount" value="4" />
+	<property name="memoryKeyCount" value="0" />
+</bean>
+
+<bean id="yealinkPhoneSIPT42P" parent="yealinkModel">
+	<property name="label" value="Yealink SIP-T42G" />
+	<property name="name" value="T42" />
+	<property name="maxLineCount" value="3" />
+	<property name="supportedFeatures">
+		<set>
+			<value>ExpansionPanels</value>
+		</set>
+	</property>
+</bean>
+
+<bean id="yealinkPhoneSIPT46G" parent="yealinkModel">
+	<property name="label" value="Yealink SIP-T46G" />
+	<property name="name" value="T46" />
+	<property name="maxLineCount" value="6" />
+	<property name="memoryKeyCount" value="10" />
+	<property name="supportedFeatures">
+		<set>
+			<value>ExpansionPanels</value>
+		</set>
+	</property>
+</bean>
+
+<bean id="yealinkPhoneW52" parent="yealinkModel">
+	<property name="label" value="Yealink W52" />
+	<property name="name" value="W52" />
+	<property name="maxLineCount" value="5" />
 </bean>
 
 <!--// Files uploading specification //-->
