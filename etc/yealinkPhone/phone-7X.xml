@@ -910,6 +910,7 @@
 	<setting name="local_time.summer_time"><type refid="DST_mode_type"/><value>2</value></setting>
 	<!--// Configure the DST type when the DST feature is enabled; 0-By Date (default), 1-By Week; //-->
 	<setting name="local_time.dst_time_type"><type refid="DST_time_type"/><value>0</value></setting>
+	<setting name="auto_dst.url" advanced="yes"><type><string/></type></setting>
 	<!--// Configure the start time of DST. The default value is 1/1/0.
 	    If the DST type is configured as By Date, the value format is Month/Day/Hour. For example, the value 5/20/10 means the start time is at 10:00 on May 20.  
 	    If the DST type is configured as By Week, the value format is Month/Day of Week/Day of Week Last in Month/Hour of Day. 
@@ -938,14 +939,17 @@
 	<setting name="phone_setting.emergency.number"><type><string/></type></setting>
 	<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
 	<setting name="watch_dog.enable"><type><boolean/></type><value>1</value></setting>
-	<!--// 
+	<!--// Configure the ring tone for the phone. System ring tones are: Ring1.wav (default), Ring2.wav...Ring8.wav.
+	#You can configure the custom ring tone (Busy.wav) for the phone, the value is: phone_setting.ring_type = Busy.wav  //-->
+	<setting name="phone_setting.ring_type"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
+	<!--//
 	#######################################################################################
 	##                     Configure the access URL of the customized  ringtones         ##
 	#######################################################################################
 	 //-->
-		<setting name="ringtone.url"><type><string/></type></setting>
+	<setting name="ringtone.url"><type><string/></type></setting>
 	<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
-		<setting name="ringtone.delete"><type><string/></type></setting>
+	<setting name="ringtone.delete"><type><string/></type></setting>
     </group>
     <group name="features">
 	    <!--//
@@ -989,8 +993,20 @@
 	<group name="GENERAL">
 	    <!--// Enable or disable the call waiting feature; 0-Disabled, 1-Enabled (default); //-->
 	    <setting name="call_waiting.enable"><type><boolean/></type><value>0</value></setting>
+
+	    <!--//
+	    #######################################################################################
+	    ##                         Auto Redial                                               ##
+	    #######################################################################################
+	    //-->
 	    <!--// Enable or disable the auto redial feature; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="auto_redial.enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the interval (in seconds) to wait before redial. It ranges from 1 to 300. The default value is 10. //-->
+	    <setting name="auto_redial.interval"><type><integer min="1" max="300"/></type><value>10</value></setting>
+	    <!--// Configure the times of auto redialing . It ranges from 1 to 300. The default value is 10. //-->
+	    <setting name="auto_redial.times"><type><integer min="1" max="300"/></type><value>10</value></setting>
+
+
 	    <!--// Define the "#" or "*" key as the send key; 0-Disabled, 1-# key(default), 2-* key; //-->
 	    <setting name="features.pound_key.mode"><type refid="yealink_poud_key_type"/><value>1</value></setting>
 	    <setting name="sip.use_23_as_pound"><type><boolean/></type><value>0</value></setting>
@@ -1007,6 +1023,8 @@
 	    <setting name="features.normal_refuse_code"><type refid="SIPCodes_type"/><value>486</value></setting>
 	    <!--// Enable or disable the call completion feature; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="features.call_completion_enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the delay time (in seconds) for the dialnow rule. It ranges from 1 to 14, the default value is 1.  //-->
+	    <setting name="phone_setting.dialnow_delay"><type><integer min="1" max="14"/></type><value>1</value></setting>
 
 	    <!--// #Enable or disable the RFC2543 Hold feature; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="sip.rfc2543_hold"><type><boolean/></type><value>0</value></setting>
@@ -1025,8 +1043,34 @@
 	    <!--// #Configure the length of encrypted digits. //-->
 	    <setting name="features.password_dial.length"><type><string/></type></setting>
 
+	    <!--// Enable or disable the phone to save the call history; 0-Disabled, 1-Enabled (default);  //-->
+	    <setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
+
+	    <!--// Configure the repetition times of DTMF end packet. The valid values are 1, 2, 3 (default). //-->
+	    <setting name="features.dtmf.repetition"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
+	    <!--// Specify whether to display the contact name in the remote phonebook; 0-Disabled (default), 1-Enabled; //-->
+	    <setting name="features.remote_phonebook.enable"><type><boolean/></type><value>1</value></setting>
+	    <!--// Set the interval (in seconds) the phone updates the remote phonebook. The default value is 3600. //-->
+	    <setting name="features.remote_phonebook.flash_time"><type><integer/></type><value>3600</value></setting>
+
+	    <!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
+	    <setting name="features.dsskey_blind_tran"><type><boolean/></type><value>1</value></setting>
+
+	    <!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
+	    <setting name="features.relog_offtime"><type><integer min="1" max="1000"/></type><value>5</value></setting>
+
+	    <!--// Enable or disable the phone to dial the IP address directly; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
+	    <setting name="features.direct_ip_call_enable"><type><boolean/></type><value>0</value></setting>
+
 	    <!--// #Configure the logo mode of the LCD screen; 0-Disabled (default), 1-System logo, 2-Custom logo; //-->
 	    <setting name="phone_setting.lcd_logo.mode"><type refid="LCDLogo_type"/><value>0</value></setting>
+
+	    <!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
+	    <setting name="phone_setting.flash_hook_timer" advanced="yes"><type><integer/></type><value>1</value></setting>
+	    <!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
+	    #The same level for different phones may result in different backlight intensities. 
+	    #The backlight level of T2xP ranges from 1 to 3.  //-->
+	    <setting name="phone_setting.active_backlight_level" advanced="yes"><type><integer min="1" max="10"/></type><value>2</value></setting>
 	</group>
 	<group name="AUDIO">
 	    <!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
@@ -1075,15 +1119,18 @@
 	    <setting name="features.intercom.barge"><type><boolean/></type><value>1</value></setting>
 	</group>
 	<group name="TRANSFER">
-		<!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call; 0-Disabled, 1-Enabled (default); //-->
-		<setting name="transfer.semi_attend_tran_enable"><type><boolean/></type><value>1</value></setting>
-		<!--// Enable or disable the phone to complete the blind or attended transfer through on-hook; 0-Disabled,1-Enabled(default); //-->
-		<setting name="transfer.blind_tran_on_hook_enable"><type><boolean/></type><value>1</value></setting>
-		<setting name="transfer.on_hook_trans_enable"><type><boolean/></type><value>1</value></setting>
-		<!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
-		<setting name="transfer.dsskey_deal_type"><type refid="DSSKeyDealType_type"/><value>2</value></setting>
-		<!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
-		<setting name="transfer.tran_others_after_conf_enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Enable or disable the transferee to display the missed call prompt when receiving a semi_attended transfer call; 0-Disabled, 1-Enabled (default); //-->
+	    <setting name="transfer.semi_attend_tran_enable"><type><boolean/></type><value>1</value></setting>
+	    <!--// Enable or disable the phone to complete the blind or attended transfer through on-hook; 0-Disabled,1-Enabled(default); //-->
+	    <setting name="transfer.blind_tran_on_hook_enable"><type><boolean/></type><value>1</value></setting>
+	    <setting name="transfer.on_hook_trans_enable"><type><boolean/></type><value>1</value></setting>
+	    <!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
+	    <setting name="transfer.dsskey_deal_type"><type refid="DSSKeyDealType_type"/><value>2</value></setting>
+	    <!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
+	    <setting name="transfer.tran_others_after_conf_enable"><type><boolean/></type><value>0</value></setting>
+	    <!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
+	    #phone_setting.ring_for_tranfailed = Ring1.wav  //-->
+	    <setting name="phone_setting.ring_for_tranfailed" advanced="yes"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
 	</group>
 	<group name="CALLPICKUP">
 	    <!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
@@ -1417,21 +1464,21 @@
 	Specify the ring tone for each text. It ranges from 1 to 8. The default value 1 stands for Ring1.wav.
 	distinctive_ring_tones.alert_info.X.ringer = 1 //-->
 	<setting name="distinctive_ring_tones.alert_info.1.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.1.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.1.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.2.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.2.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.2.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.3.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.3.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.3.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.4.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.4.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.4.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.5.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.5.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.5.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.6.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.6.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.6.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.7.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.7.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.7.ringer"><type refid="ringer_type"/><value>1</value></setting>
 	<setting name="distinctive_ring_tones.alert_info.8.text"><type><string/></type></setting>
-	<setting name="distinctive_ring_tones.alert_info.8.ringer"><type><integer/></type><value>1</value></setting>
+	<setting name="distinctive_ring_tones.alert_info.8.ringer"><type refid="ringer_type"/><value>1</value></setting>
     </group>
     <group name="tones">
 	<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
@@ -1454,165 +1501,6 @@
 	<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
 	<setting name="voice.tone.message"><type><string/></type><value></value></setting>
 	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
-    </group>
-    <group name="other">
-	<group name="memory-keys" if="yealinkPhoneSIPT38G">
-	<!--//
-	#######################################################################################
-	##                                Memory Key (For T38G only)                         ##
-	#######################################################################################
-	X ranges from 1 to 10;
-	memorykey.x.line Configure the desired line to apply the key feature. It ranges from 0 to 6.
-	The value 0 of the "memorykey.x.line" stands for Auto, it means the first available line. 
-	But, when the DSS key is configured as BLF, BLF List, Shared Line, Call Park, Pick Up, ACD or Voice Mail feature, the value 0 stands for line 1.
-	memorykey.x.value Enter the value of some features. E.g. When configuring the DSS key to be BLF, enter the number of the monitored user.
-	memorykey.x.pickup_value Enter the pickup code, this parameter is only appilicable to BLF.
-	memorykey.x.type Assign the desired feature to the memory key.
-	Valid types are:  0-N/A(default for memory key)  1-Conference 		 2-Forward    3-Transfer      4-Hold        5-DND             6-Redial                        7-Call Return     8-SMS    
-	                  9-Call Pickup                  10-Call Park     11-DTMF      12-Voicemail    13-SpeedDial  14-Intercom       15-Line(default for line key)   16-BLF            17-URL    
-	                  18-Group Listening             19-Public Hold   20-Private   21-Shared Line  22-XML Group  23-Group Pickup   24-Paging                       25-Record         27-XML Browser    
-	                  34-Hot Desking                 35-URL Record    38-LDAP      39-BLF List     40-Prefix     41-Zero-Sp-Touch  42-ACD                          45-Local Group    46-Broadsoft Group 
-	memorykey.x.xml_phonebook Specify the desired remote phonebook/local group/BSFT phonebook for the DSS key. This parameter is only appilicable to the feature XML Group/Local Group/Broadsoft Group.  
-	memorykey.x.sub_type =
-	//-->
-	    <!--//  Configure Memory Key1 //-->
-	    <setting name="memorykey.1.line"><type reid="yealink_line_type"/></setting>
-	    <setting name="memorykey.1.value"><type><string/></type></setting>
-	    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
-	    <setting name="memorykey.1.type"><type refid="SIPT38G_DSS_type"/></setting>
-	    <setting name="memorykey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
-	    <setting name="memorykey.1.sub_type"><type><string/></type></setting>
-	</group>
-	<group name="expansion-keys" hidden="yes" if="yealinkPhoneSIPT38G">
-	    <!--//
-	    ##########################################################################################
-	    ##                            Expansion Key  (For T38G only)                            ##
-	    ##########################################################################################
-	    X ranges from 1 to 6, Y ranges from 1 to 39.
-	    expansion_module.x.key.y.type = 37 (Switch by default)
-	    expansion_module.x.key.y.line = 0 
-	    expansion_module.x.key.y.value = 
-	    expansion_module.x.key.y.pickup_value = 
-	    expansion_module.x.key.y.label =
-	    //-->
-	    <!--// Each expansion module1 key1 //-->
-	    <setting name="expansion_module.1.key.1.type"><type><integer/></type><value>37</value></setting>
-	    <setting name="expansion_module.1.key.1.line"><type><integer/></type><value>0</value></setting>
-	    <setting name="expansion_module.1.key.1.value"><type><string/></type></setting>
-	    <setting name="expansion_module.1.key.1.pickup_value"><type><string/></type></setting>
-	    <setting name="expansion_module.1.key.1.label"><type><string/></type></setting>
-	</group>
-	<group name="hot-desking">
-	    <!--//
-	    #######################################################################################
-	    ##                      Hot Desking                                                  ##
-	    #######################################################################################
-	    Enable or disable the phone to show the following items on the login wizard during startup; 0-Disabled, 1-Enabled;  
-	    hotdesking.startup_register_name_enable = 0 (default)
-	    hotdesking.startup_username_enable = 1 (default)
-	    hotdesking.startup_password_enable = 1 (default)
-	    hotdesking.startup_sip_server_enable = 1 (default)
-	    hotdesking.startup_outbound_enable = 0 (default)
-	    //-->
-	    <setting name="hotdesking.startup_register_name_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.startup_username_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.startup_password_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.startup_sip_server_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.startup_outbound_enable"><type><boolean/></type><value>0</value></setting>
-	    <!--// Enable or disable the phone to show the following items on the login wizard when pressing the Hot Desking DSS key;
-	    0-Disabled, 1-Enabled;
-	    hotdesking.dsskey_register_name_enable = 0 (default)
-	    hotdesking.dsskey_username_enable = 1 (default)
-	    hotdesking.dsskey_password_enable = 1 (default)
-	    hotdesking.dsskey_sip_server_enable = 1 (default)
-	    hotdesking.dsskey_outbound_enable = 0 (default) //-->
-	    <setting name="hotdesking.dsskey_register_name_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.dsskey_username_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
-	    <setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
-	</group>
-	<group name="auto-redial">
-	    <!--//
-	    #######################################################################################
-	    ##                         Auto Redial                                               ##
-	    #######################################################################################
-	    //-->
-	    <!--// Configure the interval (in seconds) to wait before redial. It ranges from 1 to 300. The default value is 10. //-->
-	    <setting name="auto_redial.interval"><type><integer/></type><value>10</value></setting>
-	    <!--// Configure the times of auto redialing . It ranges from 1 to 300. The default value is 10. //-->
-	    <setting name="auto_redial.times"><type><integer/></type><value>10</value></setting>
-	</group>
-	<group name="_features">
-	    <!--//
-	    #######################################################################################
-	    ##                            Phone Features                                         ##
-	    #######################################################################################
-	    //-->
-	    <!--// Specify whether to display the contact name in the remote phonebook; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="features.remote_phonebook.enable"><type><boolean/></type><value>1</value></setting>
-	    <!--// Set the interval (in seconds) the phone updates the remote phonebook. The default value is 3600. //-->
-	    <setting name="features.remote_phonebook.flash_time"><type><integer/></type><value>3600</value></setting>
-	    <!--// Configure the repetition times of DTMF end packet. The valid values are 1, 2, 3 (default). //-->
-	    <setting name="features.dtmf.repetition"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
-	    <!--// Enable or disable the phone to play tone when pressing the digit key; 0-Disabled, 1-Enabled (default); //-->
-	    <setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
-	    <setting name="features.key_tone"><type><boolean/></type><value>1</value></setting>
-	    <setting name="features.redial_tone"><type><boolean/></type><value>1</value></setting>
-	    <!--// Enable or disable the phone to save the call history; 0-Disabled, 1-Enabled (default);  //-->
-	    <setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
-	    <!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
-	    <setting name="features.dsskey_blind_tran"><type><boolean/></type><value>1</value></setting>
-	    <!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
-	    <setting name="features.relog_offtime"><type><integer/></type><value>5</value></setting>
-	    <!--// Enable or disable the phone to dial the IP address directly; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
-	    <setting name="features.direct_ip_call_enable"><type><boolean/></type><value>0</value></setting>
-	    <!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
-	    <setting name="phone_setting.flash_hook_timer"><type><integer/></type><value>1</value></setting>
-	    <!--// Configure the ring tone for the phone. System ring tones are: Ring1.wav (default), Ring2.wav...Ring8.wav.
-	    #You can configure the custom ring tone (Busy.wav) for the phone, the value is: phone_setting.ring_type = Busy.wav  //-->
-	    <setting name="phone_setting.ring_type"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
-	    <!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
-	    #The same level for different phones may result in different backlight intensities. 
-	    #The backlight level of T2xP ranges from 1 to 3.  //-->
-	    <setting name="phone_setting.active_backlight_level"><type><integer/></type><value>2</value></setting>
-	    <!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
-	    #phone_setting.ring_for_tranfailed = Ring1.wav  //-->
-	    <setting name="phone_setting.ring_for_tranfailed"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
-	    <!--// Configure the delay time (in seconds) for the dialnow rule. It ranges from 1 to 14, the default value is 1.  //-->
-	    <setting name="phone_setting.dialnow_delay"><type><integer/></type><value>1</value></setting>
-	</group>
-	<group name="downloads">
-	    <!--//
-	    #######################################################################################
-	    ##  Local Contact/DST Time/Dialnow Rule/Replace Rule                                 ##
-	    #######################################################################################
-	    //-->
-	    <setting name="local_contact.data.url"><type><string/></type></setting>
-	    <setting name="auto_dst.url"><type><string/></type></setting>
-	    <setting name="dialplan_replace_rule.url"><type><string/></type></setting>
-	    <!--//
-	    #######################################################################################
-	    ##      Customized Factory Configurations                                            ##
-	    #######################################################################################
-	    //-->
-	    <!--// Configure the access URL for downloading the customized factory configurations.  //-->
-	    <setting name="custom_factory_configuration.url"><type><string/></type></setting>
-	    <!--//
-	    #######################################################################################
-	    ##          Call List                                                                ##
-	    #######################################################################################
-	    //-->
-	    <!--// Configure the access URL for downloading the call list. Require reboot  //-->
-	    <setting name="call_list.url"><type><string/></type></setting>
-	    <!--//
-	    #######################################################################################
-	    ##     Configuration files for Var                                                   ##
-	    #######################################################################################
-	     //-->
-	    <!--// Configure the access URL for downloading the files for var. Require reboot  //-->
-	    <setting name="web_item_level.url"><type><string/></type></setting>
-	</group>
     </group>
     <!--//
     #######################################################################################
@@ -1689,6 +1577,7 @@
 	    #Replaced: Specify the alternate numbers;
 	    #LineID: Specify the line ID to apply the replace rule,multiple lines ID must be separated by a comma;
 	//-->
+	    <setting name="dialplan_replace_rule.url" hidden="yes"><type><string/></type></setting>
 	    <setting name="dialplan.item.1"><type><string/></type></setting>
 	    <setting name="dialplan.item.2"><type><string/></type></setting>
 	    <setting name="dialplan.item.3"><type><string/></type></setting>
@@ -1712,9 +1601,12 @@
 	</group>
     </group>
     <group name="contacts">
+	<group name="local" advanced="yes">
+	    <setting name="local_contact.data.url"><type><string/></type></setting>
+	</group>
 	<!--// 
 	#######################################################################################
-	##         	    Remote phonebook                                                     ##
+	##              Remote phonebook                                                     ##
 	#######################################################################################
 	 //-->
         <group name="RemotePhoneBook">
@@ -1731,6 +1623,15 @@
 	    <setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
 	    <setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
 	    <setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
+	</group>
+	<group name="phone-call-info" hidden="yes">
+	    <!--//
+	    #######################################################################################
+	    ##          Call List                                                                ##
+	    #######################################################################################
+	    //-->
+	    <!--// Configure the access URL for downloading the call list. Require reboot  //-->
+	    <setting name="call_list.url"><type><string/></type></setting>
 	</group>
 	<!--// 
 	#######################################################################################
@@ -1896,6 +1797,13 @@
 	    <!--// Enable or disable the 3-level permissions (open var); 0-Disabled (default), 1-Enabled;
 	    Require reboot; //-->
 	    <setting name="security.var_enable"><type><boolean/></type><value>1</value></setting>
+	    <!--//
+	    #######################################################################################
+	    ##     Configuration files for Var                                                   ##
+	    #######################################################################################
+	     //-->
+	    <!--// Configure the access URL for downloading the files for var. Require reboot  //-->
+	    <setting name="web_item_level.url" hidden="yes"><type><string/></type></setting>
 	</group>
 	<!--// 
 	#######################################################################################
@@ -1914,6 +1822,93 @@
 	<group name="SERVERCERTS">
 	    <!--// server_certificates.delete = http://localhost/all, delete the server certificate.  //-->
 	    <setting name="server_certificates.delete"><type><string/></type></setting>
+	</group>
+	<group name="DEFAULTS" advanced="yes">
+	    <!--//
+	    #######################################################################################
+	    ##      Customized Factory Configurations                                            ##
+	    #######################################################################################
+	    //-->
+	    <!--// Configure the access URL for downloading the customized factory configurations.  //-->
+	    <setting name="custom_factory_configuration.url"><type><string/></type></setting>
+	</group>
+    </group>
+    <group name="hot-desking">
+	<!--//
+	#######################################################################################
+	##                      Hot Desking                                                  ##
+	#######################################################################################
+	Enable or disable the phone to show the following items on the login wizard during startup; 0-Disabled, 1-Enabled;  
+	hotdesking.startup_register_name_enable = 0 (default)
+	hotdesking.startup_username_enable = 1 (default)
+	hotdesking.startup_password_enable = 1 (default)
+	hotdesking.startup_sip_server_enable = 1 (default)
+	hotdesking.startup_outbound_enable = 0 (default)
+	//-->
+	<setting name="hotdesking.startup_register_name_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_username_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_password_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.startup_outbound_enable"><type><boolean/></type><value>0</value></setting>
+	<!--// Enable or disable the phone to show the following items on the login wizard when pressing the Hot Desking DSS key;
+	0-Disabled, 1-Enabled;
+	hotdesking.dsskey_register_name_enable = 0 (default)
+	hotdesking.dsskey_username_enable = 1 (default)
+	hotdesking.dsskey_password_enable = 1 (default)
+	hotdesking.dsskey_sip_server_enable = 1 (default)
+	hotdesking.dsskey_outbound_enable = 0 (default) //-->
+	<setting name="hotdesking.dsskey_register_name_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_username_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_password_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_sip_server_enable"><type><boolean/></type><value>0</value></setting>
+	<setting name="hotdesking.dsskey_outbound_enable"><type><boolean/></type><value>0</value></setting>
+    </group>
+    <group name="unsupported" hidden="yes">
+	<group name="memory-keys" if="yealinkPhoneSIPT38G">
+	<!--//
+	#######################################################################################
+	##                                Memory Key (For T38G only)                         ##
+	#######################################################################################
+	X ranges from 1 to 10;
+	memorykey.x.line Configure the desired line to apply the key feature. It ranges from 0 to 6.
+	The value 0 of the "memorykey.x.line" stands for Auto, it means the first available line. 
+	But, when the DSS key is configured as BLF, BLF List, Shared Line, Call Park, Pick Up, ACD or Voice Mail feature, the value 0 stands for line 1.
+	memorykey.x.value Enter the value of some features. E.g. When configuring the DSS key to be BLF, enter the number of the monitored user.
+	memorykey.x.pickup_value Enter the pickup code, this parameter is only appilicable to BLF.
+	memorykey.x.type Assign the desired feature to the memory key.
+	Valid types are:  0-N/A(default for memory key)  1-Conference 		 2-Forward    3-Transfer      4-Hold        5-DND             6-Redial                        7-Call Return     8-SMS    
+	                  9-Call Pickup                  10-Call Park     11-DTMF      12-Voicemail    13-SpeedDial  14-Intercom       15-Line(default for line key)   16-BLF            17-URL    
+	                  18-Group Listening             19-Public Hold   20-Private   21-Shared Line  22-XML Group  23-Group Pickup   24-Paging                       25-Record         27-XML Browser    
+	                  34-Hot Desking                 35-URL Record    38-LDAP      39-BLF List     40-Prefix     41-Zero-Sp-Touch  42-ACD                          45-Local Group    46-Broadsoft Group 
+	memorykey.x.xml_phonebook Specify the desired remote phonebook/local group/BSFT phonebook for the DSS key. This parameter is only appilicable to the feature XML Group/Local Group/Broadsoft Group.  
+	memorykey.x.sub_type =
+	//-->
+	    <!--//  Configure Memory Key1 //-->
+	    <setting name="memorykey.1.line"><type reid="yealink_line_type"/></setting>
+	    <setting name="memorykey.1.value"><type><string/></type></setting>
+	    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
+	    <setting name="memorykey.1.type"><type refid="SIPT38G_DSS_type"/></setting>
+	    <setting name="memorykey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	    <setting name="memorykey.1.sub_type"><type><string/></type></setting>
+	</group>
+	<group name="expansion-keys" hidden="yes" if="yealinkPhoneSIPT38G">
+	    <!--//
+	    ##########################################################################################
+	    ##                            Expansion Key  (For T38G only)                            ##
+	    ##########################################################################################
+	    X ranges from 1 to 6, Y ranges from 1 to 39.
+	    expansion_module.x.key.y.type = 37 (Switch by default)
+	    expansion_module.x.key.y.line = 0 
+	    expansion_module.x.key.y.value = 
+	    expansion_module.x.key.y.pickup_value = 
+	    expansion_module.x.key.y.label =
+	    //-->
+	    <!--// Each expansion module1 key1 //-->
+	    <setting name="expansion_module.1.key.1.type"><type><integer/></type><value>37</value></setting>
+	    <setting name="expansion_module.1.key.1.line"><type><integer/></type><value>0</value></setting>
+	    <setting name="expansion_module.1.key.1.value"><type><string/></type></setting>
+	    <setting name="expansion_module.1.key.1.pickup_value"><type><string/></type></setting>
+	    <setting name="expansion_module.1.key.1.label"><type><string/></type></setting>
 	</group>
     </group>
 </model>
