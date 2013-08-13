@@ -12,6 +12,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T12.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 5.x.x.x.rom </description>
@@ -21,7 +22,8 @@
     		<type>
     			<file>
     				<contentType>application/binary</contentType>
-    				<rename>yealink_SIP-T18.rom</rename>
+    				<rename>T18.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 18.x.x.x.rom</description>
@@ -32,6 +34,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T20.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 9.x.x.x.rom</description>
@@ -42,6 +45,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T22.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 7.x.x.x.rom</description>
@@ -52,6 +56,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T26.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 6.x.x.x.rom</description>
@@ -62,6 +67,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T28.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 2.x.x.x.rom</description>
@@ -72,6 +78,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T32.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>32.x.x.x.rom</description>
@@ -82,6 +89,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T38.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>38.x.x.x.rom</description>
@@ -92,6 +100,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>VP530.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>23.x.x.x.rom</description>
@@ -102,6 +111,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>W52.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 25.x.x.x.rom</description>
@@ -112,6 +122,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T41.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 36.x.x.x.rom</description>
@@ -122,6 +133,7 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T42.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 29.x.x.x.rom</description>
@@ -132,35 +144,58 @@
     			<file>
     				<contentType>application/binary</contentType>
     				<rename>T36.rom</rename>
+    				<moveTo>../</moveTo>
     			</file>
     		</type>
 		<description>Firmware binary in 28.x.x.x.rom</description>
         </setting>
         <setting name="Logo132x64.dob">
-            <label>Logo</label>
+            <label>SIP-T2X LCD Logo (screensaver)</label>
             <type>
                 <file>
                     <contentType>application/binary</contentType>
                     <rename>yealinkLogo132x64.dob</rename>
+                    <moveTo>../</moveTo>
                 </file>
             </type>
-            <description>Logo in DOB format</description>
+            <description>Logo in DOB format for SIP-T2X phones</description>
         </setting>
-	<setting name="yealink_SIP-T38G_idle_screen.xml">
-    		<label>Idle screen XML</label>
-    		<type>
-    			<file>
-    				<contentType>text/xml</contentType>
-    				<rename>yealink_SIP-T38G_idle_screen.xml</rename>
-    			</file>
-    		</type>
-		<description>IdleScreen.xml</description>
+        <setting name="wallpapers.zip">
+            <label>Wallpapers for colour LCDs</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>WallPapers/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with JPG and PNG files</description>
+        </setting>
+        <setting name="ringtones.zip">
+            <label>Custom RingTones</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>RingTones/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with WAV files</description>
+        </setting>
+        <setting name="yealink_SIP-T38G_idle_screen.xml">
+            <label>Idle screen XML</label>
+            <type>
+                <file>
+                    <contentType>text/xml</contentType>
+                    <rename>yealink_SIP-T38G_idle_screen.xml</rename>
+                </file>
+            </type>
+            <description>IdleScreen.xml</description>
         </setting>
         <setting name="lang+English.txt">
             <label>Custom LCD Language file</label>
             <type>
                 <file>
                     <contentType>application/binary</contentType>
+                    <moveTo>../</moveTo>
                 </file>
             </type>
             <description>UTF16LE text file, named lang+English.txt by default</description>

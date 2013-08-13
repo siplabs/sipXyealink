@@ -9,10 +9,23 @@
 
 package org.sipfoundry.sipxconfig.upload.yealink;
 
+import java.io.File;
+import java.io.FileFilter;
+import java.io.IOException;
+
+import org.apache.commons.io.FileUtils;
+
 import org.sipfoundry.sipxconfig.upload.Upload;
 import org.sipfoundry.sipxconfig.upload.UploadSpecification;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 public class YealinkUpload extends Upload {
+    private static final Log LOG = LogFactory.getLog(YealinkUpload.class);
+    private static final String DIR_YEALINK = "/yealink";
+    private static final String DIR_WALLPAPERS = "/WallPapers";
+    private static final String DIR_RINGTONES = "/RingTones";
 
     public YealinkUpload() {
     }
@@ -27,11 +40,48 @@ public class YealinkUpload extends Upload {
 
     @Override
     public void deploy() {
+        super.setDestinationDirectory(getDestinationDirectory() + DIR_YEALINK);
         super.deploy();
     }
 
     @Override
     public void undeploy() {
+        super.setDestinationDirectory(getDestinationDirectory() + DIR_YEALINK);
         super.undeploy();
+        try {
+            File mainLoc = new File(getDestinationDirectory());
+            if (mainLoc.exists()) {
+                FileUtils.deleteDirectory(mainLoc);
+            }
+            File rtLoc = new File(getDestinationDirectory() + DIR_RINGTONES);
+            if (rtLoc.exists()) {
+                FileUtils.deleteDirectory(rtLoc);
+            }
+            File wpLoc = new File(getDestinationDirectory() + DIR_WALLPAPERS);
+            if (wpLoc.exists()) {
+                FileUtils.deleteDirectory(wpLoc);
+            }
+        } catch (IOException e) {
+            LOG.error("IOException while deleting folder.", e);
+        }
+    }
+
+    @Override
+    public FileRemover createFileRemover() {
+        return new FileRemover();
+    }
+
+    public class FileRemover extends Upload.FileRemover {
+        @Override
+        public void removeFile(File dir, String name) {
+            File victim = new File(dir, name);
+            if (!victim.exists()) {
+                String[] splits = name.split("/");
+                if (splits.length >= 2) {
+                    victim = new File(dir, splits[1]);
+                }
+            }
+            victim.delete();
+        }
     }
 }

@@ -9,8 +9,10 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Iterator;
+import java.util.List;
 
 import org.sipfoundry.sipxconfig.address.Address;
 import org.sipfoundry.sipxconfig.address.AddressManager;
@@ -115,30 +117,39 @@ public class YealinkPhoneDefaults {
             YealinkConstants.REMOTE_PHONEBOOK_0_NAME_V7X_SETTING
             })
     public String getPhonebook0Name() {
-        User user = m_phone.getPrimaryUser();
-        if (user != null) {
-            PhonebookManager pbm = m_phone.getPhonebookManager();
-            if (pbm != null) {
-                Collection<Phonebook> books = pbm.getAllPhonebooksByUser(user);
-                if (books != null) {
-                    Iterator<Phonebook> pbit = books.iterator();
-                    if (pbit != null) {
-                        if (pbit.hasNext()) {
-                            Phonebook pb0 = (Phonebook) pbit.next();
-                            if (pb0 != null) {
-                                if (pb0.getShowOnPhone()) {
-                                    String pbName = pb0.getName();
-                                    if (pbName != null) {
-                                        return pbName;
-                                    }
-                                }
-                            }
-                        }
-                    }
-                }
-            }
-        }
-        return new String();
+        return getPhonebookName(0);
+    }
+
+    @SettingEntry(paths = {
+            YealinkConstants.REMOTE_PHONEBOOK_1_NAME_V6X_SETTING,
+            YealinkConstants.REMOTE_PHONEBOOK_1_NAME_V7X_SETTING
+            })
+    public String getPhonebook1Name() {
+        return getPhonebookName(1);
+    }
+
+    @SettingEntry(paths = {
+            YealinkConstants.REMOTE_PHONEBOOK_2_NAME_V6X_SETTING,
+            YealinkConstants.REMOTE_PHONEBOOK_2_NAME_V7X_SETTING
+            })
+    public String getPhonebook2Name() {
+        return getPhonebookName(2);
+    }
+
+    @SettingEntry(paths = {
+            YealinkConstants.REMOTE_PHONEBOOK_3_NAME_V6X_SETTING,
+            YealinkConstants.REMOTE_PHONEBOOK_3_NAME_V7X_SETTING
+            })
+    public String getPhonebook3Name() {
+        return getPhonebookName(3);
+    }
+
+    @SettingEntry(paths = {
+            YealinkConstants.REMOTE_PHONEBOOK_4_NAME_V6X_SETTING,
+            YealinkConstants.REMOTE_PHONEBOOK_4_NAME_V7X_SETTING
+            })
+    public String getPhonebook4Name() {
+        return getPhonebookName(4);
     }
 
     @SettingEntry(paths = {
@@ -276,4 +287,29 @@ public class YealinkPhoneDefaults {
 //    public String getText0() {
 //       return getPhoneContext().getIntercomForPhone(m_phone).getCode();
 //    }
+
+    private String getPhonebookName(Integer index) {
+        User user = m_phone.getPrimaryUser();
+        if (user != null) {
+            PhonebookManager pbm = m_phone.getPhonebookManager();
+            if (pbm != null) {
+                Collection<Phonebook> books = pbm.getAllPhonebooksByUser(user);
+                if (books != null) {
+                    List list = new ArrayList(books);
+                    if (index < list.size()) {
+                        Phonebook pb0 = (Phonebook) list.get(index);
+                        if (pb0 != null) {
+                            if (pb0.getShowOnPhone()) {
+                                String pbName = pb0.getName();
+                                if (pbName != null) {
+                                    return pbName;
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        return null;
+    }
 }

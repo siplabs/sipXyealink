@@ -10,10 +10,12 @@
 package org.sipfoundry.sipxconfig.phone.yealink;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import static java.lang.String.format;
 
 import org.sipfoundry.sipxconfig.bulk.ldap.LdapManager;
+import org.sipfoundry.sipxconfig.common.User;
 import org.sipfoundry.sipxconfig.device.Device;
 import org.sipfoundry.sipxconfig.device.DeviceVersion;
 import org.sipfoundry.sipxconfig.device.Profile;
@@ -24,17 +26,23 @@ import org.sipfoundry.sipxconfig.phone.Line;
 import org.sipfoundry.sipxconfig.phone.LineInfo;
 import org.sipfoundry.sipxconfig.phone.Phone;
 import org.sipfoundry.sipxconfig.phone.PhoneContext;
+import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
+import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 import org.sipfoundry.sipxconfig.setting.Setting;
 import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
 import org.apache.commons.lang.ArrayUtils;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
+
 /**
  * Yealink abstract phone.
  */
 public class YealinkPhone extends Phone {
+    private static final Log LOG = LogFactory.getLog(YealinkPhone.class);
     public static final String BEAN_ID = "yealink";
 
     // Common members
@@ -144,7 +152,23 @@ public class YealinkPhone extends Phone {
 
         if (getPhonebookManager().getPhonebookManagementEnabled()) {
             if (model.getUsePhonebook()) {
-                profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(0)));
+                PhonebookManager pbm = getPhonebookManager();
+                if (null != pbm) {
+                    User user = getPrimaryUser();
+                    if (null != user) {
+                        Collection<Phonebook> phoneBooks = pbm.getAllPhonebooksByUser(user);
+                        if (null != phoneBooks) {
+                            Integer i = 0;
+                            for(Phonebook pb : phoneBooks) {
+                                if (null != pb) {
+                                    if (pb.getShowOnPhone()) {
+                                        profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DirectoryProfile(getDirectoryFilename(i++), pb));
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
             }
         }
 
@@ -248,8 +272,11 @@ public class YealinkPhone extends Phone {
     }
 
     static class DirectoryProfile extends Profile {
-        public DirectoryProfile(String name) {
+       private Phonebook m_phonebook;
+
+        public DirectoryProfile(String name, Phonebook phonebook) {
             super(name, YealinkConstants.MIME_TYPE_PLAIN);
+            m_phonebook = phonebook;
         }
 
         @Override
@@ -261,8 +288,7 @@ public class YealinkPhone extends Phone {
         protected ProfileContext createContext(Device device) {
             YealinkPhone phone = (YealinkPhone) device;
             YealinkModel model = (YealinkModel) phone.getModel();
-            PhoneContext phoneContext = phone.getPhoneContext();
-            Collection<PhonebookEntry> entries = phoneContext.getPhonebookEntries(phone);
+            Collection<PhonebookEntry> entries = phone.getPhonebookManager().getEntries(m_phonebook);
             return new YealinkDirectoryConfiguration(phone, entries, model.getDirectoryProfileTemplate());
         }
     }
@@ -279,3 +305,4 @@ public class YealinkPhone extends Phone {
         }
     }
 }
+ 

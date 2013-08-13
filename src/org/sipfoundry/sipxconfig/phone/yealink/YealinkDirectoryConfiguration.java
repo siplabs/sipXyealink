@@ -16,21 +16,19 @@ import java.util.List;
 
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import org.sipfoundry.sipxconfig.device.ProfileContext;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 
-import org.apache.commons.logging.Log;
-import org.apache.commons.logging.LogFactory;
-
 public class YealinkDirectoryConfiguration extends ProfileContext {
-    private final Collection<PhonebookEntry> m_entries;
+    private final Collection<PhonebookEntry> m_phonebookEntries;
 
     public YealinkDirectoryConfiguration(
             YealinkPhone device,
-            Collection<PhonebookEntry> entries,
+            Collection<PhonebookEntry> phonebookEntries,
             String profileTemplate) {
         super(device, profileTemplate);
-        m_entries = entries;
+        m_phonebookEntries = phonebookEntries;
     }
 
     public Collection<YealinkPhonebookEntry> getRows() {
@@ -39,18 +37,14 @@ public class YealinkDirectoryConfiguration extends ProfileContext {
             return Collections.emptyList();
         }
         Collection<YealinkPhonebookEntry> yealinkEntries = new LinkedHashSet<YealinkPhonebookEntry>(size);
-        if (m_entries != null) {
-            transformPhoneBook(m_entries, yealinkEntries);
+        if (null != m_phonebookEntries) {
+            transformPhoneBook(m_phonebookEntries, yealinkEntries);
         }
         return yealinkEntries;
     }
 
     private int getSize() {
-        int size = 0;
-        if (m_entries != null) {
-            size += m_entries.size();
-        }
-        return size;
+        return null!=m_phonebookEntries?m_phonebookEntries.size():0;
     }
 
     void transformPhoneBook(Collection<PhonebookEntry> phonebookEntries,
@@ -82,7 +76,7 @@ public class YealinkDirectoryConfiguration extends ProfileContext {
 
         public String getFirstName() {
             String firstName = m_firstName;
-            if (firstName == null && m_lastName == null) {
+            if (null == firstName && null == m_lastName) {
                 return m_contact;
             }
             return firstName;
@@ -107,10 +101,10 @@ public class YealinkDirectoryConfiguration extends ProfileContext {
             if (null == a) {
                 return 0;
             }
-            if (m_lastName != null && a.getLastName() != null) {
+            if (null != m_lastName && null != a.getLastName()) {
                 result = m_lastName.compareTo(a.getLastName());
             }
-            if (m_firstName != null && a.getFirstName() != null) {
+            if (null != m_firstName && null != a.getFirstName()) {
                 return result == 0 ? m_firstName.compareTo(a.getFirstName()) : result;
             } else {
                 return result;

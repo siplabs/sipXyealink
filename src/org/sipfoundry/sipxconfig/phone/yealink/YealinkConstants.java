@@ -63,13 +63,25 @@ public class YealinkConstants {
     public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "contacts/RemotePhoneBook/0/URL";
     public static final String REMOTE_PHONEBOOK_0_NAME_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.1.name";
     public static final String REMOTE_PHONEBOOK_0_URL_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.1.url";
+
+    public static final String REMOTE_PHONEBOOK_1_NAME_V6X_SETTING = "contacts/RemotePhoneBook/1/Name";
     public static final String REMOTE_PHONEBOOK_1_URL_V6X_SETTING = "contacts/RemotePhoneBook/1/URL";
+    public static final String REMOTE_PHONEBOOK_1_NAME_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.2.name";
     public static final String REMOTE_PHONEBOOK_1_URL_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.2.url";
+
+    public static final String REMOTE_PHONEBOOK_2_NAME_V6X_SETTING = "contacts/RemotePhoneBook/2/Name";
     public static final String REMOTE_PHONEBOOK_2_URL_V6X_SETTING = "contacts/RemotePhoneBook/2/URL";
+    public static final String REMOTE_PHONEBOOK_2_NAME_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.3.name";
     public static final String REMOTE_PHONEBOOK_2_URL_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.3.url";
+
+    public static final String REMOTE_PHONEBOOK_3_NAME_V6X_SETTING = "contacts/RemotePhoneBook/3/Name";
     public static final String REMOTE_PHONEBOOK_3_URL_V6X_SETTING = "contacts/RemotePhoneBook/3/URL";
+    public static final String REMOTE_PHONEBOOK_3_NAME_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.4.name";
     public static final String REMOTE_PHONEBOOK_3_URL_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.4.url";
+
+    public static final String REMOTE_PHONEBOOK_4_NAME_V6X_SETTING = "contacts/RemotePhoneBook/4/Name";
     public static final String REMOTE_PHONEBOOK_4_URL_V6X_SETTING = "contacts/RemotePhoneBook/4/URL";
+    public static final String REMOTE_PHONEBOOK_4_NAME_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.5.name";
     public static final String REMOTE_PHONEBOOK_4_URL_V7X_SETTING = "contacts/RemotePhoneBook/remote_phonebook.data.5.url";
 
     public static final String FIRMWARE_SERVER_ADDRESS_SETTING = "upgrade/firmware/server_ip";
@@ -86,11 +98,9 @@ public class YealinkConstants {
     public static final String LANG_FILE_NAME_V7X_SETTING = "preference/gui_lang.url";
 // T2X except T20
     public static final String LOGO_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
-    public static final String LOGO_FILE_NAME_V7X_SETTING = "downloads/lcd_logo.url";
-// T3X and VP530 only
-    public static final String WALLPAPER_FILE_NAME_V7X_SETTING = "downloads/wallpaper_upload.url";
-// T3X
-    public static final String SCREENSAVER_FILE_NAME_V7X_SETTING = "downloads/screen_saver.pic.url";
+    public static final String LOGO_FILE_NAME_V7X_SETTING = "features/GENERAL/lcd_logo.url";
+// T3X, T4X and VP530 only
+    public static final String WALLPAPER_FILE_NAME_V7X_SETTING = "features/GENERAL/wallpaper_upload.url";
 
     public static final String DIAL_NOW_URL_V6X_T2X_SETTING = "dialplan/DialNow/server_address";
     public static final String DIAL_NOW_URL_V6X_T3X_SETTING = "dialplan/DialNow/URL";

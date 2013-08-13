@@ -899,7 +899,7 @@
 	    The default time zone name is China(Beijing).   
 	    local_time.time_zone = +8
 	    local_time.time_zone_name = China(Beijing) //-->
-	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/></setting>
+	<setting name="local_time.time_zone"><type refid="yealink-timezones_type"/><value>+8</value></setting>
 	<setting name="local_time.time_zone_name" advanced="yes"><type><string/></type></setting>
 	<!--// Configure the domain name or the IP address of the NTP server. The default value is cn.pool.ntp.org. //-->
 	<setting name="local_time.ntp_server1"><type><hostname/></type></setting>
@@ -1062,15 +1062,30 @@
 	    <!--// Enable or disable the phone to dial the IP address directly; 0-Disabled, 1-Enabled (default); Require reboot;  //-->
 	    <setting name="features.direct_ip_call_enable"><type><boolean/></type><value>0</value></setting>
 
-	    <!--// #Configure the logo mode of the LCD screen; 0-Disabled (default), 1-System logo, 2-Custom logo; //-->
-	    <setting name="phone_setting.lcd_logo.mode"><type refid="LCDLogo_type"/><value>0</value></setting>
+	    <!--//
+	    #Configure the logo mode of the LCD screen; 0-Disabled (default), 1-System logo, 2-Custom logo;
+	    valid for SIP-T2X models only except T20
+	    //-->
+	    <setting name="phone_setting.lcd_logo.mode" if="yealinkPhoneSIPT2[268].*"><type refid="LCDLogo_type"/><value>0</value></setting>
+	    <setting name="lcd_logo.url" advanced="yes" if="yealinkPhoneSIPT2[268].*"></setting>
+	    <!--//
+	    #######################################################################################
+	    ##     Configure the access URL of the Screensaver                                   ##
+	    #######################################################################################
+	    #Configure the access URL for downloading the customized wallpaper.
+	    valid for SIP-T2X models only except T20
+	    //-->
+	    <setting name="screen_saver.pic.url" advanced="yes" if="yealinkPhoneSIPT38.*"></setting>
+	    <setting name="wallpaper_upload.url" advanced="yes" if="yealinkPhoneSIPT38.*"></setting>
+
 
 	    <!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
-	    <setting name="phone_setting.flash_hook_timer" advanced="yes"><type><integer/></type><value>1</value></setting>
+	    <setting name="phone_setting.flash_hook_timer" advanced="yes"><type><integer min="0" max="799"/></type><value>1</value></setting>
 	    <!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
 	    #The same level for different phones may result in different backlight intensities. 
 	    #The backlight level of T2xP ranges from 1 to 3.  //-->
-	    <setting name="phone_setting.active_backlight_level" advanced="yes"><type><integer min="1" max="10"/></type><value>2</value></setting>
+	    <setting name="phone_setting.active_backlight_level" advanced="yes" if="yealinkPhoneSIPT[34].*"><type><integer min="1" max="10"/></type><value>2</value></setting>
+	    <setting name="phone_setting.active_backlight_level_t2x" advanced="yes" if="yealinkPhoneSIPT[12].*"><profileName>phone_setting.active_backlight_level</profileName><type><integer min="1" max="3"/></type><value>2</value></setting>
 	</group>
 	<group name="AUDIO">
 	    <!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
