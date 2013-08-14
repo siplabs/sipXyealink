@@ -114,12 +114,6 @@ public class YealinkLineDefaults {
         }
         return voicemail;
     }
-/*
-    @SettingEntry(path = yealinkConstants.IDLE_SCREEN_SETTING)
-    public String getIdleScreenURL() {
-            return "tftp://" + m_defaults.getTftpServer() + "/yealink_SIP-T38G_idle_screen.xml";
-    }
-*/
 
     @SettingEntry(paths = {
             YealinkConstants.ADVANCED_MUSIC_SERVER_URI_V6X_SETTING,
@@ -135,16 +129,4 @@ public class YealinkLineDefaults {
         return mohUri;
     }
 
-/*
-    @SettingEntry(path = yealinkConstants.BLA_NUMBER)
-    public String getBLANumber() {
-        User u = m_line.getUser();
-        String BLANumber = "";
-        if (u != null) {
-            if (u.getIsShared())
-            BLANumber = u.getUserName();
-        }
-        return BLANumber;
-    }
-*/
 }

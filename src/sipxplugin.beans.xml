@@ -4,6 +4,7 @@
     xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.0.xsd">
 
 <bean id="yealinkPhone" class="org.sipfoundry.sipxconfig.phone.yealink.YealinkPhone" scope="prototype" parent="abstractPhone">
+    <property name="uploadManager" ref="uploadManager"/>
     <property name="ldapManager" ref="ldapManager"/>
 </bean>
 

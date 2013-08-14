@@ -206,7 +206,9 @@ public class YealinkPhoneDefaults {
     @SettingEntry(paths = {
             YealinkConstants.FIRMWARE_SERVER_ADDRESS_SETTING,
             YealinkConstants.XML_BROWSER_SERVER_V6X_SETTING,
-            YealinkConstants.ACTION_URI_LIMIT_IP_V6X_SETTING
+            YealinkConstants.XML_BROWSER_SERVER_V7X_SETTING,
+            YealinkConstants.ACTION_URI_LIMIT_IP_V6X_SETTING,
+            YealinkConstants.ACTION_URI_LIMIT_IP_V7X_SETTING
             })
     public String getServerIP() {
         return getTFTPServer();
@@ -232,7 +234,7 @@ public class YealinkPhoneDefaults {
             YealinkConstants.AUTOPROVISIONING_SERVER_URL_V7X_SETTING,
             })
     public String getstrServerURL() {
-        return String.format("tftp://%s/%s.cfg", getTFTPServer(), m_phone.getSerialNumber());
+        return String.format("tftp://%s/", getTFTPServer());
     }
 
     @SettingEntry(paths = {

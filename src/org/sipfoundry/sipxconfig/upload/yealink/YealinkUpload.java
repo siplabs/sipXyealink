@@ -23,9 +23,9 @@ import org.apache.commons.logging.LogFactory;
 
 public class YealinkUpload extends Upload {
     private static final Log LOG = LogFactory.getLog(YealinkUpload.class);
-    private static final String DIR_YEALINK = "/yealink";
-    private static final String DIR_WALLPAPERS = "/WallPapers";
-    private static final String DIR_RINGTONES = "/RingTones";
+    public static final String DIR_YEALINK = "/yealink";
+    public static final String DIR_WALLPAPERS = "/WallPapers";
+    public static final String DIR_RINGTONES = "/RingTones";
 
     public YealinkUpload() {
     }

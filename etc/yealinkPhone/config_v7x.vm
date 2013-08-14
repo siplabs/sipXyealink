@@ -74,10 +74,17 @@ ${subgroup.profileName} = %NULL%
 #foreach ($setting in $subgroup.Values)
 #if(${setting.Value})
 ${setting.profileName} = $!{setting.Value}
+#if (${setting.profileName} == "auto_provision.server.url")
+#set ($TFTPServer = $!{setting.Value})
+#end
 #else
 ${setting.profileName} = %NULL%
 #end
 #end
 #end
 #end
+#end
+
+#foreach ($ringTone in $phone.RingTones)
+ringtone.url = $!{TFTPServer}yealink/RingTones/$!{ringTone}
 #end

@@ -1,3 +1,8 @@
+<!-- empty enum for SettingsVisitor -->
+<type id="phonebook_type">
+    <enum>
+    </enum>
+</type>
 <type id="ringer_type">
     <enum>
 	<option><value>1</value></option>

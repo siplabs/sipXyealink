@@ -9,8 +9,13 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.ArrayList;
+import java.util.regex.Pattern;
+import java.util.regex.Matcher;
 
 import static java.lang.String.format;
 
@@ -29,7 +34,10 @@ import org.sipfoundry.sipxconfig.phone.PhoneContext;
 import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
+import org.sipfoundry.sipxconfig.setting.AbstractSettingVisitor;
 import org.sipfoundry.sipxconfig.setting.Setting;
+import org.sipfoundry.sipxconfig.setting.type.EnumSetting;
+import org.sipfoundry.sipxconfig.setting.type.SettingType;
 import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
@@ -37,6 +45,10 @@ import org.apache.commons.lang.ArrayUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+
+import org.sipfoundry.sipxconfig.upload.UploadManager;
+import org.sipfoundry.sipxconfig.upload.UploadSpecification;
+import org.sipfoundry.sipxconfig.upload.yealink.YealinkUpload;
 
 /**
  * Yealink abstract phone.
@@ -49,6 +61,8 @@ public class YealinkPhone extends Phone {
     private SpeedDial m_speedDial;
 
     private LdapManager m_ldapManager;
+
+    private UploadManager m_uploadManager;
 
     public YealinkPhone() {
     }
@@ -73,13 +87,22 @@ public class YealinkPhone extends Phone {
         }
     }
 
-    public void setLdapManager(LdapManager ldapManager) {
-        m_ldapManager = ldapManager;
+    public void setLdapManager(LdapManager manager) {
+        m_ldapManager = manager;
     }
 
     public LdapManager getLdapManager() {
         return m_ldapManager;
     }
+
+    public void setuploadManager(UploadManager manager) {
+        m_uploadManager = manager;
+    }
+
+    public UploadManager getUploadManager() {
+        return m_uploadManager;
+    }
+
 
     public int getMaxLineCount() {
         YealinkModel model = (YealinkModel) getModel();
@@ -116,6 +139,14 @@ public class YealinkPhone extends Phone {
         addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
     }
 
+
+    @Override
+    public void setSettings(Setting settings) {
+        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-4]\\.name"));
+        settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[1-8]\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
+        super.setSettings(settings);
+    }
+
     @Override
     public void initializeLine(Line line) {
         m_speedDial = getPhoneContext().getSpeedDial(this);
@@ -123,11 +154,10 @@ public class YealinkPhone extends Phone {
     }
 
     /**
-    * Copy common configuration file.
+    * Copy common configuration files.
     */
     @Override
     protected void copyFiles(ProfileLocation location) {
-//        YealinkModel model = (YealinkModel) getModel();
     }
 
     @Override
@@ -205,12 +235,32 @@ public class YealinkPhone extends Phone {
         return m_speedDial;
     }
 
+    public Collection<String> getRingTones() {
+        Collection<String> ringTones = new ArrayList<String>();
+        UploadSpecification ylUploadSpec = getUploadManager().getSpecification("yealinkFiles");
+        YealinkUpload ylUpload = (YealinkUpload)getUploadManager().newUpload(ylUploadSpec);
+        String loc = ylUpload.getDestinationDirectory() + YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_RINGTONES;
+        File rintonesLoc = new File(loc);
+        if (rintonesLoc.exists()) {
+            if (rintonesLoc.isDirectory()) {
+                File[] ringtoneFiles = rintonesLoc.listFiles();
+                for (File f : ringtoneFiles) {
+                    if (f.isFile()) {
+                        ringTones.add(f.getName());
+                    }
+                }
+            }
+        }
+        return ringTones;
+    }
+
     /**
      * Each subclass must decide how as much of this generic line information translates into its
      * own setting model.
      */
     @Override
     protected void setLineInfo(Line line, LineInfo info) {
+
         line.setSettingValue(YealinkConstants.USER_ID_V6X_SETTING, info.getUserId());
         line.setSettingValue(YealinkConstants.DISPLAY_NAME_V6X_SETTING, info.getDisplayName());
         line.setSettingValue(YealinkConstants.PASSWORD_V6X_SETTING, info.getPassword());
@@ -304,5 +354,73 @@ public class YealinkPhone extends Phone {
             return m_model.matches(expression);
         }
     }
+
+    private class PhonebooksSetter extends AbstractSettingVisitor {
+        private String m_pattern;
+        private Collection<Phonebook> m_pbs = new ArrayList<Phonebook>();
+
+        public PhonebooksSetter(String pattern) {
+            m_pattern = pattern;
+            PhonebookManager pbm = getPhonebookManager();
+            if (null != pbm) {
+                User user = getPrimaryUser();
+                if (null != user) {
+                    Collection<Phonebook> phoneBooks = pbm.getAllPhonebooksByUser(user);
+                    if (null != phoneBooks) {
+                        Integer i = 0;
+                        for(Phonebook pb : phoneBooks) {
+                            if (null != pb) {
+                                if (pb.getShowOnPhone()) {
+                                    m_pbs.add(pb);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        @Override
+        public void visitSetting(Setting setting) {
+            if (setting.getType() instanceof EnumSetting) {
+                Pattern pattern = Pattern.compile(m_pattern);
+                Matcher matcher = pattern.matcher(setting.getName());
+                matcher.lookingAt();
+                if (matcher.matches()) {
+                    EnumSetting ringTonesSetting = (EnumSetting)setting.getType();
+                    ringTonesSetting.addEnum(null, null);
+                    for(Phonebook pb : m_pbs) {
+                        ringTonesSetting.addEnum(pb.getName(), pb.getName());
+                    }
+                }
+            }
+        }
+    }
+
+    private class RingtonesSetter extends AbstractSettingVisitor {
+        private String m_pattern;
+
+        public RingtonesSetter(String pattern) {
+            m_pattern = pattern;
+        }
+
+        @Override
+        public void visitSetting(Setting setting) {
+            if (setting.getType() instanceof EnumSetting) {
+                Pattern pattern = Pattern.compile(m_pattern);
+                Matcher matcher = pattern.matcher(setting.getName());
+                matcher.lookingAt();
+                LOG.info("Visitor: " + setting.getName());
+                if (matcher.matches()) {
+                    EnumSetting ringTonesSetting = (EnumSetting)setting.getType();
+                    if (setting.getName().equals("ringtone.ring_type")) {
+                        ringTonesSetting.addEnum("common", "common");
+                    }
+                    for (String rt : getRingTones()) {
+                        ringTonesSetting.addEnum(rt, rt);
+                    }
+                }
+            }
+        }
+    }
 }
- 

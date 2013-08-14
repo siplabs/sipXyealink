@@ -947,9 +947,8 @@
 	##                     Configure the access URL of the customized  ringtones         ##
 	#######################################################################################
 	 //-->
-	<setting name="ringtone.url"><type><string/></type></setting>
 	<!--// ringtone.delete = http://localhost/all,delete all the customized ring tones.  //-->
-	<setting name="ringtone.delete"><type><string/></type></setting>
+	<setting name="ringtone.delete" hidden="yes"><type><string/></type><value>http://localhost/all</value></setting>
     </group>
     <group name="features">
 	    <!--//
@@ -1629,15 +1628,15 @@
 	remote_phonebook.data.x.url =   
 	remote_phonebook.data.x.name =  //-->
 	    <setting name="remote_phonebook.data.1.url"><type><string/></type></setting>
-	    <setting name="remote_phonebook.data.1.name"><type><string/></type></setting>
+	    <setting name="remote_phonebook.data.1.name"><type refid="phonebook_type"/></setting>
 	    <setting name="remote_phonebook.data.2.url"><type><string/></type></setting>
-	    <setting name="remote_phonebook.data.2.name"><type><string/></type></setting>
+	    <setting name="remote_phonebook.data.2.name"><type refid="phonebook_type"/></setting>
 	    <setting name="remote_phonebook.data.3.url"><type><string/></type></setting>
-	    <setting name="remote_phonebook.data.3.name"><type><string/></type></setting>
+	    <setting name="remote_phonebook.data.3.name"><type refid="phonebook_type"/></setting>
 	    <setting name="remote_phonebook.data.4.url"><type><string/></type></setting>
-	    <setting name="remote_phonebook.data.4.name"><type><string/></type></setting>
+	    <setting name="remote_phonebook.data.4.name"><type refid="phonebook_type"/></setting>
 	    <setting name="remote_phonebook.data.5.url"><type><string/></type></setting>
-	    <setting name="remote_phonebook.data.5.name"><type><string/></type></setting>
+	    <setting name="remote_phonebook.data.5.name"><type refid="phonebook_type"/></setting>
 	</group>
 	<group name="phone-call-info" hidden="yes">
 	    <!--//
