@@ -26,11 +26,9 @@ public final class YealinkModel extends PhoneModel {
     private DeviceVersion m_deviceVersion;
 
     private boolean m_hasSeparateDialNow;
-    private boolean m_usePhonebook;
     private String m_name;
     private String m_directoryProfileTemplate;
     private String m_dialNowProfileTemplate;
-    private boolean m_noHD;
     private int m_memoryKeyCount;
 
     public YealinkModel() {
@@ -79,30 +77,6 @@ public final class YealinkModel extends PhoneModel {
 
     public String getDialNowProfileTemplate() {
         return m_dialNowProfileTemplate;
-    }
-
-    public boolean getHasSeparateDialNow() {
-        return m_hasSeparateDialNow;
-    }
-
-    public void setHasSeparateDialNow(boolean value) {
-        m_hasSeparateDialNow = value;
-    }
-
-    public boolean getUsePhonebook() {
-        return m_usePhonebook;
-    }
-
-    public void setUsePhonebook(boolean value) {
-        m_usePhonebook = value;
-    }
-
-    public boolean getNoHD() {
-        return m_noHD;
-    }
-
-    public void setNoHD(boolean noHD) {
-        m_noHD = noHD;
     }
 
     public int getMemoryKeyCount() {

@@ -111,7 +111,7 @@
 	<!-- Configure the pickup code of BLF List.-->
 	<setting name="blf_list_code"><type><string/></type><value></value></setting>
 	<!-- Configure the bargein code.-->
-	<setting name="blf_list_barge_in_code"><type><string/></type><value></value></setting>
+	<setting name="blf_list_barge_in_code" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type><value></value></setting>
 	<!-- Assign account 1 as shared line; 0-Disabled (default), 1-BSFT shared line, 2-Draft bridge line appearance;-->
 	<setting name="shared_line"><type refid="SharedLine_type"/><value>0</value></setting>
 	<!-- Enable or disable call pickup using dialog-info SIP header; 0-Disabled (default), 1-Enabled;-->
@@ -139,33 +139,33 @@
 	<!-- Configure the music on hold server; -->
 	<setting name="music_server_uri"><type><string/></type></setting>
 
-<!-- Enable or disable the phone to receive the messages from the server only; 0-Disabled (default), 1-Enabled;-->
-<setting name="sip_trust_ctrl" advanced="yes"><type><boolean/></type><value>0</value></setting>
-<!-- Configure the proxy server to account 1.-->
-<setting name="proxy_require" advanced="yes"><type><string/></type><value></value></setting>
-<!-- Enable or disable the use of the timer to periodically refresh the DNS-SRV query result; 0-Disabled (default), 1-Enabled;-->
-<!-- Require reboot;-->
-<setting name="srv_ttl_timer_enable" advanced="yes"><type><boolean/></type><value>0</value></setting>
-<!-- Configure the type of DNS-SRV query; 0-UDP, TCP and TLS (default), 1-UDP, 2-TCP, 3-TLS;-->
-<!-- Require reboot;-->
-<setting name="dns_srv_type" advanced="yes"><type refid="SRV_type"/><value>0</value></setting>
-<!-- Configure the presentation of the callee ID; 0-PAI-PRID, 1-DIALED DIGITS (default), 2-RFC4916; -->
-<setting name="cp_source" advanced="yes"><value>1</value></setting>
-<!-- Configure the directed and group pickup codes for account 1, the settings on a per-account basis take precedence over the settings on the phone.-->
-<setting name="group_pickup_code" advanced="yes"><value></value></setting>
-<setting name="direct_pickup_code" advanced="yes"><value></value></setting>
-<!-- Configure the BLF subscribe period (in seconds), the default value is 1800.-->
-<setting name="blf.subscribe_period" advanced="yes"><type><integer/></type><value>1800</value></setting>
-<!-- Configure the ACD subscribe period (in seconds). It ranges from 120 to 3600 (default).-->
-<setting name="subscribe_acd_expires" advanced="yes"><type><integer/></type><value>3600</value></setting>
-<!-- Enable or disable the phone to use the customized theme; 0-Disabled (default), 1-Enabled;-->
-<setting name="idle_screen_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>0</value></setting>
-<!-- Define the access URL of the customized theme.-->
-<setting name="idle_screen_url" advanced="yes" if="yealinkPhoneSIPT38G"><type><string/></type><value></value></setting>
-<!-- Enable or disable the phone to support the simplified SIP header; 0-Disabled (default), 1-Enabled;-->
-<setting name="compact_header_enable" advanced="yes"><type><boolean/></type><value>0</value></setting>
-<!-- Enable or disable the phone to display the picture when receiving the specified SIP message; 0-Disabled, 1-Enabled (default);-->
-<setting name="picture_info_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>1</value></setting>
+	<!-- Enable or disable the phone to receive the messages from the server only; 0-Disabled (default), 1-Enabled;-->
+	<setting name="sip_trust_ctrl" advanced="yes"><type><boolean/></type><value>0</value></setting>
+	<!-- Configure the proxy server to account 1.-->
+	<setting name="proxy_require" advanced="yes"><type><string/></type><value></value></setting>
+	<!-- Enable or disable the use of the timer to periodically refresh the DNS-SRV query result; 0-Disabled (default), 1-Enabled;-->
+	<!-- Require reboot;-->
+	<setting name="srv_ttl_timer_enable" advanced="yes" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	<!-- Configure the type of DNS-SRV query; 0-UDP, TCP and TLS (default), 1-UDP, 2-TCP, 3-TLS;-->
+	<!-- Require reboot;-->
+	<setting name="dns_srv_type" advanced="yes" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type refid="SRV_type"/><value>0</value></setting>
+	<!-- Configure the presentation of the callee ID; 0-PAI-PRID, 1-DIALED DIGITS (default), 2-RFC4916; -->
+	<setting name="cp_source" advanced="yes"><type refid="cp-source_type"/><value>1</value></setting>
+	<!-- Configure the directed and group pickup codes for account 1, the settings on a per-account basis take precedence over the settings on the phone.-->
+	<setting name="group_pickup_code" advanced="yes" if="yealinkPhone(SIPT[2-4])|(W5).*"><value></value></setting>
+	<setting name="direct_pickup_code" advanced="yes" if="yealinkPhone(SIPT[2-4])|(W5).*"><value></value></setting>
+	<!-- Configure the BLF subscribe period (in seconds), the default value is 1800.-->
+	<setting name="blf.subscribe_period" advanced="yes"><type><integer/></type><value>1800</value></setting>
+	<!-- Configure the ACD subscribe period (in seconds). It ranges from 120 to 3600 (default).-->
+	<setting name="subscribe_acd_expires" advanced="yes"><type><integer/></type><value>3600</value></setting>
+	<!-- Enable or disable the phone to use the customized theme; 0-Disabled (default), 1-Enabled;-->
+	<setting name="idle_screen_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>0</value></setting>
+	<!-- Define the access URL of the customized theme.-->
+	<setting name="idle_screen_url" advanced="yes" if="yealinkPhoneSIPT38G"><type><string/></type><value></value></setting>
+	<!-- Enable or disable the phone to support the simplified SIP header; 0-Disabled (default), 1-Enabled;-->
+	<setting name="compact_header_enable" advanced="yes" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	<!-- Enable or disable the phone to display the picture when receiving the specified SIP message; 0-Disabled, 1-Enabled (default);-->
+	<setting name="picture_info_enable" advanced="yes" if="yealinkPhoneSIPT38G"><type><boolean/></type><value>1</value></setting>
     </group>
     <group name="codecs">
 	<!-- Audio codecs for account 1 (Y ranges from 1 to 13).-->
@@ -209,35 +209,35 @@
 	<setting name="codec.7.priority"><type><integer/></type><value>7</value></setting>
 	<setting name="codec.7.rtpmap"><type><integer/></type><value>122</value></setting>
 
-	<setting name="codec.8.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.8.payload_type"><type><string/></type><value>G726-16</value></setting>
-	<setting name="codec.8.priority"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.8.rtpmap"><type><integer/></type><value>112</value></setting>
+	<setting name="codec.8.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.8.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-16</value></setting>
+	<setting name="codec.8.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.8.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>112</value></setting>
 
-	<setting name="codec.9.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.9.payload_type"><type><string/></type><value>G726-24</value></setting>
-	<setting name="codec.9.priority"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.9.rtpmap"><type><integer/></type><value>102</value></setting>
+	<setting name="codec.9.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.9.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-24</value></setting>
+	<setting name="codec.9.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.9.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>102</value></setting>
 
-	<setting name="codec.10.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.10.payload_type"><type><string/></type><value>G726-32 </value></setting>
-	<setting name="codec.10.priority"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.10.rtpmap"><type><integer/></type><value>2</value></setting>
+	<setting name="codec.10.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.10.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-32 </value></setting>
+	<setting name="codec.10.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.10.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>2</value></setting>
 
-	<setting name="codec.11.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.11.payload_type"><type><string/></type><value>G726-40</value></setting>
-	<setting name="codec.11.priority"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.11.rtpmap"><type><integer/></type><value>104</value></setting>
+	<setting name="codec.11.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.11.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-40</value></setting>
+	<setting name="codec.11.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.11.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>104</value></setting>
 
-	<setting name="codec.12.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.12.payload_type"><type><string/></type><value>iLBC_13_3</value></setting>
-	<setting name="codec.12.priority"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.12.rtpmap"><type><integer/></type><value>97</value></setting>
+	<setting name="codec.12.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.12.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>iLBC_13_3</value></setting>
+	<setting name="codec.12.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.12.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>97</value></setting>
 
-	<setting name="codec.13.enable"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.13.payload_type"><type><string/></type><value>iLBC_15_2</value></setting>
-	<setting name="codec.13.priority"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.13.rtpmap"><type><integer/></type><value>97</value></setting>
+	<setting name="codec.13.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.13.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>iLBC_15_2</value></setting>
+	<setting name="codec.13.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.13.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>97</value></setting>
     </group>
     <group name="video-codecs" if="yealinkPhoneVP530">
 	<!-- Video codecs for account 1 (X ranges from 1 to 3) -->

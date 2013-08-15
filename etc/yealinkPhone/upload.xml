@@ -160,6 +160,16 @@
             </type>
             <description>Logo in DOB format for SIP-T2X phones</description>
         </setting>
+        <setting name="ringtones.zip">
+            <label>Custom RingTones</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>RingTones/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with WAV files</description>
+        </setting>
         <setting name="wallpapers.zip">
             <label>Wallpapers for colour LCDs</label>
             <type>
@@ -170,15 +180,15 @@
             </type>
             <description>ZIP archive with JPG and PNG files</description>
         </setting>
-        <setting name="ringtones.zip">
-            <label>Custom RingTones</label>
+        <setting name="screensavers.zip">
+            <label>Screensavers for colour LCDs</label>
             <type>
                 <file>
                     <contentType>application/zip</contentType>
-                    <moveTo>RingTones/</moveTo>
+                    <moveTo>ScreenSavers/</moveTo>
                 </file>
             </type>
-            <description>ZIP archive with WAV files</description>
+            <description>ZIP archive with JPG and PNG files</description>
         </setting>
         <setting name="yealink_SIP-T38G_idle_screen.xml">
             <label>Idle screen XML</label>

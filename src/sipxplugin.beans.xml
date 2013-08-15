@@ -26,12 +26,8 @@
 	<property name="defaultVersion">
 	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_6X"/>
 	</property>
-	<property name="usePhonebook" value="true" />
-	<property name="hasSeparateDialNow" value="true" />
-	<property name="noHD" value="false" />
 	<property name="profileTemplate" value="yealinkPhone/config_v6x_titan.vm" />
 	<property name="directoryProfileTemplate" value="yealinkPhone/directory.xml.vm" />
-	<property name="dialNowProfileTemplate" value="yealinkPhone/dialnow.xml.vm" />
 </bean>
 
 <bean id="yealinkPhoneSIPT12P" parent="yealinkModel">
@@ -39,6 +35,13 @@
 	<property name="label" value="Yealink SIP-T12(P)" />
 	<property name="name" value="T12" />
 	<property name="maxLineCount" value="2" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT18P" parent="yealinkModel">
@@ -47,20 +50,36 @@
 	<property name="name" value="T18" />
 	<property name="maxLineCount" value="1" />
 	<property name="memoryKeyCount" value="2" />
-	<property name="usePhonebook" value="false" />
-	<property name="noHD" value="true" />
+	<property name="supportedFeatures">
+	    <set>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT20P" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T20(P)" />
 	<property name="name" value="T20" />
 	<property name="maxLineCount" value="2" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT22P" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T22(P)" />
 	<property name="name" value="T22" />
 	<property name="maxLineCount" value="3" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT26P" parent="yealinkModel">
@@ -69,10 +88,13 @@
 	<property name="maxLineCount" value="3" />
 	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
-		<set>
-			<value>ExpansionPanels</value>
-		</set>
-    </property>
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasExpansionPanels</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT28P" parent="yealinkModel">
@@ -81,10 +103,13 @@
 	<property name="maxLineCount" value="6" />
 	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
-		<set>
-			<value>ExpansionPanels</value>
-		</set>
-    </property>
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasExpansionPanels</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT32G" parent="yealinkModel">
@@ -92,6 +117,15 @@
 	<property name="name" value="T32" />
 	<property name="maxLineCount" value="3" />
 	<property name="memoryKeyCount" value="0" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasWallPapers</value>
+		<value>hasScreenSavers</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT38G" parent="yealinkModel">
@@ -100,9 +134,14 @@
 	<property name="maxLineCount" value="6" />
 	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
-		<set>
-			<value>ExpansionPanels</value>
-		</set>
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasWallPapers</value>
+		<value>hasScreenSavers</value>
+		<value>hasExpansionPanels</value>
+	    </set>
 	</property>
 </bean>
 
@@ -111,17 +150,20 @@
 	<property name="name" value="VP530" />
 	<property name="maxLineCount" value="4" />
 	<property name="memoryKeyCount" value="0" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasWallPapers</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT42P" parent="yealinkModel">
 	<property name="label" value="Yealink SIP-T42G" />
 	<property name="name" value="T42" />
 	<property name="maxLineCount" value="3" />
-	<property name="supportedFeatures">
-		<set>
-			<value>ExpansionPanels</value>
-		</set>
-	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT46G" parent="yealinkModel">
@@ -130,9 +172,14 @@
 	<property name="maxLineCount" value="6" />
 	<property name="memoryKeyCount" value="10" />
 	<property name="supportedFeatures">
-		<set>
-			<value>ExpansionPanels</value>
-		</set>
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+		<value>hasWallPapers</value>
+		<value>hasScreenSavers</value>
+		<value>hasExpansionPanels</value>
+	    </set>
 	</property>
 </bean>
 
@@ -140,6 +187,13 @@
 	<property name="label" value="Yealink W52" />
 	<property name="name" value="W52" />
 	<property name="maxLineCount" value="5" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+	    </set>
+	</property>
 </bean>
 
 <!--// Files uploading specification //-->

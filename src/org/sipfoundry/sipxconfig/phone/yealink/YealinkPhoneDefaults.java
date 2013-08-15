@@ -273,23 +273,6 @@ public class YealinkPhoneDefaults {
         return  String.format("tftp://%s/yealinkWallpaper.jpg", getTFTPServer());
     }
 
-    @SettingEntry(paths = {
-            YealinkConstants.DIAL_NOW_URL_V6X_T2X_SETTING,
-            YealinkConstants.DIAL_NOW_URL_V6X_T3X_SETTING,
-            YealinkConstants.DIAL_NOW_URL_V7X_SETTING
-            })
-    public String getDialnowUrl() {
-        return  String.format("tftp://%s/%s-%s",
-                getTFTPServer(),
-                m_phone.getSerialNumber(),
-                YealinkConstants.XML_DIAL_NOW);
-    }
-
-//    @SettingEntry(path = yealinkConstants.ALERT_INFO_TEXT_0_SETTING)
-//    public String getText0() {
-//       return getPhoneContext().getIntercomForPhone(m_phone).getCode();
-//    }
-
     private String getPhonebookName(Integer index) {
         User user = m_phone.getPrimaryUser();
         if (user != null) {

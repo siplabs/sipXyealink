@@ -14,7 +14,6 @@ public class YealinkConstants {
     public static final String MIME_TYPE_PLAIN = "text/plain";
     public static final String MIME_TYPE_XML = "text/xml";
 
-    public static final String XML_DIAL_NOW = "dialnow.xml";
     public static final String XML_CONTACT_DATA = "directory.xml";
     public static final String WEB_ITEMS_LEVEL = "webitemslevel.cfg";
     public static final String VENDOR = "Yealink";
@@ -104,7 +103,11 @@ public class YealinkConstants {
 // T3X, T4X and VP530 only
     public static final String WALLPAPER_FILE_NAME_V7X_SETTING = "features/GENERAL/wallpaper_upload.url";
 
-    public static final String DIAL_NOW_URL_V6X_T2X_SETTING = "dialplan/DialNow/server_address";
-    public static final String DIAL_NOW_URL_V6X_T3X_SETTING = "dialplan/DialNow/URL";
     public static final String DIAL_NOW_URL_V7X_SETTING = "downloads/dialplan_dialnow.url";
+
+    public static final String FEATURE_HDSOUND = "hasHDSound";
+    public static final String FEATURE_PHONEBOOK = "hasPhoneBook";
+    public static final String FEATURE_RINGTONES = "hasRingTones";
+    public static final String FEATURE_WALLPAPERS = "hasWallPapers";
+    public static final String FEATURE_SCREENSAVERS = "hasScreenSavers";
 }

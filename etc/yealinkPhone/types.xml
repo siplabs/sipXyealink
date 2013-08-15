@@ -1,8 +1,18 @@
-<!-- empty enum for SettingsVisitor -->
-<type id="phonebook_type">
+<type id="syslog-mode_type">
     <enum>
+        <option><value>1</value></option>
+        <option><value>2</value></option>
     </enum>
 </type>
+<type id="cp-source_type">
+    <enum>
+        <option><value>0</value></option>
+        <option><value>1</value></option>
+        <option><value>2</value></option>
+    </enum>
+</type>
+<!-- empty enum for SettingsVisitor -->
+<type id="phonebook_type"><enum/></type>
 <type id="ringer_type">
     <enum>
 	<option><value>1</value></option>
@@ -367,8 +377,8 @@
 <type id="SIPServer_type">
      <enum>
 	<option><value>0</value></option>
-	<option><label>Broadsoft</label><value>2</value></option>
-	<option><label>Cosmocom</label><value>4</value></option>
+	<option><value>2</value></option>
+	<option><value>4</value></option>
     </enum>
 </type>
 <type id="DTMF-types">

@@ -24,8 +24,9 @@ import org.apache.commons.logging.LogFactory;
 public class YealinkUpload extends Upload {
     private static final Log LOG = LogFactory.getLog(YealinkUpload.class);
     public static final String DIR_YEALINK = "/yealink";
-    public static final String DIR_WALLPAPERS = "/WallPapers";
     public static final String DIR_RINGTONES = "/RingTones";
+    public static final String DIR_WALLPAPERS = "/WallPapers";
+    public static final String DIR_SCREENSAVERS = "/ScreenSavers";
 
     public YealinkUpload() {
     }
@@ -60,6 +61,10 @@ public class YealinkUpload extends Upload {
             File wpLoc = new File(getDestinationDirectory() + DIR_WALLPAPERS);
             if (wpLoc.exists()) {
                 FileUtils.deleteDirectory(wpLoc);
+            }
+            File ssLoc = new File(getDestinationDirectory() + DIR_SCREENSAVERS);
+            if (ssLoc.exists()) {
+                FileUtils.deleteDirectory(ssLoc);
             }
         } catch (IOException e) {
             LOG.error("IOException while deleting folder.", e);

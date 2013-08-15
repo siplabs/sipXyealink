@@ -85,6 +85,14 @@ ${setting.profileName} = %NULL%
 #end
 #end
 
-#foreach ($ringTone in $phone.RingTones)
-ringtone.url = $!{TFTPServer}yealink/RingTones/$!{ringTone}
+#foreach ($f in $phone.RingTones)
+ringtone.url = $!{TFTPServer}yealink/RingTones/$!{f}
+#end
+
+#foreach ($f in $phone.WallPapers)
+wallpaper_upload.url = $!{TFTPServer}yealink/WallPapers/$!{f}
+#end
+
+#foreach ($f in $phone.ScreenSavers)
+screen_saver.pic.url = $!{TFTPServer}yealink/ScreenSavers/$!{f}
 #end

@@ -65,6 +65,9 @@ public class YealinkPhone extends Phone {
     private UploadManager m_uploadManager;
 
     public YealinkPhone() {
+        if (null == super.getSerialNumber()) {
+            super.setSerialNumber("001565");
+        }
     }
 
     public String getDefaultVersionId() {
@@ -122,12 +125,7 @@ public class YealinkPhone extends Phone {
     }
 
     public boolean getHasHD() {
-        YealinkModel model = (YealinkModel) getModel();
-        if (null != model) {
-            return !model.getNoHD();
-        } else {
-            return false;
-        }
+        return getModel().isSupported(YealinkConstants.FEATURE_HDSOUND);
     }
 
     public String getDirectedCallPickupString() {
@@ -175,13 +173,13 @@ public class YealinkPhone extends Phone {
 
     @Override
     public Profile[] getProfileTypes() {
-        YealinkModel model = (YealinkModel) getModel();
+//        YealinkModel model = (YealinkModel) getModel();
         Profile[] profileTypes = new Profile[] {
             new DeviceProfile(getDeviceFilename())
         };
 
         if (getPhonebookManager().getPhonebookManagementEnabled()) {
-            if (model.getUsePhonebook()) {
+            if (getModel().isSupported(YealinkConstants.FEATURE_PHONEBOOK)) {
                 PhonebookManager pbm = getPhonebookManager();
                 if (null != pbm) {
                     User user = getPrimaryUser();
@@ -201,11 +199,6 @@ public class YealinkPhone extends Phone {
                 }
             }
         }
-
-        if (model.getHasSeparateDialNow()) {
-            profileTypes = (Profile[]) ArrayUtils.add(profileTypes, new DialNowProfile(getDialNowFilename()));
-        }
-
         return profileTypes;
     }
 
@@ -222,10 +215,6 @@ public class YealinkPhone extends Phone {
         return format("%s-%d-%s", getSerialNumber(), n, YealinkConstants.XML_CONTACT_DATA);
     }
 
-    public String getDialNowFilename() {
-        return format("%s-%s", getSerialNumber(), YealinkConstants.XML_DIAL_NOW);
-    }
-
     @Override
     public void restart() {
         sendCheckSyncToFirstLine();
@@ -235,23 +224,38 @@ public class YealinkPhone extends Phone {
         return m_speedDial;
     }
 
-    public Collection<String> getRingTones() {
-        Collection<String> ringTones = new ArrayList<String>();
-        UploadSpecification ylUploadSpec = getUploadManager().getSpecification("yealinkFiles");
-        YealinkUpload ylUpload = (YealinkUpload)getUploadManager().newUpload(ylUploadSpec);
-        String loc = ylUpload.getDestinationDirectory() + YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_RINGTONES;
-        File rintonesLoc = new File(loc);
+    private Collection<String> getFileListForDirectory(String dirName) {
+        Collection<String> files = new ArrayList<String>();
+        File rintonesLoc = new File(dirName);
         if (rintonesLoc.exists()) {
             if (rintonesLoc.isDirectory()) {
                 File[] ringtoneFiles = rintonesLoc.listFiles();
                 for (File f : ringtoneFiles) {
                     if (f.isFile()) {
-                        ringTones.add(f.getName());
+                        files.add(f.getName());
                     }
                 }
             }
         }
-        return ringTones;
+        return files;
+    }
+
+    private String getMappedDirectoryName(String dirName) {
+        UploadSpecification ylUploadSpec = getUploadManager().getSpecification("yealinkFiles");
+        YealinkUpload ylUpload = (YealinkUpload)getUploadManager().newUpload(ylUploadSpec);
+        return ylUpload.getDestinationDirectory() + dirName;
+    }
+
+    public Collection<String> getRingTones() {
+        return getModel().isSupported(YealinkConstants.FEATURE_RINGTONES)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_RINGTONES)):Collections.EMPTY_LIST;
+    }
+
+    public Collection<String> getWallPapers() {
+        return getModel().isSupported(YealinkConstants.FEATURE_WALLPAPERS)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_WALLPAPERS)):Collections.EMPTY_LIST;
+    }
+
+    public Collection<String> getScreenSavers() {
+        return getModel().isSupported(YealinkConstants.FEATURE_SCREENSAVERS)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_SCREENSAVERS)):Collections.EMPTY_LIST;
     }
 
     /**
@@ -300,24 +304,6 @@ public class YealinkPhone extends Phone {
             YealinkPhone phone = (YealinkPhone) device;
             YealinkModel model = (YealinkModel) phone.getModel();
             return new YealinkDeviceConfiguration(phone, model.getProfileTemplate());
-        }
-    }
-
-    static class DialNowProfile extends Profile {
-        public DialNowProfile(String name) {
-            super(name, YealinkConstants.MIME_TYPE_XML);
-        }
-
-        @Override
-        protected ProfileFilter createFilter(Device device) {
-            return null;
-        }
-
-        @Override
-        protected ProfileContext createContext(Device device) {
-            YealinkPhone phone = (YealinkPhone) device;
-            YealinkModel model = (YealinkModel) phone.getModel();
-            return new YealinkDialNowConfiguration(phone, model.getDialNowProfileTemplate());
         }
     }
 
@@ -410,7 +396,6 @@ public class YealinkPhone extends Phone {
                 Pattern pattern = Pattern.compile(m_pattern);
                 Matcher matcher = pattern.matcher(setting.getName());
                 matcher.lookingAt();
-                LOG.info("Visitor: " + setting.getName());
                 if (matcher.matches()) {
                     EnumSetting ringTonesSetting = (EnumSetting)setting.getType();
                     if (setting.getName().equals("ringtone.ring_type")) {
