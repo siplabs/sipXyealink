@@ -18,7 +18,7 @@ public class YealinkConstants {
     public static final String WEB_ITEMS_LEVEL = "webitemslevel.cfg";
     public static final String VENDOR = "Yealink";
 
-    // Line specific settings used in /etc/yealinkPhone/line.xml
+    // Line specific settings used in /etc/yealinkPhone/line_XX.xml
     public static final String USER_ID_V6X_SETTING = "account/UserName";
     public static final String USER_ID_V7X_SETTING = "basic/user_name";
     public static final String AUTH_ID_V6X_SETTING = "account/AuthName";
@@ -42,19 +42,19 @@ public class YealinkConstants {
     public static final String VOICE_MAIL_NUMBER_V6X_SETTING = "Message/VoiceNumber";
     public static final String VOICE_MAIL_NUMBER_V7X_SETTING = "basic/voice_mail.number";
 
-    // Phone specific settings used in /etc/yealinkPhone/phone.xml
+    // Phone specific settings used in /etc/yealinkPhone/phone_XX.xml
     public static final String DNS_SERVER1_V6X_SETTING = "network-wan/DNS/PrimaryDNS";
     public static final String DNS_SERVER1_V7X_SETTING = "network-wan/DNS/network.primary_dns";
     public static final String DNS_SERVER2_V6X_SETTING = "network-wan/DNS/SecondaryDNS";
     public static final String DNS_SERVER2_V7X_SETTING = "network-wan/DNS/network.secondary_dns";
+    public static final String SYSLOG_SERVER_V6X_SETTING = "upgrade/SYSLOG/SyslogdIP";
+    public static final String SYSLOG_SERVER_V7X_SETTING = "upgrade/SYSLOG/syslog.server";
+    public static final String LOCAL_TIME_ZONE_V6X_SETTING = "preference/Time/TimeZone";
+    public static final String LOCAL_TIME_ZONE_V7X_SETTING = "preference/local_time.time_zone";
     public static final String LOCAL_TIME_SERVER1_V6X_SETTING = "preference/Time/TimeServer1";
     public static final String LOCAL_TIME_SERVER1_V7X_SETTING = "preference/local_time.ntp_server1";
     public static final String LOCAL_TIME_SERVER2_V6X_SETTING = "preference/Time/TimeServer2";
     public static final String LOCAL_TIME_SERVER2_V7X_SETTING = "preference/local_time.ntp_server2";
-    public static final String LOCAL_TIME_ZONE_V6X_SETTING = "preference/Time/TimeZone";
-    public static final String LOCAL_TIME_ZONE_V7X_SETTING = "preference/local_time.time_zone";
-    public static final String SYSLOG_SERVER_V6X_SETTING = "upgrade/SYSLOG/SyslogdIP";
-    public static final String SYSLOG_SERVER_V7X_SETTING = "upgrade/SYSLOG/syslog.server";
     public static final String XML_BROWSER_SERVER_V6X_SETTING = "xml-browser/ServerIP";
     public static final String XML_BROWSER_SERVER_V7X_SETTING = "features/APISECURITY/push_xml.server";
     public static final String ACTION_URI_LIMIT_IP_V6X_SETTING = "Features/ActionURILimitIP";
@@ -100,8 +100,6 @@ public class YealinkConstants {
 // T2X except T20
     public static final String LOGO_FILE_NAME_V6X_SETTING = "upgrade/Logo/server_address";
     public static final String LOGO_FILE_NAME_V7X_SETTING = "features/GENERAL/lcd_logo.url";
-// T3X, T4X and VP530 only
-    public static final String WALLPAPER_FILE_NAME_V7X_SETTING = "features/GENERAL/wallpaper_upload.url";
 
     public static final String DIAL_NOW_URL_V7X_SETTING = "downloads/dialplan_dialnow.url";
 

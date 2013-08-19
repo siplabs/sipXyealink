@@ -209,35 +209,35 @@
 	<setting name="codec.7.priority"><type><integer/></type><value>7</value></setting>
 	<setting name="codec.7.rtpmap"><type><integer/></type><value>122</value></setting>
 
-	<setting name="codec.8.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.8.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-16</value></setting>
-	<setting name="codec.8.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.8.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>112</value></setting>
+	<setting name="codec.8.enable" if="yealinkPhone(SIPT)|(W).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.8.payload_type" if="yealinkPhone(SIPT)|(W).*"><type><string/></type><value>G726-16</value></setting>
+	<setting name="codec.8.priority" if="yealinkPhone(SIPT)|(W).*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.8.rtpmap" if="yealinkPhone(SIPT)|(W).*"><type><integer/></type><value>112</value></setting>
 
-	<setting name="codec.9.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.9.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-24</value></setting>
-	<setting name="codec.9.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.9.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>102</value></setting>
+	<setting name="codec.9.enable" if="yealinkPhone(SIPT)|(W).*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.9.payload_type" if="yealinkPhone(SIPT)|(W).*"><type><string/></type><value>G726-24</value></setting>
+	<setting name="codec.9.priority" if="yealinkPhone(SIPT)|(W).*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.9.rtpmap" if="yealinkPhone(SIPT)|(W).*"><type><integer/></type><value>102</value></setting>
 
-	<setting name="codec.10.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.10.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-32 </value></setting>
-	<setting name="codec.10.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.10.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>2</value></setting>
+	<setting name="codec.10.enable" if="yealinkPhoneSIPT.*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.10.payload_type" if="yealinkPhoneSIPT.*"><type><string/></type><value>G726-32 </value></setting>
+	<setting name="codec.10.priority" if="yealinkPhoneSIPT.*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.10.rtpmap" if="yealinkPhoneSIPT.*"><type><integer/></type><value>2</value></setting>
 
-	<setting name="codec.11.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.11.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>G726-40</value></setting>
-	<setting name="codec.11.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
-	<setting name="codec.11.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>104</value></setting>
+	<setting name="codec.11.enable" if="yealinkPhoneSIPT.*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.11.payload_type" if="yealinkPhoneSIPT.*"><type><string/></type><value>G726-40</value></setting>
+	<setting name="codec.11.priority" if="yealinkPhoneSIPT.*"><type><integer/></type><value>0</value></setting>
+	<setting name="codec.11.rtpmap" if="yealinkPhoneSIPT.*"><type><integer/></type><value>104</value></setting>
 
-	<setting name="codec.12.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.12.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>iLBC_13_3</value></setting>
-	<setting name="codec.12.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.12.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>97</value></setting>
+	<setting name="codec.12.enable" if="yealinkPhoneSIPT.*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.12.payload_type" if="yealinkPhoneSIPT.*"><type><string/></type><value>iLBC_13_3</value></setting>
+	<setting name="codec.12.priority" if="yealinkPhoneSIPT.*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.12.rtpmap" if="yealinkPhoneSIPT.*"><type><integer/></type><value>97</value></setting>
 
-	<setting name="codec.13.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
-	<setting name="codec.13.payload_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>iLBC_15_2</value></setting>
-	<setting name="codec.13.priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0 </value></setting>
-	<setting name="codec.13.rtpmap" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>97</value></setting>
+	<setting name="codec.13.enable" if="yealinkPhoneSIPT.*"><type><boolean/></type><value>0</value></setting>
+	<setting name="codec.13.payload_type" if="yealinkPhoneSIPT.*"><type><string/></type><value>iLBC_15_2</value></setting>
+	<setting name="codec.13.priority" if="yealinkPhoneSIPT.*"><type><integer/></type><value>0 </value></setting>
+	<setting name="codec.13.rtpmap" if="yealinkPhoneSIPT.*"><type><integer/></type><value>97</value></setting>
     </group>
     <group name="video-codecs" if="yealinkPhoneVP530">
 	<!-- Video codecs for account 1 (X ranges from 1 to 3) -->

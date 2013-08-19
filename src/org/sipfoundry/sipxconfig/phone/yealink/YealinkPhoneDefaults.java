@@ -60,11 +60,7 @@ public class YealinkPhoneDefaults {
             })
     public String getTimeZone() {
         Integer tz = getZone().getOffsetInHours();
-        if (tz < 0) {
-            return "-" + tz.toString();
-        } else {
-            return "+" + tz.toString();
-        }
+        return (tz<0?"-":"+") + tz.toString();
     }
 
     @SettingEntry(paths = {
@@ -264,13 +260,6 @@ public class YealinkPhoneDefaults {
             })
     public String getLogoURL() {
         return  String.format("tftp://%s/yealinkLogo132x64.dob", getTFTPServer());
-    }
-
-    @SettingEntry(paths = {
-            YealinkConstants.WALLPAPER_FILE_NAME_V7X_SETTING
-            })
-    public String getWallPaperURL() {
-        return  String.format("tftp://%s/yealinkWallpaper.jpg", getTFTPServer());
     }
 
     private String getPhonebookName(Integer index) {

@@ -24,7 +24,7 @@
 	    <setting name="network.pppoe.password"><type><string/></type></setting>
 	</group>
     </group>
-    <group name="network-lan" if="yealinkPhone(SIPT[1-4])|(W5).*">
+    <group name="network-lan" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	<!--// Configure the PC port type; 0-Router, 1-Bridge (default); Require reboot;  //-->
 	<setting name="network.bridge_mode"><type refid="LANMode_type"/><value>1</value></setting>
 	<!--// Configure the IP address and mask when the PC port is configured as Router. Require reboot;  //-->
@@ -60,18 +60,18 @@
 	    <setting name="network.vlan.dhcp_option"><type><string/></type><value></value></setting>
 
 	    <!--// Enable or disable the VLAN of PC port; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
-	    <setting name="network.vlan.pc_port_enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="network.vlan.pc_port_enable" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// Configure the VLAN ID, it ranges from 0 to 4094, the default value is 1. Require reboot;  //-->
-	    <setting name="network.vlan.pc_port_vid" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
+	    <setting name="network.vlan.pc_port_vid" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer/></type><value>0</value></setting>
 	    <!--// Configure the VLAN priority, it ranges from 0 (default) to 7. Require reboot;  //-->
-	    <setting name="network.vlan.pc_port_priority" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>0</value></setting>
+	    <setting name="network.vlan.pc_port_priority" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer/></type><value>0</value></setting>
 
 	    <!--//  #Configure the transmit package mode when the VLAN of PC port is enabled; 
 		    #0-The package is not treated and forwarded directly from PC port to the WAN port;
 		    #1-The package is added the tag and forwarded from PC port to the WAN port, if the package is not the tag.
 		    #Require reboot;
 	    //-->
-	    <setting name="network.vlan.pc_port_mode" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="pc_port_mode_type"/><value>0</value></setting>
+	    <setting name="network.vlan.pc_port_mode" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="pc_port_mode_type"/><value>0</value></setting>
 	</group>
 	<group name="port-link" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
 	    <!--// #0-Auto negotiate (default), 1-Full duplex 10Mbps, 2-Full duplex 100Mbps, 3-Half duplex 10Mbps, 4-Half duplex 100Mbps; //-->
@@ -111,20 +111,21 @@
 	</group>
 	<group name="Webserver">
 	    <!--// Configure the access type of the web server; 0-Disabled, 1-HTTP &amp; HTTPS (default), 2-HTTP Only, 3-HTTPS Only; Require reboot;  //-->
-	    <setting name="network.web_server_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="web_server_type"/><value>1</value></setting>
+	    <setting name="network.web_server_type" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="web_server_type"/><value>1</value></setting>
 	    <!--// Configure the HTTP port (80 by default) and the HTTPS port (443 by default) of the web server. Both range from 1 to 65535. Require reboot;  //-->
 	    <setting name="network.port.http"><type><integer min="0" max="65535"/></type><value>80</value></setting>
 	    <setting name="network.port.https"><type><integer min="0" max="65535"/></type><value>443</value></setting>
 	</group>
 	<group name="802.1X">
 	    <!--// Configure the 802.1x mode; 0-Disabled (default), 1-EAP-MD5, 2-EAP-TLS, 3-PEAP-MSCHAPV2; Require reboot;  //-->
-	    <setting name="network.802_1x.mode"><type refid="Mode802_1x_type"/><value>0</value></setting>
+	    <setting name="network.802_1x.mode" if="yealinkPhone(SIPT|VP).*"><type refid="Mode802_1x_type"/><value>0</value></setting>
+	    <setting name="network.802_1x.mode_W52" if="yealinkPhoneW5.*"><profileName>network.802_1x.mode</profileName><type refid="Mode802_1x-W52_type"/><value>0</value></setting>
 	    <!--// Configure the username and password for 802.1x authentication. Require reboot;  //-->
 	    <setting name="network.802_1x.identity"><type><string/></type></setting>
 	    <setting name="network.802_1x.md5_password"><type><string/></type></setting>
 	    <!--// #Configure the access URL of the root and client certificates. //-->
-	    <setting name="network.802_1x.root_cert_url" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type></setting>
-	    <setting name="network.802_1x.client_cert_url" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type></setting>
+	    <setting name="network.802_1x.root_cert_url" if="yealinkPhone(SIPT[24])|(VP530).*"><type><string/></type></setting>
+	    <setting name="network.802_1x.client_cert_url" if="yealinkPhone(SIPT[24])|(VP530).*"><type><string/></type></setting>
 	</group>
 	<group name="SPAN2PCPORT" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
 	    <!--// #Enable or disable the span from WAN port to PC port feature; 0-Disabled (default), 1-Enabled; #Require reboot; //-->
@@ -187,7 +188,9 @@
 	    <setting name="auto_provision.pnp_event_vendor" advanced="yes"><type><string/></type><value></value></setting>
 
 	    <!--// #0-Disabled (default), 1-Power on, 4-Repeatedly, 5-Weekly, 6-Power on + Repeatedly, 7-Power on + Weekly; //-->
-	    <setting name="auto_provision.mode"><type refid="autop_mode_type"/><value>1</value></setting>
+	    <setting name="auto_provision.mode" if="yealinkPhone(SIPT[2-4])|(VP530).*"><type refid="autop_mode_type"/><value>1</value></setting>
+	    <setting name="auto_provision.mode_W52" if="yealinkPhoneW5.*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="auto_provision.repeat.enable" if="yealinkPhoneW5.*"><type><boolean/></type><value>0</value></setting>
 
 	    <!--// Configure the interval (in minutes) the phone repeatedly checks the new configuration. The default is 1440. //-->
 	    <setting name="auto_provision.schedule.periodic_minute" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><integer/></type><value>1440</value></setting>
@@ -202,7 +205,7 @@
 	    ##                Syslog Server                                                      ##
 	    #######################################################################################
 	     //-->
-	    <setting name="syslog.mode" if="yealinkPhoneVP530"><type refid="syslog-mode_type"/><value>1</value></setting>
+	    <setting name="syslog.mode" if="yealinkPhone(VP530|W52)"><type refid="syslog-mode_type"/><value>1</value></setting>
 	    <!--// Configure the IP address of the syslog server. Require reboot; //-->
 	    <setting name="syslog.server"><type><ipaddr/></type></setting>
 	    <!--// Configure the syslog level. It ranges from 0 to 6, the default value is 3. Require reboot; //-->
@@ -885,8 +888,8 @@
 	#######################################################################################
 	 //-->
 	<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
-	<setting name="gui_lang.delete" hidden="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>http://localhost/all</value></setting>
-	<setting name="gui_lang.url" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	<setting name="gui_lang.delete" hidden="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type><value>http://localhost/all</value></setting>
+	<setting name="gui_lang.url" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
 	<!--// 
 	#######################################################################################
 	##                             Time Settings                                         ##
@@ -930,12 +933,12 @@
 	<!--// Configure the backlight time (in seconds). The valid values are: 1-Always on, 60 (default), 120, 300, 600, 1800.  //-->
 	<setting name="phone_setting.backlight_time"><type refid="yealink_backlight_time_type"/><value>60</value></setting>
 	<!--// Configure the keypad lock type; 0-Disabled (default), 1-Menu Key, 2-Function Key, 3-All Keys, 4-Lock&amp;Answer;  //-->
-	<setting name="phone_setting.lock" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="yealink_key_lock_type"/><value>0</value></setting>
+	<setting name="phone_setting.lock" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="yealink_key_lock_type"/><value>0</value></setting>
 	<!--// Set the unlock password and expiry time (in seconds) of phone lock. It ranges from 0 to 3600, the default value of expiry time is 10. //-->
-	<setting name="phone_setting.phone_lock.unlock_pin" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
-	<setting name="phone_setting.phone_lock.lock_time_out" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="0" max="3600"/></type><value>10</value></setting>
+	<setting name="phone_setting.phone_lock.unlock_pin" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
+	<setting name="phone_setting.phone_lock.lock_time_out" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="0" max="3600"/></type><value>10</value></setting>
 	<!--// Configure the emergency number, each separated by comma. The default value is 112,911,110.  //-->
-	<setting name="phone_setting.emergency.number" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	<setting name="phone_setting.emergency.number" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
 	<!--// Enable or disable the WatchDog feature; 0-Disabled, 1-Enabled (default); //-->
 	<setting name="watch_dog.enable"><type><boolean/></type><value>1</value></setting>
 	<!--// Configure the ring tone for the phone. System ring tones are: Ring1.wav (default), Ring2.wav...Ring8.wav.
@@ -1032,7 +1035,7 @@
 	    <!--// Enable or disable the phone to deal the 180 SIP message after the 183 SIP message; 0-Disabled, 1-Enabled (default);  //-->
 	    <setting name="phone_setting.is_deal180"><type><boolean/></type><value>1</value></setting>
 	    <!--// Enable or disable the phone to show the logon wizard during startup; 0-Disabled (default), 1-Enabled;  //-->
-	    <setting name="phone_setting.logon_wizard" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="phone_setting.logon_wizard" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 
 	    <!--// #Enable or disable the phone to encrypt the digits of the dialed number. The encrypted digits are displayed as asterisks on the LCD screen; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="features.password_dial.enable" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
@@ -1045,14 +1048,14 @@
 	    <setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
 
 	    <!--// Configure the repetition times of DTMF end packet. The valid values are 1, 2, 3 (default). //-->
-	    <setting name="features.dtmf.repetition" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
+	    <setting name="features.dtmf.repetition" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="yealink_dtmf_repetition_type"/><value>3</value></setting>
 	    <!--// Specify whether to display the contact name in the remote phonebook; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="features.remote_phonebook.enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="features.remote_phonebook.enable" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>1</value></setting>
 	    <!--// Set the interval (in seconds) the phone updates the remote phonebook. The default value is 3600. //-->
-	    <setting name="features.remote_phonebook.flash_time" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>3600</value></setting>
+	    <setting name="features.remote_phonebook.flash_time" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer/></type><value>3600</value></setting>
 
 	    <!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
-	    <setting name="features.dsskey_blind_tran" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="features.dsskey_blind_tran" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>1</value></setting>
 
 	    <!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
 	    <setting name="features.relog_offtime"><type><integer min="1" max="1000"/></type><value>5</value></setting>
@@ -1072,7 +1075,7 @@
 	    <setting name="lcd_logo.url" advanced="yes" if="yealinkPhoneSIPT2[268].*"></setting>
 
 	    <!--// Configure the flash hook time (in milliseconds). It ranges from 0 to 799, the default value is 1.  //-->
-	    <setting name="phone_setting.flash_hook_timer" advanced="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="0" max="799"/></type><value>1</value></setting>
+	    <setting name="phone_setting.flash_hook_timer" advanced="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="0" max="799"/></type><value>1</value></setting>
 	    <!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
 	    #The same level for different phones may result in different backlight intensities. 
 	    #The backlight level of T2xP ranges from 1 to 3.  //-->
@@ -1091,17 +1094,17 @@
 	    <setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
 	    <setting name="features.redial_tone"><type><boolean/></type><value>1</value></setting>
 	    <!--// Configure the sending volume of Speaker, Handset and Headset. It ranges from 1 to 53, the default values are 25, 35, 29. Require reboot; //-->
-	    <setting name="voice.handfree_send" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="1" max="53"/></type><value>25</value></setting>
-	    <setting name="voice.handset_send" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="1" max="53"/></type><value>35</value></setting>
-	    <setting name="voice.headset_send" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="1" max="53"/></type><value>29</value></setting>
+	    <setting name="voice.handfree_send" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="1" max="53"/></type><value>25</value></setting>
+	    <setting name="voice.handset_send" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="1" max="53"/></type><value>35</value></setting>
+	    <setting name="voice.headset_send" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="1" max="53"/></type><value>29</value></setting>
 	    <!--// Configure the receiving volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
 	    <setting name="voice.handfree.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
 	    <setting name="voice.handset.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
 	    <setting name="voice.headset.spk_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
 	    <!--// Configure the dial tone volume of Speaker, Handset and Headset. It ranges from 0 to 15, the default value is 8. //-->
-	    <setting name="voice.handfree.tone_vol" advanced="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
-	    <setting name="voice.handset.tone_vol" advanced="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
-	    <setting name="voice.headset.tone_vol" advanced="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.handfree.tone_vol" advanced="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.handset.tone_vol" advanced="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
+	    <setting name="voice.headset.tone_vol" advanced="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer min="0" max="15"/></type><value>8</value></setting>
 	    <!--// Configure the ring volume. It ranges from 0 to 15, the default value is 8. //-->
 	    <setting name="voice.ring_vol" advanced="yes"><type><integer min="0" max="15"/></type><value>8</value></setting>
 	    <!--// Specify the ring device when the phone is in the Headset mode; 0-use Speaker (default), 1-use Headset; //-->
@@ -1132,14 +1135,14 @@
 	    <setting name="transfer.blind_tran_on_hook_enable"><type><boolean/></type><value>1</value></setting>
 	    <setting name="transfer.on_hook_trans_enable"><type><boolean/></type><value>1</value></setting>
 	    <!--// Define the way of DSS key when configuring as a transfer key; 0-Display Number, 1-Attended Transfer, 2-Blind Transfer (default); //-->
-	    <setting name="transfer.dsskey_deal_type" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="DSSKeyDealType_type"/><value>2</value></setting>
+	    <setting name="transfer.dsskey_deal_type" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="DSSKeyDealType_type"/><value>2</value></setting>
 	    <!--// Enable or disable the conference initiator to transfer the call when hanging up; 0-Disabled(default),1-Enabled; //-->
 	    <setting name="transfer.tran_others_after_conf_enable"><type><boolean/></type><value>0</value></setting>
 	    <!--// Configure the ring tone when the transfer fails. The valid values are: Ring1.wav.... Ring8.wav.
 	    #phone_setting.ring_for_tranfailed = Ring1.wav  //-->
-	    <setting name="phone_setting.ring_for_tranfailed" advanced="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
+	    <setting name="phone_setting.ring_for_tranfailed" advanced="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="yealink_ring_type"/><value>Ring1.wav</value></setting>
 	</group>
-	<group name="CALLPICKUP" if="yealinkPhone(SIPT[1-4])|(W5).*">
+	<group name="CALLPICKUP" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	    <!--// Enable or disable the phone to pick up the call using the directed pickup soft key; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="features.pickup.direct_pickup_enable"><type><boolean/></type><value>0</value></setting>
 	    <!--// Configure the directed pickup code. //-->
@@ -1161,7 +1164,7 @@
 	    #Enter multiple IP addresses (separated by comma) or "any"(stands for any IP address);  //-->
 	    <setting name="features.action_uri_limit_ip"><type><string/></type></setting>
 	</group>
-	<group name="ACD" if="yealinkPhone(SIPT[1-4])|(W5).*">
+	<group name="ACD" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	    <!--// 
 	    #######################################################################################
 	    ##           Automatic Call Distribute                                               ##
@@ -1173,7 +1176,7 @@
 	    <setting name="acd.auto_available_timer"><type><integer min="0" max="120"/></type><value>60</value></setting>
 	</group>
     </group>
-    <group name="soft-key-layout" if="yealinkPhone(SIPT[1-4])|(W5).*">
+    <group name="soft-key-layout" if="yealinkPhone((SIPT[1-4])|(W5)).*">
     <!--// 
     #######################################################################################
     ##                   Customize the softkey                                           ##
@@ -1202,21 +1205,21 @@
 	<!--// Configure Line Key1 //-->
 	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
 	<setting name="linekey.1.value"><type><string/></type></setting>
-	<setting name="linekey.1.pickup_value" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	<setting name="linekey.1.pickup_value" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
 	<setting name="linekey.1.type"><type><string/></type></setting>
 	<setting name="linekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="linekey.1.label"><type><string/></type></setting>
 	<!--// Configure Line Key2 //-->
 	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
 	<setting name="linekey.2.value"><type><string/></type></setting>
-	<setting name="linekey.2.pickup_value" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	<setting name="linekey.2.pickup_value" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
 	<setting name="linekey.2.type"><type><string/></type></setting>
 	<setting name="linekey.2.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="linekey.2.label"><type><string/></type></setting>
 	<!--// Configure Line Key3 //-->
 	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
 	<setting name="linekey.3.value"><type><string/></type></setting>
-	<setting name="linekey.3.pickup_value" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	<setting name="linekey.3.pickup_value" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
 	<setting name="linekey.3.type"><type><string/></type></setting>
 	<setting name="linekey.3.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="linekey.3.label"><type><string/></type></setting>
@@ -1242,7 +1245,7 @@
 	<setting name="linekey.6.xml_phonebook" if="yealinkPhone((SIPT38)|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.6.label" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	</group>
-	<group name="programmable-keys" if="yealinkPhone(SIPT[1-4])|(W5).*">
+	<group name="programmable-keys" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	<!--//
 	##########################################################################################
 	##                             Programmable Key                                         ##
@@ -1263,28 +1266,28 @@
 
 	programablekey.x.label This parameter is only available to the key 1 to key 4. 
 	 //-->
-	<setting name="programablekey.1.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<setting name="programablekey.1.type"><type refid="V70_pk_type"/><value>28</value></setting>
 	<setting name="programablekey.1.line"><type refid="yealink_line_type"/></setting>
 	<setting name="programablekey.1.value"><type><string/></type></setting>
 	<setting name="programablekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.1.history_type"><type><string/></type></setting>
 	<setting name="programablekey.1.label"><type><string/></type></setting>
 
-	<setting name="programablekey.2.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<setting name="programablekey.2.type"><type refid="V70_pk_type"/><value>22</value></setting>
 	<setting name="programablekey.2.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.2.value"><type><string/></type></setting>
 	<setting name="programablekey.2.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.2.history_type"><type><string/></type></setting>
 	<setting name="programablekey.2.label"><type><string/></type></setting>
 
-	<setting name="programablekey.3.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<setting name="programablekey.3.type"><type refid="V70_pk_type"/><value>5</value></setting>
 	<setting name="programablekey.3.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.3.value"><type><string/></type></setting>
 	<setting name="programablekey.3.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.3.history_type"><type><string/></type></setting>
 	<setting name="programablekey.3.label"><type><string/></type></setting>
 
-	<setting name="programablekey.4.type"><type refid="V70_pk_type"/><value>0</value></setting>
+	<setting name="programablekey.4.type"><type refid="V70_pk_type"/><value>30</value></setting>
 	<setting name="programablekey.4.line"><type reid="yealink_line_type"/></setting>
 	<setting name="programablekey.4.value"><type><string/></type></setting>
 	<setting name="programablekey.4.xml_phonebook"><type refid="XMLPB_type"/></setting>
@@ -1432,7 +1435,7 @@
 	<setting name="action_url.transfer_finished"><type><string/></type></setting>
 	<setting name="action_url.transfer_failed"><type><string/></type></setting>
     </group>
-    <group name="voice" if="yealinkPhone(SIPT[1-4])|(W5).*">
+    <group name="voice" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	<!--// 
 	#######################################################################################
 	##                                Voice                                              ##
@@ -1487,7 +1490,7 @@
 	<setting name="distinctive_ring_tones.alert_info.8.text"><type><string/></type></setting>
 	<setting name="distinctive_ring_tones.alert_info.8.ringer"><type refid="ringer_type"/><value>1</value></setting>
     </group>
-    <group name="tones" if="yealinkPhone(SIPT[1-4])|(W5).*">
+    <group name="tones" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	<!--// Define the voice tone, the valid values can be Custom (default) or voice tone of different countries. For example, United States, France, Germany and so on. voice.tone.country = Custom //-->
 	<setting name="voice.tone.country"><type refid="ToneCountry_type"/><value>Custom</value></setting>
 	<!--// Customize the tone when the "voice.tone.country" is configured as Custom.  
@@ -1501,13 +1504,13 @@
 	<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
 	<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
 	<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.congestion"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.dialrecall"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.record"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.info"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.stutter"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.message"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.autoanswer"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.congestion" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.dialrecall" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.record" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.info" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.stutter" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.message" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.autoanswer" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
     </group>
     <!--//
     #######################################################################################
@@ -1662,16 +1665,16 @@
 	    <!--// Configure the LDAP version. The valid value is 2 or 3 (default). //-->
 	    <setting name="ldap.version"><type refid="yealink_ldap_version_type"/><value>3</value></setting>
 	    <!--// Conifugre the search delay time. It ranges from 0 to 2000 (default). //-->
-	    <setting name="ldap.search_delay" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><integer/></type><value>2000</value></setting>
+	    <setting name="ldap.search_delay" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer/></type><value>2000</value></setting>
 	    <!--// Enable or disable the phone to query the contact name from the LDAP server when receiving an incoming call; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="ldap.call_in_lookup"><type><boolean/></type><value>0</value></setting>
 	    <!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
 	    <setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
 	    <!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="ldap.dial_lookup" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="ldap.dial_lookup" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	</group>
     </group>
-    <group name="RPS" hidden="yes">
+    <group name="RPS" if="yealinkPhoneSIPT3.*">
 	<!--// Enable or disable the redirect feature; 0-Disabled (default), 1-Enabled; //-->
 	<setting name="redirect.enable"><type><boolean/></type><value>0</value></setting>
     </group>
@@ -1770,11 +1773,11 @@
 	    <setting name="bw_call_log.data.3.password"><type><string/></type></setting>
 	    <setting name="bw_call_log.data.3.name"><type><string/></type></setting>
 	    <!--// Enable or disable the phone to access the BSFT call log/phonebook directly when pressing the History/Directory soft keys; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
-	    <setting name="bw.calllog_and_dir" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="bw.calllog_and_dir" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// Specify whether to display the BSFT call log on the web user interface; 0-Disabled, 1-Enabled (default); Require reboot; //-->
-	    <setting name="bw.behave_calllog" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="bw.behave_calllog" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// Specify whether to display the BSFT directory on the web user interface; 0-Disabled, 1-Enable (default);	Require reboot; //-->
-	    <setting name="bw.behave_bw_dir" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="bw.behave_bw_dir" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// Enable or disable the feature key synchronization; 0-Disabled (default), 1-Enabled; //-->
 	    <setting name="bw.feature_key_sync"><type><boolean/></type><value>0</value></setting>
 	</group>
@@ -1797,20 +1800,21 @@
 	    security.user_name.var = varuser
 	    security.user_password = varuser:adminpwd //-->
 	    <!--// TODO: make custom parsing  //-->
-	    <setting name="security.user_name.user" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>user</value></setting>
-	    <setting name="security.user_name.admin" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>admin</value></setting>
-	    <setting name="security.user_name.var" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type><value>custom</value></setting>
+	    <setting name="security.user_name.user" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type><value>user</value></setting>
+	    <setting name="security.user_name.admin" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type><value>admin</value></setting>
+	    <setting name="security.user_name.var" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type><value>custom</value></setting>
 	    <setting name="security.user_password"><type><string/></type><value>admin:admin</value></setting>
 	    <!--// Enable or disable the 3-level permissions (open var); 0-Disabled (default), 1-Enabled;
 	    Require reboot; //-->
-	    <setting name="security.var_enable" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="security.var_enable" if="yealinkPhone(SIPT[1-4]).*"><type><boolean/></type><value>1</value></setting>
 	    <!--//
 	    #######################################################################################
 	    ##     Configuration files for Var                                                   ##
 	    #######################################################################################
 	     //-->
 	    <!--// Configure the access URL for downloading the files for var. Require reboot  //-->
-	    <setting name="web_item_level.url" hidden="yes" if="yealinkPhone(SIPT[1-4])|(W5).*"><type><string/></type></setting>
+	    <setting name="web_item_level.url" hidden="yes" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
+	    <setting name="base.pin_code" if="yealinkPhoneW52"></setting>
 	</group>
 	<!--// 
 	#######################################################################################
@@ -1840,7 +1844,7 @@
 	    <setting name="custom_factory_configuration.url"><type><string/></type></setting>
 	</group>
     </group>
-    <group name="hot-desking" if="yealinkPhone(SIPT[1-4])|(W5).*">
+    <group name="hot-desking" if="yealinkPhone((SIPT[1-4])|(W5)).*">
 	<!--//
 	#######################################################################################
 	##                      Hot Desking                                                  ##

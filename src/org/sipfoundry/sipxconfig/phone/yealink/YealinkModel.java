@@ -44,7 +44,7 @@ public final class YealinkModel extends PhoneModel {
                 return deviceVersion;
             }
         }
-        return VER_6X;
+        return VER_7X;
     }
 
     public void setDefaultVersion(DeviceVersion value) {

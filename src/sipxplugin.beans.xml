@@ -24,7 +24,7 @@
 	    </list>
 	</property>
 	<property name="defaultVersion">
-	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_6X"/>
+	    <ref local="org.sipfoundry.sipxconfig.phone.yealink.YealinkModel.VER_7X"/>
 	</property>
 	<property name="profileTemplate" value="yealinkPhone/config_v6x_titan.vm" />
 	<property name="directoryProfileTemplate" value="yealinkPhone/directory.xml.vm" />

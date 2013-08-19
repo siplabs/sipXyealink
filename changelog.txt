@@ -1,0 +1,29 @@
+RPM V4.6.0 build 1622.e2f62
+    Date:   Thu Aug 15 20:17:10 2013 +0700
+	ADD: MAC address prefix on phone creation
+	ADD: WallPapers and ScreenSavers uploading for color LCD phones
+	ADD: features support for phone beans
+	ADD: filters for settings difference between different models
+
+RPM v.4.6.0 build 1621.a4224
+    Date:   Wed Aug 14 07:03:08 2013 +0700
+	ADD: RingTones uploading and selection.
+	ADD: PhoneBook selection (only renames phonebook)
+    Date:   Tue Aug 13 13:20:04 2013 +0700
+	FIXED: LCD logo
+	ADED: multiple phonebook support
+
+RPM 4.6.0 build 1580.e4c62
+    Date:   Tue Aug 6 15:45:45 2013 +0700
+	FIX: properties for lang file url
+    Date:   Tue Aug 6 15:18:59 2013 +0700
+	Common settings are ready.
+    Date:   Fri Aug 2 17:43:35 2013 +0700
+	Added SIP-T46G, SIP-T42G, SIP-T41, W52, VP530 models, finished page Action URL
+    Date:   Thu Aug 1 17:09:31 2013 +0700
+	Wiped out all unsupported settings. Compleated Upgrade section.
+    Date:   Wed Jul 31 16:05:29 2013 +0700
+	Refactor: universal support for 2 level groups
+    Date:   Fri Jul 12 13:15:10 2013 +0700
+	Compleated section Preference, FIXED: DNS defaults
+    Date:   Tue Jul 9 11:30:18 2013 +0700

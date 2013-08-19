@@ -219,6 +219,12 @@
 	<option><value>3</value></option>
     </enum>
 </type>
+<type id="Mode802_1x-W52_type">
+    <enum>
+	<option><value>0</value></option>
+	<option><value>1</value></option>
+    </enum>
+</type>
 <type id="SharedLine_type">
     <enum>
 	<option><value>0</value></option>

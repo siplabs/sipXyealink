@@ -30,6 +30,7 @@ import org.sipfoundry.sipxconfig.device.ProfileFilter;
 import org.sipfoundry.sipxconfig.phone.Line;
 import org.sipfoundry.sipxconfig.phone.LineInfo;
 import org.sipfoundry.sipxconfig.phone.Phone;
+import org.sipfoundry.sipxconfig.phone.PhoneModel;
 import org.sipfoundry.sipxconfig.phone.PhoneContext;
 import org.sipfoundry.sipxconfig.phonebook.Phonebook;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
@@ -65,9 +66,15 @@ public class YealinkPhone extends Phone {
     private UploadManager m_uploadManager;
 
     public YealinkPhone() {
-        if (null == super.getSerialNumber()) {
-            super.setSerialNumber("001565");
+        if (null == getSerialNumber()) {
+            setSerialNumber("001565");
         }
+    }
+
+    @Override
+    public void setModel(PhoneModel model) {
+        super.setModel(model);
+        setDeviceVersion(((YealinkModel) model).getDefaultVersion());
     }
 
     public String getDefaultVersionId() {
