@@ -265,6 +265,10 @@ public class YealinkPhone extends Phone {
         return getModel().isSupported(YealinkConstants.FEATURE_SCREENSAVERS)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_SCREENSAVERS)):Collections.EMPTY_LIST;
     }
 
+    public Collection<String> getLanguages() {
+        return getModel().isSupported(YealinkConstants.FEATURE_LANGUAGES)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_LANGUAGES)):Collections.EMPTY_LIST;
+    }
+
     /**
      * Each subclass must decide how as much of this generic line information translates into its
      * own setting model.

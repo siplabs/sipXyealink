@@ -200,15 +200,15 @@
             </type>
             <description>IdleScreen.xml</description>
         </setting>
-        <setting name="lang+English.txt">
-            <label>Custom LCD Language file</label>
+        <setting name="languages.zip">
+            <label>Custom LCD Language correction files</label>
             <type>
                 <file>
-                    <contentType>application/binary</contentType>
-                    <moveTo>../</moveTo>
+                    <contentType>application/zip</contentType>
+                    <moveTo>Languages/</moveTo>
                 </file>
             </type>
-            <description>UTF16LE text file, named lang+English.txt by default</description>
+            <description>Zip archive with UTF16LE text file, named lang+English.txt or lang-LangName.txt by default</description>
         </setting>
 </group>
 </model>

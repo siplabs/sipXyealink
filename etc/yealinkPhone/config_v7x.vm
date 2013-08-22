@@ -96,3 +96,7 @@ wallpaper_upload.url = $!{TFTPServer}yealink/WallPapers/$!{f}
 #foreach ($f in $phone.ScreenSavers)
 screen_saver.pic.url = $!{TFTPServer}yealink/ScreenSavers/$!{f}
 #end
+
+#foreach ($f in $phone.Languages)
+gui_lang.url = $!{TFTPServer}yealink/Languages/$!{f}
+#end

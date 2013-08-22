@@ -1,3 +1,12 @@
+<type id="dect-line_type">
+    <enum>
+	<option><value>1</value></option>
+	<option><value>2</value></option>
+	<option><value>3</value></option>
+	<option><value>4</value></option>
+	<option><value>5</value></option>
+    </enum>
+</type>
 <type id="syslog-mode_type">
     <enum>
         <option><value>1</value></option>

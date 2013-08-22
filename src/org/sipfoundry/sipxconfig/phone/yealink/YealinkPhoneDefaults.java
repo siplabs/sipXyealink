@@ -247,14 +247,6 @@ public class YealinkPhoneDefaults {
     }
 
     @SettingEntry(paths = {
-            YealinkConstants.LANG_FILE_NAME_V6X_SETTING,
-            YealinkConstants.LANG_FILE_NAME_V7X_SETTING
-            })
-    public String getLangURL() {
-        return  String.format("tftp://%s/lang+English.txt", getTFTPServer());
-    }
-
-    @SettingEntry(paths = {
             YealinkConstants.LOGO_FILE_NAME_V6X_SETTING,
             YealinkConstants.LOGO_FILE_NAME_V7X_SETTING
             })

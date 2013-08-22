@@ -20,7 +20,8 @@ public final class YealinkModel extends PhoneModel {
     public static final DeviceVersion VER_6X = new DeviceVersion(YealinkPhone.BEAN_ID, "6X");
     public static final DeviceVersion VER_7X = new DeviceVersion(YealinkPhone.BEAN_ID, "7X");
     public static final DeviceVersion[] SUPPORTED_VERSIONS = new DeviceVersion[] {
-        VER_6X, VER_7X
+        VER_6X,
+        VER_7X
     };
 
     private DeviceVersion m_deviceVersion;

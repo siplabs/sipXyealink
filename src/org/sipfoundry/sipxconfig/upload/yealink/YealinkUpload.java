@@ -27,6 +27,7 @@ public class YealinkUpload extends Upload {
     public static final String DIR_RINGTONES = "/RingTones";
     public static final String DIR_WALLPAPERS = "/WallPapers";
     public static final String DIR_SCREENSAVERS = "/ScreenSavers";
+    public static final String DIR_LANGUAGES = "/Languages";
 
     public YealinkUpload() {
     }
@@ -65,6 +66,10 @@ public class YealinkUpload extends Upload {
             File ssLoc = new File(getDestinationDirectory() + DIR_SCREENSAVERS);
             if (ssLoc.exists()) {
                 FileUtils.deleteDirectory(ssLoc);
+            }
+            File lngLoc = new File(getDestinationDirectory() + DIR_LANGUAGES);
+            if (lngLoc.exists()) {
+                FileUtils.deleteDirectory(lngLoc);
             }
         } catch (IOException e) {
             LOG.error("IOException while deleting folder.", e);

@@ -5,6 +5,38 @@
     [<!ENTITY types SYSTEM "types.xml">]>
 <model>
 &types;
+    <group name="handset" if="yealinkPhoneW52.*">
+	<group name="1">
+	    <setting name="handset.1.name"><value>H1</value></setting>
+	    <setting name="handset.1.incoming_lines"><value>1</value></setting>
+	    <setting name="handset.1.dial_out_lines"><value>1</value></setting>
+	    <setting name="handset.1.dial_out_default_line"><type refid="dect-line_type"/><value>1</value></setting>
+	</group>
+	<group name="2">
+	    <setting name="handset.2.name"><value>H2</value></setting>
+	    <setting name="handset.2.incoming_lines"><value>2</value></setting>
+	    <setting name="handset.2.dial_out_lines"><value>2</value></setting>
+	    <setting name="handset.2.dial_out_default_line"><type refid="dect-line_type"/><value>2</value></setting>
+	</group>
+	<group name="3">
+	    <setting name="handset.3.name"><value>H3</value></setting>
+	    <setting name="handset.3.incoming_lines"><value>3</value></setting>
+	    <setting name="handset.3.dial_out_lines"><value>3</value></setting>
+	    <setting name="handset.3.dial_out_default_line"><type refid="dect-line_type"/><value>3</value></setting>
+	</group>
+	<group name="4">
+	    <setting name="handset.4.name"><value>H4</value></setting>
+	    <setting name="handset.4.incoming_lines"><value>4</value></setting>
+	    <setting name="handset.4.dial_out_lines"><value>4</value></setting>
+	    <setting name="handset.4.dial_out_default_line"><type refid="dect-line_type"/><value>4</value></setting>
+	</group>
+	<group name="5">
+	    <setting name="handset.5.name"><value>H5</value></setting>
+	    <setting name="handset.5.incoming_lines"><value>5</value></setting>
+	    <setting name="handset.5.dial_out_lines"><value>5</value></setting>
+	    <setting name="handset.5.dial_out_default_line"><type refid="dect-line_type"/><value>5</value></setting>
+	</group>
+    </group>
     <group name="network-wan">
 	<group name="network">
 	    <!--// Configure the WAN port type; 0-DHCP (default), 1-PPPoE, 2-Static IP Address; Require reboot;  //-->
@@ -73,7 +105,7 @@
 	    //-->
 	    <setting name="network.vlan.pc_port_mode" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type refid="pc_port_mode_type"/><value>0</value></setting>
 	</group>
-	<group name="port-link" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
+	<group name="port-link" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*">
 	    <!--// #0-Auto negotiate (default), 1-Full duplex 10Mbps, 2-Full duplex 100Mbps, 3-Half duplex 10Mbps, 4-Half duplex 100Mbps; //-->
 	    <setting name="network.internet_port.speed_duplex"><type refid="PortLink_type"/><value>0</value></setting>
 	    <setting name="network.pc_port.speed_duplex"><type refid="PortLink_type"/><value>0</value></setting>
@@ -101,7 +133,7 @@
 	    <!--// Configure the maximum local RTP port. It ranges from 0 to 65535, the default value is 11800. Require reboot;  //-->
 	    <setting name="network.port.max_rtpport"><type><integer min="0" max="65535"/></type><value>11800</value></setting>
 	</group>
-	<group name="SNMP" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
+	<group name="SNMP" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*">
 	    <!--// #Enable or disable the SNMP feature; 0-Disabled (default), 1-Enabled; #Require reboot; //-->
 	    <setting name="network.snmp.enable"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Configure the SNMP port. #Require reboot; //-->
@@ -127,7 +159,7 @@
 	    <setting name="network.802_1x.root_cert_url" if="yealinkPhone(SIPT[24])|(VP530).*"><type><string/></type></setting>
 	    <setting name="network.802_1x.client_cert_url" if="yealinkPhone(SIPT[24])|(VP530).*"><type><string/></type></setting>
 	</group>
-	<group name="SPAN2PCPORT" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
+	<group name="SPAN2PCPORT" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*">
 	    <!--// #Enable or disable the span from WAN port to PC port feature; 0-Disabled (default), 1-Enabled; #Require reboot; //-->
 	    <setting name="network.span_to_pc_port"><type><boolean/></type><value>0</value></setting>
 	</group>
@@ -193,11 +225,11 @@
 	    <setting name="auto_provision.repeat.enable" if="yealinkPhoneW5.*"><type><boolean/></type><value>0</value></setting>
 
 	    <!--// Configure the interval (in minutes) the phone repeatedly checks the new configuration. The default is 1440. //-->
-	    <setting name="auto_provision.schedule.periodic_minute" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><integer/></type><value>1440</value></setting>
+	    <setting name="auto_provision.schedule.periodic_minute" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><integer/></type><value>1440</value></setting>
 	    <!--// Configure the week time the phone checks the new configuration. Applicable when the auto provisioning mode is configured as weekly or power on + weekly; //-->
-	    <setting name="auto_provision.schedule.dayofweek" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type><value>0123456</value></setting>
-	    <setting name="auto_provision.schedule.time_from" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type><value>00:00</value></setting>
-	    <setting name="auto_provision.schedule.time_to" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type><value>00:00</value></setting>
+	    <setting name="auto_provision.schedule.dayofweek" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type><value>0123456</value></setting>
+	    <setting name="auto_provision.schedule.time_from" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type><value>00:00</value></setting>
+	    <setting name="auto_provision.schedule.time_to" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type><value>00:00</value></setting>
 	</group>
 	<group name="SYSLOG">
 	    <!--// 
@@ -881,16 +913,15 @@
 	<!--// Specify the web language, the valid values are: English, Chinese_S, Turkish, Portuguese, Spanish, Italian, French, Russian, Deutsch and Czech. //-->
 	<setting name="lang.wui"><type><string/></type><value>English</value></setting>
 	<!--// Specify the LCD language, the valid values are: English (default), Chinese_S, Chinese_T, German, French, Turkish, Italian, Polish, Spanish and Portuguese. lang.gui = English //-->
-	<setting name="lang.gui" advanced="yes"><type><string/></type><value>English</value></setting>
+	<setting name="lang.gui" advanced="yes" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value>English</value></setting>
 	<!--// 
 	#######################################################################################
 	##            Configure the access  URL of language file                             ##
 	#######################################################################################
 	 //-->
 	<!--// gui_lang.delete =http://localhost/all, delete all the customized languages.  //-->
-	<setting name="gui_lang.delete" hidden="yes" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type><value>http://localhost/all</value></setting>
-	<setting name="gui_lang.url" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><string/></type></setting>
-	<!--// 
+	<setting name="gui_lang.delete" hidden="yes" if="yealinkPhone((SIPT)|(W)).*"><type><string/></type><value>http://localhost/all</value></setting>
+	<!--//
 	#######################################################################################
 	##                             Time Settings                                         ##
 	#######################################################################################
@@ -977,7 +1008,7 @@
 	    <setting name="forward.no_answer.on_code"><type><string/></type></setting>
 	    <setting name="forward.no_answer.off_code"><type><string/></type></setting>
 	</group>
-	<group name="FORWARD_INTERNATIONAL" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*">
+	<group name="FORWARD_INTERNATIONAL" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*">
 	    <setting name="forward.international.enable"><type><boolean/></type><value>0</value></setting>
 	</group>
 	<group name="DND">
@@ -986,7 +1017,7 @@
 	    #######################################################################################
 	    //-->
 	    <!--// #Configure the DND key mode; 0-Phone mode (default), 1-Custom mode. //-->
-	    <setting name="features.dnd_mode" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.dnd_mode" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Configure the DND on code and off code. //-->
 	    <setting name="features.dnd.on_code"><type><string/></type></setting>
 	    <setting name="features.dnd.off_code"><type><string/></type></setting>
@@ -1038,11 +1069,11 @@
 	    <setting name="phone_setting.logon_wizard" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 
 	    <!--// #Enable or disable the phone to encrypt the digits of the dialed number. The encrypted digits are displayed as asterisks on the LCD screen; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="features.password_dial.enable" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.password_dial.enable" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Configure the prefix numbers displayed before the encrypted digits. //-->
-	    <setting name="features.password_dial.prefix" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type></setting>
+	    <setting name="features.password_dial.prefix" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type></setting>
 	    <!--// #Configure the length of encrypted digits. //-->
-	    <setting name="features.password_dial.length" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type></setting>
+	    <setting name="features.password_dial.length" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type></setting>
 
 	    <!--// Enable or disable the phone to save the call history; 0-Disabled, 1-Enabled (default);  //-->
 	    <setting name="features.save_call_history"><type><boolean/></type><value>1</value></setting>
@@ -1086,9 +1117,9 @@
 	    <!--// Enable or disable the playing of call waiting tone; 0-Disabled, 1-Enabled (default); //-->
 	    <setting name="call_waiting.tone"><type><boolean/></type><value>1</value></setting>
 	    <!--// #Enable or disable the phone to play a warning tone when there is a held call; 0-Disabled, 1-Enabled (default); //-->
-	    <setting name="features.play_hold_tone.enable" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="features.play_hold_tone.enable" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>1</value></setting>
 	    <!--// #Configure the interval of playing a warning tone. The default value is 30s. //-->
-	    <setting name="features.play_hold_tone.delay" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><Integer/></type><value>30</value></setting>
+	    <setting name="features.play_hold_tone.delay" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><Integer/></type><value>30</value></setting>
 	    <setting name="features.key_tone"><type><boolean/></type><value>1</value></setting>
 	    <!--// #Enable or disable the phone to play tone when pressing the digit key; 0-Disabled, 1-Enabled (default); //-->
 	    <setting name="features.send_key_tone"><type><boolean/></type><value>1</value></setting>
@@ -1110,13 +1141,13 @@
 	    <!--// Specify the ring device when the phone is in the Headset mode; 0-use Speaker (default), 1-use Headset; //-->
 	    <setting name="features.ringer_device.is_use_headset"><type refid="RingerDevice_type"/><value>0</value></setting>
 	    <!--// #Enable or disable the dual headset feature; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="features.headset_training" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.headset_training" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Enable or disable the headset prior feature; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="features.headset_prior" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.headset_prior" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Configure the phone whether to send a pound key when pressing double pound keys; 0-Send one pound key (default), 1-Do not send any pound key; //-->
-	    <setting name="features.send_pound_key" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.send_pound_key" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	    <!--// #Enable or disable the phone with active accounts to play tones in the dialing interface differently from the phone with no active accounts; 0-Disabled (default), 1-Enbaled; //-->
-	    <setting name="features.partition_tone" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="features.partition_tone" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><boolean/></type><value>0</value></setting>
 	</group>
 	<group name="INTERCOM">
 	    <!--// Enable or disable the intercom feature; 0-Disabled, 1-Enabled (default); //-->
@@ -1426,7 +1457,7 @@
 	<setting name="action_url.mute"><type><string/></type></setting>
 	<setting name="action_url.unmute"><type><string/></type></setting>
 	<setting name="action_url.missed_call"><type><string/></type></setting>
-	<setting name="action_url.ip_change" if="yealinkPhone(SIPT[24])|(W5)|(VP530).*"><type><string/></type></setting>
+	<setting name="action_url.ip_change" if="yealinkPhone((SIPT[24])|(W5)|(VP530)).*"><type><string/></type></setting>
 	<setting name="action_url.busy_to_idle"><type><string/></type></setting>
 	<setting name="action_url.idle_to_busy"><type><string/></type></setting>
 	<setting name="action_url.forward_incoming_call"><type><string/></type></setting>
@@ -1532,26 +1563,67 @@
 	    <!--// Configure the dialnow rule. X ranges from 1 to 20.
 		dialplan.dialnow.item.x = 
 	    //-->
-	    <setting name="dialnow.item.1"><type><string/></type></setting>
-	    <setting name="dialnow.item.2"><type><string/></type></setting>
-	    <setting name="dialnow.item.3"><type><string/></type></setting>
-	    <setting name="dialnow.item.4"><type><string/></type></setting>
-	    <setting name="dialnow.item.5"><type><string/></type></setting>
-	    <setting name="dialnow.item.6"><type><string/></type></setting>
-	    <setting name="dialnow.item.7"><type><string/></type></setting>
-	    <setting name="dialnow.item.8"><type><string/></type></setting>
-	    <setting name="dialnow.item.9"><type><string/></type></setting>
-	    <setting name="dialnow.item.10"><type><string/></type></setting>
-	    <setting name="dialnow.item.11"><type><string/></type></setting>
-	    <setting name="dialnow.item.12"><type><string/></type></setting>
-	    <setting name="dialnow.item.13"><type><string/></type></setting>
-	    <setting name="dialnow.item.14"><type><string/></type></setting>
-	    <setting name="dialnow.item.15"><type><string/></type></setting>
-	    <setting name="dialnow.item.16"><type><string/></type></setting>
-	    <setting name="dialnow.item.17"><type><string/></type></setting>
-	    <setting name="dialnow.item.18"><type><string/></type></setting>
-	    <setting name="dialnow.item.19"><type><string/></type></setting>
-	    <setting name="dialnow.item.20"><type><string/></type></setting>
+	    <setting name="dialnow.item.1" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.2" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.3" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.4" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.5" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.6" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.7" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.8" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.9" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.10" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.11" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.12" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.13" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.14" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.15" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.16" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.17" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.18" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.19" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <setting name="dialnow.item.20" if="yealinkPhoneSIPT[124].*"><type><string/></type></setting>
+	    <!--// SIP-T3X and VP530 only - will be removed in V71 FW //-->
+	    <setting name="dialplan.dialnow.rule.1" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.1" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.2" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.2" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.3" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.3" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.4" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.4" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.5" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.5" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.6" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.6" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.7" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.7" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.8" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.8" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.9" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.9" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.10" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.10" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.11" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.11" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.12" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.12" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.13" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.13" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.14" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.14" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.15" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.15" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.16" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.16" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.17" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.17" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.18" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.18" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.19" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.19" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.rule.20" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
+	    <setting name="dialplan.dialnow.line_id.20" if="yealinkPhone(SIPT3|VP530).*"><type><string/></type></setting>
 	</group>
 	<group name="block-out">
 	<!--// Configure the block out number. X ranges from 1 to 10.
@@ -1650,6 +1722,7 @@
 	 //-->
 	<group name="LDAP">
 	    <!--// Configure the search criteria for name and number lookups. //-->
+	    <setting name="ldap.enable" if="yealinkPhone(SIPT4|VP530).*"><type><boolean/></type><value>0</value></setting>
 	    <setting name="ldap.name_filter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
 	    <setting name="ldap.number_filter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
 	    <setting name="ldap.host"><type><hostname/></type></setting>
@@ -1671,7 +1744,7 @@
 	    <!--// Enable or disable the phone to sort the search results in alphabetical order; 0-Disabled (default), 1-Enabled;  //-->
 	    <setting name="ldap.ldap_sort"><type><boolean/></type><value>0</value></setting>
 	    <!--// Enable or disable the phone to query the LDAP server when in the pre-dialing or the dialing state; 0-Disabled (default), 1-Enabled; //-->
-	    <setting name="ldap.dial_lookup" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
+	    <setting name="ldap.dial_lookup" if="yealinkPhone((SIPT[1-3])|(W5)).*"><type><boolean/></type><value>0</value></setting>
 	</group>
     </group>
     <group name="RPS" if="yealinkPhoneSIPT3.*">

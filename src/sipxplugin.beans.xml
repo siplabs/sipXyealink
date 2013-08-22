@@ -40,6 +40,7 @@
 		<value>hasHDSound</value>
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -65,6 +66,7 @@
 		<value>hasHDSound</value>
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -78,6 +80,7 @@
 		<value>hasHDSound</value>
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -93,6 +96,7 @@
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
 		<value>hasExpansionPanels</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -108,6 +112,7 @@
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
 		<value>hasExpansionPanels</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -124,6 +129,7 @@
 		<value>hasRingTones</value>
 		<value>hasWallPapers</value>
 		<value>hasScreenSavers</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -141,6 +147,7 @@
 		<value>hasWallPapers</value>
 		<value>hasScreenSavers</value>
 		<value>hasExpansionPanels</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -156,6 +163,7 @@
 		<value>hasPhoneBook</value>
 		<value>hasRingTones</value>
 		<value>hasWallPapers</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
@@ -164,6 +172,13 @@
 	<property name="label" value="Yealink SIP-T42G" />
 	<property name="name" value="T42" />
 	<property name="maxLineCount" value="3" />
+	<property name="supportedFeatures">
+	    <set>
+		<value>hasHDSound</value>
+		<value>hasPhoneBook</value>
+		<value>hasRingTones</value>
+	    </set>
+	</property>
 </bean>
 
 <bean id="yealinkPhoneSIPT46G" parent="yealinkModel">
@@ -179,6 +194,7 @@
 		<value>hasWallPapers</value>
 		<value>hasScreenSavers</value>
 		<value>hasExpansionPanels</value>
+		<value>hasLanguages</value>
 	    </set>
 	</property>
 </bean>
