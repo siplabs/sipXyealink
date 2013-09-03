@@ -1,0 +1,22 @@
+<type id="SIPT4X_DSS_type">
+    <enum>
+        <option><value>0</value></option>
+        <option><value>11</value></option>
+        <option><value>12</value></option>
+        <option><value>13</value></option>
+        <option><value>14</value></option>
+        <option><value>15</value></option>
+        <option><value>16</value></option>
+        <option><value>17</value></option>
+        <option><value>18</value></option>
+        <option><value>22</value></option>
+        <option><value>23</value></option>
+        <option><value>24</value></option>
+        <option><value>25</value></option>
+        <option><value>27</value></option>
+        <option><value>34</value></option>
+        <option><value>35</value></option>
+        <option><value>38</value></option>
+        <option><value>40</value></option>
+    </enum>
+</type>

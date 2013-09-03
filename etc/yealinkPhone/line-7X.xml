@@ -2,9 +2,14 @@
 <!DOCTYPE model
     PUBLIC "-//SIPFoundry//sipXconfig//Model specification 2.0//EN"
     "http://www.sipfoundry.org/sipXconfig/dtd/setting_2_0.dtd"
-    [<!ENTITY types SYSTEM "types.xml">]>
+    [
+	<!ENTITY types SYSTEM "types.xml">
+	<!ENTITY types_v71 SYSTEM "types_v71.xml">
+    ]
+>
 <model>
 &types;
+&types_v71;
     <group name="basic">
 	<!-- Enable or disable the account 1; 0-Disabled (default), 1-Enabled;-->
 	<setting name="enable" hidden="yes"><type><boolean/></type><value>1</value></setting>
