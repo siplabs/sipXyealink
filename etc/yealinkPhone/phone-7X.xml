@@ -15,31 +15,31 @@
 	    <setting name="handset.1.name"><value>H1</value></setting>
 	    <setting name="handset.1.incoming_lines"><value>1</value></setting>
 	    <setting name="handset.1.dial_out_lines"><value>1</value></setting>
-	    <setting name="handset.1.dial_out_default_line"><type refid="dect-line_type"/><value>1</value></setting>
+	    <setting name="handset.1.dial_out_default_line"><type refid="line_type"/><value>1</value></setting>
 	</group>
 	<group name="2">
 	    <setting name="handset.2.name"><value>H2</value></setting>
 	    <setting name="handset.2.incoming_lines"><value>2</value></setting>
 	    <setting name="handset.2.dial_out_lines"><value>2</value></setting>
-	    <setting name="handset.2.dial_out_default_line"><type refid="dect-line_type"/><value>2</value></setting>
+	    <setting name="handset.2.dial_out_default_line"><type refid="line_type"/><value>2</value></setting>
 	</group>
 	<group name="3">
 	    <setting name="handset.3.name"><value>H3</value></setting>
 	    <setting name="handset.3.incoming_lines"><value>3</value></setting>
 	    <setting name="handset.3.dial_out_lines"><value>3</value></setting>
-	    <setting name="handset.3.dial_out_default_line"><type refid="dect-line_type"/><value>3</value></setting>
+	    <setting name="handset.3.dial_out_default_line"><type refid="line_type"/><value>3</value></setting>
 	</group>
 	<group name="4">
 	    <setting name="handset.4.name"><value>H4</value></setting>
 	    <setting name="handset.4.incoming_lines"><value>4</value></setting>
 	    <setting name="handset.4.dial_out_lines"><value>4</value></setting>
-	    <setting name="handset.4.dial_out_default_line"><type refid="dect-line_type"/><value>4</value></setting>
+	    <setting name="handset.4.dial_out_default_line"><type refid="line_type"/><value>4</value></setting>
 	</group>
 	<group name="5">
 	    <setting name="handset.5.name"><value>H5</value></setting>
 	    <setting name="handset.5.incoming_lines"><value>5</value></setting>
 	    <setting name="handset.5.dial_out_lines"><value>5</value></setting>
-	    <setting name="handset.5.dial_out_default_line"><type refid="dect-line_type"/><value>5</value></setting>
+	    <setting name="handset.5.dial_out_default_line"><type refid="line_type"/><value>5</value></setting>
 	</group>
     </group>
     <group name="network-wan">
@@ -1239,52 +1239,58 @@
 	linekey.x.lable Define the label for each line key.
 	//-->
 	<!--// Configure Line Key1 //-->
-	<setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
+	<setting name="linekey.1.line"><type refid="line_type"/><value>1</value></setting>
 	<setting name="linekey.1.value"><type><string/></type></setting>
 	<setting name="linekey.1.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
 	<setting name="linekey.1.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.1.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.1.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.1.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="linekey.1.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.1.label"><type><string/></type></setting>
 	<!--// Configure Line Key2 //-->
-	<setting name="linekey.2.line"><type refid="yealink_line_type"/><value>2</value></setting>
+	<setting name="linekey.2.line"><type refid="line_type"/><value>2</value></setting>
 	<setting name="linekey.2.value"><type><string/></type></setting>
 	<setting name="linekey.2.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
 	<setting name="linekey.2.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.2.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.2.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.2.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.2.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="linekey.2.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.2.label"><type><string/></type></setting>
 	<!--// Configure Line Key3 //-->
-	<setting name="linekey.3.line"><type refid="yealink_line_type"/><value>3</value></setting>
+	<setting name="linekey.3.line"><type refid="line_type"/><value>3</value></setting>
 	<setting name="linekey.3.value"><type><string/></type></setting>
 	<setting name="linekey.3.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
 	<setting name="linekey.3.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.3.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.3.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.3.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.3.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="linekey.3.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.3.label"><type><string/></type></setting>
 	<!--// Configure Line Key4 (for T38G only) //-->
-	<setting name="linekey.4.line" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type refid="yealink_line_type"/><value>4</value></setting>
+	<setting name="linekey.4.line" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type refid="line_type"/><value>4</value></setting>
 	<setting name="linekey.4.value" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
 	<setting name="linekey.4.pickup_value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.4.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.4.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.4.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.4.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.4.xml_phonebook" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
+	<setting name="linekey.4.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.4.label" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
 	<!--// Configure Line Key5  (for T38G only) //-->
-	<setting name="linekey.5.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="yealink_line_type"/><value>4</value></setting>
+	<setting name="linekey.5.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="line_type"/><value>4</value></setting>
 	<setting name="linekey.5.value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.5.pickup_value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.5.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.5.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.5.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.5.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.5.xml_phonebook" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
+	<setting name="linekey.5.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.5.label" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	<!--// Configure Line Key6  (for T38G only) //-->
-	<setting name="linekey.6.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="yealink_line_type"/><value>4</value></setting>
+	<setting name="linekey.6.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="line_type"/><value>4</value></setting>
 	<setting name="linekey.6.value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.6.pickup_value" if="yealinkPhone((SIPT38)|SIPT2[68]).*"><type><string/></type></setting>
 	<setting name="linekey.6.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.6.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.6.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.6.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.6.xml_phonebook" if="yealinkPhone((SIPT38)|SIPT2[68]).*"><type><string/></type></setting>
+	<setting name="linekey.6.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
 	<setting name="linekey.6.label" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
 	</group>
 	<group name="programmable-keys" if="yealinkPhone(SIPT[1-3]).*">
@@ -1309,7 +1315,7 @@
 	programablekey.x.label This parameter is only available to the key 1 to key 4. 
 	 //-->
 	<setting name="programablekey.1.type"><type refid="V70_pk_type"/><value>28</value></setting>
-	<setting name="programablekey.1.line"><type refid="yealink_line_type"/></setting>
+	<setting name="programablekey.1.line"><type refid="line_type"/></setting>
 	<setting name="programablekey.1.value"><type><string/></type></setting>
 	<setting name="programablekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="programablekey.1.history_type"><type><string/></type></setting>

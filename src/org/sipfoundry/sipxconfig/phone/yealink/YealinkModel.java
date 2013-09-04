@@ -30,7 +30,7 @@ public final class YealinkModel extends PhoneModel {
     private String m_name;
     private String m_directoryProfileTemplate;
     private String m_dialNowProfileTemplate;
-    private int m_memoryKeyCount;
+    private int m_DSSKeyCount;
 
     public YealinkModel() {
     }
@@ -80,11 +80,29 @@ public final class YealinkModel extends PhoneModel {
         return m_dialNowProfileTemplate;
     }
 
+    /**
+    *
+    * @deprecated Use getMaxDSSKeyCount() instead!!!
+    */
+    @Deprecated
     public int getMemoryKeyCount() {
-        return m_memoryKeyCount;
+        return m_DSSKeyCount;
     }
 
+    /**
+    *
+    * @deprecated Use setMaxDSSKeyCount(int value) instead!!!
+    */
+    @Deprecated
     public void setMemoryKeyCount(int value) {
-        m_memoryKeyCount = value;
+        m_DSSKeyCount = value;
+    }
+
+    public int getMaxDSSKeyCount() {
+        return m_DSSKeyCount;
+    }
+
+    public void setMaxDSSKeyCount(int value) {
+        m_DSSKeyCount = value;
     }
 }

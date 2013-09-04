@@ -1,10 +1,5 @@
-<type id="dect-line_type">
+<type id="line_type">
     <enum>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
-	<option><value>5</value></option>
     </enum>
 </type>
 <type id="syslog-mode_type">
@@ -97,16 +92,6 @@
 	<option><value>2</value></option>
     </enum>
 </type>
-<type id="yealink_line_type">
-    <enum>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-    </enum>
-</type>
 <type id="yealink_busy_tone_delay_type">
     <enum>
 	<option><value>0</value></option>
@@ -129,27 +114,27 @@
 </type>
 <type id="DKtype_type">
     <enum>
-	<option><label>N/A</label><value>0</value></option>
-	<option><label>Forward</label><value>2</value></option>
-	<option><label>DND</label><value>5</value></option>
-	<option><label>Redial</label><value>6</value></option>
-	<option><label>Call Return</label><value>7</value></option>
-	<option><label>SMS</label><value>8</value></option>
-	<option><label>Call Pickup</label><value>9</value></option>
-	<option><label>Speed Dial</label><value>13</value></option>
-	<option><label>XML Group</label><value>22</value></option>
-	<option><label>History</label><value>28</value></option>
-	<option><label>Directory</label><value>29</value></option>
-	<option><label>Menu</label><value>30</value></option>
-	<option><label>Switch Account</label><value>31</value></option>
-	<option><label>New SMS</label><value>32</value></option>
-	<option><label>Status</label><value>33</value></option>
-	<option><label>BLF List</label><value>39</value></option>
-	<option><label>Local Phonebook</label><value>43</value></option>
-	<option><label>Broadsoft Phonebook</label><value>44</value></option>
-	<option><label>Local Group</label><value>45</value></option>
-	<option><label>Broadsoft Group</label><value>46</value></option>
-	<option><label>XML Phonebook</label><value>47</value></option>
+	<option><value>0</value></option>
+	<option><value>2</value></option>
+	<option><value>5</value></option>
+	<option><value>6</value></option>
+	<option><value>7</value></option>
+	<option><value>8</value></option>
+	<option><value>9</value></option>
+	<option><value>13</value></option>
+	<option><value>22</value></option>
+	<option><value>28</value></option>
+	<option><value>29</value></option>
+	<option><value>30</value></option>
+	<option><value>31</value></option>
+	<option><value>32</value></option>
+	<option><value>33</value></option>
+	<option><value>39</value></option>
+	<option><value>43</value></option>
+	<option><value>44</value></option>
+	<option><value>45</value></option>
+	<option><value>46</value></option>
+	<option><value>47</value></option>
     </enum>
 </type>
 <type id="V70_pk_type">
@@ -181,29 +166,6 @@
 	<option><value>50</value></option>
     </enum>
 </type>
-<type id="SIPT4X_DSS_type">
-    <enum>
-        <option><value>0</value></option>
-        <option><value>11</value></option>
-        <option><value>12</value></option>
-        <option><value>13</value></option>
-        <option><value>14</value></option>
-        <option><value>15</value></option>
-        <option><value>16</value></option>
-        <option><value>17</value></option>
-        <option><value>18</value></option>
-        <option><value>22</value></option>
-        <option><value>23</value></option>
-        <option><value>24</value></option>
-        <option><value>25</value></option>
-        <option><value>27</value></option>
-        <option><value>34</value></option>
-        <option><value>35</value></option>
-        <option><value>38</value></option>
-        <option><value>40</value></option>
-    </enum>
-</type>
-
 <type id="SIPT38G_DSS_type">
     <enum>
 	<option><value>0</value></option>

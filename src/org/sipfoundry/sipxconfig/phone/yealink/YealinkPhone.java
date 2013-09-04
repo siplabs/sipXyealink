@@ -149,6 +149,7 @@ public class YealinkPhone extends Phone {
     public void setSettings(Setting settings) {
         settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-4]\\.name"));
         settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[1-8]\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
+        settings.acceptVisitor(new LineCountSetter(".*\\.line"));
         super.setSettings(settings);
     }
 
@@ -352,12 +353,11 @@ public class YealinkPhone extends Phone {
         }
     }
 
-    private class PhonebooksSetter extends AbstractSettingVisitor {
-        private String m_pattern;
+    private class PhonebooksSetter extends YealinkEnumSetter {
         private Collection<Phonebook> m_pbs = new ArrayList<Phonebook>();
 
         public PhonebooksSetter(String pattern) {
-            m_pattern = pattern;
+            super(pattern);
             PhonebookManager pbm = getPhonebookManager();
             if (null != pbm) {
                 User user = getPrimaryUser();
@@ -378,44 +378,45 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        public void visitSetting(Setting setting) {
-            if (setting.getType() instanceof EnumSetting) {
-                Pattern pattern = Pattern.compile(m_pattern);
-                Matcher matcher = pattern.matcher(setting.getName());
-                matcher.lookingAt();
-                if (matcher.matches()) {
-                    EnumSetting ringTonesSetting = (EnumSetting)setting.getType();
-                    ringTonesSetting.addEnum(null, null);
-                    for(Phonebook pb : m_pbs) {
-                        ringTonesSetting.addEnum(pb.getName(), pb.getName());
-                    }
-                }
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            // Celan enumerator before adding new values for model.
+            enumSetting.clearEnums();
+            enumSetting.addEnum(null, null);
+            for(Phonebook pb : m_pbs) {
+                enumSetting.addEnum(pb.getName(), pb.getName());
             }
         }
     }
 
-    private class RingtonesSetter extends AbstractSettingVisitor {
-        private String m_pattern;
+    private class RingtonesSetter extends YealinkEnumSetter {
 
         public RingtonesSetter(String pattern) {
-            m_pattern = pattern;
+            super(pattern);
         }
 
         @Override
-        public void visitSetting(Setting setting) {
-            if (setting.getType() instanceof EnumSetting) {
-                Pattern pattern = Pattern.compile(m_pattern);
-                Matcher matcher = pattern.matcher(setting.getName());
-                matcher.lookingAt();
-                if (matcher.matches()) {
-                    EnumSetting ringTonesSetting = (EnumSetting)setting.getType();
-                    if (setting.getName().equals("ringtone.ring_type")) {
-                        ringTonesSetting.addEnum("common", "common");
-                    }
-                    for (String rt : getRingTones()) {
-                        ringTonesSetting.addEnum(rt, rt);
-                    }
-                }
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            if (settingName.equals("ringtone.ring_type")) {
+                enumSetting.addEnum("common", "common");
+            }
+            for (String rt : getRingTones()) {
+                enumSetting.addEnum(rt, rt);
+            }
+        }
+    }
+
+    private class LineCountSetter extends YealinkEnumSetter {
+
+        public LineCountSetter(String pattern) {
+            super(pattern);
+        }
+
+        @Override
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            // Celan enumerator before adding new values for model.
+            enumSetting.clearEnums();
+            for (Integer l = 0; l<getMaxLineCount(); l++) {
+                enumSetting.addEnum(l.toString(), null);
             }
         }
     }
