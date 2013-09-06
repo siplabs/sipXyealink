@@ -46,6 +46,7 @@ import org.sipfoundry.sipxconfig.setting.type.StringSetting;
 import org.sipfoundry.sipxconfig.setting.type.SettingType;
 import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
+import org.sipfoundry.sipxconfig.speeddial.Button;
 
 import org.apache.commons.lang.ArrayUtils;
 import org.apache.commons.lang.StringUtils;
@@ -181,28 +182,43 @@ public class YealinkPhone extends Phone {
         return s;
     }
 
-    private void addDSSKeySettings(Setting setting, Integer i) {
-        setting.addSetting(createSetting("enum", null, String.format("linekey.%d.line", i+1), "1"));
-        setting.addSetting(createSetting("string", null, String.format("linekey.%d.value", i+1), null));
-        setting.addSetting(createSetting("enum", null, String.format("linekey.%d.xml_phonebook", i+1), "0"));
-        if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
-            setting.addSetting(createSetting("enum", "SIPT4X_DSS_type", String.format("linekey.%d.type", i+1), "0"));
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), null));
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.label", i+1), null));
+    private void addDSSKeySettings(Setting setting, Integer i, Button sdButton) {
+
+        if (getModel().getModelId().matches("yealinkPhoneSIPT46.*")) {
+            setting.addSetting(createSetting("enum", null, String.format("linekey.%d.line", i+1), ((i>4)&&(i<10)?String.format("%d", i-5):"0"))); // Set line keys for SIPT46(5-9)
+        } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*")) {
+            setting.addSetting(createSetting("enum", null, String.format("linekey.%d.line", i+1), ((i>2)&&(i<6)?String.format("%d", i-3):"0"))); // Set line keys for SIPT4[12](3-5)
         } else {
-            setting.addSetting(createSetting("enum", "DKtype_type", String.format("linekey.%d.type", i+1), "0"));
+            setting.addSetting(createSetting("enum", null, String.format("linekey.%d.line", i+1), i<getModel().getMaxLineCount()?String.format("%d", i):"0"));
+        }
+        setting.addSetting(createSetting("string", null, String.format("linekey.%d.value", i+1), null==sdButton?null:sdButton.getNumber()));
+        setting.addSetting(createSetting("enum", null, String.format("linekey.%d.xml_phonebook", i+1), "0"));
+
+        if (getModel().getModelId().matches("yealinkPhoneSIPT46.*")) {
+            setting.addSetting(createSetting("enum", "SIPT4X_DSS_type", String.format("linekey.%d.type", i+1), ((i>4)&&(i<10)?"15":"0"))); // Set line keys for SIPT46(5-9)
+        } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*")) {
+            setting.addSetting(createSetting("enum", "SIPT4X_DSS_type", String.format("linekey.%d.type", i+1), ((i>2)&&(i<6)?"15":"0"))); // Set line keys for SIPT4[12](3-5)
+        }
+        if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), null));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.label", i+1), null==sdButton?null:sdButton.getLabel()));
+        } else {
+            setting.addSetting(createSetting("enum", "DKtype_type", String.format("linekey.%d.type", i+1), i<getModel().getMaxLineCount()?"15":"0"));
             setting.addSetting(createSetting("string", null, String.format("linekey.%d.pickup_value", i+1), null));
         }
     }
 
     @Override
     public void setSettings(Setting settings) {
+        SpeedDial sd = getPhoneContext().getSpeedDial(this);;
+        List<Button> sdButtons = null!=sd?sd.getButtons():new ArrayList<Button>();
+
         YealinkModel model = (YealinkModel) getModel();
         if (null != model) {
             Setting lineKeys = settings.getSetting("DSSKeys/line-keys");
             if (null != lineKeys) {
                 for (Integer i = 0; i < getMaxLineCount() + getMaxDSSKeyCount(); i++) {
-                    addDSSKeySettings(lineKeys, i);
+                    addDSSKeySettings(lineKeys, i, i<sdButtons.size()?sdButtons.get(i):null);
                 }
             }
         }
@@ -210,7 +226,10 @@ public class YealinkPhone extends Phone {
         settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
         settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
         settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
-        settings.acceptVisitor(new LineCountSetter(".*\\.((line)|(dial_out_default_line)|(incoming_lines)|(dial_out_lines)|(dialplan\\.area_code\\.line_id))"));
+        // Commmon
+        settings.acceptVisitor(new LineCountSetter(".*\\.((line)|(dialplan\\.area_code\\.line_id))", 0));
+        // For W52
+        settings.acceptVisitor(new LineCountSetter(".*\\.((dial_out_default_line)|(incoming_lines)|(dial_out_lines))", 1));
         settings.acceptVisitor(new DSSKeySetter("linekey\\.[0-9]+\\.type", getModel().getModelId().matches("yealinkPhoneSIPT4.*")?YealinkConstants.DKTYPES_V71:YealinkConstants.DKTYPES_V70));
         super.setSettings(settings);
     }
@@ -483,9 +502,11 @@ public class YealinkPhone extends Phone {
     }
 
     private class LineCountSetter extends YealinkEnumSetter {
+        private Integer m_base = 0;
 
-        public LineCountSetter(String pattern) {
+        public LineCountSetter(String pattern, Integer base) {
             super(pattern);
+            m_base = base;
         }
 
         @Override
@@ -499,7 +520,7 @@ public class YealinkPhone extends Phone {
                     line = getLine(l);
                     userName = line.getUserName();
                 }
-                enumSetting.addEnum(String.format("%d", l+1), null==line?null:(null==userName?String.format("%d", l+1):String.format("%d (%s)", l+1, userName)));
+                enumSetting.addEnum(String.format("%d", l + m_base), null==line?null:(null==userName?String.format("%d", l + m_base):String.format("%d (%s)", l + m_base, userName)));
             }
         }
 
@@ -514,7 +535,7 @@ public class YealinkPhone extends Phone {
                     line = getLine(l);
                     userName = line.getUserName();
                 }
-                enumSetting.addEnum(String.format("enum%d", l+1), null==line?String.format("%d", l+1):(null==userName?String.format("%d", l+1):String.format("%d (%s)", l+1, userName)));
+                enumSetting.addEnum(String.format("enum%d", l + m_base), null==line?String.format("%d", l + m_base):(null==userName?String.format("%d", l + m_base):String.format("%d (%s)", l + m_base, userName)));
             }
         }
     }

@@ -44,10 +44,8 @@ public abstract class YealinkEnumSetter extends AbstractSettingVisitor {
             matcher.lookingAt();
             if (matcher.matches()) {
                 if (setting.getType().getName().equals("enum")) {
-//                    LOG.info("Enum matched: " + setting.getName() + " " + setting.getType().getName() + " " + setting.getValue());
                     addEnums(setting.getName(), (EnumSetting)setting.getType());
                 } else if (setting.getType().getName().equals("multiEnum")) {
-//                    LOG.info("MultiEnum matched: " + setting.getName() + " " + setting.getType().getName() + " " + setting.getValue());
                     addMultiEnums(setting.getName(), (MultiEnumSetting)setting.getType());
                 }
             }
