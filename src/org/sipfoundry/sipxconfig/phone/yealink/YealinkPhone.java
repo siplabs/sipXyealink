@@ -13,7 +13,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Arrays;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
@@ -37,12 +39,16 @@ import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 import org.sipfoundry.sipxconfig.setting.AbstractSettingVisitor;
 import org.sipfoundry.sipxconfig.setting.Setting;
+import org.sipfoundry.sipxconfig.setting.ConditionalSettingImpl;
 import org.sipfoundry.sipxconfig.setting.type.EnumSetting;
+import org.sipfoundry.sipxconfig.setting.type.MultiEnumSetting;
+import org.sipfoundry.sipxconfig.setting.type.StringSetting;
 import org.sipfoundry.sipxconfig.setting.type.SettingType;
 import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 
 import org.apache.commons.lang.ArrayUtils;
+import org.apache.commons.lang.StringUtils;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
@@ -67,7 +73,7 @@ public class YealinkPhone extends Phone {
 
     public YealinkPhone() {
         if (null == getSerialNumber()) {
-            setSerialNumber("001565");
+            setSerialNumber(YealinkConstants.MAC_PREFIX);
         }
     }
 
@@ -122,7 +128,21 @@ public class YealinkPhone extends Phone {
         return 0;
     }
 
+    /**
+    *
+    * @deprecated Use getMaxDSSKeyCount() instead!!!
+    */
+    @Deprecated
     public int getMemoryKeyCount() {
+        YealinkModel model = (YealinkModel) getModel();
+        if (null != model) {
+            return model.getMemoryKeyCount();
+        } else {
+            return 0;
+        }
+    }
+
+    public int getMaxDSSKeyCount() {
         YealinkModel model = (YealinkModel) getModel();
         if (null != model) {
             return model.getMemoryKeyCount();
@@ -144,12 +164,54 @@ public class YealinkPhone extends Phone {
         addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
     }
 
+    private Setting createSetting(String stName, String stId, String sName, String defaultValue) {
+        SettingType st;
+        if (stName.equals("enum")) {
+            st = new EnumSetting();
+        } else {
+            st = new StringSetting();
+        }
+        st.setId(stId);
+        ConditionalSettingImpl s = new ConditionalSettingImpl();
+        s.setName(sName);
+        s.setType(st);
+        if (null == s.getValue()) {
+            s.setValue(defaultValue);
+        }
+        return s;
+    }
+
+    private void addDSSKeySettings(Setting setting, Integer i) {
+        setting.addSetting(createSetting("enum", null, String.format("linekey.%d.line", i+1), "1"));
+        setting.addSetting(createSetting("string", null, String.format("linekey.%d.value", i+1), null));
+        setting.addSetting(createSetting("enum", null, String.format("linekey.%d.xml_phonebook", i+1), "0"));
+        if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
+            setting.addSetting(createSetting("enum", "SIPT4X_DSS_type", String.format("linekey.%d.type", i+1), "0"));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), null));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.label", i+1), null));
+        } else {
+            setting.addSetting(createSetting("enum", "DKtype_type", String.format("linekey.%d.type", i+1), "0"));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.pickup_value", i+1), null));
+        }
+    }
 
     @Override
     public void setSettings(Setting settings) {
-        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-4]\\.name"));
-        settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[1-8]\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
-        settings.acceptVisitor(new LineCountSetter(".*\\.line"));
+        YealinkModel model = (YealinkModel) getModel();
+        if (null != model) {
+            Setting lineKeys = settings.getSetting("DSSKeys/line-keys");
+            if (null != lineKeys) {
+                for (Integer i = 0; i < getMaxLineCount() + getMaxDSSKeyCount(); i++) {
+                    addDSSKeySettings(lineKeys, i);
+                }
+            }
+        }
+
+        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
+        settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
+        settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
+        settings.acceptVisitor(new LineCountSetter(".*\\.((line)|(dial_out_default_line)|(incoming_lines)|(dial_out_lines)|(dialplan\\.area_code\\.line_id))"));
+        settings.acceptVisitor(new DSSKeySetter("linekey\\.[0-9]+\\.type", getModel().getModelId().matches("yealinkPhoneSIPT4.*")?YealinkConstants.DKTYPES_V71:YealinkConstants.DKTYPES_V70));
         super.setSettings(settings);
     }
 
@@ -379,11 +441,26 @@ public class YealinkPhone extends Phone {
 
         @Override
         protected void addEnums(String settingName, EnumSetting enumSetting) {
-            // Celan enumerator before adding new values for model.
+            // Clean enumerator before adding new values for model.
             enumSetting.clearEnums();
             enumSetting.addEnum(null, null);
             for(Phonebook pb : m_pbs) {
                 enumSetting.addEnum(pb.getName(), pb.getName());
+            }
+        }
+    }
+
+    private class PhonebooksSelectSetter extends YealinkEnumSetter {
+
+        public PhonebooksSelectSetter(String pattern) {
+            super(pattern);
+        }
+
+        @Override
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            enumSetting.clearEnums();
+            for(Integer i = 0; i < 5; i++) {
+                enumSetting.addEnum(i.toString(), null);
             }
         }
     }
@@ -416,7 +493,46 @@ public class YealinkPhone extends Phone {
             // Celan enumerator before adding new values for model.
             enumSetting.clearEnums();
             for (Integer l = 0; l<getMaxLineCount(); l++) {
-                enumSetting.addEnum(l.toString(), null);
+                Line line = null;
+                String userName = null;
+                if (l < getLines().size()) {
+                    line = getLine(l);
+                    userName = line.getUserName();
+                }
+                enumSetting.addEnum(String.format("%d", l+1), null==line?null:(null==userName?String.format("%d", l+1):String.format("%d (%s)", l+1, userName)));
+            }
+        }
+
+        @Override
+        protected void addMultiEnums(String settingName, MultiEnumSetting enumSetting) {
+            // Celan enumerator before adding new values for model.
+            enumSetting.clearEnums();
+            for (Integer l = 0; l<getMaxLineCount(); l++) {
+                Line line = null;
+                String userName = null;
+                if (l < getLines().size()) {
+                    line = getLine(l);
+                    userName = line.getUserName();
+                }
+                enumSetting.addEnum(String.format("enum%d", l+1), null==line?String.format("%d", l+1):(null==userName?String.format("%d", l+1):String.format("%d (%s)", l+1, userName)));
+            }
+        }
+    }
+
+    private class DSSKeySetter extends YealinkEnumSetter {
+        private String m_keyTypes;
+
+        public DSSKeySetter(String pattern, String keyTypes) {
+            super(pattern);
+            m_keyTypes = keyTypes;
+        }
+
+        @Override
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            enumSetting.clearEnums();
+            List<String> keyTypesList = Arrays.asList(StringUtils.split(m_keyTypes, ','));
+            for(String dkt : keyTypesList) {
+                enumSetting.addEnum(dkt, null);
             }
         }
     }

@@ -61,6 +61,8 @@ account.${L}.backup_outbound_port = 5060
 #end
 #end
 
+#Phone settings
+
 #foreach ($group in $phone.Settings.Values)
 #${group.name}
 #foreach ($subgroup in $group.Values)
@@ -68,7 +70,7 @@ account.${L}.backup_outbound_port = 5060
 #if(${subgroup.Value})
 ${subgroup.profileName} = $!{subgroup.Value}
 #else
-${subgroup.profileName} = %NULL%
+${subgroup.profileName} = %NULL% $!{subgroup.Value}
 #end
 #else
 #foreach ($setting in $subgroup.Values)
@@ -78,7 +80,7 @@ ${setting.profileName} = $!{setting.Value}
 #set ($TFTPServer = $!{setting.Value})
 #end
 #else
-${setting.profileName} = %NULL%
+${setting.profileName} = %NULL% $!{setting.Value}
 #end
 #end
 #end

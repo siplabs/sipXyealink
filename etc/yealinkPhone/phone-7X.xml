@@ -13,33 +13,33 @@
     <group name="handset" if="yealinkPhoneW52.*">
 	<group name="1">
 	    <setting name="handset.1.name"><value>H1</value></setting>
-	    <setting name="handset.1.incoming_lines"><value>1</value></setting>
-	    <setting name="handset.1.dial_out_lines"><value>1</value></setting>
-	    <setting name="handset.1.dial_out_default_line"><type refid="line_type"/><value>1</value></setting>
+	    <setting name="handset.1.incoming_lines"><type><multi-enum/></type><value>enum1</value></setting>
+	    <setting name="handset.1.dial_out_lines"><type><multi-enum/></type><value>enum1</value></setting>
+	    <setting name="handset.1.dial_out_default_line"><type><enum/></type><value>1</value></setting>
 	</group>
 	<group name="2">
 	    <setting name="handset.2.name"><value>H2</value></setting>
-	    <setting name="handset.2.incoming_lines"><value>2</value></setting>
-	    <setting name="handset.2.dial_out_lines"><value>2</value></setting>
-	    <setting name="handset.2.dial_out_default_line"><type refid="line_type"/><value>2</value></setting>
+	    <setting name="handset.2.incoming_lines"><type><multi-enum/></type><value>enum2</value></setting>
+	    <setting name="handset.2.dial_out_lines"><type><multi-enum/></type><value>enum2</value></setting>
+	    <setting name="handset.2.dial_out_default_line"><type><enum/></type><value>2</value></setting>
 	</group>
 	<group name="3">
 	    <setting name="handset.3.name"><value>H3</value></setting>
-	    <setting name="handset.3.incoming_lines"><value>3</value></setting>
-	    <setting name="handset.3.dial_out_lines"><value>3</value></setting>
-	    <setting name="handset.3.dial_out_default_line"><type refid="line_type"/><value>3</value></setting>
+	    <setting name="handset.3.incoming_lines"><type><multi-enum/></type><value>enum3</value></setting>
+	    <setting name="handset.3.dial_out_lines"><type><multi-enum/></type><value>enum3</value></setting>
+	    <setting name="handset.3.dial_out_default_line"><type><enum/></type><value>3</value></setting>
 	</group>
 	<group name="4">
 	    <setting name="handset.4.name"><value>H4</value></setting>
-	    <setting name="handset.4.incoming_lines"><value>4</value></setting>
-	    <setting name="handset.4.dial_out_lines"><value>4</value></setting>
-	    <setting name="handset.4.dial_out_default_line"><type refid="line_type"/><value>4</value></setting>
+	    <setting name="handset.4.incoming_lines"><type><multi-enum/></type><value>enum4</value></setting>
+	    <setting name="handset.4.dial_out_lines"><type><multi-enum/></type><value>enum4</value></setting>
+	    <setting name="handset.4.dial_out_default_line"><type><enum/></type><value>4</value></setting>
 	</group>
 	<group name="5">
 	    <setting name="handset.5.name"><value>H5</value></setting>
-	    <setting name="handset.5.incoming_lines"><value>5</value></setting>
-	    <setting name="handset.5.dial_out_lines"><value>5</value></setting>
-	    <setting name="handset.5.dial_out_default_line"><type refid="line_type"/><value>5</value></setting>
+	    <setting name="handset.5.incoming_lines"><type><multi-enum/></type><value>enum5</value></setting>
+	    <setting name="handset.5.dial_out_lines"><type><multi-enum/></type><value>enum5</value></setting>
+	    <setting name="handset.5.dial_out_default_line"><type><enum/></type><value>5</value></setting>
 	</group>
     </group>
     <group name="network-wan">
@@ -1238,62 +1238,20 @@
 	The default value equals to the value of x. For example, the default value of the parameter "linekey.1.line" is 1.
 	linekey.x.lable Define the label for each line key.
 	//-->
+	<!--// 
+	    This configuration is dynamicaly generated in JAVA code from maxDSSKeyCount properties of paticular phone model
+	//-->
 	<!--// Configure Line Key1 //-->
-	<setting name="linekey.1.line"><type refid="line_type"/><value>1</value></setting>
+	<!-- setting name="linekey.1.line"><type refid="line_type"/><value>1</value></setting>
 	<setting name="linekey.1.value"><type><string/></type></setting>
 	<setting name="linekey.1.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
 	<setting name="linekey.1.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.1.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
 	<setting name="linekey.1.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.1.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
 	<setting name="linekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
 	<setting name="linekey.1.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.1.label"><type><string/></type></setting>
-	<!--// Configure Line Key2 //-->
-	<setting name="linekey.2.line"><type refid="line_type"/><value>2</value></setting>
-	<setting name="linekey.2.value"><type><string/></type></setting>
-	<setting name="linekey.2.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
-	<setting name="linekey.2.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.2.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.2.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.2.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.2.xml_phonebook"><type refid="XMLPB_type"/></setting>
-	<setting name="linekey.2.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.2.label"><type><string/></type></setting>
-	<!--// Configure Line Key3 //-->
-	<setting name="linekey.3.line"><type refid="line_type"/><value>3</value></setting>
-	<setting name="linekey.3.value"><type><string/></type></setting>
-	<setting name="linekey.3.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
-	<setting name="linekey.3.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.3.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.3.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.3.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.3.xml_phonebook"><type refid="XMLPB_type"/></setting>
-	<setting name="linekey.3.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.3.label"><type><string/></type></setting>
-	<!--// Configure Line Key4 (for T38G only) //-->
-	<setting name="linekey.4.line" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type refid="line_type"/><value>4</value></setting>
-	<setting name="linekey.4.value" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
-	<setting name="linekey.4.pickup_value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.4.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.4.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.4.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.4.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.4.xml_phonebook" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
-	<setting name="linekey.4.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.4.label" if="yealinkPhone(SIPT38|SIPT2[68]|VP530).*"><type><string/></type></setting>
-	<!--// Configure Line Key5  (for T38G only) //-->
-	<setting name="linekey.5.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="line_type"/><value>4</value></setting>
-	<setting name="linekey.5.value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.5.pickup_value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.5.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.5.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.5.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.5.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.5.xml_phonebook" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.5.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.5.label" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<!--// Configure Line Key6  (for T38G only) //-->
-	<setting name="linekey.6.line" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type refid="line_type"/><value>4</value></setting>
-	<setting name="linekey.6.value" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.6.pickup_value" if="yealinkPhone((SIPT38)|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.6.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.6.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.6.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.6.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.6.xml_phonebook" if="yealinkPhone((SIPT38)|SIPT2[68]).*"><type><string/></type></setting>
-	<setting name="linekey.6.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.6.label" if="yealinkPhone(SIPT38|SIPT2[68]).*"><type><string/></type></setting>
+	<setting name="linekey.1.label"><type><string/></type></setting -->
 	</group>
-	<group name="programmable-keys" if="yealinkPhone(SIPT[1-3]).*">
+	<group name="programmable-keys" if="yealinkPhone(SIPT[1-4]).*">
 	<!--//
 	##########################################################################################
 	##                             Programmable Key                                         ##
@@ -1315,116 +1273,116 @@
 	programablekey.x.label This parameter is only available to the key 1 to key 4. 
 	 //-->
 	<setting name="programablekey.1.type"><type refid="V70_pk_type"/><value>28</value></setting>
-	<setting name="programablekey.1.line"><type refid="line_type"/></setting>
+	<setting name="programablekey.1.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.1.value"><type><string/></type></setting>
-	<setting name="programablekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.1.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.1.history_type"><type><string/></type></setting>
 	<setting name="programablekey.1.label"><type><string/></type></setting>
 
 	<setting name="programablekey.2.type"><type refid="V70_pk_type"/><value>22</value></setting>
-	<setting name="programablekey.2.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.2.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.2.value"><type><string/></type></setting>
-	<setting name="programablekey.2.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.2.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.2.history_type"><type><string/></type></setting>
 	<setting name="programablekey.2.label"><type><string/></type></setting>
 
 	<setting name="programablekey.3.type"><type refid="V70_pk_type"/><value>5</value></setting>
-	<setting name="programablekey.3.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.3.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.3.value"><type><string/></type></setting>
-	<setting name="programablekey.3.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.3.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.3.history_type"><type><string/></type></setting>
 	<setting name="programablekey.3.label"><type><string/></type></setting>
 
 	<setting name="programablekey.4.type"><type refid="V70_pk_type"/><value>30</value></setting>
-	<setting name="programablekey.4.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.4.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.4.value"><type><string/></type></setting>
-	<setting name="programablekey.4.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.4.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.4.history_type"><type><string/></type></setting>
 	<setting name="programablekey.4.label"><type><string/></type></setting>
 
 	<!--// Up->History //-->
 	<setting name="programablekey.5.type"><type refid="V70_pk_type"/><value>28</value></setting>
-	<setting name="programablekey.5.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.5.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.5.value"><type><string/></type></setting>
-	<setting name="programablekey.5.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.5.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.5.history_type"><type><string/></type></setting>
 	<setting name="programablekey.5.label"><type><string/></type></setting>
 
 	<!--// Down->Directory //-->
 	<setting name="programablekey.6.type"><type refid="V70_pk_type"/><value>28</value></setting>
-	<setting name="programablekey.6.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.6.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.6.value"><type><string/></type></setting>
-	<setting name="programablekey.6.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.6.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.6.history_type"><type><string/></type></setting>
 	<setting name="programablekey.6.label"><type><string/></type></setting>
 
 	<!--// Left->N/A //-->
 	<setting name="programablekey.7.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.7.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.7.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.7.value"><type><string/></type></setting>
-	<setting name="programablekey.7.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.7.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.7.history_type"><type><string/></type></setting>
 	<setting name="programablekey.7.label"><type><string/></type></setting>
 
 	<!--// Right->N/A //-->
 	<setting name="programablekey.8.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.8.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.8.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.8.value"><type><string/></type></setting>
-	<setting name="programablekey.8.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.8.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.8.history_type"><type><string/></type></setting>
 	<setting name="programablekey.8.label"><type><string/></type></setting>
 
 	<!--// Ok->Status //-->
 	<setting name="programablekey.9.type"><type refid="V70_pk_type"/><value>33</value></setting>
-	<setting name="programablekey.9.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.9.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.9.value"><type><string/></type></setting>
-	<setting name="programablekey.9.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.9.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.9.history_type"><type><string/></type></setting>
 	<setting name="programablekey.9.label"><type><string/></type></setting>
 
 	<!--// Cancel->N/A //-->
 	<setting name="programablekey.10.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.10.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.10.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.10.value"><type><string/></type></setting>
-	<setting name="programablekey.10.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.10.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.10.history_type"><type><string/></type></setting>
 	<setting name="programablekey.10.label"><type><string/></type></setting>
 
 	<!--// Conference->N/A //-->
 	<setting name="programablekey.11.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.11.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.11.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.11.value"><type><string/></type></setting>
-	<setting name="programablekey.11.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.11.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.11.history_type"><type><string/></type></setting>
 	<setting name="programablekey.11.label"><type><string/></type></setting>
 
 	<!--// Hold->N/A //-->
 	<setting name="programablekey.12.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.12.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.12.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.12.value"><type><string/></type></setting>
-	<setting name="programablekey.12.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.12.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.12.history_type"><type><string/></type></setting>
 	<setting name="programablekey.12.label"><type><string/></type></setting>
 
 	<!--// Tran->N/A //-->
 	<setting name="programablekey.13.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.13.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.13.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.13.value"><type><string/></type></setting>
-	<setting name="programablekey.13.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.13.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.13.history_type"><type><string/></type></setting>
 	<setting name="programablekey.13.label"><type><string/></type></setting>
 
 	<setting name="programablekey.14.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.14.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.14.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.14.value"><type><string/></type></setting>
-	<setting name="programablekey.14.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.14.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.14.history_type"><type><string/></type></setting>
 	<setting name="programablekey.14.label"><type><string/></type></setting>
 
 	<setting name="programablekey.15.type"><type refid="V70_pk_type"/><value>0</value></setting>
-	<setting name="programablekey.15.line"><type reid="yealink_line_type"/></setting>
+	<setting name="programablekey.15.line"><type refid="line_type"/><value>0</value></setting>
 	<setting name="programablekey.15.value"><type><string/></type></setting>
-	<setting name="programablekey.15.xml_phonebook"><type refid="XMLPB_type"/></setting>
+	<setting name="programablekey.15.xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
 	<setting name="programablekey.15.history_type"><type><string/></type></setting>
 	<setting name="programablekey.15.label"><type><string/></type></setting>
 	</group>
@@ -1568,11 +1526,11 @@
     <group name="dialplan">
 	<group name="area-code">
 	    <!--// Configure the area code. //-->
-	    <setting name="dialplan.area_code.code"><type><integer/></type><value>5</value></setting>
-	    <setting name="dialplan.area_code.min_len"><type><integer/></type><value>5</value></setting>
-	    <setting name="dialplan.area_code.max_len"><type><integer/></type><value>5</value></setting>
+	    <setting name="dialplan.area_code.code"><type><integer/></type><value></value></setting>
+	    <setting name="dialplan.area_code.min_len"><type><integer/></type><value></value></setting>
+	    <setting name="dialplan.area_code.max_len"><type><integer/></type><value></value></setting>
 	    <!--// When applying the rule to multiple lines, each line ID separated by comma. e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
-	    <setting name="dialplan.area_code.line_id"><type><string/></type><value>1,2,3</value></setting>
+	    <setting name="dialplan.area_code.line_id"><type><multi-enum/></type><value></value></setting>
 	</group>
 	<group name="dial-now">
 	    <!--// This setting is genarted automaticaly //-->
@@ -1985,7 +1943,7 @@
 	memorykey.x.sub_type =
 	//-->
 	    <!--//  Configure Memory Key1 //-->
-	    <setting name="memorykey.1.line"><type reid="yealink_line_type"/></setting>
+	    <setting name="memorykey.1.line"><type refid="line_type"/></setting>
 	    <setting name="memorykey.1.value"><type><string/></type></setting>
 	    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
 	    <setting name="memorykey.1.type"><type refid="SIPT38G_DSS_type"/></setting>
@@ -2006,7 +1964,7 @@
 	    //-->
 	    <!--// Each expansion module1 key1 //-->
 	    <setting name="expansion_module.1.key.1.type"><type><integer/></type><value>37</value></setting>
-	    <setting name="expansion_module.1.key.1.line"><type><integer/></type><value>0</value></setting>
+	    <setting name="expansion_module.1.key.1.line"><type refid="line_type"></type><value>0</value></setting>
 	    <setting name="expansion_module.1.key.1.value"><type><string/></type></setting>
 	    <setting name="expansion_module.1.key.1.pickup_value"><type><string/></type></setting>
 	    <setting name="expansion_module.1.key.1.label"><type><string/></type></setting>
