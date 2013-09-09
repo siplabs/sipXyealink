@@ -1229,7 +1229,7 @@
 	<setting name="custom_softkey_talking.url" advanced="yes"><type><string/></type><value></value></setting>
     </group>
     <group name="DSSKeys">
-	<group name="line-keys">
+	<group name="line-keys" if="yealinkPhoneSIPT[1-4].*">
 	<!--//
 	#######################################################################################
 	##                                 Line Key                                          ##
