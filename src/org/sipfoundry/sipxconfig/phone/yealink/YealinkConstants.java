@@ -112,4 +112,11 @@ public class YealinkConstants {
     public static final String FEATURE_WALLPAPERS = "hasWallPapers";
     public static final String FEATURE_SCREENSAVERS = "hasScreenSavers";
     public static final String FEATURE_LANGUAGES = "hasLanguages";
+
+// LDAP
+    public static final String LDAP_HOST = "contacts/LDAP/ldap.host";
+    public static final String LDAP_PORT = "contacts/LDAP/ldap.port";
+    public static final String LDAP_USER = "contacts/LDAP/ldap.user";
+    public static final String LDAP_PASSWORD = "contacts/LDAP/ldap.password";
+    public static final String LDAP_BASE = "contacts/LDAP/ldap.base";
 }

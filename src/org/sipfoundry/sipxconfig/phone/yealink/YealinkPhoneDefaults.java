@@ -14,6 +14,9 @@ import java.util.Collection;
 import java.util.Iterator;
 import java.util.List;
 
+import org.sipfoundry.sipxconfig.bulk.ldap.LdapManager;
+import org.sipfoundry.sipxconfig.bulk.ldap.LdapConnectionParams;
+import org.sipfoundry.sipxconfig.bulk.ldap.AttrMap;
 import org.sipfoundry.sipxconfig.address.Address;
 import org.sipfoundry.sipxconfig.address.AddressManager;
 import org.sipfoundry.sipxconfig.common.User;
@@ -277,5 +280,63 @@ public class YealinkPhoneDefaults {
             }
         }
         return null;
+    }
+
+    // LDAP Defaults
+    private LdapConnectionParams getLdapConnectionParams() {
+        List<LdapConnectionParams> allParams = m_phone.getLdapManager().getAllConnectionParams();
+        return allParams.get(0);
+    }
+
+
+    @SettingEntry(path = YealinkConstants.LDAP_HOST)
+    public String getLDAPHost() {
+        LdapConnectionParams p = getLdapConnectionParams();
+        if (null != p) {
+            return p.getHost();
+        } else {
+            return "";
+        }
+    }
+
+    @SettingEntry(path = YealinkConstants.LDAP_PORT)
+    public String getLDAPPort() {
+        LdapConnectionParams p = getLdapConnectionParams();
+        if (null != p) {
+            return p.getPortToUse().toString();
+        } else {
+            return "";
+        }
+    }
+
+    @SettingEntry(path = YealinkConstants.LDAP_USER)
+    public String getLDAPUser() {
+        LdapConnectionParams p = getLdapConnectionParams();
+        if (null != p) {
+            return p.getPrincipal();
+        } else {
+            return "";
+        }
+    }
+
+    @SettingEntry(path = YealinkConstants.LDAP_PASSWORD)
+    public String getLDAPPassword() {
+        LdapConnectionParams p = getLdapConnectionParams();
+        if (null != p) {
+            return p.getSecret();
+        } else {
+            return "";
+        }
+    }
+
+    @SettingEntry(path = YealinkConstants.LDAP_BASE)
+    public String getLDAPBase() {
+        LdapConnectionParams p = getLdapConnectionParams();
+        if (null != p) {
+            AttrMap attrMap = m_phone.getLdapManager().getAttrMap(p.getId());
+            return attrMap.getSearchBase();
+        } else {
+            return "";
+        }
     }
 }
