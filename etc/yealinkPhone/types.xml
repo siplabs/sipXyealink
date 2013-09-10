@@ -1,3 +1,4 @@
+<type id="LDAPConnection_type"><enum/></type>
 <type id="line_type"><enum/></type>
 <type id="syslog-mode_type">
     <enum>

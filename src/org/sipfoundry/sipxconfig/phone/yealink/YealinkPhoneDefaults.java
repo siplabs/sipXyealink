@@ -283,6 +283,7 @@ public class YealinkPhoneDefaults {
     }
 
     // LDAP Defaults
+    /*
     private LdapConnectionParams getLdapConnectionParams() {
         List<LdapConnectionParams> allParams = m_phone.getLdapManager().getAllConnectionParams();
         if (allParams.size() > 0) {
@@ -347,4 +348,6 @@ public class YealinkPhoneDefaults {
             return "";
         }
     }
+*/
+
 }

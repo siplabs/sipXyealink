@@ -23,6 +23,8 @@ import static java.lang.String.format;
 
 import org.sipfoundry.sipxconfig.registrar.RegistrarSettings;
 import org.sipfoundry.sipxconfig.bulk.ldap.LdapManager;
+import org.sipfoundry.sipxconfig.bulk.ldap.LdapConnectionParams;
+import org.sipfoundry.sipxconfig.bulk.ldap.AttrMap;
 import org.sipfoundry.sipxconfig.common.User;
 import org.sipfoundry.sipxconfig.device.Device;
 import org.sipfoundry.sipxconfig.device.DeviceVersion;
@@ -40,12 +42,16 @@ import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 import org.sipfoundry.sipxconfig.setting.AbstractSettingVisitor;
 import org.sipfoundry.sipxconfig.setting.Setting;
+import org.sipfoundry.sipxconfig.setting.SettingValue;
+import org.sipfoundry.sipxconfig.setting.SettingValueImpl;
+import org.sipfoundry.sipxconfig.setting.SettingValueHandler;
+import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
 import org.sipfoundry.sipxconfig.setting.ConditionalSettingImpl;
 import org.sipfoundry.sipxconfig.setting.type.EnumSetting;
 import org.sipfoundry.sipxconfig.setting.type.MultiEnumSetting;
 import org.sipfoundry.sipxconfig.setting.type.StringSetting;
 import org.sipfoundry.sipxconfig.setting.type.SettingType;
-import org.sipfoundry.sipxconfig.setting.SettingExpressionEvaluator;
+import org.sipfoundry.sipxconfig.setting.ValueStorage;
 import org.sipfoundry.sipxconfig.speeddial.SpeedDial;
 import org.sipfoundry.sipxconfig.speeddial.Button;
 
@@ -171,10 +177,6 @@ public class YealinkPhone extends Phone {
         return getPhoneContext().getPhoneDefaults().getDirectedCallPickupCode();
     }
 
-    @Override
-    public void initialize() {
-        addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
-    }
 // DSS keys routines
     private boolean isDSSLineKey(Integer i) {
         if (getModel().getModelId().matches("yealinkPhoneSIPT46.*")) {
@@ -253,12 +255,20 @@ public class YealinkPhone extends Phone {
         settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
         settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
         settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
+
+        settings.acceptVisitor(new LDAPConnectionSetter("#ldap\\.connection"));
         // Commmon
         settings.acceptVisitor(new LineCountSetter(".*\\.((line)|(dialplan\\.area_code\\.line_id))", 1));
         // For W52
         settings.acceptVisitor(new LineCountSetter(".*\\.((dial_out_default_line)|(incoming_lines)|(dial_out_lines))", 1));
         settings.acceptVisitor(new DSSKeySetter("linekey\\.[0-9]+\\.type", getModel().getModelId().matches("yealinkPhoneSIPT4.*")?YealinkConstants.DKTYPES_V71:YealinkConstants.DKTYPES_V70));
         super.setSettings(settings);
+    }
+
+    @Override
+    public void initialize() {
+        addDefaultSettingHandler(new YealinkSettingValueHandler("contacts/LDAP/#ldap.connection"));
+        addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
     }
 
     @Override
@@ -584,4 +594,66 @@ public class YealinkPhone extends Phone {
             }
         }
     }
+
+    private class LDAPConnectionSetter extends YealinkEnumSetter {
+
+        public LDAPConnectionSetter(String pattern) {
+            super(pattern);
+        }
+
+        @Override
+        protected void addEnums(String settingName, EnumSetting enumSetting) {
+            enumSetting.clearEnums();
+            enumSetting.addEnum("-1", null); // Default "Custom" value
+            List<LdapConnectionParams> allParams = getLdapManager().getAllConnectionParams();
+            Integer i = 0;
+            for(LdapConnectionParams p : allParams) {
+                enumSetting.addEnum(i.toString(), p.getUrl());
+                i++;
+            }
+        }
+    }
+
+private class YealinkSettingValueHandler implements SettingValueHandler {
+        private String m_sc;
+
+        public YealinkSettingValueHandler(String sc) {
+            super();
+            m_sc = sc;
+        }
+
+        @Override
+        public SettingValue getSettingValue(Setting setting) {
+            String settingName = setting.getName();
+            if (settingName.equals(m_sc))
+                return null;
+            String sc = ((ValueStorage) getValueStorage()).getSettingValue(m_sc);
+            if (null != sc) {
+                LOG.info(sc);
+                try {
+                    Integer i = Integer.valueOf(sc);
+                    List<LdapConnectionParams> allParams = getLdapManager().getAllConnectionParams();
+                    if ((i > -1) && (i < allParams.size())) {
+                        LdapConnectionParams p = allParams.get(i);
+                        AttrMap attrMap = m_ldapManager.getAttrMap(p.getId());
+                        if (settingName.equals("ldap.host")) {
+                            return new SettingValueImpl(p.getHost());
+                        } else if (settingName.equals("ldap.port")) {
+                            return new SettingValueImpl(p.getPortToUse().toString());
+                        } else if (settingName.equals("ldap.user")) {
+                            return new SettingValueImpl(p.getPrincipal());
+                        } else if (settingName.equals("ldap.password")) {
+                            return new SettingValueImpl(p.getSecret());
+                        } else if (settingName.equals("ldap.base")) {
+                            return new SettingValueImpl(attrMap.getSearchBase());
+                        }
+                    }
+                } catch(NumberFormatException e) {
+                    LOG.error(e.toString());
+                }
+            }
+            return null;
+        }
+    }
+
 }

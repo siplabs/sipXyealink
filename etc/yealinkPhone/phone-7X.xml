@@ -1699,6 +1699,7 @@
 	 //-->
 	<group name="LDAP">
 	    <!--// Configure the search criteria for name and number lookups. //-->
+	    <setting name="#ldap.connection"><type refid="LDAPConnection_type"/><value>-1</value></setting>
 	    <setting name="ldap.enable" if="yealinkPhone(SIPT4|VP530).*"><type><boolean/></type><value>0</value></setting>
 	    <setting name="ldap.name_filter"><value>(&amp;(ipPhone=*)(sn=%))</value></setting>
 	    <setting name="ldap.number_filter"><value>(|(telephoneNumber=%)(mobile=%)(ipPhone=%))</value></setting>
