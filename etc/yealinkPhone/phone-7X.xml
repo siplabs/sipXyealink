@@ -1091,7 +1091,9 @@
 	    <setting name="features.remote_phonebook.flash_time" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><integer/></type><value>3600</value></setting>
 
 	    <!--// Enable or disable the transfer DSS key to perform the blind transfer; 0-Disabled, 1-Enabled (default);  //-->
-	    <setting name="features.dsskey_blind_tran" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>1</value></setting>
+	    <setting name="features.dsskey_blind_tran" if="yealinkPhoneSIPT[1-4].*"><type><boolean/></type><value>1</value></setting>
+
+	    <setting name="features.blf_and_callpark_idle_led_enable" if="yealinkPhoneSIPT[1-4].*"><type><boolean/></type><value>0</value></setting>
 
 	    <!--// Configure the overtime (in minutes) of logging web user interface. It ranges from 1 to 1000, the default value is 5. //-->
 	    <setting name="features.relog_offtime"><type><integer min="1" max="1000"/></type><value>5</value></setting>

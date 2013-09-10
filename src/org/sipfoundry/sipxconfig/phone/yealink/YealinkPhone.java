@@ -21,6 +21,7 @@ import java.util.regex.Matcher;
 
 import static java.lang.String.format;
 
+import org.sipfoundry.sipxconfig.registrar.RegistrarSettings;
 import org.sipfoundry.sipxconfig.bulk.ldap.LdapManager;
 import org.sipfoundry.sipxconfig.common.User;
 import org.sipfoundry.sipxconfig.device.Device;
@@ -68,6 +69,8 @@ public class YealinkPhone extends Phone {
     // Common members
     private SpeedDial m_speedDial;
 
+    private RegistrarSettings m_registrarSettings;
+
     private LdapManager m_ldapManager;
 
     private UploadManager m_uploadManager;
@@ -104,6 +107,14 @@ public class YealinkPhone extends Phone {
         }
     }
 
+    public void setRegistrarSettings(RegistrarSettings rs) {
+        m_registrarSettings = rs;
+    }
+
+    public RegistrarSettings getRegistrarSettings() {
+        return m_registrarSettings;
+    }
+
     public void setLdapManager(LdapManager manager) {
         m_ldapManager = manager;
     }
@@ -112,7 +123,7 @@ public class YealinkPhone extends Phone {
         return m_ldapManager;
     }
 
-    public void setuploadManager(UploadManager manager) {
+    public void setUploadManager(UploadManager manager) {
         m_uploadManager = manager;
     }
 
@@ -214,11 +225,11 @@ public class YealinkPhone extends Phone {
             setting.addSetting(createSetting("enum", null, String.format("linekey.%d.xml_phonebook", i+1), "0"));
         }
         if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), null));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), getRegistrarSettings().getDirectedCallPickupCode()));
             setting.addSetting(createSetting("string", null, String.format("linekey.%d.label", i+1), label));
         } else {
             setting.addSetting(createSetting("enum", "DKtype_type", String.format("linekey.%d.type", i+1), isDSSLineKey(i)?"15":"0"));
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.pickup_value", i+1), null));
+            setting.addSetting(createSetting("string", null, String.format("linekey.%d.pickup_value", i+1), getRegistrarSettings().getDirectedCallPickupCode()));
         }
     }
 
