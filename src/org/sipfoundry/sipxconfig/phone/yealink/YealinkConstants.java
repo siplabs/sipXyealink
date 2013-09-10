@@ -114,6 +114,7 @@ public class YealinkConstants {
     public static final String FEATURE_LANGUAGES = "hasLanguages";
 
 // LDAP
+    public static final String LDAP_ENABLE = "contacts/LDAP/ldap.enable";
     public static final String LDAP_HOST = "contacts/LDAP/ldap.host";
     public static final String LDAP_PORT = "contacts/LDAP/ldap.port";
     public static final String LDAP_USER = "contacts/LDAP/ldap.user";

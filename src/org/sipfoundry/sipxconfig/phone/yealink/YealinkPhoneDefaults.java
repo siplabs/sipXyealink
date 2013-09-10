@@ -285,9 +285,17 @@ public class YealinkPhoneDefaults {
     // LDAP Defaults
     private LdapConnectionParams getLdapConnectionParams() {
         List<LdapConnectionParams> allParams = m_phone.getLdapManager().getAllConnectionParams();
-        return allParams.get(0);
+        if (allParams.size() > 0) {
+            return allParams.get(0);
+        } else {
+            return null;
+        }
     }
 
+    @SettingEntry(path = YealinkConstants.LDAP_ENABLE)
+    public boolean getLDAPEnable() {
+        return (m_phone.getLdapManager().getSystemSettings().isConfigured()&&(null!=getLdapConnectionParams()));
+    }
 
     @SettingEntry(path = YealinkConstants.LDAP_HOST)
     public String getLDAPHost() {

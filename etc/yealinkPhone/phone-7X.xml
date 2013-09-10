@@ -1706,7 +1706,7 @@
 	    <setting name="ldap.port"><type><integer/></type><value>389</value></setting>
 	    <setting name="ldap.base"/>
 	    <setting name="ldap.user"/>
-	    <setting name="ldap.password"><type><password/></type></setting>
+	    <setting name="ldap.password"><type><string password="yes"/></type></setting>
 	    <!--// Specify the maximum of the displayed search results. It ranges from 1 to 32000, the default value is 50. //-->
 	    <setting name="ldap.max_hits"><type><integer/></type><value>50</value></setting>
 	    <setting name="ldap.name_attr"><value>sn givenName</value></setting>
