@@ -70,7 +70,7 @@ account.${L}.backup_outbound_port = 5060
 #if(${subgroup.Value})
 ${subgroup.profileName} = $!{subgroup.Value}
 #else
-${subgroup.profileName} = %NULL% $!{subgroup.Value}
+${subgroup.profileName} = %NULL%
 #end
 #else
 #foreach ($setting in $subgroup.Values)
@@ -80,12 +80,15 @@ ${setting.profileName} = $!{setting.Value}
 #set ($TFTPServer = $!{setting.Value})
 #end
 #else
-${setting.profileName} = %NULL% $!{setting.Value}
+${setting.profileName} = %NULL%
 #end
 #end
 #end
 #end
 #end
+
+local_contact.data.url = $!{TFTPServer}yealink/contact.xml
+local_contact.data_photo_tar.url = $!{TFTPServer}yealink/avatars.tar
 
 #foreach ($f in $phone.RingTones)
 ringtone.url = $!{TFTPServer}yealink/RingTones/$!{f}

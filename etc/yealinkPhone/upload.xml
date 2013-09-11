@@ -210,5 +210,14 @@
             </type>
             <description>Zip archive with UTF16LE text file, named lang+English.txt or lang-LangName.txt by default</description>
         </setting>
+        <setting name="avatars.tar">
+            <label>Avatars</label>
+            <type>
+                <file>
+                    <contentType>application/binary</contentType>
+                </file>
+            </type>
+            <description>TARball with PNG images.</description>
+        </setting>
 </group>
 </model>

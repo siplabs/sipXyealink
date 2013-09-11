@@ -242,7 +242,7 @@
 	    ##                Syslog Server                                                      ##
 	    #######################################################################################
 	     //-->
-	    <setting name="syslog.mode" if="yealinkPhone(VP530|W52)"><type refid="syslog-mode_type"/><value>1</value></setting>
+	    <setting name="syslog.mode" if="yealinkPhone(VP530|W52|SIPT4).*"><type refid="syslog-mode_type"/><value>1</value></setting>
 	    <!--// Configure the IP address of the syslog server. Require reboot; //-->
 	    <setting name="syslog.server"><type><ipaddr/></type></setting>
 	    <!--// Configure the syslog level. It ranges from 0 to 6, the default value is 3. Require reboot; //-->
