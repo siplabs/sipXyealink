@@ -5,10 +5,12 @@
     [
 	<!ENTITY types SYSTEM "types.xml">
 	<!ENTITY types_v71 SYSTEM "types_v71.xml">
+	<!ENTITY types_v70 SYSTEM "types_v70.xml">
     ]
 >
 <model>
 &types;
+&types_v70;
 &types_v71;
     <group name="basic">
 	<!-- Enable or disable the account 1; 0-Disabled (default), 1-Enabled;-->

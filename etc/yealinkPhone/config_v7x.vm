@@ -90,6 +90,9 @@ ${setting.profileName} = %NULL%
 local_contact.data.url = $!{TFTPServer}yealink/contact.xml
 local_contact.data_photo_tar.url = $!{TFTPServer}yealink/avatars.tar
 
+favorite_setting.url = $!{TFTPServer}yealink/favorite_setting.xml
+super_search.url = $!{TFTPServer}yealink/search.xml
+
 #foreach ($f in $phone.RingTones)
 ringtone.url = $!{TFTPServer}yealink/RingTones/$!{f}
 #end
