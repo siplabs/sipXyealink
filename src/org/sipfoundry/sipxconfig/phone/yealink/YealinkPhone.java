@@ -253,7 +253,8 @@ public class YealinkPhone extends Phone {
             }
         }
 
-        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
+//        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
+        settings.acceptVisitor(new PhonebooksSetter("_RemotePhonebooks"));
         settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
         settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
         // Commmon
@@ -298,7 +299,6 @@ public class YealinkPhone extends Phone {
 
     @Override
     public Profile[] getProfileTypes() {
-//        YealinkModel model = (YealinkModel) getModel();
         Profile[] profileTypes = new Profile[] {
             new DeviceProfile(getDeviceFilename())
         };
@@ -495,10 +495,10 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addEnums(String settingName, EnumSetting enumSetting) {
-            // Clean enumerator before adding new values for model.
+        protected void addMultiEnums(String settingName, MultiEnumSetting enumSetting) {
+            // Clean enumerator before adding new values for model
             enumSetting.clearEnums();
-            enumSetting.addEnum(null, null);
+            Integer i = 0;
             for(Phonebook pb : m_pbs) {
                 enumSetting.addEnum(pb.getName(), pb.getName());
             }

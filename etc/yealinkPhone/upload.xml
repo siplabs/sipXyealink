@@ -208,16 +208,48 @@
                     <moveTo>Languages/</moveTo>
                 </file>
             </type>
-            <description>Zip archive with UTF16LE text file, named lang+English.txt or lang-LangName.txt by default</description>
+            <description>ZIP archive with UTF16LE text file, named lang+English.txt or lang-LangName.txt by default</description>
         </setting>
-        <setting name="avatars.tar">
-            <label>Avatars</label>
+        <setting name="contacts.tar">
+            <label>Local contacts</label>
             <type>
                 <file>
                     <contentType>application/binary</contentType>
+                    <moveTo>Contacts/</moveTo>
+                    <rename>contacts.tar</rename>
                 </file>
             </type>
-            <description>TARball with PNG images.</description>
+            <description>TARball with PNG images in TARball and ContactData.xml.</description>
+        </setting>
+        <setting name="contacts.zip">
+            <label>Custom Contacts sources files</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>Contacts/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with XML files: search.xml and favorites.xml</description>
+        </setting>
+        <setting name="customsoftkeys.zip">
+            <label>Custom Softkeys Layout files</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>CustomSoftkeyLayout/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with XML file</description>
+        </setting>
+        <setting name="certs.zip">
+            <label>SSL Certificates</label>
+            <type>
+                <file>
+                    <contentType>application/zip</contentType>
+                    <moveTo>Certs/</moveTo>
+                </file>
+            </type>
+            <description>ZIP archive with SSL Certificates in PEM format</description>
         </setting>
 </group>
 </model>

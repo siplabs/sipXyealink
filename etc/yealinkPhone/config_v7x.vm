@@ -7,6 +7,25 @@
 #set($signatureL5 = '#File header "#!version:1.0.0.1" cannot be edited or deleted.##')
 $signatureL4
 $signatureL5
+#macro (phonebookSettings $setting)
+#set ($selected = $setting.getTypedValue())
+#set ($book_keys = $setting.getType().getEnums().keySet())
+## Loop through each supported codec.
+#set($pb = 0)
+#foreach ($book_key in $book_keys)
+#if (${selected.contains(${book_key})})
+#set($pbId = 1 + ${selected.indexOf($book_key)})
+remote_phonebook.data.${pbId}.url = $!{TFTPServer}${serial}-${pb}-directory.xml
+remote_phonebook.data.${pbId}.name = $book_key
+#set($pb = $pb + 1)
+#end
+#end
+#set ($pbLast = ${selected.size()} + 1)
+#foreach($pbId in [${pbLast}..5])
+remote_phonebook.data.${pbId}.url = %NULL%
+remote_phonebook.data.${pbId}.name = %NULL%
+#end
+#end
 
 # Enable configured lines
 #foreach ($line in $phone.lines)
@@ -75,10 +94,16 @@ ${subgroup.profileName} = %NULL%
 #else
 #foreach ($setting in $subgroup.Values)
 #if(${setting.Value})
+#if(${setting.name} == "_RemotePhonebooks")
+#phonebookSettings($setting)
+#else
 ${setting.profileName} = $!{setting.Value}
 #if (${setting.profileName} == "auto_provision.server.url")
 #set ($TFTPServer = $!{setting.Value})
 #end
+#end
+#else
+#if(${subgroup.name} == "yealink-custom")
 #else
 ${setting.profileName} = %NULL%
 #end
@@ -86,25 +111,19 @@ ${setting.profileName} = %NULL%
 #end
 #end
 #end
-
-local_contact.data.url = $!{TFTPServer}yealink/contact.xml
-local_contact.data_photo_tar.url = $!{TFTPServer}yealink/avatars.tar
-
-favorite_setting.url = $!{TFTPServer}yealink/favorite_setting.xml
-super_search.url = $!{TFTPServer}yealink/search.xml
-
+#end
+local_contact.data_photo_tar.url = $!{TFTPServer}yealink/Contacts/contacts.tar
+favorite_setting.url = $!{TFTPServer}yealink/Contacts/favorites.xml
+super_search.url = $!{TFTPServer}yealink/Contacts/search.xml
 #foreach ($f in $phone.RingTones)
 ringtone.url = $!{TFTPServer}yealink/RingTones/$!{f}
 #end
-
 #foreach ($f in $phone.WallPapers)
 wallpaper_upload.url = $!{TFTPServer}yealink/WallPapers/$!{f}
 #end
-
 #foreach ($f in $phone.ScreenSavers)
 screen_saver.pic.url = $!{TFTPServer}yealink/ScreenSavers/$!{f}
 #end
-
 #foreach ($f in $phone.Languages)
 gui_lang.url = $!{TFTPServer}yealink/Languages/$!{f}
 #end
