@@ -7,10 +7,10 @@
 #set($signatureL5 = '#File header "#!version:1.0.0.1" cannot be edited or deleted.##')
 $signatureL4
 $signatureL5
-#macro (phonebookSettings $setting)
+#macro (phonebooksSettings $setting)
 #set ($selected = $setting.getTypedValue())
 #set ($book_keys = $setting.getType().getEnums().keySet())
-## Loop through each supported codec.
+## Loop through each item
 #set($pb = 0)
 #foreach ($book_key in $book_keys)
 #if (${selected.contains(${book_key})})
@@ -25,6 +25,20 @@ remote_phonebook.data.${pbId}.name = $book_key
 remote_phonebook.data.${pbId}.url = %NULL%
 remote_phonebook.data.${pbId}.name = %NULL%
 #end
+#end
+#macro (linesSetting $setting)
+#set ($selected = $setting.getTypedValue())
+#set ($keys = $setting.getType().getEnums().keySet())
+## Loop through each item
+#set($value = "")
+#foreach ($key in $selected)
+#if(${value} == "")
+#set($value = ${key.substring(4)})
+#else
+#set($value = "$value,${key.substring(4)}")
+#end
+#end
+${setting.profileName} = ${value}
 #end
 
 # Enable configured lines
@@ -83,7 +97,7 @@ account.${L}.backup_outbound_port = 5060
 #Phone settings
 
 #foreach ($group in $phone.Settings.Values)
-#${group.name}
+#L1:${group.name}
 #foreach ($subgroup in $group.Values)
 #if(${subgroup.isLeaf()})
 #if(${subgroup.Value})
@@ -94,8 +108,10 @@ ${subgroup.profileName} = %NULL%
 #else
 #foreach ($setting in $subgroup.Values)
 #if(${setting.Value})
-#if(${setting.name} == "_RemotePhonebooks")
-#phonebookSettings($setting)
+#if(${setting.name.matches("(.*(dial_out|incoming)_lines)|(dialplan.area_code.line_id)")})
+#linesSetting($setting)
+#elseif(${setting.name} == "_RemotePhonebooks")
+#phonebooksSettings($setting)
 #else
 ${setting.profileName} = $!{setting.Value}
 #if (${setting.profileName} == "auto_provision.server.url")

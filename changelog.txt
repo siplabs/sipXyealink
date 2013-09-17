@@ -1,3 +1,6 @@
+    Date:   Tue Sep 17 13:05:07 2013 +0700
+	Refactoring: Remote Phonebooks order and set selection with multi-enum
+
 RPM V4.6.0 build 1685.74e33
     Date:   Thu Sep 12 12:15:56 2013 +0700
 	FIX: Line index for V71 and V70 FW.
