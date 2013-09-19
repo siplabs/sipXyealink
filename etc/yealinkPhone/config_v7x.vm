@@ -40,6 +40,42 @@ remote_phonebook.data.${pbId}.name = %NULL%
 #end
 ${setting.profileName} = ${value}
 #end
+#macro (arraySettings $array)
+#set($settingsIndexMax = ${array.getSize()} - 1)
+#foreach ($settingIndex in [0..$settingsIndexMax])
+#foreach ($settingName in ${array.getSettingNames()})
+#set($s = ${array.getSetting($settingIndex,$settingName)})
+#if(${s.Value})
+${array.name}.$math.add(${settingIndex},1).${settingName} = $!{s.value}
+#else
+${array.name}.$math.add(${settingIndex},1).${settingName} = %NULL%
+#end
+#end
+#end
+#end
+#macro (phoneSetting $settings)
+#if(${settings.getSize()})
+#arraySettings($settings)
+#else
+#foreach ($s in $settings.Values)
+#if(${s.isLeaf()})
+#if(${s.name.matches("(.*(dial_out|incoming)_lines)|(dialplan.area_code.line_id)")})
+#linesSetting($s)
+#elseif(${s.name} == "_RemotePhonebooks")
+#phonebooksSettings($s)
+#else
+#if(${s.Value})
+${s.ProfileName} = $!{s.Value}
+#else
+${s.ProfileName} = %NULL%
+#end
+#end
+#else
+#phoneSetting($s)
+#end
+#end
+#end
+#end
 
 # Enable configured lines
 #foreach ($line in $phone.lines)
@@ -95,39 +131,9 @@ account.${L}.backup_outbound_port = 5060
 #end
 
 #Phone settings
+#phoneSetting($phone.Settings)
 
-#foreach ($group in $phone.Settings.Values)
-#L1:${group.name}
-#foreach ($subgroup in $group.Values)
-#if(${subgroup.isLeaf()})
-#if(${subgroup.Value})
-${subgroup.profileName} = $!{subgroup.Value}
-#else
-${subgroup.profileName} = %NULL%
-#end
-#else
-#foreach ($setting in $subgroup.Values)
-#if(${setting.Value})
-#if(${setting.name.matches("(.*(dial_out|incoming)_lines)|(dialplan.area_code.line_id)")})
-#linesSetting($setting)
-#elseif(${setting.name} == "_RemotePhonebooks")
-#phonebooksSettings($setting)
-#else
-${setting.profileName} = $!{setting.Value}
-#if (${setting.profileName} == "auto_provision.server.url")
-#set ($TFTPServer = $!{setting.Value})
-#end
-#end
-#else
-#if(${subgroup.name} == "yealink-custom")
-#else
-${setting.profileName} = %NULL%
-#end
-#end
-#end
-#end
-#end
-#end
+#Downloads
 local_contact.data_photo_tar.url = $!{TFTPServer}yealink/Contacts/contacts.tar
 favorite_setting.url = $!{TFTPServer}yealink/Contacts/favorites.xml
 super_search.url = $!{TFTPServer}yealink/Contacts/search.xml

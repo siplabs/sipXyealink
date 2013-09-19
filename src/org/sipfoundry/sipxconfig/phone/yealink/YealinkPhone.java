@@ -258,7 +258,7 @@ public class YealinkPhone extends Phone {
         settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
         settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
         // Commmon
-        settings.acceptVisitor(new LineCountSetter(".*\\.line", 1, !getModel().getModelId().matches("yealinkPhoneSIPT4.*")));
+        settings.acceptVisitor(new LineCountSetter("(.*\\.line)|(line)|(line_id)", 1, !getModel().getModelId().matches("yealinkPhoneSIPT4.*")));
         settings.acceptVisitor(new LineCountSetter("dialplan\\.area_code\\.line_id", 1, false));
         // For W52
         settings.acceptVisitor(new LineCountSetter(".*\\.((dial_out_default_line)|(incoming_lines)|(dial_out_lines))", 1, false));
