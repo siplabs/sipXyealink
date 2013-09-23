@@ -16,8 +16,7 @@ import java.util.Collections;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
+import java.util.Set;
 
 import static java.lang.String.format;
 
@@ -40,6 +39,11 @@ import org.sipfoundry.sipxconfig.phonebook.PhonebookEntry;
 import org.sipfoundry.sipxconfig.phonebook.PhonebookManager;
 import org.sipfoundry.sipxconfig.setting.AbstractSettingVisitor;
 import org.sipfoundry.sipxconfig.setting.Setting;
+import org.sipfoundry.sipxconfig.setting.SettingArray;
+import org.sipfoundry.sipxconfig.setting.SettingImpl;
+import org.sipfoundry.sipxconfig.setting.SettingValue;
+import org.sipfoundry.sipxconfig.setting.SettingValueImpl;
+import org.sipfoundry.sipxconfig.setting.SettingValueHandler;
 import org.sipfoundry.sipxconfig.setting.ConditionalSettingImpl;
 import org.sipfoundry.sipxconfig.setting.type.EnumSetting;
 import org.sipfoundry.sipxconfig.setting.type.MultiEnumSetting;
@@ -208,31 +212,43 @@ public class YealinkPhone extends Phone {
         if (getModel().getModelId().matches("yealinkPhoneSIPT4.*"))
             return "DSSKeyType_71_type";
         if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*"))
-            return "DSSKeyType_70_typee";
+            return "DSSKeyType_70_type";
         return "DSSKeyType_6X_type";
     }
 
-    private void addDSSKeySettings(Setting setting, Integer i, String value, String label, String defaultType) {
+    private void addLineKeySettings(SettingArray setting) {
 
-        setting.addSetting(createSetting("enum", getDSSEnumId(), String.format("linekey.%d.type", i+1), getDSSTypeForKey(i, defaultType)));
-
-        if (getModel().getModelId().matches("yealinkPhoneSIPT46.*")) {
-            setting.addSetting(createSetting("enum", "yealink_line_type", String.format("linekey.%d.line", i+1), (isDSSLineKey(i)?String.format("%d", i-4):"1"))); // Set line keys for SIPT46(5-9)
-        } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*")) {
-            setting.addSetting(createSetting("enum", "yealink_line_type", String.format("linekey.%d.line", i+1), (isDSSLineKey(i)?String.format("%d", i-2):"1"))); // Set line keys for SIPT4[12](3-5)
+        setting.addSetting(createSetting("enum", getDSSEnumId(), "type", "0"));
+        setting.addSetting(createSetting("string", null, "value", null));
+        setting.addSetting(createSetting("string", null, "label", null));
+        if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
+            setting.addSetting(createSetting("enum", "yealink_line_type", "line", "1")); // Set line keys for SIPT4X
         } else {
-            setting.addSetting(createSetting("enum", "yealink_line_type", String.format("linekey.%d.line", i+1), isDSSLineKey(i)?String.format("%d", i+1):"1"));
-        }
-
-        setting.addSetting(createSetting("string", null, String.format("linekey.%d.value", i+1), value));
-        if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*")) {
-            setting.addSetting(createSetting("enum", null, String.format("linekey.%d.xml_phonebook", i+1), "0"));
+            setting.addSetting(createSetting("enum", "yealink_line_type", "line", "0"));
         }
         if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.extension", i+1), getRegistrarSettings().getDirectedCallPickupCode()));
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.label", i+1), label));
+            setting.addSetting(createSetting("string", null, "extension", getRegistrarSettings().getDirectedCallPickupCode()));
         } else {
-            setting.addSetting(createSetting("string", null, String.format("linekey.%d.pickup_value", i+1), getRegistrarSettings().getDirectedCallPickupCode()));
+            setting.addSetting(createSetting("string", null, "pickup_value", getRegistrarSettings().getDirectedCallPickupCode()));
+        }
+        if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*")) {
+            setting.addSetting(createSetting("enum", "XMLPB_type", "xml_phonebook", "0"));
+        }
+    }
+
+    private void addProgramableKeySettings(SettingArray setting) {
+
+        setting.addSetting(createSetting("enum", "PKeyType_70_type", "type", null));
+        setting.addSetting(createSetting("string", null, "value", null));
+        setting.addSetting(createSetting("string", null, "label", null));
+        if (getModel().getModelId().matches("yealinkPhoneSIPT4.*")) {
+            setting.addSetting(createSetting("enum", "yealink_line_type", "line", null)); // Set line keys for SIPT4X
+        } else {
+            setting.addSetting(createSetting("enum", "yealink_line_type", "line", null));
+        }
+        if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*")) {
+            setting.addSetting(createSetting("enum", "XMLPB_type", "xml_phonebook", null));
+            setting.addSetting(createSetting("string", null, "history", null));
         }
     }
 
@@ -241,34 +257,35 @@ public class YealinkPhone extends Phone {
         SpeedDial sd = getPhoneContext().getSpeedDial(this);
         List<Button> sdButtons = null!=sd?sd.getButtons():new ArrayList<Button>();
 
-        YealinkModel model = (YealinkModel) getModel();
-        if (null != model) {
-            Setting lineKeys = settings.getSetting("DSSKeys/line-keys");
-            if (null != lineKeys) {
-                Integer sdi = 0;
-                for (Integer i = 0; i < getMaxLineCount() + getMaxDSSKeyCount(); i++) {
-                    Button sdButton = isDSSLineKey(i)?null:(sdi<sdButtons.size()?sdButtons.get(sdi++):null);
-                    addDSSKeySettings(lineKeys, i, null==sdButton?null:sdButton.getNumber(), null==sdButton?null:sdButton.getLabel(), null==sdButton?"0":(sdButton.isBlf()?"16":"13"));
-                }
-            }
+        SettingArray lineKeys = (SettingArray) settings.getSetting("DSSKeys/line-keys/linekey");
+        if (null != lineKeys) {
+            lineKeys.setSize(getMaxLineCount() + getMaxDSSKeyCount());
+            addLineKeySettings(lineKeys);
+        }
+        SettingArray programableKeys = (SettingArray) settings.getSetting("DSSKeys/programable-keys/programablekey");
+        if (null != programableKeys) {
+            programableKeys.setSize(15);
+            addProgramableKeySettings(programableKeys);
         }
 
 //        settings.acceptVisitor(new PhonebooksSetter("remote_phonebook\\.data\\.[1-5]\\.name"));
-        settings.acceptVisitor(new PhonebooksSetter("_RemotePhonebooks"));
-        settings.acceptVisitor(new PhonebooksSelectSetter(".*\\.xml_phonebook"));
-        settings.acceptVisitor(new RingtonesSetter("(distinctive_ring_tones\\.alert_info\\.[0-9]+\\.ringer)|((phone_setting|ringtone)\\.ring_type)"));
+        settings.acceptVisitor(new PhonebooksSetter("contacts/RemotePhoneBook/_RemotePhonebooks"));
+        settings.acceptVisitor(new PhonebooksSelectSetter(".*/xml_phonebook\\[\\d+\\]"));
+        settings.acceptVisitor(new RingtonesSetter("(distinctive-ringer/alert-info/ringer\\[\\d+\\])|preference/phone_setting\\.ring_type"));
+        settings.acceptVisitor(new DSSKeySetter("DSSKeys/line-keys/linekey/type\\[\\d+\\]", getModel().getModelId().matches("yealinkPhoneSIPT4.*")?YealinkConstants.DKTYPES_V71:YealinkConstants.DKTYPES_V70));
+        settings.acceptVisitor(new DSSKeySetter("DSSKeys/programable-keys/programablekey/type\\[\\d+\\]", YealinkConstants.PKTYPES_V70));
         // Commmon
-        settings.acceptVisitor(new LineCountSetter("(.*\\.line)|(line)|(line_id)", 1, !getModel().getModelId().matches("yealinkPhoneSIPT4.*")));
-        settings.acceptVisitor(new LineCountSetter("dialplan\\.area_code\\.line_id", 1, false));
+        settings.acceptVisitor(new LineCountSetter(".*/((line|line_id)\\[\\d+\\])", 1, !getModel().getModelId().matches("yealinkPhoneSIPT4.*")));
+        settings.acceptVisitor(new LineCountSetter("dialplan/area-code/dialplan\\.area_code\\.line_id", 1, false));
         // For W52
-        settings.acceptVisitor(new LineCountSetter(".*\\.((dial_out_default_line)|(incoming_lines)|(dial_out_lines))", 1, false));
-        settings.acceptVisitor(new DSSKeySetter("linekey\\.[0-9]+\\.type", getModel().getModelId().matches("yealinkPhoneSIPT4.*")?YealinkConstants.DKTYPES_V71:YealinkConstants.DKTYPES_V70));
+        settings.acceptVisitor(new LineCountSetter(".*/((incoming_lines|dial_out_lines|dial_out_default_line)\\[\\d+\\])", 1, false));
         super.setSettings(settings);
     }
 
     @Override
     public void initialize() {
         addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
+        addDefaultSettingHandler(new DSSDefaults());
     }
 
     @Override
@@ -387,6 +404,10 @@ public class YealinkPhone extends Phone {
         return getModel().isSupported(YealinkConstants.FEATURE_LANGUAGES)?getFileListForDirectory(getMappedDirectoryName(YealinkUpload.DIR_YEALINK + YealinkUpload.DIR_LANGUAGES)):Collections.EMPTY_LIST;
     }
 
+    public String getValueForSetting(Setting setting) {
+        return null;
+    }
+
     /**
      * Each subclass must decide how as much of this generic line information translates into its
      * own setting model.
@@ -495,7 +516,7 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addMultiEnums(String settingName, MultiEnumSetting enumSetting) {
+        protected void addMultiEnums(String settingName, Integer settingIndex, MultiEnumSetting enumSetting) {
             // Clean enumerator before adding new values for model
             enumSetting.clearEnums();
             Integer i = 0;
@@ -512,7 +533,7 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addEnums(String settingName, EnumSetting enumSetting) {
+        protected void addEnums(String settingName, Integer settingIndex, EnumSetting enumSetting) {
             enumSetting.clearEnums();
             for(Integer i = 0; i < 5; i++) {
                 enumSetting.addEnum(i.toString(), null);
@@ -527,7 +548,7 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addEnums(String settingName, EnumSetting enumSetting) {
+        protected void addEnums(String settingName, Integer settingIndex, EnumSetting enumSetting) {
             if (settingName.equals("ringtone.ring_type")) {
                 enumSetting.addEnum("common", "common");
             }
@@ -552,7 +573,7 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addEnums(String settingName, EnumSetting enumSetting) {
+        protected void addEnums(String settingName, Integer settingIndex, EnumSetting enumSetting) {
             // Celan enumerator before adding new values for model.
             enumSetting.clearEnums();
             if (m_hasAuto) {
@@ -570,7 +591,7 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addMultiEnums(String settingName, MultiEnumSetting enumSetting) {
+        protected void addMultiEnums(String settingName, Integer settingIndex, MultiEnumSetting enumSetting) {
             // Celan enumerator before adding new values for model.
             enumSetting.clearEnums();
             for (Integer l = 0; l<getMaxLineCount(); l++) {
@@ -594,12 +615,73 @@ public class YealinkPhone extends Phone {
         }
 
         @Override
-        protected void addEnums(String settingName, EnumSetting enumSetting) {
+        protected void addEnums(String settingName, Integer settingIndex, EnumSetting enumSetting) {
             enumSetting.clearEnums();
             List<String> keyTypesList = Arrays.asList(StringUtils.split(m_keyTypes, ','));
-            for(String dkt : keyTypesList) {
+            for (String dkt : keyTypesList) {
                 enumSetting.addEnum(dkt, null);
             }
+        }
+    }
+
+    private class DSSDefaults implements SettingValueHandler {
+
+        private Integer getLineKeyLineId(Integer i) {
+            if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
+                return i - 4;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
+                return i - 2;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
+                return i + 1;
+            }
+            return new Integer(getModel().getModelId().matches("yealinkPhoneSIPT4.*")?1:0);
+        }
+        private Integer getLineKeyType(Integer i) {
+            if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
+                return 15;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
+                return 15;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
+                return 15;
+            }
+            return 0;
+        }
+        private Integer getProgramableKeyType(Integer i) {
+            if (i == 0) return 28;
+            if (i == 1) return 22;
+            if (i == 2) return 5;
+            if (i == 3) return 30;
+            if (i == 4) return 28;
+            if (i == 5) return 29;
+            if (i == 8) return 33;
+            return 0;
+        }
+
+        private SettingValue getLineKeyLineDefaultValue(Setting setting) {
+            return new SettingValueImpl(getLineKeyLineId(setting.getIndex()).toString());
+        }
+        private SettingValue getLineKeyTypeDefaultValue(Setting setting) {
+            return new SettingValueImpl(getLineKeyType(setting.getIndex()).toString());
+        }
+
+        private SettingValue getProgramableKeyLineDefaultValue(Setting setting) {
+            return new SettingValueImpl(getModel().getModelId().matches("yealinkPhoneSIPT4.*")?"1":"0");
+        }
+        private SettingValue getProgramableKeyTypeDefaultValue(Setting setting) {
+            return new SettingValueImpl(getProgramableKeyType(setting.getIndex()).toString());
+        }
+
+        public SettingValue getSettingValue(Setting setting) {
+            if (setting.getPath().matches("DSSKeys/programable-keys/programablekey/line.+")) {
+                return getProgramableKeyLineDefaultValue(setting);
+            } else if (setting.getPath().matches("DSSKeys/programable-keys/programablekey/type.+")) {
+                return getProgramableKeyTypeDefaultValue(setting);
+            }  else if (setting.getPath().matches("DSSKeys/line-keys/linekey/line.+")) {
+                return getLineKeyLineDefaultValue(setting);
+            } else if (setting.getPath().matches("DSSKeys/line-keys/linekey/type.+")) {
+                return getLineKeyTypeDefaultValue(setting);
+            }
+            return null;
         }
     }
 }

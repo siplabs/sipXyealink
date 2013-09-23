@@ -12,37 +12,13 @@
 &types;
 &types_v70;
 &types_v71;
-    <group name="handset" if="yealinkPhoneW52.*">
-	<group name="1">
-	    <setting name="handset.1.name"><value>H1</value></setting>
-	    <setting name="handset.1.incoming_lines"><type refid="yealink_multi_line_type"/><value>enum1</value></setting>
-	    <setting name="handset.1.dial_out_lines"><type refid="yealink_multi_line_type"/><value>enum1</value></setting>
-	    <setting name="handset.1.dial_out_default_line"><type refid="yealink_line_type"/><value>1</value></setting>
-	</group>
-	<group name="2">
-	    <setting name="handset.2.name"><value>H2</value></setting>
-	    <setting name="handset.2.incoming_lines"><type refid="yealink_multi_line_type"/><value>enum2</value></setting>
-	    <setting name="handset.2.dial_out_lines"><type refid="yealink_multi_line_type"/><value>enum2</value></setting>
-	    <setting name="handset.2.dial_out_default_line"><type refid="yealink_line_type"/><value>2</value></setting>
-	</group>
-	<group name="3">
-	    <setting name="handset.3.name"><value>H3</value></setting>
-	    <setting name="handset.3.incoming_lines"><type refid="yealink_multi_line_type"/><value>enum3</value></setting>
-	    <setting name="handset.3.dial_out_lines"><type refid="yealink_multi_line_type"/><value>enum3</value></setting>
-	    <setting name="handset.3.dial_out_default_line"><type refid="yealink_line_type"/><value>3</value></setting>
-	</group>
-	<group name="4">
-	    <setting name="handset.4.name"><value>H4</value></setting>
-	    <setting name="handset.4.incoming_lines"><type refid="yealink_multi_line_type"/><value>enum4</value></setting>
-	    <setting name="handset.4.dial_out_lines"><type refid="yealink_multi_line_type"/><value>enum4</value></setting>
-	    <setting name="handset.4.dial_out_default_line"><type refid="yealink_line_type"/><value>4</value></setting>
-	</group>
-	<group name="5">
-	    <setting name="handset.5.name"><value>H5</value></setting>
-	    <setting name="handset.5.incoming_lines"><type refid="yealink_multi_line_type"/><value>enum5</value></setting>
-	    <setting name="handset.5.dial_out_lines"><type refid="yealink_multi_line_type"/><value>enum5</value></setting>
-	    <setting name="handset.5.dial_out_default_line"><type refid="yealink_line_type"/><value>5</value></setting>
-	</group>
+    <group name="handsets" if="yealinkPhoneW52.*">
+	<collection name="handset" size="5">
+	    <setting name="name"></setting>
+	    <setting name="incoming_lines"><type refid="yealink_multi_line_type"/></setting>
+	    <setting name="dial_out_lines"><type refid="yealink_multi_line_type"/></setting>
+	    <setting name="dial_out_default_line"><type refid="yealink_line_type"/></setting>
+	</collection>
     </group>
     <group name="network-wan">
 	<group name="network">
@@ -96,7 +72,7 @@
 		    #Multiple options separated by a comma. It supports up to 5 options in all.
 		    #Require reboot;
 	    //-->
-	    <setting name="network.vlan.dhcp_option"><type><string/></type><value></value></setting>
+	    <setting name="network.vlan.dhcp_option"><type><string/></type></setting>
 
 	    <!--// Enable or disable the VLAN of PC port; 0-Disabled (default), 1-Enabled; Require reboot;  //-->
 	    <setting name="network.vlan.pc_port_enable" if="yealinkPhone((SIPT[1-4])|(W5)).*"><type><boolean/></type><value>0</value></setting>
@@ -193,21 +169,21 @@
 	    <!--// Enable or disable the DHCP option mode; 0-Disabled, 1-Enabled (default); //-->
 	    <setting name="auto_provision.dhcp_option.enable"><type><boolean/></type><value>1</value></setting>
 	    <!--// Configure the custom DHCP option number. It ranges from 128 to 254. //-->
-	    <setting name="auto_provision.dhcp_option.list_user_options"><type><integer min="128" max="254"/></type><value></value></setting>
+	    <setting name="auto_provision.dhcp_option.list_user_options"><type><integer min="128" max="254"/></type></setting>
 	    <!--// Configure the value (manufacturer of the device) of DHCP option 60. //-->
-	    <setting name="auto_provision.dhcp_option.option60_value"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.dhcp_option.option60_value"><type><string/></type></setting>
 	    <!--// Configure the URL of the auto provisioning server. //-->
-	    <setting name="auto_provision.server.url"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.server.url"><type><string/></type></setting>
 	    <!--// Configure the username and password for downloading. //-->
-	    <setting name="auto_provision.server.username"><type><string/></type><value></value></setting>
-	    <setting name="auto_provision.server.password"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.server.username"><type><string/></type></setting>
+	    <setting name="auto_provision.server.password"><type><string/></type></setting>
 
 	    <!--// Configure the name of the Common configuration file. //-->
-	    <setting name="auto_provision.common_file_name" advanced="yes"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.common_file_name" advanced="yes"><type><string/></type></setting>
 	    <!--// Configure AES key (16 characters) for decrypting the common CFG file. //-->
-	    <setting name="auto_provision.aes_key_16.com"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.aes_key_16.com"><type><string/></type></setting>
 	    <!--// Configure AES key (16 characters) for decrypting the MAC-Oriented CFG file. //-->
-	    <setting name="auto_provision.aes_key_16.mac"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.aes_key_16.mac"><type><string/></type></setting>
 
 	    <!--//
 	    #######################################################################################
@@ -222,9 +198,9 @@
 	    <!--// Enable or disable the Plug and Play feature; 0-Disabled, 1-Enabled (default); //-->
 	    <setting name="auto_provision.pnp_enable"><type><boolean/></type><value>1</value></setting>
 	    <!--// Configure the domain name of the PNP server. //-->
-	    <setting name="auto_provision.pnp_domain_name" advanced="yes"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.pnp_domain_name" advanced="yes"><type><string/></type></setting>
 	    <!--// Configure the PNP vendor information. //-->
-	    <setting name="auto_provision.pnp_event_vendor" advanced="yes"><type><string/></type><value></value></setting>
+	    <setting name="auto_provision.pnp_event_vendor" advanced="yes"><type><string/></type></setting>
 
 	    <!--// #0-Disabled (default), 1-Power on, 4-Repeatedly, 5-Weekly, 6-Power on + Repeatedly, 7-Power on + Weekly; //-->
 	    <setting name="auto_provision.mode" if="yealinkPhone(SIPT[2-4])|(VP530).*"><type refid="autop_mode_type"/><value>1</value></setting>
@@ -261,17 +237,17 @@
     The valid value is a string, the maximum length is 100. //-->
     <group name="autop-sources">
 	<collection name="autoprovision" size="50">
-	    <setting name="name"><type><string/></type><value></value></setting>
+	    <setting name="name"><type><string/></type></setting>
 	    <!--// Configure the auto provisioning code. The valid value is a string, the maximum length is 100. //-->
-	    <setting name="code"><type><string/></type><value></value></setting>
+	    <setting name="code"><type><string/></type></setting>
 	    <!--// Configure the URL of the auto provisioning server. The valid value is a string, the maximum length is 256. //-->
-	    <setting name="url"><type><string/></type><value></value></setting>
+	    <setting name="url"><type><string/></type></setting>
 	    <!--// Configure the username and password for downloading. The valid value is a string, the maximum length is 100. //-->
-	    <setting name="user"><type><string/></type><value></value></setting>
-	    <setting name="password"><type><string/></type><value></value></setting>
+	    <setting name="user"><type><string/></type></setting>
+	    <setting name="password"><type><string/></type></setting>
 	    <!--// Configure AES key (16 characters) for decrypting the common CFG file and MAC-Oriented CFG file. //-->
-	    <setting name="com_aes"><type><string/></type><value></value></setting>
-	    <setting name="mac_aes"><type><string/></type><value></value></setting>
+	    <setting name="com_aes"><type><string/></type></setting>
+	    <setting name="mac_aes"><type><string/></type></setting>
 	</collection>
     </group>
     <group name="preference">
@@ -588,12 +564,12 @@
 	<!--// Enable or disable the user to customize the softkey layout; 0-Disabled (default), 1-Enabled;  //-->
 	<setting name="phone_setting.custom_softkey_enable"><type><boolean/></type><value>0</value></setting>
 	<!--// Customize the softkeys presented on the phone LCD screen when Callfailed, Callin, Connecting, Dialing, Ringback and Talking. //-->
-	<setting name="custom_softkey_call_failed.url" advanced="yes"><type><string/></type><value></value></setting>
-	<setting name="custom_softkey_call_in.url" advanced="yes"><type><string/></type><value></value></setting>
-	<setting name="custom_softkey_connecting.url" advanced="yes"><type><string/></type><value></value></setting>
-	<setting name="custom_softkey_dialing.url" advanced="yes"><type><string/></type><value></value></setting>
-	<setting name="custom_softkey_ring_back.url" advanced="yes"><type><string/></type><value></value></setting>
-	<setting name="custom_softkey_talking.url" advanced="yes"><type><string/></type><value></value></setting>
+	<setting name="custom_softkey_call_failed.url" advanced="yes"><type><string/></type></setting>
+	<setting name="custom_softkey_call_in.url" advanced="yes"><type><string/></type></setting>
+	<setting name="custom_softkey_connecting.url" advanced="yes"><type><string/></type></setting>
+	<setting name="custom_softkey_dialing.url" advanced="yes"><type><string/></type></setting>
+	<setting name="custom_softkey_ring_back.url" advanced="yes"><type><string/></type></setting>
+	<setting name="custom_softkey_talking.url" advanced="yes"><type><string/></type></setting>
     </group>
     <group name="DSSKeys" if="yealinkPhone((SIPT[1-4])|VP530).*">
 	<group name="line-keys">
@@ -608,17 +584,9 @@
 	<!--// 
 	    This configuration is dynamicaly generated in JAVA code from maxDSSKeyCount properties of paticular phone model
 	//-->
-	<!--// Configure Line Key1 //-->
-	<!-- setting name="linekey.1.line"><type refid="yealink_line_type"/><value>1</value></setting>
-	<setting name="linekey.1.value"><type><string/></type></setting>
-	<setting name="linekey.1.pickup_value" if="yealinkPhone(SIPT[1-4]).*"><type><string/></type></setting>
-	<setting name="linekey.1.type" if="yealinkPhone(SIPT[1-3]).*"><profileName>linekey.1.type</profileName><type refid="DKtype_type"/><value>0</value></setting>
-	<setting name="linekey.1.type_T4X" if="yealinkPhone(SIPT4).*"><profileName>linekey.1.type</profileName><type refid="SIPT4X_DSS_type"/><value>0</value></setting>
-	<setting name="linekey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
-	<setting name="linekey.1.extension" if="yealinkPhone(SIPT4).*"><type><string/></type></setting>
-	<setting name="linekey.1.label"><type><string/></type></setting -->
+	    <collection name="linekey" size="0"/>
 	</group>
-	<group name="programmable-keys" if="yealinkPhone(SIPT[1-4]).*">
+	<group name="programable-keys" if="yealinkPhone(SIPT[1-4]).*">
 	<!--//
 	##########################################################################################
 	##                             Programmable Key                                         ##
@@ -637,7 +605,7 @@
 	programablekey.x.xml_phonebook Specify the desired remote phonebook/local group/BSFT phonebook for the programmable key. This parameter is only appilicable to the feature XML Group/Local Group/Broadsoft Group.
 	programablekey.x.history_type =
 
-	programablekey.x.label This parameter is only available to the key 1 to key 4. 
+	programablekey.x.label This parameter is only available to the key 1 to key 4
 	 //-->
 	<!--// 5 Up->History //-->
 	<!--// 6 Down->Directory //-->
@@ -648,14 +616,7 @@
 	<!--// 11 Conference->N/A //-->
 	<!--// 12 Hold->N/A //-->
 	<!--// 13 Tran->N/A //-->
-	    <collection name="programablekey" size="15">
-		<setting name="type"><type refid="V70_pk_type"/><value>0</value></setting>
-		<setting name="line"><type refid="yealink_line_type"/><value>0</value></setting>
-		<setting name="value"><type><string/></type></setting>
-		<setting name="xml_phonebook"><type refid="XMLPB_type"/><value></value></setting>
-		<setting name="history_type"><type><string/></type></setting>
-		<setting name="label"><type><string/></type></setting>
-	    </collection>
+	    <collection name="programablekey" size="0"/>
 	</group>
     </group>
     <group name="action-url">
@@ -755,17 +716,17 @@
 	Duration is the time duration (in milliseconds) of ringing the tone. It ranges from 0 to 30000ms.
 	At most eight tones can be configured for dial, ring, busy and so on, each tone is separated by comma. 
 	For example, voice.tone.dial = 100/200,200/150,300+400+500+1200/1000,0/1200,500+900/800,5000+2000+3000/6000,0/1500,3600/1800 //-->
-	<setting name="voice.tone.callwaiting"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.dial"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.ring"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.busy"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.congestion" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.dialrecall" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.record" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.info" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.stutter" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.message" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
-	<setting name="voice.tone.autoanswer" if="yealinkPhone(SIPT|VP).*"><type><string/></type><value></value></setting>
+	<setting name="voice.tone.callwaiting"><type><string/></type></setting>
+	<setting name="voice.tone.dial"><type><string/></type></setting>
+	<setting name="voice.tone.ring"><type><string/></type></setting>
+	<setting name="voice.tone.busy"><type><string/></type></setting>
+	<setting name="voice.tone.congestion" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.dialrecall" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.record" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.info" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.stutter" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.message" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
+	<setting name="voice.tone.autoanswer" if="yealinkPhone(SIPT|VP).*"><type><string/></type></setting>
     </group>
     <!--//
     #######################################################################################
@@ -775,25 +736,25 @@
     <group name="dialplan">
 	<group name="area-code">
 	    <!--// Configure the area code. //-->
-	    <setting name="dialplan.area_code.code"><type><integer/></type><value></value></setting>
-	    <setting name="dialplan.area_code.min_len"><type><integer/></type><value></value></setting>
-	    <setting name="dialplan.area_code.max_len"><type><integer/></type><value></value></setting>
+	    <setting name="dialplan.area_code.code"><type><integer/></type></setting>
+	    <setting name="dialplan.area_code.min_len"><type><integer/></type></setting>
+	    <setting name="dialplan.area_code.max_len"><type><integer/></type></setting>
 	    <!--// When applying the rule to multiple lines, each line ID separated by comma. e.g. dialplan.area_code.line_id = 1, 2, 3 //-->
 	    <setting name="dialplan.area_code.line_id"><type refid="yealink_multi_line_type"/><value>1</value></setting>
 	</group>
 	<collection name="dial-now" size="20">
-	    <setting name="rule"><type><string/></type><value></value></setting>
-	    <setting name="line_id"><type refid="yealink_line_type"/><value></value></setting>
+	    <setting name="rule"><type><string/></type></setting>
+	    <setting name="line_id"><type refid="yealink_line_type"/></setting>
 	</collection>
 	<collection name="block-out" size="20">
-	    <setting name="number"><type><string/></type><value></value></setting>
-	    <setting name="line_id"><type refid="yealink_multi_line_type"/><value></value></setting>
+	    <setting name="number"><type><string/></type></setting>
+	    <setting name="line_id"><type refid="yealink_multi_line_type"/></setting>
 	</collection>
 	<collection name="replace" size="20">
 	    <setting name="enabled"><type><boolean/></type><value>0</value></setting>
-	    <setting name="prefix"><type><string/></type><value></value></setting>
-	    <setting name="replaced"><type><string/></type><value></value></setting>
-	    <setting name="line_id"><type refid="yealink_multi_line_type"/><value></value></setting>
+	    <setting name="prefix"><type><string/></type></setting>
+	    <setting name="replaced"><type><string/></type></setting>
+	    <setting name="line_id"><type refid="yealink_multi_line_type"/></setting>
 	</collection>
     </group>
     <group name="contacts">
@@ -1067,12 +1028,13 @@
 	memorykey.x.sub_type =
 	//-->
 	    <!--//  Configure Memory Key1 //-->
-	    <setting name="memorykey.1.line"><type refid="yealink_line_type"/></setting>
+	    <!-- setting name="memorykey.1.line"><type refid="yealink_line_type"/></setting>
 	    <setting name="memorykey.1.value"><type><string/></type></setting>
 	    <setting name="memorykey.1.pickup_value"><type><string/></type></setting>
 	    <setting name="memorykey.1.type"><type refid="DSSKeyType_70_type"/></setting>
 	    <setting name="memorykey.1.xml_phonebook"><type refid="XMLPB_type"/></setting>
-	    <setting name="memorykey.1.sub_type"><type><string/></type></setting>
+	    <setting name="memorykey.1.sub_type"><type><string/></type></setting -->
+	    <setting name="dummy-setting" />
 	</group>
 	<group name="expansion-keys" hidden="yes">
 	    <!--//

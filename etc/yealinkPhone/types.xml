@@ -15,6 +15,15 @@
 </type>
 <!-- empty enum for SettingsVisitor -->
 <type id="phonebook_type"><enum/></type>
+<type id="XMLPB_type">
+    <enum>
+	<option>0</option>
+	<option>1</option>
+	<option>2</option>
+	<option>3</option>
+	<option>4</option>
+    </enum>
+</type>
 <type id="ringer_type">
     <enum>
 	<option><value>1</value></option>
@@ -31,15 +40,6 @@
     <enum>
 	<option><value>0</value></option>
 	<option><value>1</value></option>
-    </enum>
-</type>
-<type id="XMLPB_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>1</value></option>
-	<option><value>2</value></option>
-	<option><value>3</value></option>
-	<option><value>4</value></option>
     </enum>
 </type>
 <type id="ToneCountry_type">
@@ -133,35 +133,6 @@
 	<option><value>45</value></option>
 	<option><value>46</value></option>
 	<option><value>47</value></option>
-    </enum>
-</type>
-<type id="V70_pk_type">
-    <enum>
-	<option><value>0</value></option>
-	<option><value>2</value></option>
-	<option><value>5</value></option>
-	<option><value>6</value></option>
-	<option><value>7</value></option>
-	<option><value>8</value></option>
-	<option><value>9</value></option>
-	<option><value>13</value></option>
-	<option><value>14</value></option>
-	<option><value>22</value></option>
-	<option><value>23</value></option>
-	<option><value>27</value></option>
-	<option><value>28</value></option>
-	<option><value>29</value></option>
-	<option><value>30</value></option>
-	<option><value>32</value></option>
-	<option><value>33</value></option>
-	<option><value>43</value></option>
-	<option><value>44</value></option>
-	<option><value>45</value></option>
-	<option><value>46</value></option>
-	<option><value>47</value></option>
-	<option><value>48</value></option>
-	<option><value>49</value></option>
-	<option><value>50</value></option>
     </enum>
 </type>
 <type id="jb_type">

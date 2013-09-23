@@ -9,14 +9,13 @@
 
 package org.sipfoundry.sipxconfig.phone.yealink;
 
-import java.util.regex.Pattern;
-import java.util.regex.Matcher;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 
 import org.sipfoundry.sipxconfig.setting.AbstractSettingVisitor;
 import org.sipfoundry.sipxconfig.setting.Setting;
+import org.sipfoundry.sipxconfig.setting.SettingImpl;
+import org.sipfoundry.sipxconfig.setting.SettingArray;
 import org.sipfoundry.sipxconfig.setting.type.EnumSetting;
 import org.sipfoundry.sipxconfig.setting.type.MultiEnumSetting;
 
@@ -39,23 +38,21 @@ public abstract class YealinkEnumSetter extends AbstractSettingVisitor {
     @Override
     public void visitSetting(Setting setting) {
         if ((setting.getType() instanceof EnumSetting)|(setting.getType() instanceof MultiEnumSetting)) {
-            Pattern pattern = Pattern.compile(getPattern());
-            Matcher matcher = pattern.matcher(setting.getName());
-            matcher.lookingAt();
-            if (matcher.matches()) {
+            if (setting.getPath().matches(getPattern())) {
+                LOG.info("SETTINGS: " + setting.getName()  + "(" + setting.getPath() + ")");
                 if (setting.getType().getName().equals("enum")) {
-                    addEnums(setting.getName(), (EnumSetting)setting.getType());
+                    addEnums(setting.getName(), setting.getIndex(), (EnumSetting)setting.getType());
                 } else if (setting.getType().getName().equals("multiEnum")) {
-                    addMultiEnums(setting.getName(), (MultiEnumSetting)setting.getType());
+                    addMultiEnums(setting.getName(), setting.getIndex(), (MultiEnumSetting)setting.getType());
                 }
             }
         }
     }
 
     // Override this method in implementation to fill enum
-    protected void addEnums(String settingName, EnumSetting setting) {}
+    protected void addEnums(String settingName, Integer settingIndex, EnumSetting setting) {}
 
     // Override this method in implementation to fill multi-enum
-    protected void addMultiEnums(String settingName, MultiEnumSetting setting) {}
+    protected void addMultiEnums(String settingName, Integer settingIndex, MultiEnumSetting setting) {}
 
 };
