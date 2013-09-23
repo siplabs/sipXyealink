@@ -16,6 +16,8 @@ import java.util.Collections;
 import java.util.Arrays;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
+import java.util.HashMap;
 import java.util.Set;
 
 import static java.lang.String.format;
@@ -285,7 +287,7 @@ public class YealinkPhone extends Phone {
     @Override
     public void initialize() {
         addDefaultBeanSettingHandler(new YealinkPhoneDefaults(getPhoneContext().getPhoneDefaults(), this));
-        addDefaultSettingHandler(new DSSDefaults());
+        addDefaultSettingHandler(new DynamicDefaults(getPhoneContext().getSpeedDial(this)));
     }
 
     @Override
@@ -624,7 +626,15 @@ public class YealinkPhone extends Phone {
         }
     }
 
-    private class DSSDefaults implements SettingValueHandler {
+    private class DynamicDefaults implements SettingValueHandler {
+        private Integer m_BLFIndex = 0;
+        private List<Button> m_sdButtons;
+        private Map<Integer,Integer> m_BLF = new HashMap();
+
+        public DynamicDefaults(SpeedDial sd) {
+            super();
+            m_sdButtons = null!=sd?sd.getButtons():new ArrayList<Button>();
+        }
 
         private Integer getLineKeyLineId(Integer i) {
             if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
@@ -636,16 +646,48 @@ public class YealinkPhone extends Phone {
             }
             return new Integer(getModel().getModelId().matches("yealinkPhoneSIPT4.*")?1:0);
         }
+
         private Integer getLineKeyType(Integer i) {
+            Integer result = 0;
             if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
-                return 15;
+                result = 15;
             } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
-                return 15;
+                result = 15;
             } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
-                return 15;
+                result = 15;
+            } else if (m_BLFIndex < m_sdButtons.size()) {
+                Integer BLFIndex;
+                if (null != (BLFIndex = m_BLF.get(i))) {
+                    Button sdButton = m_sdButtons.get(BLFIndex);
+                    result = sdButton.isBlf()?16:13;
+                } else {
+                    Button sdButton = m_sdButtons.get(m_BLFIndex);
+                    m_BLF.put(i, m_BLFIndex);
+                    m_BLFIndex++;
+                    result = sdButton.isBlf()?16:13;
+                }
             }
-            return 0;
+            return result;
         }
+
+        private String getLineKeyValue(Integer i) {
+            Integer BLFIndex = m_BLF.get(i);
+            if (null != BLFIndex) {
+                Button sdButton = m_sdButtons.get(BLFIndex);
+                return sdButton.getNumber();
+            }
+            return null;
+        }
+
+        private String getLineKeyLabel(Integer i) {
+            Integer BLFIndex = m_BLF.get(i);
+            if (null != BLFIndex) {
+                Button sdButton = m_sdButtons.get(BLFIndex);
+                return sdButton.getLabel();
+            }
+            return null;
+        }
+
         private Integer getProgramableKeyType(Integer i) {
             if (i == 0) return 28;
             if (i == 1) return 22;
@@ -660,15 +702,33 @@ public class YealinkPhone extends Phone {
         private SettingValue getLineKeyLineDefaultValue(Setting setting) {
             return new SettingValueImpl(getLineKeyLineId(setting.getIndex()).toString());
         }
+
         private SettingValue getLineKeyTypeDefaultValue(Setting setting) {
             return new SettingValueImpl(getLineKeyType(setting.getIndex()).toString());
+        }
+
+        private SettingValue getLineKeyValueDefaultValue(Setting setting) {
+            return new SettingValueImpl(getLineKeyValue(setting.getIndex()));
+        }
+
+        private SettingValue getLineKeyLabelDefaultValue(Setting setting) {
+            return new SettingValueImpl(getLineKeyLabel(setting.getIndex()));
         }
 
         private SettingValue getProgramableKeyLineDefaultValue(Setting setting) {
             return new SettingValueImpl(getModel().getModelId().matches("yealinkPhoneSIPT4.*")?"1":"0");
         }
+
         private SettingValue getProgramableKeyTypeDefaultValue(Setting setting) {
             return new SettingValueImpl(getProgramableKeyType(setting.getIndex()).toString());
+        }
+
+        private SettingValue getHSLineDefaultValue(Setting setting) {
+            return new SettingValueImpl(String.format("%s%d", (setting.getName().matches("(incoming_lines|dial_out_lines)"))?"enum":"", setting.getIndex() + 1));
+        }
+
+        private SettingValue getHSNameDefaultValue(Setting setting) {
+            return new SettingValueImpl(String.format("HS%d", setting.getIndex() + 1));
         }
 
         public SettingValue getSettingValue(Setting setting) {
@@ -680,6 +740,14 @@ public class YealinkPhone extends Phone {
                 return getLineKeyLineDefaultValue(setting);
             } else if (setting.getPath().matches("DSSKeys/line-keys/linekey/type.+")) {
                 return getLineKeyTypeDefaultValue(setting);
+            } else if (setting.getPath().matches("DSSKeys/line-keys/linekey/value.+")) {
+                return getLineKeyValueDefaultValue(setting);
+            } else if (setting.getPath().matches("DSSKeys/line-keys/linekey/label.+")) {
+                return getLineKeyLabelDefaultValue(setting);
+            } else if (setting.getPath().matches(".*/((incoming_lines|dial_out_lines|dial_out_default_line)\\[\\d+\\])")) {
+                return getHSLineDefaultValue(setting);
+            } else if (setting.getPath().matches("handsets/handset/name\\[\\d+\\]")) {
+                return getHSNameDefaultValue(setting);
             }
             return null;
         }

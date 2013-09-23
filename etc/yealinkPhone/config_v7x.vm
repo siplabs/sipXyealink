@@ -26,7 +26,8 @@ remote_phonebook.data.${pbId}.url = %NULL%
 remote_phonebook.data.${pbId}.name = %NULL%
 #end
 #end
-#macro (linesSetting $setting)
+
+#macro (linesSetting $setting, $prefix)
 #set ($selected = $setting.getTypedValue())
 #set ($keys = $setting.getType().getEnums().keySet())
 ## Loop through each item
@@ -38,29 +39,35 @@ remote_phonebook.data.${pbId}.name = %NULL%
 #set($value = "$value,${key.substring(4)}")
 #end
 #end
-${setting.profileName} = ${value}
+${prefix}${setting.profileName} = ${value}
 #end
+
 #macro (arraySettings $array)
 #set($settingsIndexMax = ${array.getSize()} - 1)
 #foreach ($settingIndex in [0..$settingsIndexMax])
 #foreach ($settingName in ${array.getSettingNames()})
 #set($s = ${array.getSetting($settingIndex,$settingName)})
 #if(${s.Value})
+#if(${s.name.matches("(dial_out|incoming)_lines")})
+#linesSetting($s,"${array.name}.$math.add(${settingIndex},1).")
+#else
 ${array.name}.$math.add(${settingIndex},1).${settingName} = $!{s.value}
+#end
 #else
 ${array.name}.$math.add(${settingIndex},1).${settingName} = %NULL%
 #end
 #end
 #end
 #end
+
 #macro (phoneSetting $settings)
 #if(${settings.getSize()})
 #arraySettings($settings)
 #else
 #foreach ($s in $settings.Values)
 #if(${s.isLeaf()})
-#if(${s.name.matches("(.*(dial_out|incoming)_lines)|(dialplan.area_code.line_id)")})
-#linesSetting($s)
+#if(${s.name.matches("((dial_out|incoming)_lines)|(dialplan.area_code.line_id)")})
+#linesSetting($s,"")
 #elseif(${s.name} == "_RemotePhonebooks")
 #phonebooksSettings($s)
 #else

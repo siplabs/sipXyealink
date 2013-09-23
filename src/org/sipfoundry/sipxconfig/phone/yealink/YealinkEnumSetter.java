@@ -39,7 +39,6 @@ public abstract class YealinkEnumSetter extends AbstractSettingVisitor {
     public void visitSetting(Setting setting) {
         if ((setting.getType() instanceof EnumSetting)|(setting.getType() instanceof MultiEnumSetting)) {
             if (setting.getPath().matches(getPattern())) {
-                LOG.info("SETTINGS: " + setting.getName()  + "(" + setting.getPath() + ")");
                 if (setting.getType().getName().equals("enum")) {
                     addEnums(setting.getName(), setting.getIndex(), (EnumSetting)setting.getType());
                 } else if (setting.getType().getName().equals("multiEnum")) {
