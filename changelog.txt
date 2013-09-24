@@ -1,3 +1,14 @@
+RPM V4.6.0 build 1724.b0d0d
+    Date:   Tue Sep 24 11:53:51 2013 +0700
+	FIX: BLF present in sipXecs WEB UI, but was not present in MAC.cfg file
+    Date:   Tue Sep 24 02:14:03 2013 +0700
+	FIX: linekey,programableley defaults
+    Date:   Mon Sep 23 16:43:01 2013 +0700
+	Add: tablevoew support for linekey.
+	Add: dynamic defaults for linekey and programablekey collections.
+	Fix: programable type for programable keys.
+    Date:   Thu Sep 19 15:34:59 2013 +0700
+	Added: table-view support for programblekey, alert-info and autop sources
     Date:   Tue Sep 17 13:05:07 2013 +0700
 	Refactoring: Remote Phonebooks order and set selection with multi-enum
 
