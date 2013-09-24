@@ -634,6 +634,23 @@ public class YealinkPhone extends Phone {
         public DynamicDefaults(SpeedDial sd) {
             super();
             m_sdButtons = null!=sd?sd.getButtons():new ArrayList<Button>();
+            Integer sdIndex = 0;
+            for (Integer i=0;(i<getMaxLineCount()+getMaxDSSKeyCount())&&(i<m_sdButtons.size());i++) {
+                if (!isLineKey(i)) {
+                    m_BLF.put(i, sdIndex++);
+                }
+            }
+        }
+
+        private boolean isLineKey(Integer i) {
+            if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
+                return true;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
+                return true;
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
+                return true;
+            }
+            return false;
         }
 
         private Integer getLineKeyLineId(Integer i) {
@@ -649,23 +666,12 @@ public class YealinkPhone extends Phone {
 
         private Integer getLineKeyType(Integer i) {
             Integer result = 0;
-            if (getModel().getModelId().matches("yealinkPhoneSIPT46.*") && (i > 4 && i < (4+getMaxLineCount()+1))) {
-                result = 15;
-            } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
-                result = 15;
-            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
-                result = 15;
-            } else if (m_BLFIndex < m_sdButtons.size()) {
-                Integer BLFIndex;
-                if (null != (BLFIndex = m_BLF.get(i))) {
-                    Button sdButton = m_sdButtons.get(BLFIndex);
-                    result = sdButton.isBlf()?16:13;
-                } else {
-                    Button sdButton = m_sdButtons.get(m_BLFIndex);
-                    m_BLF.put(i, m_BLFIndex);
-                    m_BLFIndex++;
-                    result = sdButton.isBlf()?16:13;
-                }
+            Integer BLFIndex;
+            if (isLineKey(i)) {
+                return 15;
+            } else if (null != (BLFIndex = m_BLF.get(i))) {
+                Button sdButton = m_sdButtons.get(BLFIndex);
+                result = sdButton.isBlf()?16:13;
             }
             return result;
         }
