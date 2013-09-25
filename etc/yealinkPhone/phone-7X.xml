@@ -458,7 +458,7 @@
 	    <!--// Configure the active backlight level. It ranges from 1 to 10, the default value is 2.
 	    #The same level for different phones may result in different backlight intensities. 
 	    #The backlight level of T2xP ranges from 1 to 3.  //-->
-	    <setting name="phone_setting.active_backlight_level" advanced="yes" if="yealinkPhoneSIPT[34].*"><type><integer min="1" max="10"/></type><value>2</value></setting>
+	    <setting name="phone_setting.active_backlight_level" advanced="yes" if="yealinkPhoneSIPT((3[28])|46).*"><type><integer min="1" max="10"/></type><value>2</value></setting>
 	    <setting name="phone_setting.active_backlight_level_t2x" advanced="yes" if="yealinkPhoneSIPT[12].*"><profileName>phone_setting.active_backlight_level</profileName><type><integer min="1" max="3"/></type><value>2</value></setting>
 	</group>
 	<group name="AUDIO">
@@ -746,11 +746,11 @@
 	    <setting name="rule"><type><string/></type></setting>
 	    <setting name="line_id"><type refid="yealink_line_type"/></setting>
 	</collection>
-	<collection name="block-out" size="20">
+	<collection name="block-out" size="20" advanced="yes">
 	    <setting name="number"><type><string/></type></setting>
 	    <setting name="line_id"><type refid="yealink_multi_line_type"/></setting>
 	</collection>
-	<collection name="replace" size="20">
+	<collection name="replace" size="20" advanced="yes">
 	    <setting name="enabled"><type><boolean/></type><value>0</value></setting>
 	    <setting name="prefix"><type><string/></type></setting>
 	    <setting name="replaced"><type><string/></type></setting>

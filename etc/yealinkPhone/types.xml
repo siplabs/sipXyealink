@@ -594,6 +594,23 @@
         <option><label>G.726 40Kbit</label><value>104</value></option>
     </enum>
 </type>
+<type id="codecs_type">
+    <multi-enum>
+        <option><value>9:G722</value></option>
+        <option><value>8:PCMA</value></option>
+        <option><value>18:G729</value></option>
+        <option><value>0:PCMU</value></option>
+        <option><value>4:G723_53</value></option>
+        <option><value>4:G723_63</value></option>
+        <option><value>112:G726-16</value></option>
+        <option><value>102:G726-24</value></option>
+        <option><value>102:G726-32</value></option>
+        <option><value>104:G726-40</value></option>
+        <option><value>122:iLBC</value></option>
+        <option><value>97:iLBC_13_3</value></option>
+        <option><value>97:iLBC_15_2</value></option>
+    </multi-enum>
+</type>
 <type id="DST_mode_type">
     <enum>
 	<option><value>0</value></option>

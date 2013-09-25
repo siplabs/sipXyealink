@@ -60,6 +60,27 @@ ${array.name}.$math.add(${settingIndex},1).${settingName} = %NULL%
 #end
 #end
 
+#macro (codecSetting $setting, $account)
+#set ($selected = $setting.getTypedValue())
+#set ($keys = $setting.getType().getEnums().keySet())
+## Loop through each item
+#set($i = 1)
+#foreach ($key in $keys)
+#set($pt = $key.substring($math.add($key.indexOf(":"),1)))
+#set($m = $key.substring(0,$key.indexOf(":")))
+#if (${selected.contains($key)})
+account.${account}.codec.${i}.enable = 1
+account.${account}.codec.${i}.priority = $!{selected.indexOf($key)}
+#else
+account.${account}.codec.${i}.enable = 0
+account.${account}.codec.${i}.priority = %NULL%
+#end
+account.${account}.codec.${i}.rtpmap = $!{m}
+account.${account}.codec.${i}.payload_type = $!{pt}
+#set($i = $i + 1)
+#end
+#end
+
 #macro (phoneSetting $settings)
 #if(${settings.getSize()})
 #arraySettings($settings)
@@ -101,10 +122,14 @@ ${setting.ProfileName}.${lastLineID} = $!{setting.Value}
 account.${lastLineID}.label = $!{setting.Value}
 account.${lastLineID}.user_name = $!{setting.Value}
 #else
-#if(${setting.Value})
+#if (${setting.name} == "codec")
+#codecSetting($setting, $lastLineID)
+#else
+#if (${setting.Value})
 account.${lastLineID}.${setting.ProfileName} = $!{setting.Value}
 #else
 account.${lastLineID}.${setting.ProfileName} = %NULL%
+#end
 #end
 #end
 #end
