@@ -348,4 +348,8 @@ public class YealinkPhoneDefaults {
         }
     }
 
+    @SettingEntry(path = YealinkConstants.DIRECT_CALL_PICKUP_CODE_V7X_SETTING)
+    public String getDirectedCallPickupString() {
+        return m_defaults.getDirectedCallPickupCode();
+    }
 }

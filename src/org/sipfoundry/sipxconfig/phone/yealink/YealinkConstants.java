@@ -65,6 +65,7 @@ public class YealinkConstants {
     public static final String XML_BROWSER_SERVER_V7X_SETTING = "features/APISECURITY/push_xml.server";
     public static final String ACTION_URI_LIMIT_IP_V6X_SETTING = "Features/ActionURILimitIP";
     public static final String ACTION_URI_LIMIT_IP_V7X_SETTING = "features/APISECURITY/features.action_uri_limit_ip";
+    public static final String DIRECT_CALL_PICKUP_CODE_V7X_SETTING = "features/CALLPICKUP/features.pickup.direct_pickup_code";
 
     public static final String REMOTE_PHONEBOOK_0_NAME_V6X_SETTING = "contacts/RemotePhoneBook/0/Name";
     public static final String REMOTE_PHONEBOOK_0_URL_V6X_SETTING = "contacts/RemotePhoneBook/0/URL";
