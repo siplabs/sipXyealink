@@ -635,9 +635,11 @@ public class YealinkPhone extends Phone {
             super();
             m_sdButtons = null!=sd?sd.getButtons():new ArrayList<Button>();
             Integer sdIndex = 0;
-            for (Integer i=0;(i<getMaxLineCount()+getMaxDSSKeyCount())&&(i<m_sdButtons.size());i++) {
+            // Loop while i is less then summary DSS count and there is available SpeedDials to assign
+            for (Integer i=0;(i<getMaxLineCount()+getMaxDSSKeyCount())&&(sdIndex<m_sdButtons.size());i++) {
                 if (!isLineKey(i)) {
                     m_BLF.put(i, sdIndex++);
+                } else {
                 }
             }
         }
@@ -647,7 +649,7 @@ public class YealinkPhone extends Phone {
                 return true;
             } else if (getModel().getModelId().matches("yealinkPhoneSIPT4[12].*") && (i > 2 && i < (2+getMaxLineCount()+1))) {
                 return true;
-            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()+1))) {
+            } else if (getModel().getModelId().matches("yealinkPhoneSIPT[1-3].*") && (i > -1 && i < (0+getMaxLineCount()))) {
                 return true;
             }
             return false;
