@@ -586,6 +586,9 @@
 	//-->
 	    <collection name="linekey" size="0"/>
 	</group>
+	<group name="memory-keys" if="yealinkPhoneSIPT((2[68])|38).*">
+	    <collection name="memorykey" size="0"/>
+	</group>
 	<group name="programable-keys" if="yealinkPhone(SIPT[1-4]).*">
 	<!--//
 	##########################################################################################

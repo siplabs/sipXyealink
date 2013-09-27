@@ -7,6 +7,7 @@
 #set($signatureL5 = '#File header "#!version:1.0.0.1" cannot be edited or deleted.##')
 $signatureL4
 $signatureL5
+##
 #macro (phonebooksSettings $setting)
 #set ($selected = $setting.getTypedValue())
 #set ($book_keys = $setting.getType().getEnums().keySet())
@@ -26,7 +27,7 @@ remote_phonebook.data.${pbId}.url = %NULL%
 remote_phonebook.data.${pbId}.name = %NULL%
 #end
 #end
-
+##
 #macro (linesSetting $setting, $prefix)
 #set ($selected = $setting.getTypedValue())
 #set ($keys = $setting.getType().getEnums().keySet())
@@ -41,7 +42,7 @@ remote_phonebook.data.${pbId}.name = %NULL%
 #end
 ${prefix}${setting.profileName} = ${value}
 #end
-
+##
 #macro (arraySettings $array)
 #set($settingsIndexMax = ${array.getSize()} - 1)
 #foreach ($settingIndex in [0..$settingsIndexMax])
@@ -59,7 +60,7 @@ ${array.name}.$math.add(${settingIndex},1).${settingName} = %NULL%
 #end
 #end
 #end
-
+##
 #macro (codecSetting $setting, $account)
 #set ($selected = $setting.getTypedValue())
 #set ($keys = $setting.getType().getEnums().keySet())
@@ -80,7 +81,7 @@ account.${account}.codec.${i}.payload_type = $!{pt}
 #set($i = $i + 1)
 #end
 #end
-
+##
 #macro (phoneSetting $settings)
 #if(${settings.getSize()})
 #arraySettings($settings)
