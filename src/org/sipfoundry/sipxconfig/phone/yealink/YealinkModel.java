@@ -1,9 +1,17 @@
 /*
- * Copyright (C) 2013 SibTelCom, JSC., certain elements licensed under a Contributor Agreement.
- * Author: Konstantin S. Vishnivetsky
- * E-mail: info@siplabs.ru
- * Contributors retain copyright to elements licensed under a Contributor Agreement.
- * Licensed to the User under the LGPL license.
+ * Copyright (c) 2013 SibTelCom, JSC (SIPLABS Communications). All rights reserved.
+ * Contributed to SIPfoundry and eZuce, Inc. under a Contributor Agreement.
+ *
+ * Developed by Konstantin S. Vishnivetsky
+ *
+ * This library or application is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU Affero General Public License (AGPL) as published by the Free
+ * Software Foundation; either version 3 of the License, or (at your option) any later version.
+ *
+ * This library or application is distributed in the hope that it will be useful, but WITHOUT
+ * ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS
+ * FOR A PARTICULAR PURPOSE. See the GNU Affero General Public License (AGPL) for
+ * more details.
  *
 */
 
@@ -14,7 +22,7 @@ import org.sipfoundry.sipxconfig.phone.PhoneModel;
 
 /**
  * Static differences in yealink models
- */
+*/
 public final class YealinkModel extends PhoneModel {
     /** Firmware 6x or beyond */
     public static final DeviceVersion VER_6X = new DeviceVersion(YealinkPhone.BEAN_ID, "6X");

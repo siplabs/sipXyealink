@@ -1,4 +1,4 @@
-RPM V4.6.0 build 1724.b0d0d
+RPM V4.6.0 build -1730.50f4b
     Date:   Fri Sep 27 13:32:21 2013 +0700
 	FIX: linekeys/memorykey BLF in SIP-T[23]X
     Date:   Thu Sep 26 11:21:15 2013 +0700

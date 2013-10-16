@@ -3,10 +3,10 @@ Version: @VERSION@
 Release: @PACKAGE_REVISION@
 
 Summary: VoIP PBX plugin.
-License: LGPL
+License: AGPL
 Group: Telcommunications
 Vendor: SIPLABS
-Packager: SIPLABS <info@siplabs.ru>
+Packager: SIPLABS <techinfo@siplabs.ru>
 Url: http://www.siplabs.ru
 
 %if %{_vendor} == suse
